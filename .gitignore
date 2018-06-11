@@ -22,4 +22,4 @@ yarn-error.log*
 
 #Mine
 Notes.txt
-/public/resources/cards
+.netlify

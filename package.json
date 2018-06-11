@@ -7,15 +7,20 @@
     "babel-polyfill": "^6.26.0",
     "bootstrap": "^3.3.7",
     "chart.js": "^2.7.1",
+    "d3": "^3.1.0",
     "deckstrings": "^1.1.0",
-    "react": "^16.2.0",
-    "react-bootstrap": "^0.32.0",
+    "lodash.get": "^4.4.2",
+    "lodash.partial": "^4.2.1",
+    "lodash.sortby": "^4.7.0",
+    "react": "^16.4.0",
     "react-chartjs-2": "^2.7.0",
-    "react-dom": "^16.2.0",
+    "react-dom": "^16.4.0",
     "react-lazyload": "^2.3.0",
+    "react-modal": "^3.4.4",
     "react-progressive-image": "^0.3.0",
     "react-router-dom": "^4.2.2",
-    "react-scripts": "1.1.0",
+    "react-scripts": "1.1.4",
+    "react-select": "^1.2.1",
     "react-waypoint": "^8.0.0"
   },
   "scripts": {
@@ -24,5 +29,7 @@
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "workerize-loader": "^1.0.3"
+  }
 }

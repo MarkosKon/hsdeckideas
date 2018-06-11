@@ -1,0 +1,853 @@
+@import url('https://fonts.googleapis.com/css?family=Lora|Open+Sans');
+/*Global settings.*/
+
+html,
+body {
+  font-family: 'Lora', serif;
+  font-size: 16px;
+  font-display: swap;
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  background-color: #f0f0f0;
+}
+
+main {
+  min-height: 100%;
+  margin-top: 15px;
+}
+
+main a {
+  color: rgb(61, 61, 196);
+  font-weight: bold;
+  -webkit-transition: color 0.5s ease-in-out;
+  -o-transition: color 0.5s ease-in-out;
+  transition: color 0.5s ease-in-out;
+}
+
+main a:hover, 
+main a:focus, 
+main a:active {
+  text-decoration: none;
+  color: rgb(22, 22, 148);
+}
+
+h1,
+.h1,
+h2,
+.h2,
+h3,
+.h3,
+h4,
+.h4,
+h5,
+.h5 {
+  font-family: 'Open Sans', sans-serif;
+  font-display: swap;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.btn-primary {
+  transition: all 0.5s ease-in-out;
+}
+
+/*Generic selection overrides.*/
+
+::-moz-selection {
+  background: rgb(255, 255, 79);
+}
+
+::selection {
+  background: rgb(255, 255, 79);
+}
+
+img::-moz-selection {
+  color: white;
+  background: transparent;
+}
+
+img::selection {
+  color: white;
+  background: transparent;
+}
+
+/* Alerts. */
+
+.alert {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 10;
+}
+
+.alert p {
+  max-width: 200px;
+  margin: 0 auto;
+}
+
+/*Header section styles.*/
+
+header {
+  margin: 0;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
+    url("../images/witchwood1.jpg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-color: beige;
+  height: 60vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: beige;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+}
+
+@media (max-width: 767px) {
+  header {
+    min-height: 100vh;
+  }
+
+  header .header-content h1 {
+    font-size: 3rem;
+    margin-bottom: 2rem;
+  }
+  header .header-content p {
+    font-size: 1.2rem;
+  }
+}
+
+@media (min-width: 1921px) {
+  header {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+      url("../images/witchwood2.jpg");
+  }
+}
+
+header .header-content {
+  padding: 0 5px;
+}
+
+header h1 {
+  font-size: 5rem;
+  margin-bottom: 2rem;
+}
+
+header p {
+  font-size: 1.5rem;
+}
+
+header ::-moz-selection {
+  color: black;
+}
+
+header ::selection {
+  color: black;
+}
+
+header a {
+  color: orange;
+  transition: color 0.5s ease-in-out;
+}
+
+header a:hover,
+header a:focus,
+header a:active {
+  text-decoration: none;
+  color: rgb(202, 131, 0);
+}
+
+.resultImage-container {
+  margin-top: 10px;
+  position: relative;
+}
+
+.resultImage-container > h3 {
+  position: absolute;
+  bottom: 0;
+  left: 10px;
+  font-size: 3rem;
+  color: beige;
+}
+
+.resultImage-container > h3::selection {
+  color: black;
+}
+
+.resultImage-container > h3::-moz-selection {
+  color: black;
+}
+#resultImage {
+  width: 100%;
+  height: 100%;
+}
+
+#deckArchtypeName,
+#deckThemeName,
+#deckFlavourName {
+  text-decoration: underline;
+}
+
+.form-group label,
+.form-group div {
+  margin-bottom: 5px;
+  margin-top: 5px;
+}
+
+.sample-cards {
+  margin-top: 20px;
+}
+
+#deckArchtypeCards {
+  padding: 0 10px;
+}
+
+.card-container img {
+  margin: 0 auto;
+  max-height: 20em;
+}
+
+.panel,
+.thumbnail {
+  background-color: beige;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+}
+
+.well {
+  background-color: #dff0d8;
+}
+
+.not {
+  display: none;
+}
+
+.container-space {
+  margin-top: 30px;
+}
+
+.row-space {
+  margin-top: 20px;
+}
+
+/* Footer styles.*/
+footer {
+  display: flex;
+  width: 100%;
+  min-height: 200px;
+  color: rgba(255, 255, 255, 0.5);
+  background-color: #222222;
+  text-align: center;
+}
+
+footer .footer-container {
+  margin: 5vh auto;
+}
+
+footer ::-moz-selection {
+  color: black;
+}
+
+footer ::selection {
+  color: black;
+}
+
+footer ul > li {
+  font-size: 0.8em;
+  display: inline;
+  margin-right: 10px;
+}
+
+footer ul > li > a {
+  color: rgba(255, 255, 255, 0.5);
+  text-decoration: none;
+  -webkit-transition: all 0.35s;
+  -moz-transition: all 0.35s;
+  transition: all 0.35s;
+}
+
+footer ul > li > a:hover,
+footer ul > li > a:active,
+footer ul > li > a:focus {
+  color: orange;
+  text-decoration: none;
+}
+
+footer ul {
+  padding: 0;
+}
+footer ul.social {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+
+footer ul.social a {
+  border-radius: 100%;
+  font-size: 2.3rem;
+  min-width: 4rem;
+  min-height: 4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.social-twitter a {
+  color: white;
+  background-color: #00aced;
+}
+
+.social-twitter a:hover,
+.social-twitter a:active,
+.social-twitter a:focus {
+  color: whitesmoke;
+  background-color: #0084b4;
+}
+
+.social-facebook a {
+  color: white;
+  background-color: #3b5998;
+}
+
+.social-facebook a:hover,
+.social-facebook a:active,
+.social-facebook a:focus {
+  color: whitesmoke;
+  background-color: rgb(42, 66, 117);
+}
+
+.social-reddit a {
+  color: white;
+  background-color: #ff4500;
+}
+
+.social-reddit a:hover,
+.social-reddit a:active,
+.social-reddit a:focus {
+  color: whitesmoke;
+  background-color: #c5400f;
+}
+
+/* Druid. */
+.hero0 {
+  background-color: rgb(116, 80, 8);
+}
+/* Hunter. */
+.hero1 {
+  background-color: darkolivegreen;
+}
+/* Mage. */
+.hero2 {
+  background-color: #8f95b5;
+}
+/* Paladin. */
+.hero3 {
+  background-color: #b3843b;
+}
+/* Priest. */
+.hero4 {
+  background-color: #b5bbbd;
+}
+/* Rogue. */
+.hero5 {
+  background-color: #595255;
+}
+/* Shaman. */
+.hero6 {
+  background-color: #343663;
+}
+/* Warlock. */
+.hero7 {
+  background-color: #6d4075;
+}
+/* Warrior. */
+.hero8 {
+  background-color: #652523;
+}
+
+.hero99 {
+  background-color: #7a7a7a;
+}
+
+#deckList {
+  overflow: hidden;
+}
+
+.common,
+.free {
+  background-color: #7a7a7a;
+}
+
+.rare {
+  background-color: blue;
+}
+
+.epic {
+  background-color: purple;
+}
+
+.legendary {
+  background-color: orangered;
+}
+
+.random {
+  color: orange !important;
+}
+
+dt {
+  margin-bottom: 5px;
+}
+dd {
+  margin-bottom: 10px;
+}
+
+.fabidea {
+  position: fixed;
+  display: flex;
+  outline: none;
+  font-size: 30px;
+  z-index: 11;
+  bottom: 5%;
+  right: 3%;
+  width: 80px;
+  height: 80px;
+  color: white;
+  background-color: darkorange;
+  border: 0;
+  border-radius: 100%;
+  box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
+  -webkit-transition: background-color 0.5s ease-in, right 1s;
+  transition: background-color 0.5s ease-in, right 1s;
+}
+
+.fabidea:hover {
+  background-color: rgb(235, 131, 3);
+}
+
+.fabidea .fa-lightbulb {
+  margin: auto auto;
+}
+
+/* .fabidea.fabidea-hidden {
+  right: -200px;
+} */
+
+.total-dust {
+  margin-top: 1em;
+  font-size: 1em;
+}
+
+.total-dust .total-dust-number {
+  font-size: 1.4em;
+}
+ul.decklist {
+  padding: 10px;
+  max-width: 400px;
+  min-width: 250px;
+}
+
+@media(max-width: 767px) {
+  ul.decklist {
+    margin: auto auto;
+  }
+}
+
+ul.decklist > li {
+  display: flex;
+  grid-column: 2;
+  flex-direction: row;
+  align-items: stretch;
+  border: 1px solid black;
+  line-height: 30px;
+  min-width: 150px;
+  height: 35px;
+}
+
+ul.decklist.decklist-snapshot {
+  padding: 0;
+  margin: 10px 0 10px 10px;
+  max-width: 300px;
+}
+
+ul.decklist .name {
+  flex: 4;
+  text-align: left;
+  color: white;
+  padding: 5px;
+  overflow: hidden;
+}
+
+ul.decklist .mana-cost {
+  flex: 1;
+  text-align: center;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: white;
+}
+
+ul.decklist .quantity {
+  flex: 1;
+  text-align: center;
+  background-color: #333;
+  color: sandybrown;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+ul.decklist .class-color {
+  flex: 1;
+  background-color:  white;
+  max-width: 10px;
+}
+
+ul.decklist div::-moz-selection {
+  color: black;
+}
+
+ul.decklist div::selection {
+  color: black;
+}
+
+ul.decklist > li:hover {
+  border: 2px solid black;
+}
+
+.select-input-area {
+  display: grid;
+  /* grid-template-columns: repeat(3, 1fr); */
+  grid-auto-rows: auto;
+  grid-template-areas:
+    "ft hr ar"
+    "oc oc oc"
+    "otc otc otc";
+  grid-gap: 5px;
+}
+
+.select-item {
+  display: flex;
+  align-items: center;
+}
+
+.select-item-format {
+  grid-area: ft;
+}
+
+.select-item-hero {
+  grid-area: hr;
+}
+
+.select-item-archetype {
+  grid-area: ar;
+}
+
+.select-item-origin-card {
+  grid-area: oc;
+}
+
+.select-item-other-card {
+  grid-area: otc;
+}
+
+.select-item label {
+  flex: 1;
+  margin: 0;
+  margin-right: 5px;
+}
+
+.select-item select {
+  flex: 3;
+  padding: 0;
+}
+
+.select-item > div {
+  flex: 3;
+  padding: 0;
+  z-index: 2;
+}
+
+@media (max-width: 954px) {
+  .select-input-area {
+    grid-template-columns: 1fr;
+    grid-template-areas: "ft" "hr" "ar" "oc" "otc";
+  }
+  .select-item {
+    align-items: left;
+  }
+
+  .select-item label {
+    flex: 1;
+  }
+
+  .select-item select {
+    flex: 3;
+  }
+}
+
+.donation-paypal-container {
+  margin-left: 10px;
+}
+
+.donation-paypal-container form {
+  display: inline;
+}
+
+#parent {
+  transition: background-color 0.5s ease-in-out;
+}
+
+/* Material progress bar styles */
+.ipl-progress-indicator.available {
+  opacity: 0;
+}
+.ipl-progress-indicator {
+  background-color: #f5f5f5;
+  width: 100%;
+  position: fixed;
+  opacity: 1;
+  pointer-events: none;
+  -webkit-transition: opacity cubic-bezier(0.4, 0, 0.2, 1) 436ms;
+  -moz-transition: opacity cubic-bezier(0.4, 0, 0.2, 1) 436ms;
+  transition: opacity cubic-bezier(0.4, 0, 0.2, 1) 436ms;
+  z-index: 9999;
+}
+.ipl-progress-indicator-head {
+  background-color: #ffe4b2;
+  height: 4px;
+  overflow: hidden;
+  position: relative;
+}
+.ipl-progress-indicator .first-indicator,
+.ipl-progress-indicator .second-indicator {
+  background-color: orange;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  top: 0;
+  position: absolute;
+  -webkit-transform-origin: left center;
+  -moz-transform-origin: left center;
+  transform-origin: left center;
+  -webkit-transform: scaleX(0);
+  -moz-transform: scaleX(0);
+  transform: scaleX(0);
+}
+.ipl-progress-indicator .first-indicator {
+  -webkit-animation: first-indicator 2000ms linear infinite;
+  -moz-animation: first-indicator 2000ms linear infinite;
+  animation: first-indicator 2000ms linear infinite;
+}
+.ipl-progress-indicator .second-indicator {
+  -webkit-animation: second-indicator 2000ms linear infinite;
+  -moz-animation: second-indicator 2000ms linear infinite;
+  animation: second-indicator 2000ms linear infinite;
+}
+@keyframes first-indicator {
+  0% {
+    transform: translate(0%) scaleX(0);
+  }
+  25% {
+    transform: translate(0%) scaleX(0.5);
+  }
+  50% {
+    transform: translate(25%) scaleX(0.75);
+  }
+  75% {
+    transform: translate(100%) scaleX(0);
+  }
+  100% {
+    transform: translate(100%) scaleX(0);
+  }
+}
+@keyframes second-indicator {
+  0% {
+    transform: translate(0%) scaleX(0);
+  }
+  60% {
+    transform: translate(0%) scaleX(0);
+  }
+  80% {
+    transform: translate(0%) scaleX(0.6);
+  }
+  100% {
+    transform: translate(100%) scaleX(0.1);
+  }
+}
+
+.fa-star {
+  font-size: 0.7rem;
+}
+
+#codeCopy {
+  font-size: 16px;
+  color: white;
+  background: #524b4e;
+}
+
+.hidden {
+  display: none;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 10px;
+  grid-auto-rows: minmax(100px, auto);
+}
+
+@media (max-width: 1256px) {
+  .grid-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 975px) {
+  .grid-container {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+@media (max-width: 767px) {
+  .grid-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 550px) {
+  .grid-container {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+
+.form-control {
+  font-size: 1rem;
+}
+
+.ripple {
+  /* position: relative; */
+  overflow: hidden;
+  transform: translate3d(0, 0, 0);
+}
+.ripple:after {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  background-image: radial-gradient(circle, #000 10%, transparent 10.01%);
+  background-repeat: no-repeat;
+  background-position: 50%;
+  transform: scale(10, 10);
+  opacity: 0;
+  transition: transform 0.5s, opacity 1s;
+}
+.ripple:active:after {
+  transform: scale(0, 0);
+  opacity: 0.2;
+  transition: 0s;
+}
+
+.section-history {
+  margin-top: 20px;
+}
+
+.section-history .panel {
+  min-height: 100vh;
+}
+
+.step {
+  margin-bottom: 2vh;
+}
+
+.step-title {
+  text-decoration: underline;
+}
+
+.fa-info-circle {
+  color: darkorange;
+  background-color: white;
+}
+
+.tooltip-w3 {
+  position: relative;
+  display: inline-block;
+  margin: 0 5px;
+  border-bottom: 1px dotted black;
+  opacity: 1;
+}
+
+.tooltip-w3 .tooltiptext {
+  font-weight: normal;
+  visibility: hidden;
+  width: 200px;
+  background-color: #524b4e;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  position: absolute;
+  z-index: 10;
+  bottom: 125%;
+  left: 40%;
+  margin-left: -60px;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.tooltip-w3 .tooltiptext::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #555 transparent transparent transparent;
+}
+
+.tooltip-w3:hover .tooltiptext {
+  visibility: visible;
+  opacity: 1;
+}
+
+/* D3 dendrogram styles */
+.node {
+  cursor: pointer;
+}
+
+.node circle {
+  fill: #fff;
+  stroke: steelblue;
+  stroke-width: 3px;
+}
+
+.node text {
+  font: 12px sans-serif;
+}
+
+.link {
+  fill: none;
+  stroke: #ccc;
+  stroke-width: 2px;
+}
+
+#dendrogram {
+  overflow: auto;
+}
+
+#selectionArea .panel {
+  overflow: visible;
+}
+
+.table-responsive td {
+  white-space: normal !important;
+}
+
+/* React modal styles */
+.ReactModal__Body--open {
+  overflow-y: hidden;
+}
