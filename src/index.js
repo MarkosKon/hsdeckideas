@@ -1,8 +1,15 @@
-import "babel-polyfill";
+import "react-app-polyfill/ie11";
 import React from "react";
-import ReactDOM from "react-dom";
-import App from "./App";
+import { render } from "react-snapshot";
+import Loadable from "react-loadable";
+
+import Loading from "./components/Loading/Loading";
 import registerServiceWorker from "./registerServiceWorker";
 
-ReactDOM.render(<App />, document.getElementById("root"));
+const LoadableApp = Loadable({
+  loader: () => import("./App"),
+  loading: Loading
+});
+
+render(<LoadableApp />, document.getElementById("root"));
 registerServiceWorker();

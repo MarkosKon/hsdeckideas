@@ -1,19 +1,21 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
+import { sortAscBy } from "some-utils";
+import { Button } from "already-styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
-import CardDetail from "../CardDetail/CardDetail";
-import { sortAscBy } from "some-utils";
+
+import DeckListCard from "../DeckListCard/DeckListCard";
 import { getCardThatRequestedPriority } from "../../../../utils/deck";
 import Tooltip from "../../../../components/Tooltip/Tooltip";
-import BootstrapCard from "../../../../components/BootstrapCard/BootstrapCard";
+import UICard from "../../../../components/UICard/UICard";
 
-const ContainerCard = styled(BootstrapCard)`
+const ContainerCard = styled(UICard)`
   overflow: auto;
 `;
 
-const StyledCard = styled(BootstrapCard)`
+const StyledCard = styled(UICard)`
   background-color: azure !important;
   box-shadow: none !important;
 `;
@@ -29,39 +31,14 @@ const List = styled.ul`
   max-width: 300px;
 `;
 
-const CloseButton = styled.button`
-  background-color: transparent;
-  border: none;
-  color: #333;
-  font-size: 32px;
-  position: absolute;
-  right: 5px;
-  top: 0;
-
-  &:hover {
-    color: darkorange;
-    background-color: transparent;
-  }
-
-  @media screen and (min-width: 350px) {
-    right: 0;
-  }
-`;
-
 class History extends Component {
   renderSingleCardDetails(deck, priorityId) {
     const card = getCardThatRequestedPriority(deck, priorityId);
-    return card ? (
-      <CardDetail
-        card={card}
-        listenerMM={this.props.listenerMM}
-        listenerML={this.props.listenerML}
-      />
-    ) : null;
+    return card ? <DeckListCard card={card} /> : null;
   }
 
   render() {
-    const { closeModal, deck, listenerML, listenerMM } = this.props;
+    const { closeModal, deck } = this.props;
     const { history } = deck;
     const {
       steps,
@@ -71,16 +48,17 @@ class History extends Component {
     return (
       <ContainerCard
         id="deck-history"
-        className="mb-0"
         title="History (text)"
         modalButton={
-          <CloseButton
-            type="button"
-            className="btn btn-primary"
+          <Button
+            transparent
+            c="black"
+            hc="darkorange"
+            fs="60px"
             onClick={closeModal}
           >
             <FontAwesomeIcon icon={faTimes} />
-          </CloseButton>
+          </Button>
         }
       >
         <StyledCard withHeader={false}>
@@ -110,14 +88,15 @@ class History extends Component {
           </p>
         </StyledCard>
         <div>
-          We examined <b>{Object.keys(totalPrioritiesExamined).length}</b>
-          <span> priorities</span>
           <Tooltip
             id={"tooltip-history-priorities"}
             text={`Most of the cards have some requirements in order to be good.
                 Those requirements are the "priorities". The archetypes have
                 priorities too.`}
+            direction="right"
           />
+          We examined <b>{Object.keys(totalPrioritiesExamined).length}</b>
+          <span> priorities</span>
           <span>
             {" "}
             in <b>{steps.length}</b> step(s)
@@ -125,15 +104,16 @@ class History extends Component {
         </div>
         {deckWideFilters && (
           <div>
-            We examined <b>{Object.keys(deckWideFilters).length}</b>
-            <span> deck wide filters</span>
             <Tooltip
               id={"tooltip-history-filters"}
               text={`Some cards in addition to "priorities" may have some extra
-                requirements. For example the Baku decks filter out the even
-                cards or the Highlander decks want only one copy of each card.
-                Those are the "deck wide filters".`}
+              requirements. For example the Baku decks filter out the even
+              cards or the Highlander decks want only one copy of each card.
+              Those are the "deck wide filters".`}
+              direction="right"
             />
+            We examined <b>{Object.keys(deckWideFilters).length}</b>
+            <span> deck wide filters</span>
           </div>
         )}
         {steps.map((step, index) => (
@@ -143,37 +123,24 @@ class History extends Component {
               The deck size is: <b>{step.sizeBefore}</b>
             </p>
             <div>
-              <div className="step-origin-cards">
+              <div>
                 <h4>The "origin" cards for this step:</h4>
                 <List>
                   {step.originCards.sort(sortAscBy("cost")).map(originCard => (
-                    <CardDetail
-                      key={originCard.id}
-                      card={originCard}
-                      listenerMM={listenerMM}
-                      listenerML={listenerML}
-                    />
+                    <DeckListCard key={originCard.id} card={originCard} />
                   ))}
                 </List>
               </div>
-              {step.otherCards &&
-                step.otherCards.length > 0 && (
-                  <div className="step-other-cards">
-                    <h4>Other cards you selected:</h4>
-                    <List>
-                      {step.otherCards
-                        .sort(sortAscBy("cost"))
-                        .map(otherCard => (
-                          <CardDetail
-                            key={otherCard.id}
-                            card={otherCard}
-                            listenerMM={listenerMM}
-                            listenerML={listenerML}
-                          />
-                        ))}
-                    </List>
-                  </div>
-                )}
+              {step.otherCards && step.otherCards.length > 0 && (
+                <div>
+                  <h4>Other cards you selected:</h4>
+                  <List>
+                    {step.otherCards.sort(sortAscBy("cost")).map(otherCard => (
+                      <DeckListCard key={otherCard.id} card={otherCard} />
+                    ))}
+                  </List>
+                </div>
+              )}
               <h4>The priorities for this step:</h4>
               <p>Note: {step.extra}</p>
               <ol>
@@ -184,8 +151,8 @@ class History extends Component {
                     extra
                   }) => (
                     <li key={id}>
-                      <div className="priority">
-                        <div className="priority-description">
+                      <div>
+                        <div>
                           <b>Priority requirements: </b>
                           {minCards === maxCards
                             ? minCards
@@ -202,28 +169,25 @@ class History extends Component {
                             ))}
                           </ol>
                         </div>
-                        <div className="priority-result">
+                        <div>
                           <b>Result:</b> {extra}
                         </div>
-                        {priorityAddedCards &&
-                          priorityAddedCards.length > 0 && (
-                            <div className="priority-added-cards">
-                              <b>Cards added:</b>
-                              <List>
-                                {priorityAddedCards
-                                  .sort(sortAscBy("cost"))
-                                  .map(card => (
-                                    <CardDetail
-                                      key={card.id}
-                                      card={card}
-                                      showManaCost
-                                      listenerMM={listenerMM}
-                                      listenerML={listenerML}
-                                    />
-                                  ))}
-                              </List>
-                            </div>
-                          )}
+                        {priorityAddedCards && priorityAddedCards.length > 0 && (
+                          <div>
+                            <b>Cards added:</b>
+                            <List>
+                              {priorityAddedCards
+                                .sort(sortAscBy("cost"))
+                                .map(card => (
+                                  <DeckListCard
+                                    key={card.id}
+                                    card={card}
+                                    showManaCost
+                                  />
+                                ))}
+                            </List>
+                          </div>
+                        )}
                         {getCardThatRequestedPriority(deck, id) && (
                           <div>
                             <strong>Card that requested the priority:</strong>
@@ -237,35 +201,22 @@ class History extends Component {
                   )
                 )}
               </ol>
-              {step.totalAddedCards &&
-                step.totalAddedCards.length > 0 && (
-                  <div className="step-total-added-cards">
-                    <h4>Total cards we added in this step:</h4>
-                    <List>
-                      {step.totalAddedCards
-                        .sort(sortAscBy("cost"))
-                        .map(card => (
-                          <CardDetail
-                            key={card.id}
-                            card={card}
-                            listenerMM={listenerMM}
-                            listenerML={listenerML}
-                          />
-                        ))}
-                    </List>
-                  </div>
-                )}
+              {step.totalAddedCards && step.totalAddedCards.length > 0 && (
+                <div>
+                  <h4>Total cards we added in this step:</h4>
+                  <List>
+                    {step.totalAddedCards.sort(sortAscBy("cost")).map(card => (
+                      <DeckListCard key={card.id} card={card} />
+                    ))}
+                  </List>
+                </div>
+              )}
               {step.cardsRemoved && (
                 <div>
                   <h4>Cards we removed from the deck: </h4>
                   <List>
                     {step.cardsRemoved.sort(sortAscBy("cost")).map(card => (
-                      <CardDetail
-                        key={card.id}
-                        card={card}
-                        listenerMM={listenerMM}
-                        listenerML={listenerML}
-                      />
+                      <DeckListCard key={card.id} card={card} />
                     ))}
                   </List>
                 </div>

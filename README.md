@@ -25,3 +25,6 @@ In the beginning the app was implemented with an **imperative** style. In my min
 - Install dependencies and start the application `npm install && npm start`
 - Run tests `npm test`
 
+## Contributions
+
+_This repository is not the repository i work with because i don't really expect contributors (if your are interested let me know i can change that)_. A part of the application that **i could use some help** are the [data](https://github.com/MarkosKon/hsdeckideas/blob/master/public/resources/data/data.json) and more specifically the **card priorities**. I have a really good understanding of the game but i'm not in any way an expert deck builder. I think the **best solution** with that is to **let the users submit filters** for the cards. In order to achieve that i plan to link the app with a [Firebase](https://firebase.google.com/) back-end and implement an interface where the user can create filters (priorities) for the cards, save them locally or submit them to Firebase. I don't expect this to be that hard and is something i plan to do in the summer when i find some time.

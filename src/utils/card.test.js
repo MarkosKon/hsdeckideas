@@ -323,10 +323,10 @@ it("getAvailableCards test #2: Checks if returns only non interesting cards.", (
   expect(interestingCard).toEqual(undefined);
 });
 
-it("getAvailableCards test #3: Checks if returns all the cards (static number for Paladin in Boomsday).", () => {
+it("getAvailableCards test #3: Checks if returns all the cards (static number for Paladin in Rastakhan).", () => {
   const allCards = getAvailableCards(cards, "Paladin", "Standard");
 
-  expect(allCards.length).toEqual(448);
+  expect(allCards.length).toEqual(503);
 });
 
 it("getAvailableCards test #4: Checks if returns all the cards for Priest for Wild format.", () => {

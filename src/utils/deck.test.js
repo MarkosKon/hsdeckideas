@@ -1,8 +1,6 @@
 import {
-  getManaCurve,
   getTotalDust,
   getDeckScore,
-  message,
   getDeck,
   hasDuplicates,
   completeDeckRandomly,
@@ -19,7 +17,8 @@ import {
   addOtherCards,
   calculateHowManyCardsToPut,
   calculateCardQuantity,
-  versionsToPriorities
+  versionsToPriorities,
+  getManaCurveChartData
 } from "./deck";
 import {
   getSize,
@@ -38,7 +37,7 @@ const heroPowers = data[3].content;
 const extraFilters = data[4].content;
 
 // getManaCurve tests
-it("getManaCurve test #1: Checks if returns the expected mana curve for a deck.", () => {
+it("getManaCurveChartData test #1: Checks if returns the expected mana curve for a deck.", () => {
   const deck = {
     cards: [
       { cost: 1, quantity: 4 },
@@ -53,19 +52,37 @@ it("getManaCurve test #1: Checks if returns the expected mana curve for a deck."
       { cost: 10, quantity: 2 }
     ]
   };
-  const result = getManaCurve(deck);
-  expect(result).toEqual([0, 4, 6, 4, 3, 3, 3, 7]);
+  const result = getManaCurveChartData(deck);
+  expect(result).toEqual([
+    { manaCost: "0", cardCount: 0 },
+    { manaCost: "1", cardCount: 4 },
+    { manaCost: "2", cardCount: 6 },
+    { manaCost: "3", cardCount: 4 },
+    { manaCost: "4", cardCount: 3 },
+    { manaCost: "5", cardCount: 3 },
+    { manaCost: "6", cardCount: 3 },
+    { manaCost: "7+", cardCount: 7 }
+  ]);
 });
 
-it("getManaCurve test #2: Checks if returns a mana curve of 0s for a deck with empty card array.", () => {
+it("getManaCurveChartData test #2: Checks if returns a mana curve of 0s for a deck with empty card array.", () => {
   const deck = {
     cards: []
   };
-  const result = getManaCurve(deck);
-  expect(result).toEqual([0, 0, 0, 0, 0, 0, 0, 0]);
+  const result = getManaCurveChartData(deck);
+  expect(result).toEqual([
+    { manaCost: "0", cardCount: 0 },
+    { manaCost: "1", cardCount: 0 },
+    { manaCost: "2", cardCount: 0 },
+    { manaCost: "3", cardCount: 0 },
+    { manaCost: "4", cardCount: 0 },
+    { manaCost: "5", cardCount: 0 },
+    { manaCost: "6", cardCount: 0 },
+    { manaCost: "7+", cardCount: 0 }
+  ]);
 });
 
-it("getManaCurve test #3: Checks if returns the expected mana curve for a deck.", () => {
+it("getManaCurveChartData test #3: Checks if returns the expected mana curve for a deck.", () => {
   const deck = {
     cards: [
       { cost: 0, quantity: 1 },
@@ -78,11 +95,20 @@ it("getManaCurve test #3: Checks if returns the expected mana curve for a deck."
       { cost: 10, quantity: 2 }
     ]
   };
-  const result = getManaCurve(deck);
-  expect(result).toEqual([1, 6, 6, 5, 4, 4, 2, 2]);
+  const result = getManaCurveChartData(deck);
+  expect(result).toEqual([
+    { manaCost: "0", cardCount: 1 },
+    { manaCost: "1", cardCount: 6 },
+    { manaCost: "2", cardCount: 6 },
+    { manaCost: "3", cardCount: 5 },
+    { manaCost: "4", cardCount: 4 },
+    { manaCost: "5", cardCount: 4 },
+    { manaCost: "6", cardCount: 2 },
+    { manaCost: "7+", cardCount: 2 }
+  ]);
 });
 
-it("getManaCurve test #4: Checks if returns the expected mana curve for a deck with missing quantities.", () => {
+it("getManaCurveChartData test #4: Checks if returns the expected mana curve for a deck with missing quantities.", () => {
   const deck = {
     cards: [
       { cost: 0, quantity: 1 },
@@ -95,11 +121,20 @@ it("getManaCurve test #4: Checks if returns the expected mana curve for a deck w
       { cost: 10, quantity: 2 }
     ]
   };
-  const result = getManaCurve(deck);
-  expect(result).toEqual([1, 6, 6, 5, NaN, 4, 2, 2]);
+  const result = getManaCurveChartData(deck);
+  expect(result).toEqual([
+    { manaCost: "0", cardCount: 1 },
+    { manaCost: "1", cardCount: 6 },
+    { manaCost: "2", cardCount: 6 },
+    { manaCost: "3", cardCount: 5 },
+    { manaCost: "4", cardCount: NaN },
+    { manaCost: "5", cardCount: 4 },
+    { manaCost: "6", cardCount: 2 },
+    { manaCost: "7+", cardCount: 2 }
+  ]);
 });
 
-it("getManaCurve test #5: Checks if returns the expected mana curve for a `real` deck.", () => {
+it("getManaCurveChartData test #5: Checks if returns the expected mana curve for a `real` deck.", () => {
   const deck = {
     cards: [
       { cost: 1, quantity: 2 },
@@ -122,13 +157,22 @@ it("getManaCurve test #5: Checks if returns the expected mana curve for a `real`
       { cost: 10, quantity: 2 }
     ]
   };
-  const result = getManaCurve(deck);
-  expect(result).toEqual([0, 4, 6, 4, 3, 3, 3, 7]);
+  const result = getManaCurveChartData(deck);
+  expect(result).toEqual([
+    { manaCost: "0", cardCount: 0 },
+    { manaCost: "1", cardCount: 4 },
+    { manaCost: "2", cardCount: 6 },
+    { manaCost: "3", cardCount: 4 },
+    { manaCost: "4", cardCount: 3 },
+    { manaCost: "5", cardCount: 3 },
+    { manaCost: "6", cardCount: 3 },
+    { manaCost: "7+", cardCount: 7 }
+  ]);
 });
 
-it("getManaCurve test #6: Checks if returns undefined for a deck with no cards property", () => {
+it("getManaCurveChartData test #6: Checks if returns undefined for a deck with no cards property", () => {
   const deck = {};
-  const result = getManaCurve(deck);
+  const result = getManaCurveChartData(deck);
   expect(result).toEqual(undefined);
 });
 

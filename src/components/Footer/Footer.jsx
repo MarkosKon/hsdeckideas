@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
+import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faTwitter,
@@ -8,7 +9,6 @@ import {
   faGithubAlt,
   faRedditAlien
 } from "@fortawesome/free-brands-svg-icons";
-import styled from "styled-components";
 
 const FooterContainer = styled.footer`
   display: flex;
@@ -149,7 +149,7 @@ const Footer = () => (
       <LinkList>
         <LinkListItem>
           <LinkListAnchor
-            to="https://markon.herokuapp.com#contact"
+            to="//mkdevdiary.netlify.com/contact"
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -174,7 +174,7 @@ const Footer = () => (
         </li>
         <li>
           <SocialListAnchor
-            href="https://www.facebook.com/Hearthstone-Deck-Ideas-428432344237100"
+            href="https://www.facebook.com/hsdeckideas"
             target="_blank"
             rel="noopener noreferrer"
             aria-label="facebook link"
@@ -206,7 +206,7 @@ const Footer = () => (
           </SocialListAnchor>
         </li>
       </SocialList>
-      <p className="text-center">2018 Markos Konstantopoulos</p>
+      <p>2019 Markos Konstantopoulos</p>
       <p>
         All Hearthstone assets on this site are property of Blizzard
         Entertainment

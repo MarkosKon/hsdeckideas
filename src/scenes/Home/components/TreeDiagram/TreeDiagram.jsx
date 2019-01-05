@@ -1,216 +1,183 @@
+// Major inspiration from a Curran Kelleher video: https://www.youtube.com/watch?v=jfpV7OBptYE
+
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import styled from "styled-components";
-import BootstrapCard from "../../../../components/BootstrapCard/BootstrapCard";
+import { Button } from "already-styled-components";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTimes } from "@fortawesome/free-solid-svg-icons";
+import { select, event } from "d3-selection";
+import { tree, hierarchy } from "d3-hierarchy";
+import { linkVertical } from "d3-shape";
+import { zoom } from "d3-zoom";
+
+import UICard from "../../../../components/UICard/UICard";
 import { getDendrogramData } from "../../../../utils/D3Dendrogram";
 
-var d3 = require("d3");
-
-const ContainerCard = styled(BootstrapCard)`
+const ContainerCard = styled(UICard)`
   overflow: auto;
+
+  @media screen and (max-width: 767px) {
+    text {
+      font-size: 4px;
+    }
+  }
 `;
 
-const StyledCard = styled(BootstrapCard)`
+const StyledCard = styled(UICard)`
   background-color: whitesmoke !important;
   box-shadow: none !important;
 `;
+
+const linkPathGenerator = linkVertical()
+  .x(d => d.x)
+  .y(d => d.y);
 
 class TreeDiagram extends Component {
   constructor(props) {
     super(props);
 
+    this.wrapperRef = React.createRef();
+
     this.state = {
-      deck: props.deck,
-      data: getDendrogramData(props.deck)
+      deck: {},
+      margin: { top: 0, right: 20, bottom: 50, left: 20 }
     };
   }
 
   componentDidMount() {
-    this.dendrogramRender(this.state.data);
+    // Dom is ready, ref stuff.
+    const { margin } = this.state;
+
+    const svgWidth = this.wrapperRef.current.clientWidth;
+    const svgHeight = document.body.clientHeight;
+    const innerWidth = svgWidth - margin.left - margin.right;
+    const innerHeight = svgHeight - margin.top - margin.bottom;
+    this.setState({
+      svgWidth,
+      svgHeight,
+      margin,
+      innerWidth,
+      innerHeight
+    });
+
+    // how to zoom the react way? maybe it's not possible?
+    select("svg#dendrogram").call(
+      zoom().on("zoom", () => {
+        select("g#parentGroup").attr("transform", event.transform);
+      })
+    );
   }
 
   static getDerivedStateFromProps(props, state) {
-    if (props.deck !== state.deck)
+    // The first check because we want to run it after componentDidMount.
+    // The second check because we wanto to run it if the deck changes.
+    if (state.innerWidth && props.deck !== state.deck) {
+      const data = getDendrogramData(props.deck);
+      const { innerWidth, innerHeight } = state;
+      const treeLayout = tree().size([innerWidth, innerHeight]);
+      const root = hierarchy(data);
+      const links = treeLayout(root).links();
+      const nodes = root.descendants();
       return {
         deck: props.deck,
-        data: getDendrogramData(props.deck)
+        links,
+        nodes
       };
+    }
     return null;
   }
 
-  componentDidUpdate(prevProps, prevState) {
-    if (prevProps.deck !== this.state.deck)
-      this.dendrogramRender(this.state.data);
-  }
-
-  dendrogramRender(data) {
-    // Temporary fix because i don't know hot to update it correctly.
-    document.querySelector(".dendrogram-wrapper").innerHTML = "";
-
-    var margin = { top: 20, right: 50, bottom: 20, left: 50 };
-    var width = 900 - margin.left - margin.right;
-    var height = 1200 - margin.top - margin.bottom;
-
-    var i = 0;
-    var duration = 750;
-
-    var tree = d3.layout.tree().size([height, width - 100]);
-
-    var diagonal = d3.svg.diagonal().projection(d => [d.y, d.x]);
-
-    var svg = d3
-      .select(".dendrogram-wrapper")
-      .append("svg")
-      .attr("width", width + margin.right + margin.left)
-      .attr("height", height + margin.top + margin.bottom)
-      .append("g")
-      .attr("transform", "translate(" + margin.left + ", " + margin.top + ")");
-
-    var root = data;
-    root.x0 = height / 2;
-    root.y0 = 0;
-
-    update(root);
-
-    function update(source) {
-      // Compute the new tree layout.
-      var nodes = tree.nodes(root).reverse();
-      var links = tree.links(nodes);
-
-      // Normalize for fixed-depth.
-      // nodes.forEach(function(d) {
-      //   d.y = d.depth * 180;
-      // });
-
-      // Update the nodes…
-      var node = svg.selectAll("g.node").data(nodes, d => d.id || (d.id = ++i));
-
-      // Enter any new nodes at the parent's previous position.
-      var nodeEnter = node
-        .enter()
-        .append("g")
-        .attr("class", "node")
-        .attr(
-          "transform",
-          d => "translate(" + source.y0 + "," + source.x0 + ")"
-        )
-        .on("click", click);
-
-      nodeEnter
-        .append("circle")
-        .attr("r", 1e-6)
-        .style("fill", d => (d._children ? "lightsteelblue" : "#fff"));
-
-      nodeEnter
-        .append("text")
-        .attr("x", d => (d.children || d._children ? -13 : 13))
-        .attr("dy", ".35em")
-        .attr("text-anchor", d => (d.children || d._children ? "end" : "start"))
-        .text(d => d.name)
-        .style("fill-opacity", 1e-6);
-
-      // Transition nodes to their new position.
-      var nodeUpdate = node
-        .transition()
-        .duration(duration)
-        .attr("transform", d => "translate(" + d.y + "," + d.x + ")");
-
-      nodeUpdate
-        .select("circle")
-        .attr("r", 10)
-        .style("fill", d => (d._children ? "lightsteelblue" : "#fff"));
-
-      nodeUpdate.select("text").style("fill-opacity", 1);
-
-      // Transition exiting nodes to the parent's new position.
-      var nodeExit = node
-        .exit()
-        .transition()
-        .duration(duration)
-        .attr("transform", d => "translate(" + source.y + "," + source.x + ")")
-        .remove();
-
-      nodeExit.select("circle").attr("r", 1e-6);
-
-      nodeExit.select("text").style("fill-opacity", 1e-6);
-
-      // Update the links…
-      var link = svg.selectAll("path.link").data(links, d => d.target.id);
-
-      // Enter any new links at the parent's previous position.
-      link
-        .enter()
-        .insert("path", "g")
-        .attr("class", "link")
-        .attr("d", d => {
-          var o = { x: source.x0, y: source.y0 };
-          return diagonal({ source: o, target: o });
-        });
-
-      // Transition links to their new position.
-      link
-        .transition()
-        .duration(duration)
-        .attr("d", diagonal);
-
-      // Transition exiting nodes to the parent's new position.
-      link
-        .exit()
-        .transition()
-        .duration(duration)
-        .attr("d", d => {
-          var o = { x: source.x, y: source.y };
-          return diagonal({ source: o, target: o });
-        })
-        .remove();
-
-      // Stash the old positions for transition.
-      nodes.forEach(d => {
-        d.x0 = d.x;
-        d.y0 = d.y;
-      });
-    }
-
-    // Toggle children on click.
-    function click(d) {
-      if (d.children) {
-        d._children = d.children;
-        d.children = null;
-      } else {
-        d.children = d._children;
-        d._children = null;
-      }
-      update(d);
-    }
-  }
-
   render() {
+    const { closeModal } = this.props;
+    const { svgWidth, svgHeight, margin, links, nodes } = this.state;
     return (
-      <ContainerCard id="dendrogram" title="History (visual)">
+      <ContainerCard
+        id="dendrogram"
+        title="Deck Diagram"
+        modalButton={
+          <Button
+            transparent
+            c="black"
+            fs="60px"
+            hc="darkorange"
+            onClick={closeModal}
+          >
+            <FontAwesomeIcon icon={faTimes} />
+          </Button>
+        }
+      >
         <StyledCard withHeader={false}>
           <p>
+            <span role="img" aria-label="text-bullet">
+              ✨
+            </span>{" "}
             This sections shows you in a <b>visual</b> way the{" "}
             <b>card selection process</b>. Some of the cards have{" "}
             <b>priorities</b> and those priorities lead to other cards and so
             on. At some point we add a <b>suitable archetype</b> and based on
-            that archetype's priorities we add some more cards. If you want to
-            see <b>more details</b> check
-            <a
-              href="#openhistory"
-              onClick={e => {
-                e.preventDefault();
-                this.props.handleOpenModal();
-              }}
-            >
-              {" "}
-              the text and more detailed version{" "}
-            </a>{" "}
-            of this section.
+            that archetype's priorities we add some more cards.
+          </p>
+          <p>
+            <span role="img" aria-label="text-bullet">
+              ✨
+            </span>{" "}
+            You can <b>zoom-in</b> and <b>move</b> in all directions in this
+            graph.
+          </p>
+          <p>
+            <span role="img" aria-label="text-bullet">
+              ✨
+            </span>
+            Also it's really hard to see it in mobile because of text
+            overlapping.
           </p>
         </StyledCard>
-        <div className="dendrogram-wrapper" />
+        <div ref={this.wrapperRef} style={{ backgroundColor: "#1d1d1d" }}>
+          <svg id="dendrogram" width={svgWidth} height={svgHeight}>
+            <g
+              id="parentGroup"
+              transform={`translate(${margin.left}, ${margin.top})`}
+            >
+              {links &&
+                links.map(link => (
+                  <path
+                    key={link.target.x + link.target.y}
+                    d={linkPathGenerator(link)}
+                    fill="none"
+                    stroke="#FF8C00"
+                  />
+                ))}
+              {nodes &&
+                nodes.map(node => (
+                  <text
+                    key={node.data.name}
+                    x={node.x}
+                    y={node.y}
+                    textAnchor="middle"
+                    fontSize={node.depth > 1 ? "8px" : "16px"}
+                    fontFamily="'Open Sans', sans serif"
+                    style={{
+                      pointerEvents: "none",
+                      fill: "#19B5FE",
+                      textShadow:
+                        "-1px -1px 3px #1d1d1d, -1px 1px 3px #1d1d1d, 1px -1px 3px #1d1d1d, 1px 1px 3px #1d1d1d"
+                    }}
+                  >
+                    {node.data.name}
+                  </text>
+                ))}
+            </g>
+          </svg>
+        </div>
       </ContainerCard>
     );
   }
 }
+
+TreeDiagram.propTypes = {
+  deck: PropTypes.object.isRequired,
+  closeModal: PropTypes.func.isRequired
+};
 
 export default TreeDiagram;

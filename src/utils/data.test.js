@@ -16,7 +16,7 @@ const heroPowers = data[3].content;
 
 // 1. Data tests.
 it("Data test #1: Checks how many cards we have.", () => {
-  expect(cards.length).toEqual(1729);
+  expect(cards.length).toEqual(1868);
 });
 
 it("Data test #2:  Checks if the priorities of cards have unique uuids.", () => {
@@ -44,7 +44,7 @@ it("Data test #3: Checks if all cards have ratings.", () => {
   let result = cards.reduce((sum, card) => {
     return card.rating ? (sum += 1) : sum;
   }, 0);
-  expect(result).toEqual(1729);
+  expect(result).toEqual(1868);
 });
 
 const cardCountWPrioritiesThatFindNothing = (availableCards, interestingCards, boundary, secret) =>
@@ -80,24 +80,24 @@ const cardCountWithUnsatisfiedPrioritiesButNot0 = (availableCards, interestingCa
             }, 0);
 };
 
-// Mad scientist, Subject 9
+// Mad scientist, Subject 9, Masked Contender
 it("Data test #4: Keeps track of the Wild Druid-Neutral cards that their priorities don't find any cards.", () => {
   const availableCards = getAvailableCards(cards, "Druid", "Wild"); 
   const interestingCards = getAvailableCards(cards, "Druid", "Wild", true); 
 
   const result = cardCountWPrioritiesThatFindNothing(availableCards, interestingCards, 0);
 
-  expect(result).toEqual(2); 
+  expect(result).toEqual(3); 
 });
 
-// Twig of the World Tree, Subject 9
+// Twig of the World Tree, Subject 9, Masked Contender
 it("Data test #5: Keeps track of the Standard Druid-Neutral cards that their priorities don't find any cards.", () => {
     const availableCards = getAvailableCards(cards, "Druid", "Standard"); 
     const interestingCards = getAvailableCards(cards, "Druid", "Standard", true); 
   
     const result = cardCountWPrioritiesThatFindNothing(availableCards, interestingCards, 0);
   
-    expect(result).toEqual(2); 
+    expect(result).toEqual(3); 
 });
 
 it("Data test #6: Keeps track of the Wild Hunter-Neutral cards that their priorities don't find any cards.", () => {
@@ -121,68 +121,67 @@ it("Data test #7: Keeps track of the Standard Hunter-Neutral cards that their pr
 // Shimmering Courser, The Voraxx, Hench-Clan Thug, Southsea Captain,  
 // Bloodsail Raider, Djinni of Zephyrs, Phantom Freebooter, Spiteful Smith,
 // Naga Corsair, Small-Time Buccaneer, Dragonkin Sorcerer, Eydis Darkbane, 
-// Fjola Lightbane, Dread Corsair, Toxicologist
+// Fjola Lightbane, Dread Corsair, Toxicologist, Gurubashi Chicken
 it("Data test #8: Keeps track of the Wild Mage-Neutral cards that their priorities don't find any cards.", () => {
     const availableCards = getAvailableCards(cards, "Mage", "Wild"); 
     const interestingCards = getAvailableCards(cards, "Mage", "Wild", true); 
   
-    const result = cardCountWPrioritiesThatFindNothing(availableCards, interestingCards, 0);
+    const result = cardCountWPrioritiesThatFindNothing(availableCards, interestingCards, 0, "MAGE");
   
-    expect(result).toEqual(15); 
+    expect(result).toEqual(16); 
 });
 
 // Hench-Clan Thug, The Voraxx, Southsea Captain, Dread Corsair, Bloodsail Raider,
-// Shimmering Courser, Phantom Freebooter, Spiteful Smith, Toxicologist
+// Shimmering Courser, Phantom Freebooter, Spiteful Smith, Toxicologist, Gurubashi Chicken
 it("Data test #9: Keeps track of the Standard Mage-Neutral cards that their priorities don't find any cards.", () => {
     const availableCards = getAvailableCards(cards, "Mage", "Standard"); 
     const interestingCards = getAvailableCards(cards, "Mage", "Standard", true); 
   
     const result = cardCountWPrioritiesThatFindNothing(availableCards, interestingCards, 0);
   
-    expect(result).toEqual(9); 
+    expect(result).toEqual(10); 
 });
 
-// Darkmire Moonkin, Malygos, Spellweaver
+// Darkmire Moonkin, Malygos, Spellweaver, Spellzerker
 it("Data test #10: Keeps track of the Wild Paladin-Neutral cards that their priorities don't find any cards.", () => {
     const availableCards = getAvailableCards(cards, "Paladin", "Wild"); 
     const interestingCards = getAvailableCards(cards, "Paladin", "Wild", true); 
   
     const result = cardCountWPrioritiesThatFindNothing(availableCards, interestingCards, 0);
-  
-    expect(result).toEqual(3); 
+    expect(result).toEqual(4); 
 });
 
-// Darkmire Moonkin, Val'anyr, Spellweaver, Malygos
+// Darkmire Moonkin, Val'anyr, Spellweaver, Malygos, Spellzerker
 it("Data test #11: Keeps track of the Standard Paladin-Neutral cards that their priorities don't find any cards.", () => {
     const availableCards = getAvailableCards(cards, "Paladin", "Standard"); 
     const interestingCards = getAvailableCards(cards, "Paladin", "Standard", true); 
   
     const result = cardCountWPrioritiesThatFindNothing(availableCards, interestingCards, 0);
   
-    expect(result).toEqual(4); 
+    expect(result).toEqual(5); 
 });
 
 // Hench-Clan Thug, Southsea Captain, Dread Corsair, Bloodsail Raider
 // Phantom Freebooter, Mad Scientist, Spiteful Smith, Naga Corsair
-// Small-Time Buccaneer, Subject 9, Toxicologist
+// Small-Time Buccaneer, Subject 9, Toxicologist, Masked Contender
 it("Data test #12: Keeps track of the Wild Priest-Neutral cards that their priorities don't find any cards.", () => {
     const availableCards = getAvailableCards(cards, "Priest", "Wild"); 
     const interestingCards = getAvailableCards(cards, "Priest", "Wild", true); 
   
     const result = cardCountWPrioritiesThatFindNothing(availableCards, interestingCards, 0);
   
-    expect(result).toEqual(11); 
+    expect(result).toEqual(12); 
 });
 
 // Hench-Clan Thug, Southsea Captain, Dread Corsair, Bloodsail Raider
-// Phantom Freebooter, Spiteful Smith, Subject 9, Toxicologist
+// Phantom Freebooter, Spiteful Smith, Subject 9, Toxicologist, Masked Contender
 it("Data test #13: Keeps track of the Standard Priest-Neutral cards that their priorities don't find any cards.", () => {
     const availableCards = getAvailableCards(cards, "Priest", "Standard"); 
     const interestingCards = getAvailableCards(cards, "Priest", "Standard", true); 
   
     const result = cardCountWPrioritiesThatFindNothing(availableCards, interestingCards, 0);
   
-    expect(result).toEqual(8); 
+    expect(result).toEqual(9); 
 });
 
 it("Data test #14: Keeps track of the Wild Rogue-Neutral cards that their priorities don't find any cards.", () => {
@@ -204,69 +203,66 @@ it("Data test #15: Keeps track of the Standard Rogue-Neutral cards that their pr
     expect(result).toEqual(1); 
 });
 
-// Mad Scientist, Subject 9
+// Mad Scientist, Subject 9, Masked Contender
 it("Data test #16: Keeps track of the Wild Shaman-Neutral cards that their priorities don't find any cards.", () => {
     const availableCards = getAvailableCards(cards, "Shaman", "Wild"); 
     const interestingCards = getAvailableCards(cards, "Shaman", "Wild", true); 
   
     const result = cardCountWPrioritiesThatFindNothing(availableCards, interestingCards, 0);
   
-    expect(result).toEqual(2); 
+    expect(result).toEqual(3); 
 });
 
-// Unite the Murlocs (Call in the Finishers), Subject 9
+// Unite the Murlocs (Call in the Finishers), Subject 9, Masked Contender
 it("Data test #17: Keeps track of the Standard Shaman-Neutral cards that their priorities don't find any cards.", () => {
     const availableCards = getAvailableCards(cards, "Shaman", "Standard"); 
     const interestingCards = getAvailableCards(cards, "Shaman", "Standard", true); 
   
     const result = cardCountWPrioritiesThatFindNothing(availableCards, interestingCards, 0);
   
-    expect(result).toEqual(2); 
+    expect(result).toEqual(3); 
 });
 
-// Hench-Clan Thug, The Voraxx, Southsea Captain, Dread Corsair,
-//  Bloodsail Raider, Shimmering Courser, Djinni of Zephyrs, Phantom Freebooter
-// Mad Scientist, Spiteful Smith, Naga Corsair, Small-Time Buccaneer
-// Dragonkin Sorcerer, Eydis Darkbane, Fjola Lightbane, Subject 9, Toxicologist
+// I don't know. We should change the cardCount... methods., Masked Contender
 it("Data test #18: Keeps track of the Wild Warlock-Neutral cards that their priorities don't find any cards.", () => {
     const availableCards = getAvailableCards(cards, "Warlock", "Wild"); 
     const interestingCards = getAvailableCards(cards, "Warlock", "Wild", true); 
   
     const result = cardCountWPrioritiesThatFindNothing(availableCards, interestingCards, 0);
   
-    expect(result).toEqual(17); 
+    expect(result).toEqual(12); 
 });
 
-// Hench-Clan Thug, The Voraxx, Southsea Captain, Dread Corsair
-// Bloodsail Raider, Shimmering Courser, Sanguine Reveler, Phantom Freebooter
-// Spiteful Smith, Subject 9, Toxicologist
+// Hench-Clan Thug, Southsea Captain, Dread Corsair
+// Bloodsail Raider, Phantom Freebooter
+// Spiteful Smith, Subject 9, Toxicologist, Masked Contender
 it("Data test #19: Keeps track of the Standard Warlock-Neutral cards that their priorities don't find any cards.", () => {
     const availableCards = getAvailableCards(cards, "Warlock", "Standard"); 
     const interestingCards = getAvailableCards(cards, "Warlock", "Standard", true); 
   
     const result = cardCountWPrioritiesThatFindNothing(availableCards, interestingCards, 0);
   
-    expect(result).toEqual(10); 
+    expect(result).toEqual(9); 
 });
 
-// Mad Scientist, Subject 9
+// Mad Scientist, Subject 9, Masked Contender
 it("Data test #20: Keeps track of the Wild Warrior-Neutral cards that their priorities don't find any cards.", () => {
     const availableCards = getAvailableCards(cards, "Warrior", "Wild"); 
     const interestingCards = getAvailableCards(cards, "Warrior", "Wild", true); 
   
     const result = cardCountWPrioritiesThatFindNothing(availableCards, interestingCards, 0);
   
-    expect(result).toEqual(2); 
+    expect(result).toEqual(3); 
 });
 
-// Subject 9
+// Subject 9, Masked Contender
 it("Data test #21: Keeps track of the Standard Warrior-Neutral cards that their priorities don't find any cards.", () => {
     const availableCards = getAvailableCards(cards, "Warrior", "Standard"); 
     const interestingCards = getAvailableCards(cards, "Warrior", "Standard", true); 
   
     const result = cardCountWPrioritiesThatFindNothing(availableCards, interestingCards, 0);
   
-    expect(result).toEqual(1); 
+    expect(result).toEqual(2); 
 });
 
 // Baku the Mooneater, Genn Greymane, Hench-Clan Thug, Gloom Stag
@@ -283,18 +279,18 @@ it("Data test #22: Keeps track of the Wild Druid-Neutral cards that their priori
     expect(result).toEqual(20); 
 });
 
-// Baku the Mooneater, Genn Greymane, Scaleworm, Hench-Clan Thug
-// Wyrmguard, Gloom Stag, Ravasaur Runt, Southsea Captain
+// Baku the Mooneater, Genn Greymane, Hench-Clan Thug
+// Gloom Stag, Southsea Captain, Toxicologist
 // Captain Greenskin, Dread Corsair, Bloodsail Raider, Rummaging Kobold
-// Furnacefire Colossus, Phantom Freebooter, Savagery, Spiteful Smith
-// Subject 9, Toxicologist
+// Furnacefire Colossus, Phantom Freebooter, Spiteful Smith
+// 
 it("Data test #23: Keeps track of the Standard Druid-Neutral cards that their priorities are not satisfied but return at least 1 card.", () => {
     const availableCards = getAvailableCards(cards, "Druid", "Standard"); 
     const interestingCards = getAvailableCards(cards, "Druid", "Standard", true); 
   
     const result = cardCountWithUnsatisfiedPrioritiesButNot0(availableCards, interestingCards);
 
-    expect(result).toEqual(17); 
+    expect(result).toEqual(13); 
 });
 
 it("Data test #24: Checks if the unique property number of the card object is 39.", () => {
@@ -434,14 +430,14 @@ it("Data test #31: Creates stats for the artists LOL", () => {
     const result = sortBy(cards
         .map(card => card.artist)
         .reduce(createArtistStats, []), "workCount");
-    expect(result.length).toEqual(320);
+    expect(result.length).toEqual(332);
 });
 
-it("Data test #32: Checks if the are 14 options available for the cost property.", () => {
-    const expectedResult = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 20];
+it("Data test #32: Checks if the are 15 options available for the cost property.", () => {
+    const expectedResult = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 20, 25];
     const result = cards.reduce(extractUniqueCosts, []).sort((a, b) => a - b);
     expect(result).toEqual(expectedResult);
-    expect(result.length).toEqual(14);
+    expect(result.length).toEqual(15);
 });
 
 // TODO play requirements
@@ -453,11 +449,11 @@ it("Data test #34: Checks if the are 5 options available for the rarity property
     expect(result.length).toEqual(5);
 });
 
-it("Data test #35: Checks if the are 14 options available for the set property.", () => {
-    const expectedResult = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 98, 99];
+it("Data test #35: Checks if the are 17 options available for the set property.", () => {
+    const expectedResult = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 98, 99];
     const result = cards.reduce(extractUniqueSets, []).sort((a, b) => a - b);
     expect(result).toEqual(expectedResult);
-    expect(result.length).toEqual(16);
+    expect(result.length).toEqual(17);
 });
 
 it("Data test #36: Checks if the are 4 options available for the rating property.", () => {
@@ -519,6 +515,6 @@ it("Data test #39: Checks if each expansion has the expected number of cards.", 
     expect(KFT.length).toEqual(135);
     expect(KNC.length).toEqual(135);
     expect(TWW.length).toEqual(135);
-    expect(CLA.length).toEqual(236);
+    expect(CLA.length).toEqual(240);
     expect(BAS.length).toEqual(133);
 });

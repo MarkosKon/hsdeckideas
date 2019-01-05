@@ -2,8 +2,9 @@ import React from "react";
 import styled from "styled-components";
 import PropTypes from "prop-types";
 import ProgressiveImage from "react-progressive-bg-image";
-import imageSmall from "../../images/boomsday-blur.jpg";
-import imageFull from "../../images/boomsday.jpg";
+
+import imageSmall from "../../images/rastakhan-blur.jpg";
+import imageFull from "../../images/rastakhan.jpg";
 
 const StyledHeader = styled(ProgressiveImage)`
   margin: 0;
@@ -12,7 +13,7 @@ const StyledHeader = styled(ProgressiveImage)`
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-color: beige;
-  height: 60vh !important;
+  height: 60vh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -22,15 +23,18 @@ const StyledHeader = styled(ProgressiveImage)`
 
   h1 {
     font-size: 5rem;
+    font-family: "Opens Sans", sans-serif;
+    color: white;
+    font-weight: 400;
     margin-bottom: 2rem;
     background-color: rgba(0, 0, 0, 0.7);
     border-radius: 10px;
-    padding: 10px;
+    padding: 10px 20px;
   }
 
   p {
     font-size: 1.5rem;
-    margin-bottom: 7px;
+    margin: 7px 0;
   }
 
   a {
@@ -40,7 +44,7 @@ const StyledHeader = styled(ProgressiveImage)`
 
   span {
     color: black;
-    padding: 5px;
+    padding: 10px 20px;
     font-size: 28px;
     border-radius: 8px;
     display: inline-block;
@@ -92,7 +96,7 @@ const stringToParagraph = (string, index) => (
   <p key={index}>
     <span>{string}</span>
   </p>
-)
+);
 
 const Header = ({ title, paragraphs, children }) => (
   <StyledHeader
@@ -104,7 +108,7 @@ const Header = ({ title, paragraphs, children }) => (
     transition="all .30s linear"
   >
     <HeaderContent>
-      <h1 className="text-center">{title}</h1>
+      <h1>{title}</h1>
       {paragraphs && paragraphs.map(stringToParagraph)}
     </HeaderContent>
     {children}

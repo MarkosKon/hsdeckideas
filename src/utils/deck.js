@@ -46,14 +46,20 @@ const isLegendary = rarityEquals("LEGENDARY");
  * array of numbers that is used in a chart.
  * @param {Object} deck
  */
-export const getManaCurve = deck =>
-  deck.cards && deck.cards.reduce(createStatsForCost, [0, 0, 0, 0, 0, 0, 0, 0]);
+export const getManaCurveChartData = deck =>
+  deck.cards &&
+  deck.cards.reduce(createBarCharDataForCost, createInitalBarChartData());
 
-const createStatsForCost = (stats, card) => {
-  if (costsMoreThan7(card)) stats[7] += card.quantity;
-  else stats[card.cost] += card.quantity;
-  return stats;
+const createBarCharDataForCost = (chartData, card) => {
+  if (costsMoreThan7(card)) chartData[7].cardCount += card.quantity;
+  else chartData[card.cost].cardCount += card.quantity;
+  return chartData;
 };
+const createInitalBarChartData = () =>
+  ["0", "1", "2", "3", "4", "5", "6", "7+"].map(item => ({
+    manaCost: item,
+    cardCount: 0
+  }));
 
 export const getDeckCode = (deck, heroCode, format) =>
   encode({
@@ -68,12 +74,12 @@ const calculateDust = (sum, card) =>
   isCommon(card)
     ? (sum += 40 * card.quantity)
     : isRare(card)
-      ? (sum += 100 * card.quantity)
-      : isEpic(card)
-        ? (sum += 400 * card.quantity)
-        : isLegendary(card)
-          ? (sum += 1600)
-          : sum;
+    ? (sum += 100 * card.quantity)
+    : isEpic(card)
+    ? (sum += 400 * card.quantity)
+    : isLegendary(card)
+    ? (sum += 1600)
+    : sum;
 
 export const getDeckScore = deck => deck.cards.reduce(calculateScore, 0);
 
@@ -317,8 +323,8 @@ export const hasDuplicates = deck =>
         i === cards.length - 1
           ? result
           : card.name === cards[i + 1].name || result
-            ? true
-            : false,
+          ? true
+          : false,
       false
     );
 
@@ -488,8 +494,8 @@ export const calculateCardQuantity = (deck, card, otherCase) =>
       ? 1
       : 2
     : isHighlander(deck) || sizeEquals29(deck) || isLegendary(card)
-      ? 1
-      : 2;
+    ? 1
+    : 2;
 
 /**
  * This method takes as input the deck and the available archetypes

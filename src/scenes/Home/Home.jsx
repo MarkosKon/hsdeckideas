@@ -1,32 +1,55 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import anime from "animejs";
 import styled from "styled-components";
-import Waypoint from "react-waypoint";
+import { Container, Row, Column, Fab } from "already-styled-components";
 import { Helmet } from "react-helmet";
 import update from "immutability-helper";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLightbulb } from "@fortawesome/free-regular-svg-icons";
+import { getRandom } from "some-utils";
+import Loadable from "react-loadable";
+import ReactGA from "react-ga";
+
+import deckUtils from "workerize-loader!../../utils/deck"; // eslint-disable-line import/no-webpack-loader-syntax
+import Loading from "../../components/Loading/Loading";
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
 import Filters from "./components/Filters/Filters";
-import Overview from "./components/Overview/Overview";
-import History from "./components/History/History";
-import TreeDiagram from "./components/TreeDiagram/TreeDiagram";
-import ErrorAlert from "../../components/ErrorAlert/ErrorAlert";
-import ProgressBar from "../../components/ProgressBar/ProgressBar";
-import Fab from "../../components/Fab/Fab";
-import Modal from "react-modal";
-import { getRandom } from "some-utils";
-import { getAvailableCards } from "../../utils/card";
-import deckUtils from "workerize-loader!../../utils/deck"; // eslint-disable-line import/no-webpack-loader-syntax
 import Navbar from "../../components/Navbar/Navbar";
+import { getAvailableCards } from "../../utils/card";
 import { initializeDeck } from "../../utils/deck";
-import HoverImage from "./components/HoverImage/HoverImage";
+import UICard from "../../components/UICard/UICard";
+import Alert from "../../components/Alert/Alert";
+
+const LoadableDeckList = Loadable({
+  loader: () => import("./components/DeckList/Decklist"),
+  loading: Loading
+});
+const LoadableDeckInfo = Loadable({
+  loader: () => import("./components/DeckInfo/DeckInfo"),
+  loading: Loading
+});
+const LoadableDeckStats = Loadable({
+  loader: () => import("./components/DeckStats/DeckStats"),
+  loading: Loading
+});
+const LoadableDiagramModal = Loadable({
+  loader: () => import("./components/Modals/DiagramModal"),
+  loading: Loading
+});
+const LoadableCardDetailsModal = Loadable({
+  loader: () => import("./components/Modals/CardDetailsModal"),
+  loading: Loading
+});
+const LoadableHistoryModal = Loadable({
+  loader: () => import("./components/Modals/HistoryModal"),
+  loading: Loading
+});
 
 var sortBy = require("lodash.sortby");
-const root = document.getElementById("root");
-Modal.setAppElement(root);
+
+const getAvailableExtraDeckWideFilters = (filters, format) =>
+  format === "Wild" ? filters : filters.filter(filter => filter.set > 8);
 
 const heroColors = [
   "rgb(116, 80, 8)",
@@ -43,10 +66,12 @@ const heroColors = [
 const Parent = styled.div`
   background-color: ${({ bgColor }) => bgColor};
   transition: background-color 0.5s ease-in-out;
+  ${({ backgroundBlur }) => backgroundBlur && "filter: blur(10px);"}
 `;
 
 Parent.propTypes = {
-  bgColor: PropTypes.string
+  bgColor: PropTypes.string,
+  backgroundBlur: PropTypes.bool.isRequired
 };
 
 Parent.defaultProps = {
@@ -57,6 +82,7 @@ class Home extends Component {
   constructor(props) {
     super(props);
 
+    // Binding handlers, lots of them.
     this.handleQuery = this.handleQuery.bind(this);
     this.handleSelectHero = this.handleSelectHero.bind(this);
     this.handleSelectFormat = this.handleSelectFormat.bind(this);
@@ -72,25 +98,22 @@ class Home extends Component {
       this
     );
     this.handleCompetitiveCheckbox = this.handleCompetitiveCheckbox.bind(this);
-    this.handleMouseMove = this.handleMouseMove.bind(this);
-    this.handleMouseLeave = this.handleMouseLeave.bind(this);
-    this.handleWaypointEnter = this.handleWaypointEnter.bind(this);
-    this.handleWaypointLeave = this.handleWaypointLeave.bind(this);
+    this.handleCodeCopy = this.handleCodeCopy.bind(this);
+    this.openHistoryModal = this.openHistoryModal.bind(this);
+    this.closeHistoryModal = this.closeHistoryModal.bind(this);
+    this.openDiagramModal = this.openDiagramModal.bind(this);
+    this.closeDiagramModal = this.closeDiagramModal.bind(this);
+    this.openCardDetailsModal = this.openCardDetailsModal.bind(this);
+    this.closeCardDetailsModal = this.closeCardDetailsModal.bind(this);
 
-    this.openModal = this.openModal.bind(this);
-    this.afterOpenModal = this.afterOpenModal.bind(this);
-    this.closeModal = this.closeModal.bind(this);
-
-    this.pastHeader = true;
     this.worker = deckUtils();
 
     this.state = {
-      loading: true,
-      UIVisible: false,
-      pressedButton: false,
-      ideaButtonClickedOnce: false,
-      // // External data.
+      firstSuggestionLoaded: false,
+      showSuccessAlert: false,
+      showErrorAlert: false,
       haveData: false,
+      // External data.
       interestingCards: [],
       nonInterestingCards: [],
       extraDeckWideFilters: [],
@@ -102,7 +125,7 @@ class Home extends Component {
       chosenNonInterestingCards: [],
       deckForUI: {},
       deckCode: null,
-      manaCurve: null,
+      manaCurveChartData: null,
       // UI Selects.
       selectHero: 99,
       selectFormat: "Standard",
@@ -110,13 +133,17 @@ class Home extends Component {
       selectInterestingCards: ["Random"],
       selectNonInterestingCards: ["None"],
       selectedExtraDeckWideFilters: [],
-      modalIsOpen: false
+      // Modals
+      historyModalOpen: false,
+      diagramModalOpen: false,
+      cardDetailsModalOpen: false,
+      cardDetailsModalCard: null
     };
   }
 
   componentDidMount() {
-    if (this.state.haveData)
-      this.setState({ loading: false }, this.animateHeader);
+    if (process.env.NODE_ENV === "production")
+      ReactGA.pageview(window.location.pathname + window.location.search);
   }
 
   static getDerivedStateFromProps(props, state) {
@@ -127,7 +154,6 @@ class Home extends Component {
       const heroName = "Random";
       return {
         haveData: true,
-        loading: false,
         interestingCards: sortBy(
           getAvailableCards(props.cards, heroName, format, true),
           ["set", "name"]
@@ -145,31 +171,36 @@ class Home extends Component {
     return null;
   }
 
-  // mostly animations here.
-  componentDidUpdate(prevProps, prevState) {
-    if (prevState.pressedButton && !this.pastHeader) this.animateScrollTop();
-
-    if (prevState.pressedButton && !prevState.UIVisible) this.animateUIHidden();
-    else if (prevState.pressedButton) this.animateUIVisible();
+  openHistoryModal() {
+    this.setState({ historyModalOpen: true });
   }
 
-  openModal() {
-    this.setState({ modalIsOpen: true });
+  closeHistoryModal() {
+    this.setState({ historyModalOpen: false });
+  }
+  openDiagramModal() {
+    this.setState({ diagramModalOpen: true });
   }
 
-  afterOpenModal() {}
+  closeDiagramModal() {
+    this.setState({ diagramModalOpen: false });
+  }
+  openCardDetailsModal(card) {
+    this.setState({ cardDetailsModalOpen: true, cardDetailsModalCard: card });
+  }
 
-  closeModal() {
-    this.setState({ modalIsOpen: false });
+  closeCardDetailsModal() {
+    this.setState({ cardDetailsModalOpen: false });
   }
 
   render() {
     const {
       hero: heroNumber,
-      loading,
-      UIVisible,
-      modalIsOpen,
-      ideaButtonClickedOnce,
+      firstSuggestionLoaded,
+      historyModalOpen,
+      diagramModalOpen,
+      cardDetailsModalOpen,
+      cardDetailsModalCard,
       isCompetitive,
       selectHero,
       selectFormat,
@@ -184,133 +215,138 @@ class Home extends Component {
       extraDeckWideFilters,
       deckCode,
       deckForUI,
-      manaCurve
+      manaCurveChartData,
+      showSuccessAlert,
+      showErrorAlert
     } = this.state;
     const { errorMessage, heroes, archetypes } = this.props;
     return (
-      <Parent bgColor={heroNumber !== 99 ? heroColors[heroNumber] : null}>
+      <Parent
+        bgColor={heroColors[heroNumber]}
+        backgroundBlur={
+          historyModalOpen || diagramModalOpen || cardDetailsModalOpen
+        }
+      >
         <Helmet>
-          <title>Hearthstone Deck Ideas - Home</title>
+          <title>Hearthstone Deck Ideas - Random deck generator</title>
           <meta
             name="description"
-            content="Hearthstone Deck Ideas is a random deck generator for the game of Hearthstone. You can let the algorithm give you a deck idea or select some filters and get the result you want."
+            content="Hearthstone Deck Ideas is a random deck generator for Hearthstone that creates decks with synergy. Create a random deck in seconds or select some filters and get the deck you want."
           />
         </Helmet>
-        {errorMessage && <ErrorAlert message={errorMessage} />}
-        <ProgressBar visible={loading} />
+        {showErrorAlert && (
+          <Alert
+            message={errorMessage}
+            callback={() => this.setState({ showErrorAlert: false })}
+            timeout={4000}
+          />
+        )}
+        {showSuccessAlert && (
+          <Alert
+            success
+            message="Copied to clipboard!"
+            callback={() => this.setState({ showSuccessAlert: false })}
+            timeout={1500}
+          />
+        )}
         <Header
           title={"Hearthstone Deck Ideas"}
           paragraphs={[
-            "This is a random deck generator for Hearthstone.",
+            "A random deck generator for Hearthstone.",
             "Press the button at the bottom right to generate a random deck.",
             "You can also select filters to get the deck you want."
           ]}
         >
-          <Navbar UIVisible={UIVisible} />
+          <Navbar />
         </Header>
-        <Waypoint
-          scrollableAncestor={window}
-          onEnter={this.handleWaypointEnter}
-          onLeave={this.handleWaypointLeave}
-        >
-          <span id="header-end" />
-        </Waypoint>
         <Fab
           aria-label={"Generate Idea"}
           onClick={this.handleQuery}
-          pulse={!ideaButtonClickedOnce}
+          bc="darkorange"
+          pulse={!firstSuggestionLoaded}
         >
           <FontAwesomeIcon icon={faLightbulb} />
         </Fab>
 
-        <main id="main">
-          <div className="container-fluid">
-            <div className="row">
-              <div className="col-lg-12 px-sm-3 px-1">
-                <Filters
-                  isCompetitive={isCompetitive}
-                  selectHero={selectHero}
-                  format={selectFormat}
-                  archetype={
-                    selectArchetype.name
-                      ? selectArchetype.name
-                      : selectArchetype
-                  }
-                  heroes={heroes}
-                  selectInterestingCards={selectInterestingCards}
-                  selectNonInterestingCards={selectNonInterestingCards}
-                  selectExtraDeckWideFilters={selectedExtraDeckWideFilters}
-                  interestingCards={interestingCards}
-                  nonInterestingCards={nonInterestingCards}
-                  extraDeckWideFilters={extraDeckWideFilters}
-                  archetypes={archetypes}
-                  listenerSF={this.handleSelectFormat}
-                  listenerSH={this.handleSelectHero}
-                  listenerSA={this.handleSelectArchetype}
-                  listenerSO={this.handleSelectInterestingCards}
-                  listenerSOT={this.handleSelectNonInterestingCards}
-                  handleCompetitiveCheckbox={this.handleCompetitiveCheckbox}
-                  handleSelectVersion={this.handleSelectVersion}
-                  handleSelectExtraDeckWideFilters={
-                    this.handleSelectExtraDeckWideFilters
-                  }
+        <Container fluid>
+          <Row>
+            <Column>
+              <Filters
+                heroes={heroes}
+                archetypes={archetypes}
+                interestingCards={interestingCards}
+                nonInterestingCards={nonInterestingCards}
+                extraDeckWideFilters={extraDeckWideFilters}
+                format={selectFormat}
+                selectHero={selectHero}
+                archetype={
+                  selectArchetype.name ? selectArchetype.name : selectArchetype
+                }
+                selectInterestingCards={selectInterestingCards}
+                selectNonInterestingCards={selectNonInterestingCards}
+                selectExtraDeckWideFilters={selectedExtraDeckWideFilters}
+                isCompetitive={isCompetitive}
+                handleSelectFormat={this.handleSelectFormat}
+                handleSelectHero={this.handleSelectHero}
+                handleSelectArchetype={this.handleSelectArchetype}
+                handleSelectInterestingCards={this.handleSelectInterestingCards}
+                handleSelectNonInterestingCards={
+                  this.handleSelectNonInterestingCards
+                }
+                handleCompetitiveCheckbox={this.handleCompetitiveCheckbox}
+                handleSelectExtraDeckWideFilters={
+                  this.handleSelectExtraDeckWideFilters
+                }
+                handleSelectVersion={this.handleSelectVersion}
+                handleOpenCardDetailsModal={this.openCardDetailsModal}
+              />
+            </Column>
+          </Row>
+          {firstSuggestionLoaded && (
+            <UICard id="deck-overview" title="Deck overview">
+              <Row gutters>
+                <LoadableDeckList
+                  deck={deckForUI}
+                  deckCode={deckCode}
+                  heroNumber={heroNumber}
+                  handleCodeCopy={this.handleCodeCopy}
+                  handleOpenHistoryModal={this.openHistoryModal}
+                  handleOpenDiagramModal={this.openDiagramModal}
+                  handleOpenCardDetailsModal={this.openCardDetailsModal}
                 />
-                {UIVisible && (
-                  <React.Fragment>
-                    <Overview
-                      heroes={heroes}
-                      heroNumber={heroNumber}
-                      deckCode={deckCode}
-                      deck={deckForUI}
-                      chartData={manaCurve}
-                      listenerMM={this.handleMouseMove}
-                      listenerML={this.handleMouseLeave}
-                      handleOpenModal={this.openModal}
-                      interestingCards={chosenInterestingCards}
-                      nonInterestingCards={chosenNonInterestingCards}
-                    />
-                    <TreeDiagram
-                      deck={deckForUI}
-                      handleOpenModal={this.openModal}
-                    />
-                  </React.Fragment>
-                )}
-              </div>
-            </div>
-          </div>
-          <HoverImage />
-        </main>
+                <LoadableDeckInfo
+                  deck={deckForUI}
+                  heroes={heroes}
+                  heroNumber={heroNumber}
+                  chosenInterestingCards={chosenInterestingCards}
+                  chosenNonInterestingCards={chosenNonInterestingCards}
+                  cardColor={heroColors[heroNumber]}
+                />
+                <LoadableDeckStats
+                  deck={deckForUI}
+                  manaCurveChartData={manaCurveChartData}
+                  chartColor={heroColors[heroNumber]}
+                />
+              </Row>
+            </UICard>
+          )}
+        </Container>
         <Footer />
-        <Modal
-          isOpen={modalIsOpen}
-          onAfterOpen={this.afterOpenModal}
-          onRequestClose={this.closeModal}
-          className="history-modal"
-          style={{
-            content: {
-              top: "auto",
-              left: "5%",
-              right: "auto",
-              bottom: "auto",
-              width: "90%",
-              margin: "auto",
-              padding: "0"
-            },
-            overlay: {
-              backgroundColor: "rgba(0, 0, 0, 0.7)",
-              zIndex: "1001"
-            }
-          }}
-          appElement={root}
-          contentLabel="History modal"
-        >
-          <History
-            deck={deckForUI}
-            listenerMM={this.handleMouseMove}
-            listenerML={this.handleMouseLeave}
-            closeModal={this.closeModal}
-          />
-        </Modal>
+        <LoadableCardDetailsModal
+          isOpen={cardDetailsModalOpen}
+          card={cardDetailsModalCard}
+          closeModal={this.closeCardDetailsModal}
+        />
+        <LoadableHistoryModal
+          deck={deckForUI}
+          isOpen={historyModalOpen}
+          closeModal={this.closeHistoryModal}
+        />
+        <LoadableDiagramModal
+          deck={deckForUI}
+          isOpen={diagramModalOpen}
+          closeModal={this.closeDiagramModal}
+        />
       </Parent>
     );
   }
@@ -326,13 +362,6 @@ class Home extends Component {
       isCompetitive,
       selectedExtraDeckWideFilters
     } = this.state;
-
-    // App is loading...
-    this.setState({
-      loading: true,
-      pressedButton: true,
-      ideaButtonClickedOnce: true
-    });
 
     // Choose a hero.
     let newHeroNumber = selectHero === 99 ? getRandom(0, 8) : selectHero;
@@ -374,15 +403,13 @@ class Home extends Component {
             heroCodes[newHeroNumber],
             selectFormat
           ),
-          this.worker.getManaCurve(deckUI)
+          this.worker.getManaCurveChartData(deckUI)
         ]).then(results =>
           this.setState({
-            loading: false,
-            pressedButton: false,
-            UIVisible: true,
+            firstSuggestionLoaded: true,
             deckCode: results[0],
             deckForUI: deckUI,
-            manaCurve: results[1],
+            manaCurveChartData: results[1],
             hero: newHeroNumber,
             archetype: deckUI.archetype,
             chosenInterestingCards: deckUI.history.steps[0].originCards, // Watch this..
@@ -392,8 +419,12 @@ class Home extends Component {
       );
   }
 
-  handleQuery(e) {
-    e.preventDefault();
+  handleQuery() {
+    if (process.env.NODE_ENV === "production")
+      ReactGA.event({
+        category: "User",
+        action: "Generated deck"
+      });
     this.suggest();
   }
 
@@ -529,74 +560,16 @@ class Home extends Component {
     });
   }
 
-  handleMouseMove(e) {
-    const cardImageUrl = e.target.dataset.imageUrl;
-    const cardHover = document.getElementById("cardHover");
-
-    cardHover.style.display = "inline";
-    cardHover.style.position = "fixed";
-    cardHover.style.zIndex = 1050;
-    cardHover.style.top = `${e.clientY - 150}px`;
-    cardHover.style.left = `${e.clientX + 50}px`;
-
-    if (cardImageUrl) cardHover.src = "/resources/images/" + cardImageUrl;
-  }
-
-  handleMouseLeave(e) {
-    let cardHover = document.getElementById("cardHover");
-    cardHover.style.display = "none";
-  }
-
-  handleWaypointEnter() {
-    this.pastHeader = false;
-  }
-
-  handleWaypointLeave() {
-    this.pastHeader = true;
-  }
-
-  // Animations with animejs.
-
-  animateUIHidden() {
-    anime(this.fadeIn(["#deck-filters", "#deck-overview"], 200));
-  }
-
-  animateUIVisible() {
-    anime(this.fadeIn("#decklist li", 40));
-  }
-
-  animateHeader() {
-    anime({
-      targets: ".header-content",
-      translateX: ["-100%", 0],
-      duration: 2000
-    });
-  }
-
-  fadeIn(targets, itemDelay) {
-    return {
-      targets: targets,
-      opacity: [0, 1],
-      duration: 200,
-      delay: (target, index) => index * itemDelay,
-      easing: "linear",
-      elasticity: 0
-    };
-  }
-
-  animateScrollTop() {
-    anime({
-      targets: "html, body",
-      scrollTop: [
-        window.pageYOffset,
-        document.querySelector("#header-end").offsetTop + 1
-      ],
-      duration: 1300
+  handleCodeCopy() {
+    if (process.env.NODE_ENV === "production")
+      ReactGA.event({
+        category: "User",
+        action: "Copied deck code"
+      });
+    this.setState({
+      showSuccessAlert: true
     });
   }
 }
 
 export default Home;
-
-const getAvailableExtraDeckWideFilters = (filters, format) =>
-  format === "Wild" ? filters : filters.filter(filter => filter.set > 8);

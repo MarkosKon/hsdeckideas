@@ -1,12 +1,12 @@
-import React, { Component } from "react";
+import React from "react";
+import PropTypes from "prop-types";
+import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faQuestion } from "@fortawesome/free-solid-svg-icons";
-import styled from "styled-components";
-import PropTypes from "prop-types"
-import $ from "jquery";
 
 const CustomTooltip = styled.button`
   background-color: #6c757db2;
+  color: white;
   border-radius: 50%;
   font-size: 8px;
   font-weight: normal;
@@ -16,43 +16,38 @@ const CustomTooltip = styled.button`
   height: 20px;
   margin-left: 6px;
 
+  &.bigger-font::after {
+    font-size: 16px !important;
+    text-align: left;
+    font-display: "Open Sans", sans-serif;
+  }
   svg {
     margin: auto;
   }
 `;
 
-class Tooltip extends Component {
-  componentDidMount() {
-    $(`#${this.props.id}`).tooltip();
-  }
-
-  render() {
-    const { id, text } = this.props;
-    return (
-      <CustomTooltip
-        id={id}
-        type="button"
-        aria-label={id}
-        className="btn btn-secondary btn-sm"
-        data-toggle="tooltip"
-        data-placement="top"
-        title={text}
-      >
-        <FontAwesomeIcon icon={faQuestion} />
-      </CustomTooltip>
-    );
-  }
-}
+const Tooltip = ({ className, id, text, direction }) => (
+  <CustomTooltip
+    className={`${className} bigger-font`}
+    type="button"
+    data-balloon={text}
+    data-balloon-pos={direction}
+    data-balloon-length="medium"
+    aria-label={id}
+  >
+    <FontAwesomeIcon icon={faQuestion} />
+  </CustomTooltip>
+);
 
 Tooltip.propTypes = {
-  id: PropTypes.string,
-  text: PropTypes.string
+  className: PropTypes.string,
+  id: PropTypes.string.isRequired,
+  text: PropTypes.string.isRequired,
+  direction: PropTypes.string
 };
-
 Tooltip.defaultProps = {
-  id: "tooltip-id",
-  text: "Tooltip text"
+  className: null,
+  direction: "up"
 };
-
 
 export default Tooltip;

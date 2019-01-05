@@ -1,0 +1,6 @@
+{
+  "editor.formatOnSave": false,
+  "prettier.eslintIntegration": true,
+  "spellright.language": ["el"],
+  "spellright.documentTypes": ["latex", "plaintext"]
+}

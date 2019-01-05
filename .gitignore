@@ -24,3 +24,6 @@ yarn-error.log*
 Notes.txt
 .netlify
 _redirects
+TODO.md
+.env
+analyze

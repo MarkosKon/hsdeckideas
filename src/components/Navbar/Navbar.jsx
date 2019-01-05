@@ -1,12 +1,19 @@
-import React from "react";
+import React, { Component } from "react";
 import Link from "react-router-dom/Link";
 import styled from "styled-components";
-import PropTypes from "prop-types";
+import { Fab, Button } from "already-styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faTimes } from "@fortawesome/free-solid-svg-icons";
-import Fab from "../Fab/Fab";
-import AnchorLink from "../AnchorLink/AnchorLink";
 
+const FadedFab = styled(Fab)`
+  &:hover {
+    background-color: #0084b4;
+  }
+
+  &:focus {
+    outline-color: #0084b4;
+  }
+`;
 const SideMenu = styled.div`
   font-family: "Open Sans", sans-serif;
   font-display: swap;
@@ -28,6 +35,7 @@ const SideMenu = styled.div`
   a {
     color: #b5bbbd;
     margin-bottom: 20px;
+    text-decoration: none;
   }
 `;
 const SideMenuBackground = styled.div`
@@ -41,15 +49,12 @@ const SideMenuBackground = styled.div`
   z-index: 11;
 `;
 
-const CloseButton = styled.button`
-  font-size: 2rem;
-  color: beige;
+const CloseButton = styled(Button)`
   border: 0;
-  transition: color 0.5s ease-in-out;
-  background-color: transparent;
-  z-index: 12;
+  padding: 5px;
   width: 100%;
   text-align: right;
+  transition: color 0.5s ease-in-out;
 
   &:focus {
     outline-color: #b5bbbd;
@@ -62,71 +67,66 @@ const CloseButton = styled.button`
     color: rgb(202, 131, 0);
   }
 `;
-const Navbar = ({ UIVisible }) => (
-  <nav>
-    <Fab aria-label={"Open Menu"} onClick={openSlideMenu} burger>
-      <FontAwesomeIcon icon={faBars} />
-    </Fab>
+class Navbar extends Component {
+  constructor(props) {
+    super(props);
 
-    <SideMenu id="side-menu">
-      <CloseButton
-        aria-label="close sidebar"
-        onClick={closeSlideMenu}
-      >
-        <FontAwesomeIcon icon={faTimes} />
-      </CloseButton>
-      <Link to={"/"} style={{ marginTop: "50px" }}>
-        Home
-      </Link>
-      {UIVisible && (
-        <React.Fragment>
-          <AnchorLink
-            color={"#b5bbbd"}
-            sectionId={"deck-filters"}
-            callback={closeSlideMenu}
-          >
-            <p className="text-right">Filters</p>
-          </AnchorLink>
-          <AnchorLink
-            color={"#b5bbbd"}
-            sectionId={"deck-overview"}
-            callback={closeSlideMenu}
-          >
-            <p className="text-right">Deck Overview</p>
-          </AnchorLink>
-          <AnchorLink
-            color={"#b5bbbd"}
-            sectionId={"dendrogram"}
-            callback={closeSlideMenu}
-          >
-            <p className="text-right">History (visual)</p>
-          </AnchorLink>
-        </React.Fragment>
-      )}
-      <Link to={"/FAQ"}>FAQ</Link>
-      <Link to={"/new-features"}>Νew Features</Link>
-    </SideMenu>
+    this.sideMenuRef = React.createRef();
+    this.sideMenuBgRef = React.createRef();
 
-    <SideMenuBackground id="side-menu-background" onClick={closeSlideMenu} />
-  </nav>
-);
+    this.openSlideMenu = this.openSlideMenu.bind(this);
+    this.closeSlideMenu = this.closeSlideMenu.bind(this);
+  }
 
-Navbar.propTypes = {
-  UIVisible: PropTypes.bool
+  openSlideMenu() {
+    this.sideMenuBgRef.current.style.display = "block";
+    this.sideMenuRef.current.style.right = "0px";
+  }
+
+  closeSlideMenu() {
+    this.sideMenuBgRef.current.style.display = "none";
+    this.sideMenuRef.current.style.right = "-320px";
+  }
+
+  render() {
+    return (
+      <nav>
+        <FadedFab
+          aria-label={"Open Menu"}
+          onClick={this.openSlideMenu}
+          t="1%"
+          r="3%"
+          bc="#0084b471"
+          w="60px"
+          fs="24px"
+          ripple={false}
+        >
+          <FontAwesomeIcon icon={faBars} />
+        </FadedFab>
+
+        <SideMenu ref={this.sideMenuRef}>
+          <CloseButton
+            transparent
+            fs="50px"
+            c="beige"
+            aria-label="close sidebar"
+            onClick={this.closeSlideMenu}
+          >
+            <FontAwesomeIcon icon={faTimes} />
+          </CloseButton>
+          <Link to={"/"} style={{ marginTop: "50px" }}>
+            Home
+          </Link>
+          <Link to={"/FAQ"}>FAQ</Link>
+          <Link to={"/new-features"}>Νew Features</Link>
+        </SideMenu>
+
+        <SideMenuBackground
+          ref={this.sideMenuBgRef}
+          onClick={this.closeSlideMenu}
+        />
+      </nav>
+    );
+  }
 }
-
-Navbar.defaultProps = {
-  UIVisible: false
-}
-
 export default Navbar;
-
-const openSlideMenu = e => {
-  document.getElementById("side-menu-background").style.display = "block";
-  document.getElementById("side-menu").style.right = "0px";
-};
-
-const closeSlideMenu = e => {
-  document.getElementById("side-menu-background").style.display = "none";
-  document.getElementById("side-menu").style.right = "-320px";
-};
