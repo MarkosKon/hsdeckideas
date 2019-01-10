@@ -1,12 +1,12 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import styled from "styled-components";
-import { Centered } from "already-styled-components";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import styled from 'styled-components';
+import { Centered } from 'already-styled-components';
 
-import Header from "../../components/Header/Header";
-import Footer from "../../components/Footer/Footer";
-import Navbar from "../../components/Navbar/Navbar";
-import UICard from "../../components/UICard/UICard";
+import Header from '../../components/Header/Header';
+import Footer from '../../components/Footer/Footer';
+import Navbar from '../../components/Navbar/Navbar';
+import UICard from '../../components/UICard/UICard';
 
 const StyledUICard = styled(UICard)`
   padding: 50px 0 75px;
@@ -27,11 +27,18 @@ const NotFound = () => (
     <StyledUICard withHeader={false}>
       <Centered>
         <Paragraphs>
-          Look, I don't want to blame anyone but it seems that you fucked up.
+          Look, I don&apos;t want to blame anyone but it seems that you fucked up.
         </Paragraphs>
         <Paragraphs>
-          The app has three pages. The <Link to="/"> main page </Link>
-          the <Link to="/FAQ"> FAQ</Link> and the{" "}
+          The app has three pages. The
+          {' '}
+          <Link to="/"> main page </Link>
+          the
+          {' '}
+          <Link to="/faq"> FAQ</Link>
+          {' '}
+and the
+          {' '}
           <Link to="/new-features"> New Features.</Link>
         </Paragraphs>
       </Centered>

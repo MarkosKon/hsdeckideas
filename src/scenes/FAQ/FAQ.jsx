@@ -1,14 +1,14 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { Helmet } from "react-helmet";
-import { Link } from "react-router-dom";
-import styled from "styled-components";
-import ReactGA from "react-ga";
+import React from 'react';
+import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
+import styled from 'styled-components';
+import ReactGA from 'react-ga';
 
-import Header from "../../components/Header/Header";
-import Navbar from "../../components/Navbar/Navbar";
-import UICard from "../../components/UICard/UICard";
-import Footer from "../../components/Footer/Footer";
+import Header from '../../components/Header/Header';
+import Navbar from '../../components/Navbar/Navbar';
+import UICard from '../../components/UICard/UICard';
+import Footer from '../../components/Footer/Footer';
+import SEO from '../../components/SEO/SEO';
 
 const DL = styled.dl`
   line-height: 1.5;
@@ -25,13 +25,13 @@ const DD = styled.dd`
 
 const Donation = ({ children }) => (
   <div>
-    <div style={{ marginTop: "10px" }}>{children}</div>
-    <span style={{ marginLeft: "10px" }}>
+    <div style={{ marginTop: '10px' }}>{children}</div>
+    <span style={{ marginLeft: '10px' }}>
       <form
         action="https://www.paypal.com/cgi-bin/webscr"
         method="post"
         target="_top"
-        style={{ display: "inline" }}
+        style={{ display: 'inline' }}
       >
         <input type="hidden" name="cmd" value="_s-xclick" />
         <input type="hidden" name="hosted_button_id" value="WFPMCC7TB2H8Q" />
@@ -41,11 +41,10 @@ const Donation = ({ children }) => (
           border="0"
           name="submit"
           alt="PayPal - The safer, easier way to pay online!"
-          onClick={() =>
-            process.env.NODE_ENV === "production" &&
-            ReactGA.event({
-              category: "User",
-              action: "Clicked donation button"
+          onClick={() => process.env.NODE_ENV === 'production'
+            && ReactGA.event({
+              category: 'User',
+              action: 'Clicked donation button',
             })
           }
         />
@@ -62,175 +61,229 @@ const Donation = ({ children }) => (
 );
 
 Donation.propTypes = {
-  children: PropTypes.node
+  children: PropTypes.node,
 };
 Donation.defaultProps = {
-  children: "Message"
+  children: 'Message',
 };
 
 class FAQ extends React.Component {
   componentDidMount() {
-    if (process.env.NODE_ENV === "production")
+    if (process.env.NODE_ENV === 'production') {
       ReactGA.pageview(window.location.pathname + window.location.search);
+    }
   }
+
   render() {
     return (
       <React.Fragment>
-        <Helmet>
-          <title>Hearthstone Deck Ideas | Frequently Asked Questions</title>
-          <meta
-            name="description"
-            content="In this page we share some personal information and explain how the random deck generator works by answering some frequently asked questions. "
-          />
-        </Helmet>
+        <SEO
+          lang="en"
+          title="Hearthstone Deck Ideas | Frequently Asked Questions"
+          description="In this page we share some personal information and explain how the random deck generator works by answering some frequently asked questions. "
+          image="https://hsdeckideas.netlify.com/homepage.jpg"
+          url="https://hsdeckideas.netlify.com/faq"
+          keywords="hearthstone random deck generator"
+        />
         <Header
           title="Frequently Asked Questions"
           paragraphs={[
-            "In this section i will try to explain how the app works and share some",
-            "personal info by answering some questions that no one asked."
+            'In this section i will try to explain how the app works and share some',
+            'personal info by answering some questions that no one asked.',
           ]}
         >
           <Navbar />
         </Header>
         <UICard title="FAQ" id="faq">
           <Link to="/"> Go back.</Link>
-          <div style={{ marginTop: "10px" }}>
+          <div style={{ marginTop: '10px' }}>
             <span role="img" aria-label="bullet-list-symbol">
               ✨
-            </span>{" "}
-            You can{" "}
-            <Link
-              to="//mkdevdiary.netlify.com/contact"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              {" "}
-              contact me{" "}
-            </Link>{" "}
-            for anything related to the app. Seriously, <b>don't hesitate.</b> I
-            would be <b>thrilled</b> to hear from you! If you prefer{" "}
-            <b>social media</b> , you can send me a message at{" "}
-            <a
-              href="https://twitter.com/HsDeckIdeas"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
+            </span>
+            {' '}
+            You can
+            {' '}
+            <Link to="//mkdevdiary.netlify.com/contact" target="_blank" rel="noopener noreferrer">
+              {' '}
+              contact me
+              {' '}
+            </Link>
+            {' '}
+            for anything related to the app. Seriously,
+            {' '}
+            <b>don&apos;t hesitate.</b>
+            {' '}
+I would be
+            {' '}
+            <b>thrilled</b>
+            {' '}
+to hear from you! If you prefer
+            <b>social media</b>
+            {' '}
+, you can send me a message at
+            {' '}
+            <a href="https://twitter.com/HsDeckIdeas" target="_blank" rel="noopener noreferrer">
               Twitter
-            </a>{" "}
-            ,{" "}
+            </a>
+            {' '}
+            ,
+            {' '}
             <a
               href="https://www.facebook.com/hsdeckideas"
               target="_blank"
               rel="noopener noreferrer"
             >
               Facebook
-            </a>{" "}
-            or{" "}
+            </a>
+            {' '}
+            or
+            {' '}
             <a
               href="https://www.reddit.com/r/hearthstone/comments/80zjvh/random_deck_generator_build_the_meme_deck_you/"
               target="_blank"
               rel="noopener noreferrer"
             >
               Reddit
-            </a>{" "}
-            . You can also add me in-game at <b>foobar#21251</b>. If you{" "}
-            <b>want a new feature</b> , want to <b>report a bug</b> or event
-            want to <b>contribute</b> in some way, feel free to{" "}
+            </a>
+            {' '}
+            . You can also add me in-game at
+            {' '}
+            <b>foobar#21251</b>
+. If you
+            {' '}
+            <b>want a new feature</b>
+            {' '}
+,
+            want to
+            <b>report a bug</b>
+            {' '}
+or event want to
+            <b>contribute</b>
+            {' '}
+in some way, feel free to
+            {' '}
             <a
               href="https://github.com/MarkosKon/hsdeckideas"
               target="_blank"
               rel="noopener noreferrer"
             >
               open an issue
-            </a>{" "}
+            </a>
+            {' '}
             at Github!
           </div>
           <Donation>
             <span role="img" aria-label="bullet-list-symbol">
               ✨
-            </span>{" "}
-            If you liked this app and want to see more frequent
-            updates/features, please share the app to your friends or at social
-            media. If you have the money to spare, you can also consider making
-            a donation.
+            </span>
+            {' '}
+            If you liked this app and want to see more frequent updates/features, please share the
+            app to your friends or at social media. If you have the money to spare, you can also
+            consider making a donation.
           </Donation>
           <DL>
             <DT>Why did you create this app?</DT>
             <DD>
-              My inspiration to create this app was a streamer's realization (i
-              believe it was <b>Trump</b>) about a Malygos
+              My inspiration to create this app was a streamer&apos;s realization (i believe it was
+              {' '}
+              <b>Trump</b>
+) about a Malygos
               <b> miracle rogue deck.</b>
               That deck got popular and was the best deck
-              <b> after 1 year of the game's release.</b> All good until now.
-              The weird thing is that the deck
-              <b> had cards that were available from day 1</b>. So, no one had
-              though to put this deck together for over a year.
+              <b> after 1 year of the game&apos;s release.</b>
+              {' '}
+All good until now. The weird thing
+              is that the deck
+              <b> had cards that were available from day 1</b>
+. So, no one had though to put this
+              deck together for over a year.
             </DD>
 
-            <DT>
-              Lol, and this app will help us discover "hidden" meta decks?
-            </DT>
+            <DT>Lol, and this app will help us discover &quot;hidden&quot; meta decks?</DT>
             <DD>
               No, probably not. It will suggest you a non competitive deck that
-              <b> makes sense</b> and has some <b>decent synergy</b>. The
-              <b> main benefit</b> for you is that you'll be forced to play and
-              learn some cards you don't usually have the chance to play with.
-              <b> You can also use it</b> to have fun at low ranks, play unusual
-              decks with your friends or complete a specific quest. Don't forget
-              that nowadays you can share your decks with your friends. So you
-              can create a bunch of decks here and give them to your friends.
+              <b> makes sense</b>
+              {' '}
+and has some
+              <b>decent synergy</b>
+. The
+              <b> main benefit</b>
+              {' '}
+for you is that you&apos;ll be forced to play and learn some
+              cards you don&apos;t usually have the chance to play with.
+              <b> You can also use it</b>
+              {' '}
+to have fun at low ranks, play unusual decks with your
+              friends or complete a specific quest. Don&apos;t forget that nowadays you can share
+              your decks with your friends. So you can create a bunch of decks here and give them to
+              your friends.
             </DD>
 
             <DT>How does this app work?</DT>
             <DD>
-              The algorithm selects a card as a <b> starting point</b> and then
-              adds cards that <b> work well</b> with the starting card. Then
-              does the <b> same thing for each of the added cards</b>. Think of
-              it as a <b> tree</b>. If the added cards don't have any
-              requirements (i call them <b> priorities</b>) the algorithm
-              <b> selects a different card</b> with priorities and then repeats
-              the process. At some point the app tries to figure out what
-              <b> type of deck (archetype)</b> we have so far in order to add
-              some critical cards for that archetype. If the deck is still not
-              complete, we add completely random good cards until is full. Also
-              note that we always try to select the <b> best card</b> available
-              to make the deck as competitive as possible. Hearthstone can be
-              really frustrating when you lose.
+              The algorithm selects a card as a
+              {' '}
+              <b> starting point</b>
+              {' '}
+and then adds cards that
+              {' '}
+              <b> work well</b>
+              {' '}
+with the starting card. Then does the
+              {' '}
+              <b> same thing for each of the added cards</b>
+. Think of it as a
+              <b> tree</b>
+. If the
+              added cards don&apos;t have any requirements (i call them
+              <b> priorities</b>
+) the algorithm
+              <b> selects a different card</b>
+              {' '}
+with priorities and then repeats the process. At some
+              point the app tries to figure out what
+              <b> type of deck (archetype)</b>
+              {' '}
+we have so far in order to add some critical cards
+              for that archetype. If the deck is still not complete, we add completely random good
+              cards until is full. Also note that we always try to select the
+              <b> best card</b>
+              {' '}
+available to make the deck as competitive as possible. Hearthstone
+              can be really frustrating when you lose.
             </DD>
 
-            <DT>
-              The generated decks have legendaries i don't own, they are too
-              expensive.
-            </DT>
+            <DT>The generated decks have legendaries i don&apos;t own, they are too expensive.</DT>
             <DD>
-              I could let you import your collection and only choose cards you
-              own. But in this case the algorithm will struggle to find
-              synergies and you'll end up with completely random cards. I think
-              the <b> best solution</b> is to choose a more aggressive archetype
-              because they are cheap or choose a bunch of cards you own in the
-              filters. Anyway, if you would like that feature leave me a{" "}
-              <Link
-                to="//mkdevdiary.netlify.com/contact"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {" "}
+              I could let you import your collection and only choose cards you own. But in this case
+              the algorithm will struggle to find synergies and you&apos;ll end up with completely
+              random cards. I think the
+              {' '}
+              <b> best solution</b>
+              {' '}
+is to choose a more aggressive
+              archetype because they are cheap or choose a bunch of cards you own in the filters.
+              Anyway, if you would like that feature leave me a
+              {' '}
+              <Link to="//mkdevdiary.netlify.com/contact" target="_blank" rel="noopener noreferrer">
+                {' '}
                 message.
               </Link>
             </DD>
 
-            <DT>What's your battletag?</DT>
+            <DT>What&apos;s your battletag?</DT>
             <DD>
-              You can add me at <b> foobar#21251</b>.
+              You can add me at
+              {' '}
+              <b> foobar#21251</b>
+.
             </DD>
 
             <DT>How long do you play Hearthstone?</DT>
             <DD>I started playing 1 month before the open beta.</DD>
 
             <DT>How good are you in Hearthstone?</DT>
-            <DD>
-              I've hit legend 6 times but i have never climbed above top 500.
-            </DD>
+            <DD>I&apos;ve hit legend 6 times but i have never climbed above top 500.</DD>
 
             <DT>Who are you in real life?</DT>
             <DD>My name is Markos Konstantopoulos and i am a web developer.</DD>

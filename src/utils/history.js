@@ -3,4 +3,6 @@
  * that belong to the deck object.
  * @param {*} deck
  */
-export const getLastStep = deck => deck.history.steps[deck.history.steps.length - 1];
+const getLastStep = deck => deck.history.steps[deck.history.steps.length - 1];
+
+export default getLastStep;

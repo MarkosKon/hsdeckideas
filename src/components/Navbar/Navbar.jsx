@@ -1,9 +1,9 @@
-import React, { Component } from "react";
-import Link from "react-router-dom/Link";
-import styled from "styled-components";
-import { Fab, Button } from "already-styled-components";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBars, faTimes } from "@fortawesome/free-solid-svg-icons";
+import React, { Component } from 'react';
+import Link from 'react-router-dom/Link';
+import styled from 'styled-components';
+import { Fab, Button } from 'already-styled-components';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faBars, faTimes } from '@fortawesome/free-solid-svg-icons';
 
 const FadedFab = styled(Fab)`
   &:hover {
@@ -15,7 +15,7 @@ const FadedFab = styled(Fab)`
   }
 `;
 const SideMenu = styled.div`
-  font-family: "Open Sans", sans-serif;
+  font-family: 'Open Sans', sans-serif;
   font-display: swap;
   font-size: 2.5rem;
   position: fixed;
@@ -79,20 +79,20 @@ class Navbar extends Component {
   }
 
   openSlideMenu() {
-    this.sideMenuBgRef.current.style.display = "block";
-    this.sideMenuRef.current.style.right = "0px";
+    this.sideMenuBgRef.current.style.display = 'block';
+    this.sideMenuRef.current.style.right = '0px';
   }
 
   closeSlideMenu() {
-    this.sideMenuBgRef.current.style.display = "none";
-    this.sideMenuRef.current.style.right = "-320px";
+    this.sideMenuBgRef.current.style.display = 'none';
+    this.sideMenuRef.current.style.right = '-320px';
   }
 
   render() {
     return (
       <nav>
         <FadedFab
-          aria-label={"Open Menu"}
+          aria-label="Open Menu"
           onClick={this.openSlideMenu}
           t="1%"
           r="3%"
@@ -114,17 +114,14 @@ class Navbar extends Component {
           >
             <FontAwesomeIcon icon={faTimes} />
           </CloseButton>
-          <Link to={"/"} style={{ marginTop: "50px" }}>
+          <Link to="/" style={{ marginTop: '50px' }}>
             Home
           </Link>
-          <Link to={"/FAQ"}>FAQ</Link>
-          <Link to={"/new-features"}>Νew Features</Link>
+          <Link to="/faq">FAQ</Link>
+          <Link to="/new-features">Νew Features</Link>
         </SideMenu>
 
-        <SideMenuBackground
-          ref={this.sideMenuBgRef}
-          onClick={this.closeSlideMenu}
-        />
+        <SideMenuBackground ref={this.sideMenuBgRef} onClick={this.closeSlideMenu} />
       </nav>
     );
   }

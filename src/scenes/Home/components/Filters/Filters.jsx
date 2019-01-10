@@ -1,18 +1,18 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
-import styled from "styled-components";
-import { Row, Column } from "already-styled-components";
-import memoize from "memoize-one";
-import Select from "react-virtualized-select";
-import createFilterOptions from "react-select-fast-filter-options";
-import "react-select/dist/react-select.css";
-import "react-virtualized/styles.css";
-import "react-virtualized-select/styles.css";
-import "balloon-css/balloon.css";
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import styled from 'styled-components';
+import { Row, Column } from 'already-styled-components';
+import memoize from 'memoize-one';
+import Select from 'react-virtualized-select';
+import createFilterOptions from 'react-select-fast-filter-options';
+import 'react-select/dist/react-select.css';
+import 'react-virtualized/styles.css';
+import 'react-virtualized-select/styles.css';
+import 'balloon-css/balloon.css';
 
-import Tooltip from "../../../../components/Tooltip/Tooltip";
-import UICard from "../../../../components/UICard/UICard";
-import DeckSelectedCards from "../DeckSelectedCards/DeckSelectedCards";
+import Tooltip from '../../../../components/Tooltip/Tooltip';
+import UICard from '../../../../components/UICard/UICard';
+import DeckSelectedCards from '../DeckSelectedCards/DeckSelectedCards';
 
 const Filter = styled.div`
   display: flex;
@@ -51,7 +51,7 @@ const Filter = styled.div`
     flex: 3;
   }
 
-  input[type="checkbox"] {
+  input[type='checkbox'] {
     margin-right: 10px;
   }
 
@@ -68,68 +68,63 @@ const Tip = styled.div`
   margin: 40px 5px 10px;
 `;
 
+const toReactSelect = ({ dbfId, name }) => ({ value: dbfId, label: name });
+
 class Filters extends Component {
   constructor(props) {
     super(props);
 
     this.toReactSelectPrefix = this.toReactSelectPrefix.bind(this);
 
-    this.parseSelectedInterestingCards = memoize(list =>
-      list.includes("Random") || list.length === 0
-        ? { value: "Random", label: "Random" }
-        : list.map(this.toReactSelect)
-    );
-    this.parseSelectedNonInterestingCards = memoize(list =>
-      list.includes("None") || list.length === 0
-        ? { value: "None", label: "None" }
-        : list.map(this.toReactSelect)
-    );
-    this.parseSelectedExtraDeckWideFilters = memoize(list =>
-      list.map(this.toReactSelect)
-    );
-    this.parseAllInterestingCards = memoize(list =>
-      list.reduce(this.toReactSelectPrefix, [
-        { value: "Random", label: "Random" }
-      ])
-    );
-    this.parseAllNonInterestingCards = memoize(list =>
-      list.reduce(this.toReactSelectPrefix, [{ value: "None", label: "None" }])
-    );
-    this.parseAllExtraDeckWideFilters = memoize(list =>
-      list.map(this.toReactSelect)
-    );
-    this.parseAllInterestingCardsFilterOptions = memoize(list =>
-      createFilterOptions({
-        options: list,
-        indexes: ["text", "label"]
-      })
-    );
-    this.parseAllNonInterestingCardsFilterOptions = memoize(list =>
-      createFilterOptions({
-        options: list,
-        indexes: ["text", "label"]
-      })
-    );
+    this.parseSelectedInterestingCards = memoize(list => (list.includes('Random') || list.length === 0
+      ? { value: 'Random', label: 'Random' }
+      : list.map(toReactSelect)));
+    this.parseSelectedNonInterestingCards = memoize(list => (list.includes('None') || list.length === 0
+      ? { value: 'None', label: 'None' }
+      : list.map(toReactSelect)));
+    this.parseSelectedExtraDeckWideFilters = memoize(list => list.map(toReactSelect));
+    this.parseAllInterestingCards = memoize(list => list.reduce(this.toReactSelectPrefix, [{ value: 'Random', label: 'Random' }]));
+    this.parseAllNonInterestingCards = memoize(list => list.reduce(this.toReactSelectPrefix, [{ value: 'None', label: 'None' }]));
+    this.parseAllExtraDeckWideFilters = memoize(list => list.map(toReactSelect));
+    this.parseAllInterestingCardsFilterOptions = memoize(list => createFilterOptions({
+      options: list,
+      indexes: ['text', 'label'],
+    }));
+    this.parseAllNonInterestingCardsFilterOptions = memoize(list => createFilterOptions({
+      options: list,
+      indexes: ['text', 'label'],
+    }));
 
     this.expansions = [
-      "HOF",
-      "Nax",
-      "GvG",
-      "BRM",
-      "TGT",
-      "LoE",
-      "WOtG",
-      "Kara",
-      "MSG",
+      'HOF',
+      'Nax',
+      'GvG',
+      'BRM',
+      'TGT',
+      'LoE',
+      'WOtG',
+      'Kara',
+      'MSG',
       "Un'Goro",
-      "KFT",
-      "KnC",
-      "TW",
-      "BP",
-      "RR",
-      "Classic",
-      "Basic"
+      'KFT',
+      'KnC',
+      'TW',
+      'BP',
+      'RR',
+      'Classic',
+      'Basic',
     ];
+  }
+
+  toReactSelectPrefix(cards, {
+    dbfId, set, name, text,
+  }) {
+    const setEquals98 = set === 98 ? this.expansions[15] : this.expansions[set];
+    return cards.concat({
+      value: dbfId,
+      label: `${set === 99 ? this.expansions[16] : setEquals98} - ${name}`,
+      text,
+    });
   }
 
   render() {
@@ -154,30 +149,24 @@ class Filters extends Component {
       handleCompetitiveCheckbox,
       handleSelectExtraDeckWideFilters,
       handleSelectVersion,
-      handleOpenCardDetailsModal
+      handleOpenCardDetailsModal,
     } = this.props;
 
-    const selectedInterestingCards = this.parseSelectedInterestingCards(
-      selectInterestingCards
-    );
+    const selectedInterestingCards = this.parseSelectedInterestingCards(selectInterestingCards);
     const selectedNonInterestingCards = this.parseSelectedNonInterestingCards(
-      selectNonInterestingCards
+      selectNonInterestingCards,
     );
     const selectedExtraDeckWideFilters = this.parseSelectedExtraDeckWideFilters(
-      selectExtraDeckWideFilters
+      selectExtraDeckWideFilters,
     );
-    const allExtraDeckWideFilters = this.parseAllExtraDeckWideFilters(
-      extraDeckWideFilters
-    );
+    const allExtraDeckWideFilters = this.parseAllExtraDeckWideFilters(extraDeckWideFilters);
     const allInterestingCards = this.parseAllInterestingCards(interestingCards);
-    const allNonInterestingCards = this.parseAllNonInterestingCards(
-      nonInterestingCards
-    );
+    const allNonInterestingCards = this.parseAllNonInterestingCards(nonInterestingCards);
     const allInterestingCardFilterOptions = this.parseAllInterestingCardsFilterOptions(
-      allInterestingCards
+      allInterestingCards,
     );
     const allNonInterestingCardFilterOptions = this.parseAllNonInterestingCardsFilterOptions(
-      allNonInterestingCards
+      allNonInterestingCards,
     );
 
     return (
@@ -185,10 +174,12 @@ class Filters extends Component {
         <Row gutters>
           <Column md="100%">
             <Filter>
+              {/* eslint-disable-next-line max-len */}
+              {/* eslint-disable-next-line jsx-a11y/label-has-associated-control, jsx-a11y/label-has-for */}
               <label htmlFor="formatSelect">
                 Format
                 <Tooltip
-                  id={"tooltip-format"}
+                  id="tooltip-format"
                   text="If you select the Wild format you will get much more starting cards to choose from.
                         Be careful when you change this the starting cards reset to random."
                   direction="right"
@@ -205,10 +196,12 @@ class Filters extends Component {
               </select>
             </Filter>
             <Filter>
+              {/* eslint-disable-next-line max-len */}
+              {/* eslint-disable-next-line jsx-a11y/label-has-associated-control, jsx-a11y/label-has-for */}
               <label htmlFor="heroSelect">
                 Hero
                 <Tooltip
-                  id={"tooltip-hero"}
+                  id="tooltip-hero"
                   text="If you select a hero you will get more starting cards to choose from.
                         Be careful when you change this the starting cards reset to random."
                   direction="right"
@@ -222,19 +215,21 @@ class Filters extends Component {
               >
                 <option value="99">Random</option>
                 {heroes.map((hero, index) => (
-                  <option key={index} value={index}>
+                  <option key={hero} value={index}>
                     {hero}
                   </option>
                 ))}
               </select>
             </Filter>
             <Filter>
+              {/* eslint-disable-next-line max-len */}
+              {/* eslint-disable-next-line jsx-a11y/label-has-associated-control, jsx-a11y/label-has-for */}
               <label htmlFor="archetype-select">
                 Archetype
                 <Tooltip
-                  id={"tooltip-archetype"}
+                  id="tooltip-archetype"
                   text="Better leave it at random and let the algorithm decide the
-                        type of the deck. In the other hand if you get irrelevant archetypes for 
+                        type of the deck. In the other hand if you get irrelevant archetypes for
                         the starting cards you chose, feel free to change it."
                 />
               </label>
@@ -245,18 +240,21 @@ class Filters extends Component {
                 value={archetype}
               >
                 <option value="Random">Random</option>
-                {archetypes.map((archetype, index) => (
-                  <option key={index} value={archetype.name}>
-                    {archetype.name}
+                {archetypes.map(arch => (
+                  <option key={arch.name} value={arch.name}>
+                    {arch.name}
                   </option>
                 ))}
               </select>
             </Filter>
             <Filter>
+              {/* eslint-disable-next-line jsx-a11y/label-has-for */}
               <label htmlFor="origin-card-select">
-                Starting cards ({interestingCards.length})
+                Starting cards (
+                {interestingCards.length}
+                )
                 <Tooltip
-                  id={"tooltip-starting-cards"}
+                  id="tooltip-starting-cards"
                   text="This list contains cards that depend on other cards to be good.
                         You can select up to 15 starting cards but i don't suggest
                         more than 3 because most of the card priorities will be ignored."
@@ -265,7 +263,7 @@ class Filters extends Component {
               <Select
                 id="origin-card-select"
                 name="origin-card-select"
-                multi={true}
+                multi
                 value={selectedInterestingCards}
                 onChange={handleSelectInterestingCards}
                 options={allInterestingCards}
@@ -273,10 +271,13 @@ class Filters extends Component {
               />
             </Filter>
             <Filter>
+              {/* eslint-disable-next-line jsx-a11y/label-has-for */}
               <label htmlFor="other-card-select">
-                Other cards ({nonInterestingCards.length})
+                Other cards (
+                {nonInterestingCards.length}
+                )
                 <Tooltip
-                  id={"tooltip-other-cards"}
+                  id="tooltip-other-cards"
                   text={`This list contains the cards that are not included
                         in the "starting cards".
                         Use it if you want to force some specific cards into 
@@ -288,7 +289,7 @@ class Filters extends Component {
               <Select
                 id="other-card-select"
                 name="other-card-select"
-                multi={true}
+                multi
                 value={selectedNonInterestingCards}
                 onChange={handleSelectNonInterestingCards}
                 options={allNonInterestingCards}
@@ -296,10 +297,13 @@ class Filters extends Component {
               />
             </Filter>
             <Filter>
+              {/* eslint-disable-next-line jsx-a11y/label-has-for */}
               <label htmlFor="extra-filters-select">
-                Extra filters ({extraDeckWideFilters.length})
+                Extra filters (
+                {extraDeckWideFilters.length}
+                )
                 <Tooltip
-                  id={"tooltip-extra-filters"}
+                  id="tooltip-extra-filters"
                   text={`These filters limit the available card pool. You can
                           select card rarities and expansions. For example you can
                           make a GvG retro deck by selecting (basic, classic, hof, naxx and gvg).
@@ -312,27 +316,28 @@ class Filters extends Component {
               <Select
                 id="extra-filters-select"
                 name="extra-filters-select"
-                multi={true}
+                multi
                 value={selectedExtraDeckWideFilters}
                 onChange={handleSelectExtraDeckWideFilters}
                 options={allExtraDeckWideFilters}
-                placeholder={"None"}
+                placeholder="None"
               />
             </Filter>
             <Filter>
-              <label>
+              <label htmlFor="checkbox">
                 <input
+                  id="checkbox"
                   type="checkbox"
                   checked={isCompetitive}
                   onChange={handleCompetitiveCheckbox}
                 />
                 Competitive Deck
                 <Tooltip
-                  id={"tooltip-competitive-deck"}
+                  id="tooltip-competitive-deck"
                   text="By default we select the best available card in order
                         to make the deck as competitive as possible. This has
-                        it's drawbacks though, as some cards will almost always 
-                        appear because they are too good. If you want a more 
+                        it's drawbacks though, as some cards will almost always
+                        appear because they are too good. If you want a more
                         random deck, deselect this option."
                 />
               </label>
@@ -343,17 +348,17 @@ class Filters extends Component {
                   role="img"
                   aria-label="thinking face emoji"
                   style={{
-                    marginRight: "8px"
+                    marginRight: '8px',
                   }}
                 >
-                  {" "}
+                  {' '}
                   &#x1f914;
                 </span>
                 <span>
-                  Don't forget to choose or even combine <b>Highlander</b>{" "}
-                  cards, <b>Genn, </b>
-                  <b>Baku</b>, <b>Princes</b>, <b>Quests</b>,{" "}
-                  <b>Deathknights</b>.
+                  Don&apos;t forget to choose or even combine
+                  <b> Highlander </b>
+                  cards,
+                  <b> Genn, Baku, Princes, Quests or Deathknights. </b>
                 </span>
               </div>
               <div>
@@ -361,16 +366,20 @@ class Filters extends Component {
                   role="img"
                   aria-label="thinking face emoji"
                   style={{
-                    marginRight: "8px"
+                    marginRight: '8px',
                   }}
                 >
-                  {" "}
+                  {' '}
                   &#x1f914;
                 </span>
                 <span>
-                  Also remember that you can <b>search</b> for card
-                  <b> name</b> and card <b>text</b>. For example you can search
-                  for "Ysera" or "divine shield".
+                  Also remember that you can
+                  <b> search </b>
+                  for card
+                  <b> name </b>
+                  and card
+                  <b> text. </b>
+                  For example you can search for &quot;Ysera&quot; or &quot;divine shield&quot;.
                 </span>
               </div>
             </Tip>
@@ -387,24 +396,6 @@ class Filters extends Component {
       </UICard>
     );
   }
-
-  toReactSelect(card) {
-    return { value: card.dbfId, label: card.name };
-  }
-
-  toReactSelectPrefix(cards, card) {
-    return cards.concat({
-      value: card.dbfId,
-      label: `${
-        card.set === 99
-          ? this.expansions[16]
-          : card.set === 98
-          ? this.expansions[15]
-          : this.expansions[card.set]
-      } - ${card.name}`,
-      text: card.text
-    });
-  }
 }
 
 Filters.propTypes = {
@@ -412,14 +403,20 @@ Filters.propTypes = {
   selectHero: PropTypes.number.isRequired,
   format: PropTypes.string.isRequired,
   archetype: PropTypes.string.isRequired,
-  heroes: PropTypes.array.isRequired,
-  selectInterestingCards: PropTypes.array.isRequired,
-  selectNonInterestingCards: PropTypes.array.isRequired,
-  selectExtraDeckWideFilters: PropTypes.array.isRequired,
-  interestingCards: PropTypes.array.isRequired,
-  nonInterestingCards: PropTypes.array.isRequired,
-  extraDeckWideFilters: PropTypes.array.isRequired,
-  archetypes: PropTypes.array.isRequired,
+  heroes: PropTypes.arrayOf(PropTypes.string).isRequired,
+  selectInterestingCards: PropTypes.arrayOf(
+    PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
+  ).isRequired,
+  selectNonInterestingCards: PropTypes.arrayOf(
+    PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
+  ).isRequired,
+  selectExtraDeckWideFilters: PropTypes.arrayOf(
+    PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
+  ).isRequired,
+  interestingCards: PropTypes.arrayOf(PropTypes.object).isRequired,
+  nonInterestingCards: PropTypes.arrayOf(PropTypes.object).isRequired,
+  extraDeckWideFilters: PropTypes.arrayOf(PropTypes.object).isRequired,
+  archetypes: PropTypes.arrayOf(PropTypes.object).isRequired,
   handleSelectFormat: PropTypes.func.isRequired,
   handleSelectHero: PropTypes.func.isRequired,
   handleSelectArchetype: PropTypes.func.isRequired,
@@ -428,7 +425,7 @@ Filters.propTypes = {
   handleCompetitiveCheckbox: PropTypes.func.isRequired,
   handleSelectVersion: PropTypes.func.isRequired,
   handleSelectExtraDeckWideFilters: PropTypes.func.isRequired,
-  handleOpenCardDetailsModal: PropTypes.func.isRequired
+  handleOpenCardDetailsModal: PropTypes.func.isRequired,
 };
 
 export default Filters;

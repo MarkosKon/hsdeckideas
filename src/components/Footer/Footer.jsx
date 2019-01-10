@@ -1,14 +1,14 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
-import styled from "styled-components";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import React from 'react';
+import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
+import styled from 'styled-components';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faTwitter,
   faFacebookF,
   faGithubAlt,
-  faRedditAlien
-} from "@fortawesome/free-brands-svg-icons";
+  faRedditAlien,
+} from '@fortawesome/free-brands-svg-icons';
 
 const FooterContainer = styled.footer`
   display: flex;
@@ -74,9 +74,8 @@ const SocialListAnchor = styled.a`
   margin: 0 5px;
   transition: all 0.35s;
 
-  ${({ twitter }) =>
-    twitter &&
-    `
+  ${({ twitter }) => twitter
+    && `
     color: white;
     background-color: #00aced;
 
@@ -88,9 +87,8 @@ const SocialListAnchor = styled.a`
     }
   `};
 
-  ${({ facebook }) =>
-    facebook &&
-    `
+  ${({ facebook }) => facebook
+    && `
     color: white;
     background-color: #3b5998;
 
@@ -101,9 +99,8 @@ const SocialListAnchor = styled.a`
       background-color: rgb(42, 66, 117);
     }
   `};
-  ${({ reddit }) =>
-    reddit &&
-    `
+  ${({ reddit }) => reddit
+    && `
     color: white;
     background-color: #ff4500;
 
@@ -114,9 +111,8 @@ const SocialListAnchor = styled.a`
       background-color: #c5400f;
     }
   `};
-  ${({ github }) =>
-    github &&
-    `
+  ${({ github }) => github
+    && `
     color: black;
     background-color: whitesmoke;
 
@@ -133,14 +129,14 @@ SocialListAnchor.propTypes = {
   twitter: PropTypes.bool,
   facebook: PropTypes.bool,
   reddit: PropTypes.bool,
-  github: PropTypes.bool
+  github: PropTypes.bool,
 };
 
 SocialListAnchor.defaultProps = {
   twitter: false,
   facebook: false,
   reddit: false,
-  github: false
+  github: false,
 };
 
 const Footer = () => (
@@ -157,7 +153,7 @@ const Footer = () => (
           </LinkListAnchor>
         </LinkListItem>
         <LinkListItem>
-          <LinkListAnchor to="/FAQ">FAQ</LinkListAnchor>
+          <LinkListAnchor to="/faq">FAQ</LinkListAnchor>
         </LinkListItem>
       </LinkList>
       <SocialList>
@@ -208,8 +204,7 @@ const Footer = () => (
       </SocialList>
       <p>2019 Markos Konstantopoulos</p>
       <p>
-        All Hearthstone assets on this site are property of Blizzard
-        Entertainment
+        All Hearthstone assets on this site are property of Blizzard Entertainment
         <sup>&reg;</sup>
       </p>
     </FooterContent>

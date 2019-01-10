@@ -1,8 +1,10 @@
-import React from "react";
-import PropTypes from "prop-types";
-import Helmet from "react-helmet";
+import React from 'react';
+import PropTypes from 'prop-types';
+import Helmet from 'react-helmet';
 
-const SEO = ({ title, description, image, url, keywords, lang }) => (
+const SEO = ({
+  title, description, image, url, keywords, lang,
+}) => (
   <Helmet>
     <html lang={lang} />
     <title>{title}</title>
@@ -25,11 +27,11 @@ SEO.propTypes = {
   image: PropTypes.string.isRequired,
   url: PropTypes.string.isRequired,
   keywords: PropTypes.string,
-  lang: PropTypes.string
+  lang: PropTypes.string,
 };
 SEO.defaultProps = {
-  keywords: "hearthstone random deck generator",
-  lang: "en"
+  keywords: 'hearthstone random deck generator',
+  lang: 'en',
 };
 
 export default SEO;

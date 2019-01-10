@@ -1,7 +1,6 @@
-import React from "react";
-import styled from "styled-components";
-import PropTypes from "prop-types";
-import { keyframes } from "styled-components";
+import React from 'react';
+import styled, { keyframes } from 'styled-components';
+import PropTypes from 'prop-types';
 
 const slideIn = keyframes`
     from {
@@ -19,9 +18,9 @@ const AlertContainer = styled.div`
   width: 100%;
   padding: 20px 0;
   z-index: 13;
-  background-color: ${({ success }) => (success ? "#d4edda" : "#f8d7da")};
-  color: ${({ success }) => (success ? "#155724" : "#721c24")};
-  border-color: ${({ success }) => (success ? "#c3e6cb" : "#f5c6cb")};
+  background-color: ${({ success }) => (success ? '#d4edda' : '#f8d7da')};
+  color: ${({ success }) => (success ? '#155724' : '#721c24')};
+  border-color: ${({ success }) => (success ? '#c3e6cb' : '#f5c6cb')};
 
   > p {
     max-width: 200px;
@@ -31,7 +30,9 @@ const AlertContainer = styled.div`
   animation: 0.5s ${slideIn} cubic-bezier(0.19, 1, 0.22, 1);
 `;
 
-const Alert = ({ success, message, callback, timeout }) => {
+const Alert = ({
+  success, message, callback, timeout,
+}) => {
   if (timeout) setTimeout(callback, timeout);
   return (
     <AlertContainer success={success} role="alert">
@@ -44,11 +45,11 @@ Alert.propTypes = {
   success: PropTypes.bool,
   message: PropTypes.string.isRequired,
   callback: PropTypes.func.isRequired,
-  timeout: PropTypes.number
+  timeout: PropTypes.number,
 };
 Alert.defaultProps = {
   success: false,
-  timeout: null
+  timeout: null,
 };
 
 export default Alert;

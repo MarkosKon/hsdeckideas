@@ -1,8 +1,4 @@
-import compareFieldToValue, {
-  equals,
-  greaterThan,
-  lessThan
-} from "compare-object-field";
+import compareFieldToValue, { equals, greaterThan, lessThan } from 'compare-object-field';
 
 export const fieldEquals = compareFieldToValue(equals);
 export const fieldGreaterThan = compareFieldToValue(greaterThan);

@@ -1,10 +1,10 @@
-import React from "react";
-import styled from "styled-components";
-import PropTypes from "prop-types";
-import ProgressiveImage from "react-progressive-bg-image";
+import React from 'react';
+import styled from 'styled-components';
+import PropTypes from 'prop-types';
+import ProgressiveImage from 'react-progressive-bg-image';
 
-import imageSmall from "../../images/rastakhan-blur.jpg";
-import imageFull from "../../images/rastakhan.jpg";
+import imageSmall from '../../images/rastakhan-blur.jpg';
+import imageFull from '../../images/rastakhan.jpg';
 
 const StyledHeader = styled(ProgressiveImage)`
   margin: 0;
@@ -23,7 +23,7 @@ const StyledHeader = styled(ProgressiveImage)`
 
   h1 {
     font-size: 5rem;
-    font-family: "Opens Sans", sans-serif;
+    font-family: 'Opens Sans', sans-serif;
     color: white;
     font-weight: 400;
     margin-bottom: 2rem;
@@ -80,7 +80,7 @@ const StyledHeader = styled(ProgressiveImage)`
 
 const HeaderContent = styled.div`
   padding: 0 5px;
-  font-family: "Open Sans", sans-serif;
+  font-family: 'Open Sans', sans-serif;
   @media (max-width: 767px) {
     & h1 {
       font-size: 3rem;
@@ -102,7 +102,7 @@ const Header = ({ title, paragraphs, children }) => (
   <StyledHeader
     src={imageFull}
     placeholder={imageSmall}
-    component={"header"}
+    component="header"
     opacity={1}
     blur={0}
     transition="all .30s linear"
@@ -118,11 +118,11 @@ const Header = ({ title, paragraphs, children }) => (
 Header.propTypes = {
   title: PropTypes.string,
   paragraphs: PropTypes.arrayOf(PropTypes.string),
-  children: PropTypes.element
+  children: PropTypes.element.isRequired,
 };
 Header.defaultProps = {
-  title: "Header title",
-  paragraphs: null
+  title: 'Header title',
+  paragraphs: null,
 };
 
 export default Header;

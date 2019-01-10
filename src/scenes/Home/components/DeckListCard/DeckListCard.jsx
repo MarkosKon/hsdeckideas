@@ -1,8 +1,8 @@
-import React from "react";
-import PropTypes from "prop-types";
-import styled from "styled-components";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faStar } from "@fortawesome/free-solid-svg-icons";
+import React from 'react';
+import PropTypes from 'prop-types';
+import styled from 'styled-components';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faStar } from '@fortawesome/free-solid-svg-icons';
 
 const Item = styled.li`
   display: flex;
@@ -18,14 +18,13 @@ const Item = styled.li`
   cursor: pointer;
 
   &::after {
-    content: " ";
+    content: ' ';
     width: 100%;
     height: 100%;
     position: absolute;
     top: 0;
     left: 0;
-    box-shadow: ${({ boxShadowColor }) =>
-      boxShadowColor && `0 0 0 2px ${boxShadowColor} inset`};
+    box-shadow: ${({ boxShadowColor }) => boxShadowColor && `0 0 0 2px ${boxShadowColor} inset`};
   }
   &:hover {
     border: 2px solid black;
@@ -47,13 +46,7 @@ const CardName = styled.div`
   color: ${({ c }) => c};
   padding: 5px;
   overflow: hidden;
-  background: linear-gradient(
-        to right,
-        black 0%,
-        black 70%,
-        rgba(255, 255, 255, 0)
-      )
-      30%,
+  background: linear-gradient(to right, black 0%, black 70%, rgba(255, 255, 255, 0)) 30%,
     url(/resources/images/${({ tile }) => tile}) top right no-repeat;
 `;
 
@@ -73,81 +66,78 @@ const CardClass = styled.div`
 `;
 
 CardClass.propTypes = {
-  bgColor: PropTypes.string
+  bgColor: PropTypes.string,
 };
 
 CardClass.defaultProps = {
-  bgColor: "white"
+  bgColor: 'white',
 };
 
 const heroColors = [
-  "rgb(116, 80, 8)",
-  "darkolivegreen",
-  "#8f95b5",
-  "#b3843b",
-  "#b5bbbd",
-  "#595255",
-  "#343663",
-  "#6d4075",
-  "#652523"
+  'rgb(116, 80, 8)',
+  'darkolivegreen',
+  '#8f95b5',
+  '#b3843b',
+  '#b5bbbd',
+  '#595255',
+  '#343663',
+  '#6d4075',
+  '#652523',
 ];
 
 const rarityColors = {
-  common: "#7a7a7a",
-  free: "#7a7a7a",
-  rare: "blue",
-  epic: "purple",
-  legendary: "orangered"
+  common: '#7a7a7a',
+  free: '#7a7a7a',
+  rare: 'blue',
+  epic: 'purple',
+  legendary: 'orangered',
 };
 
 const DeckListCard = ({
-  card: { cost, tile, rarity, name, quantity, imageUrl, isRandom, cardClass },
+  card: {
+    cost, tile, rarity, name, quantity, imageUrl, isRandom, cardClass,
+  },
   card,
   boxShadowColor,
   showManaCost,
   showCardClass,
   heroNumber,
-  handleOpenCardDetailsModal
+  handleOpenCardDetailsModal,
 }) => (
   <Item
     data-image-url={imageUrl}
     boxShadowColor={boxShadowColor}
-    onClick={() =>
-      handleOpenCardDetailsModal && handleOpenCardDetailsModal(card)
-    }
+    onClick={() => handleOpenCardDetailsModal && handleOpenCardDetailsModal(card)}
   >
-    {showManaCost && (
-      <CardCost bc={rarityColors[rarity.toLowerCase()]}>{cost}</CardCost>
-    )}
-    <CardName c={isRandom ? "orange" : "white"} tile={tile}>
+    {showManaCost && <CardCost bc={rarityColors[rarity.toLowerCase()]}>{cost}</CardCost>}
+    <CardName c={isRandom ? 'orange' : 'white'} tile={tile}>
       {name}
     </CardName>
     <CardQuantity>
-      {rarity === "LEGENDARY" ? (
-        <FontAwesomeIcon size="xs" icon={faStar} />
-      ) : quantity ? (
-        quantity
-      ) : (
-        2
-      )}
+      {rarity === 'LEGENDARY' ? <FontAwesomeIcon size="xs" icon={faStar} /> : quantity || 2}
     </CardQuantity>
     {showCardClass && (
-      <CardClass
-        bgColor={
-          cardClass.includes("NEUTRAL") ? "white" : heroColors[heroNumber]
-        }
-      />
+      <CardClass bgColor={cardClass.includes('NEUTRAL') ? 'white' : heroColors[heroNumber]} />
     )}
   </Item>
 );
 
 DeckListCard.propTypes = {
-  card: PropTypes.object.isRequired,
+  card: PropTypes.shape({
+    cost: PropTypes.number,
+    tile: PropTypes.string,
+    rarity: PropTypes.string,
+    name: PropTypes.string,
+    quantity: PropTypes.number,
+    imageUrl: PropTypes.string,
+    isRandom: PropTypes.bool,
+    cardClass: PropTypes.arrayOf(PropTypes.string),
+  }).isRequired,
   showManaCost: PropTypes.bool,
   showCardClass: PropTypes.bool,
   heroNumber: PropTypes.number,
   boxShadowColor: PropTypes.string,
-  handleOpenCardDetailsModal: PropTypes.func
+  handleOpenCardDetailsModal: PropTypes.func,
 };
 
 DeckListCard.defaultProps = {
@@ -155,7 +145,7 @@ DeckListCard.defaultProps = {
   showCardClass: false,
   heroNumber: null,
   boxShadowColor: null,
-  handleOpenCardDetailsModal: null
+  handleOpenCardDetailsModal: null,
 };
 
 export default DeckListCard;

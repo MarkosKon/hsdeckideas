@@ -1,10 +1,10 @@
-import React from "react";
-import PropTypes from "prop-types";
-import styled from "styled-components";
-import { Column } from "already-styled-components";
+import React from 'react';
+import PropTypes from 'prop-types';
+import styled from 'styled-components';
+import { Column } from 'already-styled-components';
 
-import BarChart from "../BarChart/BarChart";
-import Tooltip from "../../../../components/Tooltip/Tooltip";
+import BarChart from '../BarChart/BarChart';
+import Tooltip from '../../../../components/Tooltip/Tooltip';
 
 const Statistics = styled.div`
   margin-top: 2em 0;
@@ -31,11 +31,7 @@ const StatisticsNumber = styled.span`
   font-size: 30px;
 `;
 
-const DeckStats = ({
-  deck: { size, totalDust, score },
-  manaCurveChartData,
-  chartColor
-}) => (
+const DeckStats = ({ deck: { size, totalDust, score }, manaCurveChartData, chartColor }) => (
   <Column lg="50%">
     <Heading>Mana Curve</Heading>
     <div>
@@ -72,11 +68,15 @@ const DeckStats = ({
 );
 
 DeckStats.propTypes = {
-  deck: PropTypes.object.isRequired,
+  deck: PropTypes.shape({
+    size: PropTypes.number,
+    totalDust: PropTypes.number,
+    score: PropTypes.number,
+  }).isRequired,
   manaCurveChartData: PropTypes.arrayOf(
-    PropTypes.shape({ manaCost: PropTypes.string, cardCount: PropTypes.number })
+    PropTypes.shape({ manaCost: PropTypes.string, cardCount: PropTypes.number }),
   ).isRequired,
-  chartColor: PropTypes.string.isRequired
+  chartColor: PropTypes.string.isRequired,
 };
 
 export default DeckStats;

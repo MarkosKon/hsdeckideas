@@ -1,7 +1,7 @@
-import React from "react";
-import PropTypes from "prop-types";
-import styled from "styled-components";
-import { AnchorLink } from "already-styled-components";
+import React from 'react';
+import PropTypes from 'prop-types';
+import styled from 'styled-components';
+import { AnchorLink } from 'already-styled-components';
 
 const CardContainer = styled.div`
   position: relative;
@@ -44,24 +44,13 @@ const CardBody = styled.div`
 `;
 
 const UICard = ({
-  id,
-  title,
-  withHeader,
-  className,
-  modalButton,
-  children
+  id, title, withHeader, className, modalButton, children,
 }) => (
   <CardContainer id={id} className={className}>
     {withHeader && (
       <CardHeader>
         <CardTitle>
-          <CustomAnchorLink
-            scrollTo={id}
-            c="#2d2d2d"
-            fs="36px"
-            o=".8"
-            hc="darkorange"
-          >
+          <CustomAnchorLink scrollTo={id} c="#2d2d2d" fs="36px" o=".8" hc="darkorange">
             {title}
           </CustomAnchorLink>
         </CardTitle>
@@ -75,16 +64,18 @@ const UICard = ({
 UICard.propTypes = {
   id: PropTypes.string,
   title: PropTypes.string,
+  className: PropTypes.string,
   withHeader: PropTypes.bool,
   modalButton: PropTypes.element,
-  children: PropTypes.node
+  children: PropTypes.node.isRequired,
 };
 
 UICard.defaultProps = {
   id: null,
   title: null,
+  className: null,
   withHeader: true,
-  modalButton: null
+  modalButton: null,
 };
 
 export default UICard;

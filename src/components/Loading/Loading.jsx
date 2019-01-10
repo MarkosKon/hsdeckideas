@@ -1,8 +1,8 @@
-import React from "react";
-import styled from "styled-components";
-import { Button } from "already-styled-components";
+import React from 'react';
+import styled from 'styled-components';
+import { Button } from 'already-styled-components';
 
-import Spinner from "../Spinner/Spinner";
+import Spinner from '../Spinner/Spinner';
 
 const ErrorBackground = styled.div`
   background-color: black;
@@ -28,26 +28,24 @@ const ErrorBackground = styled.div`
   }
 `;
 
-const Loading = props => {
-  if (props.error)
+// eslint-disable-next-line react/prop-types
+const Loading = ({ error, retry, pastDelay }) => {
+  if (error) {
     // When the loader has errored
     return (
       <ErrorBackground>
         <div>
           <div>Oops! Something went wrong..</div>
-          <Button
-            bc="#28a745"
-            c="white"
-            aria-label="Reload"
-            onClick={props.retry}
-          >
+          <Button bc="#28a745" c="white" aria-label="Reload" onClick={retry}>
             Retry
           </Button>
         </div>
       </ErrorBackground>
     );
-  else if (props.pastDelay) return <Spinner />;
-  else return null; // When the loader has just started
+  }
+
+  if (pastDelay) return <Spinner />;
+  return null; // When the loader has just started
 };
 
 export default Loading;

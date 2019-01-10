@@ -1,8 +1,8 @@
-import React from "react";
-import PropTypes from "prop-types";
-import styled from "styled-components";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faQuestion } from "@fortawesome/free-solid-svg-icons";
+import React from 'react';
+import PropTypes from 'prop-types';
+import styled from 'styled-components';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faQuestion } from '@fortawesome/free-solid-svg-icons';
 
 const CustomTooltip = styled.button`
   background-color: #6c757db2;
@@ -19,14 +19,16 @@ const CustomTooltip = styled.button`
   &.bigger-font::after {
     font-size: 16px !important;
     text-align: left;
-    font-display: "Open Sans", sans-serif;
+    font-display: 'Open Sans', sans-serif;
   }
   svg {
     margin: auto;
   }
 `;
 
-const Tooltip = ({ className, id, text, direction }) => (
+const Tooltip = ({
+  className, id, text, direction,
+}) => (
   <CustomTooltip
     className={`${className} bigger-font`}
     type="button"
@@ -43,11 +45,11 @@ Tooltip.propTypes = {
   className: PropTypes.string,
   id: PropTypes.string.isRequired,
   text: PropTypes.string.isRequired,
-  direction: PropTypes.string
+  direction: PropTypes.string,
 };
 Tooltip.defaultProps = {
   className: null,
-  direction: "up"
+  direction: 'up',
 };
 
 export default Tooltip;
