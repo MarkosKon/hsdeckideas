@@ -33,15 +33,11 @@ All kinds of contributions are welcome, but I'm especially interested in [data](
 
 ### Data contributions
 
-The decks this app creates are **as good as the data** it relies on. For the last 4-5 expansions I write the "priorities" for the new cards some days before the expansion's release. I don't play much anymore and I mainly rely on streamers prediction videos. As you can imagine, I could use a lot of help with card priorities. So if you want to submit your ideas for card priorities, I would be more than happy to add them to the app. You can also provide alternative card ratings if something is off. You can submit your ideas in many ways:
+The decks this app creates are **as good as the data** it relies on. For the last 4-5 expansions I write the "priorities" for the new cards some days before the expansion's release. I don't play much anymore and I mainly rely on streamers prediction videos. As you can imagine, I could use a lot of help with card priorities. So if you want to submit your ideas for card priorities, I would be more than happy to add them to the app. You can also provide card ratings if feel something is off. You can submit your ideas in many ways:
 
 1. You can leave me a message at [twitter](https://twitter.com/HsDeckIdeas), [Reddit](https://www.reddit.com/user/AffectionateDoor), at my [blog](https://mkdevdiary.netlify.com/contact) or even in-game at foobar#21251 with your suggestion. It doesn't have to be in JSON format. Just describe it and I'll add it in the project. The only reason to not add it is if makes zero sense.
 2. If you are familiar with Github you can create a pull request. Preferably for the [src/data/data.json](https://github.com/MarkosKon/hsdeckideas/blob/master/src/data/data.json) file. The previous is the formatted JSON file and [this one](https://github.com/MarkosKon/hsdeckideas/blob/master/public/resources/data/data.json) is the same thing but minified for production.
 
 **If you contribute an idea** in this project, I can create **a page that lists the contributors** with data like how many ideas they've contributed, with their names etc. You can also **name your idea** and I will include that name in the card "version". Most of the cards right now have only one version and it's usually named "default".
 
-### Code contributions 
-
-I don't consider the quality of the code in this repository high, so I don't believe you should waste your time on actual code contributions. I'm planning anyway to move from create-react-app and transfer the project to a custom boilerplate. When I figure out how to do Server Side Rendering or Static rendering for SEO, I'll move it.  
-
-If you have any questions, you can ask me by using one of the links above.
+✨ If you have any questions, you can ask me by using one of the links above.

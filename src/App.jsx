@@ -46,7 +46,8 @@ export default class App extends Component {
   componentDidMount() {
     const { dataVersion } = this.state;
 
-    if (process.env.NODE_ENV === 'production') { ReactGA.initialize(process.env.REACT_APP_GA_PROPERTY); }
+    if (process.env.NODE_ENV === 'production') ReactGA.initialize(process.env.REACT_APP_GA_PROPERTY);
+
     const cachedData = localStorage.getItem('data');
     const cachedVersion = parseInt(localStorage.getItem('version'), 10);
     if (cachedData && cachedVersion === dataVersion) this.setData(JSON.parse(cachedData));
