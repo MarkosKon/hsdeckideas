@@ -9,7 +9,7 @@ const root = document.getElementById('root');
 Modal.setAppElement(root);
 
 const LoadableTreeDiagram = Loadable({
-  loader: () => import('../TreeDiagram/TreeDiagram'),
+  loader: () => import(/* webpackChunkName: "treediagram" */ '../TreeDiagram/TreeDiagram'),
   loading: Loading,
 });
 

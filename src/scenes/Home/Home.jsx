@@ -25,27 +25,27 @@ import Alert from '../../components/Alert/Alert';
 import SEO from '../../components/SEO/SEO';
 
 const LoadableDeckList = Loadable({
-  loader: () => import('./components/DeckList/Decklist'),
+  loader: () => import(/* webpackChunkName: "decklist" */ './components/DeckList/Decklist'),
   loading: Loading,
 });
 const LoadableDeckInfo = Loadable({
-  loader: () => import('./components/DeckInfo/DeckInfo'),
+  loader: () => import(/* webpackChunkName: "deckinfo" */ './components/DeckInfo/DeckInfo'),
   loading: Loading,
 });
 const LoadableDeckStats = Loadable({
-  loader: () => import('./components/DeckStats/DeckStats'),
+  loader: () => import(/* webpackChunkName: "deckstats" */ './components/DeckStats/DeckStats'),
   loading: Loading,
 });
 const LoadableDiagramModal = Loadable({
-  loader: () => import('./components/Modals/DiagramModal'),
+  loader: () => import(/* webpackChunkName: "diagrammodal" */ './components/Modals/DiagramModal'),
   loading: Loading,
 });
 const LoadableCardDetailsModal = Loadable({
-  loader: () => import('./components/Modals/CardDetailsModal'),
+  loader: () => import(/* webpackChunkName: "carddetailsmodal" */ './components/Modals/CardDetailsModal'),
   loading: Loading,
 });
 const LoadableHistoryModal = Loadable({
-  loader: () => import('./components/Modals/HistoryModal'),
+  loader: () => import(/* webpackChunkName: "historymodal" */ './components/Modals/HistoryModal'),
   loading: Loading,
 });
 

@@ -10,6 +10,8 @@ import {
   faRedditAlien,
 } from '@fortawesome/free-brands-svg-icons';
 
+import pkg from '../../../package.json';
+
 const FooterContainer = styled.footer`
   display: flex;
   width: 100%;
@@ -142,6 +144,10 @@ SocialListAnchor.defaultProps = {
 const Footer = () => (
   <FooterContainer>
     <FooterContent>
+      <div>
+        <span> v</span>
+        {pkg.version}
+      </div>
       <LinkList>
         <LinkListItem>
           <LinkListAnchor

@@ -6,7 +6,7 @@ import Loadable from 'react-loadable';
 import Loading from '../../../../components/Loading/Loading';
 
 const LoadableHistory = Loadable({
-  loader: () => import('../History/History'),
+  loader: () => import(/* webpackChunkName: "history" */ '../History/History'),
   loading: Loading,
 });
 

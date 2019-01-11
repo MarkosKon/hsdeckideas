@@ -7,7 +7,7 @@ import 'normalize.css';
 import Loading from './components/Loading/Loading';
 
 const LoadableApp = Loadable({
-  loader: () => import('./App'),
+  loader: () => import(/* webpackChunkName: "app" */ './App'),
   loading: Loading,
 });
 
