@@ -17,11 +17,6 @@ module.exports = merge(common, {
     new WorkboxPlugin.GenerateSW({
       exclude: [
         /resources/,
-        // /\.jpg$/,
-        // /\.png$/,
-        // /\.svg$/,
-        // /\.webp$/,
-        // /\.json$/,
         /_redirects/,
         /browserconfig.xml/,
         /sitemap.txt/,

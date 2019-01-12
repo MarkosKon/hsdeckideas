@@ -11,15 +11,15 @@ const LoadableHome = Loadable({
   loading: Loading,
 });
 const LoadableFAQ = Loadable({
-  loader: () => import(/* webpackChunkName: "faq", webpackPrefetch: true */ './scenes/FAQ/FAQ'),
+  loader: () => import(/* webpackChunkName: "faq", webpackPreload: true */ './scenes/FAQ/FAQ'),
   loading: Loading,
 });
 const LoadableNotFound = Loadable({
-  loader: () => import(/* webpackChunkName: "notfound", webpackPrefetch: true */ './scenes/NotFound/NotFound'),
+  loader: () => import(/* webpackChunkName: "notfound", webpackPreload: true */ './scenes/NotFound/NotFound'),
   loading: Loading,
 });
 const LoadableNewFeatures = Loadable({
-  loader: () => import(/* webpackChunkName: "newfeatures", webpackPrefetch: true */ './scenes/NewFeatures/NewFeatures'),
+  loader: () => import(/* webpackChunkName: "newfeatures", webpackPreload: true */ './scenes/NewFeatures/NewFeatures'),
   loading: Loading,
 });
 
@@ -46,7 +46,9 @@ export default class App extends Component {
   componentDidMount() {
     const { dataVersion } = this.state;
 
-    if (process.env.NODE_ENV === 'production') { ReactGA.initialize(process.env.REACT_APP_GA_PROPERTY); }
+    if (process.env.NODE_ENV === 'production') {
+      ReactGA.initialize(process.env.REACT_APP_GA_PROPERTY);
+    }
 
     const cachedData = localStorage.getItem('data');
     const cachedVersion = parseInt(localStorage.getItem('version'), 10);
