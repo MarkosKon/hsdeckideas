@@ -7,19 +7,19 @@ import GlobalStyle from './AppGlobalStyle';
 import Loading from './components/Loading/Loading';
 
 const LoadableHome = Loadable({
-  loader: () => import(/* webpackChunkName: "home" */ './scenes/Home/Home'),
+  loader: () => import(/* webpackChunkName: "home", webpackPreload: true */ './scenes/Home/Home'),
   loading: Loading,
 });
 const LoadableFAQ = Loadable({
-  loader: () => import(/* webpackChunkName: "faq" */ './scenes/FAQ/FAQ'),
+  loader: () => import(/* webpackChunkName: "faq", webpackPrefetch: true */ './scenes/FAQ/FAQ'),
   loading: Loading,
 });
 const LoadableNotFound = Loadable({
-  loader: () => import(/* webpackChunkName: "notfound" */ './scenes/NotFound/NotFound'),
+  loader: () => import(/* webpackChunkName: "notfound", webpackPrefetch: true */ './scenes/NotFound/NotFound'),
   loading: Loading,
 });
 const LoadableNewFeatures = Loadable({
-  loader: () => import(/* webpackChunkName: "newfeatures" */ './scenes/NewFeatures/NewFeatures'),
+  loader: () => import(/* webpackChunkName: "newfeatures", webpackPrefetch: true */ './scenes/NewFeatures/NewFeatures'),
   loading: Loading,
 });
 

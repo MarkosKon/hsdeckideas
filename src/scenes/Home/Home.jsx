@@ -37,15 +37,15 @@ const LoadableDeckStats = Loadable({
   loading: Loading,
 });
 const LoadableDiagramModal = Loadable({
-  loader: () => import(/* webpackChunkName: "diagrammodal" */ './components/Modals/DiagramModal'),
+  loader: () => import(/* webpackChunkName: "diagrammodal", webpackPreload: true */ './components/Modals/DiagramModal'),
   loading: Loading,
 });
 const LoadableCardDetailsModal = Loadable({
-  loader: () => import(/* webpackChunkName: "carddetailsmodal" */ './components/Modals/CardDetailsModal'),
+  loader: () => import(/* webpackChunkName: "carddetailsmodal", webpackPreload: true */ './components/Modals/CardDetailsModal'),
   loading: Loading,
 });
 const LoadableHistoryModal = Loadable({
-  loader: () => import(/* webpackChunkName: "historymodal" */ './components/Modals/HistoryModal'),
+  loader: () => import(/* webpackChunkName: "historymodal", webpackPreload: true */ './components/Modals/HistoryModal'),
   loading: Loading,
 });
 

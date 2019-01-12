@@ -7,7 +7,7 @@
   "scripts": {
     "start": "webpack-dev-server --hot --config webpack/webpack.dev.js",
     "build": "webpack --config webpack/webpack.prod.js",
-    "build:static": "webpack --config webpack/webpack.prod.js && react-snap",
+    "build:static": "yarn build && react-snap",
     "test": "jest",
     "test:watch": "jest --watch",
     "lint": "eslint --ext js,jsx src",
