@@ -1,18 +1,17 @@
 import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import ProgressiveImage from 'react-progressive-bg-image';
 
-import imageSmall from '../../images/rastakhan-blur.jpg';
 import imageFull from '../../images/rastakhan.jpg';
 
-const StyledHeader = styled(ProgressiveImage)`
+const StyledHeader = styled.header`
   margin: 0;
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-color: beige;
+  background-image: url(${imageFull});
   height: 60vh;
   display: flex;
   align-items: center;
@@ -99,14 +98,7 @@ const stringToParagraph = (string, index) => (
 );
 
 const Header = ({ title, paragraphs, children }) => (
-  <StyledHeader
-    src={imageFull}
-    placeholder={imageSmall}
-    component="header"
-    opacity={1}
-    blur={0}
-    transition="all .30s linear"
-  >
+  <StyledHeader>
     <HeaderContent>
       <h1>{title}</h1>
       {paragraphs && paragraphs.map(stringToParagraph)}
