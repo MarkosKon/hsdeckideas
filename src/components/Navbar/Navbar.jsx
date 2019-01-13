@@ -117,8 +117,8 @@ class Navbar extends Component {
           <Link to="/" style={{ marginTop: '50px' }}>
             Home
           </Link>
-          <Link to="/faq">FAQ</Link>
-          <Link to="/new-features">Νew Features</Link>
+          <Link to="/faq/">FAQ</Link>
+          <Link to="/new-features/">Νew Features</Link>
         </SideMenu>
 
         <SideMenuBackground ref={this.sideMenuBgRef} onClick={this.closeSlideMenu} />

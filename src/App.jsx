@@ -107,8 +107,8 @@ export default class App extends Component {
                 />
               )}
             />
-            <Route path="/faq" render={() => <LoadableFAQ />} />
-            <Route path="/new-features" render={() => <LoadableNewFeatures />} />
+            <Route path="/faq/" render={() => <LoadableFAQ />} />
+            <Route path="/new-features/" render={() => <LoadableNewFeatures />} />
             <Route render={() => <LoadableNotFound />} />
           </Switch>
         </Router>

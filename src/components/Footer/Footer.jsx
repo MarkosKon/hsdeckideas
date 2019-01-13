@@ -159,7 +159,7 @@ const Footer = () => (
           </LinkListAnchor>
         </LinkListItem>
         <LinkListItem>
-          <LinkListAnchor to="/faq">FAQ</LinkListAnchor>
+          <LinkListAnchor to="/faq/">FAQ</LinkListAnchor>
         </LinkListItem>
       </LinkList>
       <SocialList>

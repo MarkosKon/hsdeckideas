@@ -82,7 +82,7 @@ class FAQ extends React.Component {
           title="Hearthstone Deck Ideas | Frequently Asked Questions"
           description="In this page we share some personal information and explain how the random deck generator works by answering some frequently asked questions. "
           image="https://hsdeckideas.netlify.com/homepage.jpg"
-          url="https://hsdeckideas.netlify.com/faq"
+          url="https://hsdeckideas.netlify.com/faq/"
           keywords="hearthstone random deck generator"
         />
         <Header

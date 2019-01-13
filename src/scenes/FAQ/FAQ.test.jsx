@@ -6,7 +6,7 @@ import FAQ from './FAQ';
 it('renders without crashing', () => {
   const div = document.createElement('div');
   ReactDOM.render(
-    <Router initialEntries={['/faq']}>
+    <Router initialEntries={['/faq/']}>
       <FAQ />
     </Router>,
     div,

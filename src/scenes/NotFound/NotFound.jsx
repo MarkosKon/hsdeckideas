@@ -35,11 +35,11 @@ const NotFound = () => (
           <Link to="/"> main page </Link>
           the
           {' '}
-          <Link to="/faq"> FAQ</Link>
+          <Link to="/faq/"> FAQ</Link>
           {' '}
 and the
           {' '}
-          <Link to="/new-features"> New Features.</Link>
+          <Link to="/new-features/"> New Features.</Link>
         </Paragraphs>
       </Centered>
     </StyledUICard>

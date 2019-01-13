@@ -137,7 +137,7 @@ check the
       </a>
       or see the
       {' '}
-      <Link to="/faq">FAQ</Link>
+      <Link to="/faq/">FAQ</Link>
 .
     </Paragraph>
   </Column>
