@@ -16,7 +16,6 @@ const FadedFab = styled(Fab)`
 `;
 const SideMenu = styled.div`
   font-family: 'Open Sans', sans-serif;
-  font-display: swap;
   font-size: 2.5rem;
   position: fixed;
   display: flex;

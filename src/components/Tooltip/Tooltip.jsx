@@ -19,7 +19,6 @@ const CustomTooltip = styled.button`
   &.bigger-font::after {
     font-size: 16px !important;
     text-align: left;
-    font-display: 'Open Sans', sans-serif;
   }
   svg {
     margin: auto;

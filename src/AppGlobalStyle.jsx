@@ -1,16 +1,56 @@
 import { createGlobalStyle } from 'styled-components';
 
 const GlobalStyle = createGlobalStyle`
-  @import url('https://fonts.googleapis.com/css?family=Oswald|Open+Sans');
-
   * {
     box-sizing: border-box;
   }
+  /* open-sans-regular - latin */
+  @font-face {
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('/fonts/open-sans-v15-latin-regular.eot'); /* IE9 Compat Modes */
+    src: local('Open Sans Regular'), local('OpenSans-Regular'),
+        url('/fonts/open-sans-v15-latin-regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+        url('/fonts/open-sans-v15-latin-regular.woff2') format('woff2'), /* Super Modern Browsers */
+        url('/fonts/open-sans-v15-latin-regular.woff') format('woff'), /* Modern Browsers */
+        url('/fonts/open-sans-v15-latin-regular.ttf') format('truetype'), /* Safari, Android, iOS */
+        url('/fonts/open-sans-v15-latin-regular.svg#OpenSans') format('svg'); /* Legacy iOS */
+  }
+  /* open-sans-700 - latin */
+  @font-face {
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+    src: url('/fonts/open-sans-v15-latin-700.eot'); /* IE9 Compat Modes */
+    src: local('Open Sans Bold'), local('OpenSans-Bold'),
+        url('/fonts/open-sans-v15-latin-700.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+        url('/fonts/open-sans-v15-latin-700.woff2') format('woff2'), /* Super Modern Browsers */
+        url('/fonts/open-sans-v15-latin-700.woff') format('woff'), /* Modern Browsers */
+        url('/fonts/open-sans-v15-latin-700.ttf') format('truetype'), /* Safari, Android, iOS */
+        url('/fonts/open-sans-v15-latin-700.svg#OpenSans') format('svg'); /* Legacy iOS */
+  }
+  /* oswald-regular - latin (We use it as pseudo-bold)*/
+  @font-face {
+    font-family: 'Oswald';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('/fonts/oswald-v16-latin-regular.eot'); /* IE9 Compat Modes */
+    src: local('Oswald Regular'), local('Oswald-Regular'),
+        url('/fonts/oswald-v16-latin-regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+        url('/fonts/oswald-v16-latin-regular.woff2') format('woff2'), /* Super Modern Browsers */
+        url('/fonts/oswald-v16-latin-regular.woff') format('woff'), /* Modern Browsers */
+        url('/fonts/oswald-v16-latin-regular.ttf') format('truetype'), /* Safari, Android, iOS */
+        url('/fonts/oswald-v16-latin-regular.svg#Oswald') format('svg'); /* Legacy iOS */
+  }
+
   body {
     font-family: 'Open Sans', sans-serif;
     font-size: 18px;
     line-height: 1.3;
-    font-display: swap;
     background-color: #7a7a7a;
     color: #2d2d2d;
   }
@@ -19,12 +59,11 @@ const GlobalStyle = createGlobalStyle`
   h2,
   h3,
   h4,
-  h5, 
+  h5,
   h6 {
     color: #2d2d2d;
     font-family: 'Oswald', serif;
     font-weight: 700;
-    font-display: swap;
   }
 
   ::-moz-selection {
