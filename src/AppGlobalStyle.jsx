@@ -91,21 +91,20 @@ const GlobalStyle = createGlobalStyle`
 
   .ReactModal__Overlay {
     overflow: auto;
-  }
-
-  .ReactModal__Content {
     opacity: 0;
-    width: 100%!important;
-    margin: 0!important;
-    transition: opacity .3s ease-out;
+    transition: opacity .3s cubic-bezier(0.445, 0.05, 0.55, 0.95);
   }
-
-  .ReactModal__Content--after-open {
+  .ReactModal__Overlay--after-open {
     opacity: 1;
   }
 
-  .ReactModal__Content--before-close {
+  .ReactModal__Overlay--before-close {
     opacity: 0;
+  }
+
+  .ReactModal__Content {
+    width: 100%!important;
+    margin: 0!important;
   }
 
   /* d3 barchart styles */

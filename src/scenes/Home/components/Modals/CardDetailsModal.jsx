@@ -61,6 +61,7 @@ const CardDetailsModal = ({ isOpen, closeModal, card }) => (
   <Modal
     isOpen={isOpen}
     onRequestClose={closeModal}
+    closeTimeoutMS={300}
     style={{
       overlay: {
         backgroundColor: 'rgba(0, 0, 0, 0.8)',
@@ -78,7 +79,7 @@ const CardDetailsModal = ({ isOpen, closeModal, card }) => (
       },
     }}
     appElement={root}
-    contentLabel="History modal"
+    contentLabel="Card details modal"
   >
     <Content c="white" bc="transparent" p="50px 15px">
       <ButtonTopRight transparent c="white" fs="60px" hc="burlywood" onClick={closeModal}>

@@ -17,19 +17,21 @@ const HistoryModal = ({ isOpen, closeModal, deck }) => (
   <Modal
     isOpen={isOpen}
     onRequestClose={closeModal}
-    className="history-modal"
+    closeTimeoutMS={300}
     style={{
+      overlay: {
+        backgroundColor: 'rgba(0, 0, 0, 0.7)',
+        zIndex: '1001',
+        maxWidth: '100vw',
+      },
       content: {
         top: 0,
         left: 0,
         right: 0,
         bottom: 0,
         padding: '0',
-      },
-      overlay: {
         backgroundColor: 'rgba(0, 0, 0, 0.7)',
-        zIndex: '1001',
-        maxWidth: '100vw',
+        border: 'none',
       },
     }}
     appElement={root}

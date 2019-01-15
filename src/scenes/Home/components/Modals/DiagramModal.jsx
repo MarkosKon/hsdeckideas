@@ -17,7 +17,7 @@ const HistoryModal = ({ isOpen, closeModal, deck }) => (
   <Modal
     isOpen={isOpen}
     onRequestClose={closeModal}
-    className="history-modal"
+    closeTimeoutMS={300}
     style={{
       overlay: {
         backgroundColor: 'rgba(0, 0, 0, 0.7)',
@@ -30,10 +30,12 @@ const HistoryModal = ({ isOpen, closeModal, deck }) => (
         right: 0,
         bottom: 0,
         padding: '0',
+        backgroundColor: 'rgba(0, 0, 0, 0.7)',
+        border: 'none',
       },
     }}
     appElement={root}
-    contentLabel="History modal"
+    contentLabel="Diagram modal"
   >
     <LoadableTreeDiagram deck={deck} closeModal={closeModal} />
   </Modal>
