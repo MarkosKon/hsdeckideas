@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { Transition } from 'react-spring';
 import ReactGA from 'react-ga';
 import Loadable from 'react-loadable';
 
 import GlobalStyle from './AppGlobalStyle';
 import Loading from './components/Loading/Loading';
+import Alert from './components/Alert/Alert';
 
 const LoadableHome = Loadable({
   loader: () => import(/* webpackChunkName: "home", webpackPreload: true */ './scenes/Home/Home'),
@@ -90,6 +92,23 @@ export default class App extends Component {
     return (
       <>
         <GlobalStyle />
+        <Transition
+          items={errorMessage}
+          from={{ transform: 'translateY(-100px)' }}
+          enter={{ transform: 'translateY(0)' }}
+          leave={{ transform: 'translateY(-100px)' }}
+        >
+          {toggle => toggle
+            && (style => (
+              <Alert
+                message={errorMessage}
+                callback={() => this.setState({ errorMessage: '' })}
+                timeout={10000}
+                style={style}
+              />
+            ))
+          }
+        </Transition>
         <Router>
           <Switch>
             <Route
@@ -103,7 +122,6 @@ export default class App extends Component {
                   heroCodes={this.heroCodes}
                   archetypes={archetypes}
                   extraDeckWideFilters={extraDeckWideFilters}
-                  errorMessage={errorMessage}
                 />
               )}
             />

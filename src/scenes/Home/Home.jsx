@@ -10,6 +10,7 @@ import { faLightbulb } from '@fortawesome/free-regular-svg-icons';
 import { getRandom } from 'some-utils';
 import Loadable from 'react-loadable';
 import ReactGA from 'react-ga';
+import { Transition } from 'react-spring';
 
 // eslint-disable-next-line import/no-webpack-loader-syntax, import/no-unresolved
 import deckUtils from 'workerize-loader!../../utils/deck';
@@ -107,7 +108,6 @@ class Home extends Component {
     this.state = {
       firstSuggestionLoaded: false,
       showSuccessAlert: false,
-      showErrorAlert: false,
       haveData: false,
       // External data.
       interestingCards: [],
@@ -420,9 +420,8 @@ class Home extends Component {
       deckForUI,
       manaCurveChartData,
       showSuccessAlert,
-      showErrorAlert,
     } = this.state;
-    const { errorMessage, heroes, archetypes } = this.props;
+    const { heroes, archetypes } = this.props;
     return (
       <Parent
         bgColor={heroColors[heroNumber]}
@@ -436,21 +435,24 @@ class Home extends Component {
           url="https://hsdeckideas.netlify.com/"
           keywords="hearthstone random deck generator"
         />
-        {showErrorAlert && (
-          <Alert
-            message={errorMessage}
-            callback={() => this.setState({ showErrorAlert: false })}
-            timeout={4000}
-          />
-        )}
-        {showSuccessAlert && (
-          <Alert
-            success
-            message="Copied to clipboard!"
-            callback={() => this.setState({ showSuccessAlert: false })}
-            timeout={1500}
-          />
-        )}
+        <Transition
+          items={showSuccessAlert}
+          from={{ transform: 'translateY(-100px)' }}
+          enter={{ transform: 'translateY(0)' }}
+          leave={{ transform: 'translateY(-100px)' }}
+        >
+          {toggle => toggle
+            && (style => (
+              <Alert
+                success
+                message="Copied to clipboard!"
+                callback={() => this.setState({ showSuccessAlert: false })}
+                timeout={1500}
+                style={style}
+              />
+            ))
+          }
+        </Transition>
         <Header
           title="Hearthstone Deck Ideas"
           paragraphs={[
@@ -549,17 +551,12 @@ class Home extends Component {
 }
 
 Home.propTypes = {
-  errorMessage: PropTypes.string,
   heroes: PropTypes.arrayOf(PropTypes.string).isRequired,
   archetypes: PropTypes.arrayOf(PropTypes.object).isRequired,
   heroPowers: PropTypes.arrayOf(PropTypes.object).isRequired,
   heroCodes: PropTypes.arrayOf(PropTypes.number).isRequired,
   cards: PropTypes.arrayOf(PropTypes.object).isRequired,
   extraDeckWideFilters: PropTypes.arrayOf(PropTypes.object).isRequired,
-};
-
-Home.defaultProps = {
-  errorMessage: null,
 };
 
 export default Home;

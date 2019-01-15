@@ -1,22 +1,18 @@
-import React from 'react';
-import styled, { keyframes } from 'styled-components';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-
-const slideIn = keyframes`
-    from {
-        transform: translateY(-100%)
-    }
-    to {
-        transform: translateY(0)
-    }
-   `;
+import styled from 'styled-components';
+import { Button } from 'already-styled-components';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTimes } from '@fortawesome/free-solid-svg-icons';
 
 const AlertContainer = styled.div`
   position: fixed;
+  display: flex;
+  align-items: center;
   top: 0;
   left: 0;
   width: 100%;
-  padding: 20px 0;
+  padding: 5px 0;
   z-index: 13;
   background-color: ${({ success }) => (success ? '#d4edda' : '#f8d7da')};
   color: ${({ success }) => (success ? '#155724' : '#721c24')};
@@ -26,26 +22,44 @@ const AlertContainer = styled.div`
     max-width: 200px;
     margin: 0 auto;
   }
-
-  animation: 0.5s ${slideIn} cubic-bezier(0.19, 1, 0.22, 1);
 `;
 
-const Alert = ({
-  success, message, callback, timeout,
-}) => {
-  if (timeout) setTimeout(callback, timeout);
-  return (
-    <AlertContainer success={success} role="alert">
-      <p>{message}</p>
-    </AlertContainer>
-  );
-};
+class Alert extends Component {
+  componentDidMount() {
+    const { timeout, callback } = this.props;
+    if (timeout) setTimeout(callback, timeout);
+  }
+
+  render() {
+    const {
+      success, message, callback, style,
+    } = this.props;
+
+    return (
+      <AlertContainer success={success} role="alert" style={style}>
+        <p>{message}</p>
+        <Button
+          transparent
+          c={success ? '#155724' : '#721c24'}
+          fs="22px"
+          hc="darkorange"
+          onClick={callback}
+        >
+          <FontAwesomeIcon icon={faTimes} />
+        </Button>
+      </AlertContainer>
+    );
+  }
+}
 
 Alert.propTypes = {
   success: PropTypes.bool,
   message: PropTypes.string.isRequired,
   callback: PropTypes.func.isRequired,
   timeout: PropTypes.number,
+  style: PropTypes.shape({
+    transform: PropTypes.string.isRequired,
+  }).isRequired,
 };
 Alert.defaultProps = {
   success: false,
