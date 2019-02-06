@@ -34,7 +34,7 @@ export default class App extends Component {
     this.heroCodes = [274, 31, 637, 671, 813, 930, 1066, 893, 7];
 
     this.state = {
-      dataVersion: 26, // REMEMBER TO CHANGE THIS WHENEVER WE CHANGE THE DATA. :)
+      dataVersion: 27, // REMEMBER TO CHANGE THIS WHENEVER WE CHANGE THE DATA. :)
       errorMessage: null,
       // External data.
       cards: [],
