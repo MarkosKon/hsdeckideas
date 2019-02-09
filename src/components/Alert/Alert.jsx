@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Button } from 'already-styled-components';
@@ -24,33 +24,30 @@ const AlertContainer = styled.div`
   }
 `;
 
-class Alert extends Component {
-  componentDidMount() {
-    const { timeout, callback } = this.props;
-    if (timeout) setTimeout(callback, timeout);
-  }
+const Alert = ({
+  success, message, callback, style, timeout,
+}) => {
+  useEffect(() => {
+    let timer;
+    if (timeout) timer = setTimeout(callback, timeout);
+    return () => clearTimeout(timer);
+  }, []);
 
-  render() {
-    const {
-      success, message, callback, style,
-    } = this.props;
-
-    return (
-      <AlertContainer success={success} role="alert" style={style}>
-        <p>{message}</p>
-        <Button
-          transparent
-          c={success ? '#155724' : '#721c24'}
-          fs="22px"
-          hc="darkorange"
-          onClick={callback}
-        >
-          <FontAwesomeIcon icon={faTimes} />
-        </Button>
-      </AlertContainer>
-    );
-  }
-}
+  return (
+    <AlertContainer success={success} role="alert" style={style}>
+      <p>{message}</p>
+      <Button
+        transparent
+        c={success ? '#155724' : '#721c24'}
+        fs="22px"
+        hc="darkorange"
+        onClick={callback}
+      >
+        <FontAwesomeIcon icon={faTimes} />
+      </Button>
+    </AlertContainer>
+  );
+};
 
 Alert.propTypes = {
   success: PropTypes.bool,
