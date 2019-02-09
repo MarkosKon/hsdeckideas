@@ -38,31 +38,27 @@ class TreeDiagram extends Component {
     super(props);
 
     this.wrapperRef = React.createRef();
-
+    this.margin = {
+      top: 0,
+      right: 20,
+      bottom: 50,
+      left: 20,
+    };
     this.state = {
       // eslint-disable-next-line react/no-unused-state
       deck: {},
-      margin: {
-        top: 0,
-        right: 20,
-        bottom: 50,
-        left: 20,
-      },
     };
   }
 
   componentDidMount() {
     // Dom is ready, ref stuff.
-    const { margin } = this.state;
-
     const svgWidth = this.wrapperRef.current.clientWidth;
     const svgHeight = document.body.clientHeight;
-    const innerWidth = svgWidth - margin.left - margin.right;
-    const innerHeight = svgHeight - margin.top - margin.bottom;
+    const innerWidth = svgWidth - this.margin.left - this.margin.right;
+    const innerHeight = svgHeight - this.margin.top - this.margin.bottom;
     this.setState({
       svgWidth,
       svgHeight,
-      margin,
       // eslint-disable-next-line react/no-unused-state
       innerWidth,
       // eslint-disable-next-line react/no-unused-state
@@ -99,7 +95,7 @@ class TreeDiagram extends Component {
   render() {
     const { closeModal } = this.props;
     const {
-      svgWidth, svgHeight, margin, links, nodes,
+      svgWidth, svgHeight, links, nodes,
     } = this.state;
     return (
       <ContainerCard
@@ -145,7 +141,7 @@ class TreeDiagram extends Component {
         </StyledCard>
         <div ref={this.wrapperRef} style={{ backgroundColor: '#1d1d1d' }}>
           <svg id="dendrogram" width={svgWidth} height={svgHeight}>
-            <g id="parentGroup" transform={`translate(${margin.left}, ${margin.top})`}>
+            <g id="parentGroup" transform={`translate(${this.margin.left}, ${this.margin.top})`}>
               {links
                 && links.map(link => (
                   <path
