@@ -11,5 +11,8 @@
     "browser": true,
     "node": true
   },
-  "plugins": ["jest"]
+  "plugins": ["jest", "react-hooks"],
+  "rules": {
+    "react-hooks/rules-of-hooks": "error"
+  }
 }
