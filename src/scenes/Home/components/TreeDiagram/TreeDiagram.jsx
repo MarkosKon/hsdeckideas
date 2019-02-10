@@ -1,6 +1,6 @@
 // Major inspiration from a Curran Kelleher video: https://www.youtube.com/watch?v=jfpV7OBptYE
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Button } from 'already-styled-components';
@@ -34,7 +34,7 @@ const linkPathGenerator = linkVertical()
   .y(d => d.y);
 
 const TreeDiagram = ({ closeModal, deck }) => {
-  const wrapperRef = React.createRef();
+  const wrapperRef = useRef(null);
   const [dimensions, setDimensions] = useState({
     margin: {
       top: 0,
@@ -66,6 +66,9 @@ const TreeDiagram = ({ closeModal, deck }) => {
     const root = hierarchy(data);
     setLinks(treeLayout(root).links());
     setNodes(root.descendants());
+    // The following could be in a useRef, but because
+    // of the d3 zoom and the access of 'current' of a
+    // null object, it gets weird.
     setDimensions({
       ...dimensions,
       svgWidth,

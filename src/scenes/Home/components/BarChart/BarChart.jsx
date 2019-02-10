@@ -1,7 +1,7 @@
 // Inspiration from a Curran Kelleher video https://www.youtube.com/watch?v=NlBt-7PuaLk.
 // Later I altered some code to flip the bar chart upside down from
 // this example https://beta.observablehq.com/@mbostock/d3-bar-chart
-import React, { useState, useEffect, createRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { select } from 'd3-selection';
@@ -16,8 +16,8 @@ const AnimatedBars = styled.rect`
 const BarChart = ({ data, chartColor }) => {
   // refs used for rendering the axes in componentDidMount/componentDidUpdate
   // methods (side-effects)
-  const xAxisRef = createRef();
-  const yAxisRef = createRef();
+  const xAxisRef = useRef(null);
+  const yAxisRef = useRef(null);
   const [xScale, setXScale] = useState(null);
   const [yScale, setYScale] = useState(null);
 
