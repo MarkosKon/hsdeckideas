@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
-import imageFull from '../../images/rastakhan.jpg';
+import imageFull from '../../images/rise-of-shadows.jpg';
 
 const StyledHeader = styled.header`
   margin: 0;
