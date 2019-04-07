@@ -50,7 +50,7 @@ export const resetQuantity = (cards, isHighlander) => (isHighlander
   : cards.map(c => ({ ...c, quantity: c.rarity === 'LEGENDARY' ? 1 : 2 })));
 
 export const getAvailableCards = (cardDb, heroName, format, isInteresting) => {
-  const expansionLimit = format === 'Standard' ? 9 : 0;
+  const expansionLimit = format === 'Standard' ? 12 : 0;
 
   let availableCards = cardDb.filter(
     card => (card.cardClass.includes('NEUTRAL') || card.cardClass.includes(heroName.toUpperCase()))

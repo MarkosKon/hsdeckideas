@@ -111,6 +111,7 @@ class Filters extends Component {
       'TW',
       'BP',
       'RR',
+      'RoS',
       'Classic',
       'Basic',
     ];
@@ -119,10 +120,10 @@ class Filters extends Component {
   toReactSelectPrefix(cards, {
     dbfId, set, name, text,
   }) {
-    const setEquals98 = set === 98 ? this.expansions[15] : this.expansions[set];
+    const setEquals98 = set === 98 ? this.expansions[16] : this.expansions[set];
     return cards.concat({
       value: dbfId,
-      label: `${set === 99 ? this.expansions[16] : setEquals98} - ${name}`,
+      label: `${set === 99 ? this.expansions[17] : setEquals98} - ${name}`,
       text,
     });
   }
@@ -280,7 +281,7 @@ class Filters extends Component {
                   id="tooltip-other-cards"
                   text={`This list contains the cards that are not included
                         in the "starting cards".
-                        Use it if you want to force some specific cards into 
+                        Use it if you want to force some specific cards into
                         the deck. You can select up to 10 cards. If there are
                         no spots left in the deck these cards (or a part of them)
                         will be ignored.`}
@@ -309,7 +310,7 @@ class Filters extends Component {
                           make a GvG retro deck by selecting (basic, classic, hof, naxx and gvg).
                           Or you can make decks from different expansions and see
                           which is the most powerful. *Don't forget to change the format
-                          to Wild otherwise you won't see the wild expansions. 
+                          to Wild otherwise you won't see the wild expansions.
                         `}
                 />
               </label>

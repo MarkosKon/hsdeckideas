@@ -12324,27 +12324,7 @@
         "type": "SPELL",
         "extra": ["HEAL"],
         "imageUrl": "108.png",
-        "tile": "CS2_089.png",
-        "activeVersion": 0,
-        "versions": [
-          {
-            "name": "Default",
-            "priorities": [
-              {
-                "minCards": 2,
-                "maxCards": 2,
-                "id": "6f61c0da-0256-4551-8151-3b36dcabdbf1",
-                "filters": [
-                  {
-                    "property": "name",
-                    "operation": "EQUALS",
-                    "minValue": "Blackguard"
-                  }
-                ]
-              }
-            ]
-          }
-        ]
+        "tile": "CS2_089.png"
       },
       {
         "name": "Light's Justice",
@@ -66195,7 +66175,7 @@
                   {
                     "property": "text",
                     "operation": "MATCH",
-                    "minValue": "shuffly.*bomb"
+                    "minValue": "shuffle.*bomb"
                   }
                 ]
               }
@@ -66361,24 +66341,29 @@
         "activeVersion": 0,
         "versions": [
           {
-            "minCards": 6,
-            "maxCards": 8,
-            "id": "a75b1029-5d13-4d24-9b0f-a9b4b8e8fd7c",
-            "filters": [
+            "name": "Murlocs",
+            "priorities": [
               {
-                "property": "text",
-                "operation": "MATCH",
-                "minValue": "murloc"
-              },
-              {
-                "property": "name",
-                "operation": "NOT_EQUALS",
-                "minValue": "Toxfin"
-              },
-              {
-                "property": "name",
-                "operation": "NOT_EQUALS",
-                "minValue": "Hungry Crab"
+                "minCards": 6,
+                "maxCards": 8,
+                "id": "a75b1029-5d13-4d24-9b0f-a9b4b8e8fd7c",
+                "filters": [
+                  {
+                    "property": "text",
+                    "operation": "MATCH",
+                    "minValue": "murloc"
+                  },
+                  {
+                    "property": "name",
+                    "operation": "NOT_EQUALS",
+                    "minValue": "Toxfin"
+                  },
+                  {
+                    "property": "name",
+                    "operation": "NOT_EQUALS",
+                    "minValue": "Hungry Crab"
+                  }
+                ]
               }
             ]
           }

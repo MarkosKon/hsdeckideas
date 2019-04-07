@@ -12,7 +12,7 @@ const cards = data[0].content;
 
 // 1. Data tests.
 it('Data test #1: Checks how many cards we have.', () => {
-  expect(cards.length).toEqual(1868);
+  expect(cards.length).toEqual(2003);
 });
 
 it('Data test #2:  Checks if the priorities of cards have unique uuids.', () => {
@@ -37,224 +37,387 @@ it('Data test #2:  Checks if the priorities of cards have unique uuids.', () => 
 
 it('Data test #3: Checks if all cards have ratings.', () => {
   const result = cards.reduce((sum, card) => (card.rating ? sum + 1 : sum), 0);
-  expect(result).toEqual(1868);
+  expect(result).toEqual(2003);
 });
 
-const cardCountWPrioritiesThatFindNothing = (availableCards, interestingCards, boundary, secret) => interestingCards
+const prioritiesThatFindNothing = (availableCards, interestingCards, boundary) => interestingCards
   .reduce((versions, card) => versions.concat(card.versions), [])
   .reduce(versionsToPriorities, [])
-  .reduce(
-    (shitCardCount, priority) => (getCardsForFilters(availableCards, priority.filters, false).length === boundary
-      ? ++shitCardCount
-      : shitCardCount),
-    0,
-  );
+  .reduce((problematicPriorities, priority) => {
+    const check = getCardsForFilters(availableCards, priority.filters, false).length === boundary;
+    return check ? problematicPriorities.concat(priority) : problematicPriorities;
+  }, []);
 
-const cardCountWithUnsatisfiedPrioritiesButNot0 = (availableCards, interestingCards) => interestingCards
+const prioritiesUnsatisfiedButNo0 = (availableCards, interestingCards) => interestingCards
   .reduce((versions, card) => versions.concat(card.versions), [])
   .reduce(versionsToPriorities, [])
-  .reduce((shitCardCount, priority) => {
+  .reduce((problematicPriorities, priority) => {
     const maxPossibleNumber = getCardsForFilters(availableCards, priority.filters, false).reduce(
       (maxPossible, c) => {
-        if (c.rarity === 'LEGENDARY') {
-          maxPossible++;
-        } else {
-          maxPossible += 2;
-        }
-        return maxPossible;
+        if (c.rarity === 'LEGENDARY') return maxPossible + 1;
+        return maxPossible + 2;
       },
       0,
     );
     if (maxPossibleNumber !== 0 && maxPossibleNumber < priority.minCards) {
-      // console.log('HEY', priority.id);
-      shitCardCount++;
+      return problematicPriorities.concat(priority);
     }
-    return shitCardCount;
-  }, 0);
+    return problematicPriorities;
+  }, []);
 
-// Mad scientist, Subject 9, Masked Contender
-it("Data test #4: Keeps track of the Wild Druid-Neutral cards that their priorities don't find any cards.", () => {
+/**
+ * 4 cards in Rise of Shadows
+ *
+ * Mad Scientist - no secrets,
+ * Subject 9 - no secrets,
+ * Masked Contender - no secrets,
+ * Sunreaver Spy - no secrets,
+ */
+it(`Data test #4: Keeps track of the Wild Druid-Neutral cards
+    that their priorities don't find any cards.`, () => {
   const availableCards = getAvailableCards(cards, 'Druid', 'Wild');
   const interestingCards = getAvailableCards(cards, 'Druid', 'Wild', true);
 
-  const result = cardCountWPrioritiesThatFindNothing(availableCards, interestingCards, 0);
+  const result = prioritiesThatFindNothing(availableCards, interestingCards, 0);
 
-  expect(result).toEqual(3);
+  expect(result.length).toEqual(4);
 });
 
-// Twig of the World Tree, Subject 9, Masked Contender
-it("Data test #5: Keeps track of the Standard Druid-Neutral cards that their priorities don't find any cards.", () => {
+/**
+ * 16 cards in Rise of Shadows
+ *
+ * Spiteful Smith - No 1+ weapon,
+ * Bloodsail Raider - No 1+ weapon,
+ * Dread Corsair - No 1+ weapon,
+ * Captain Greenskin - No weapon,
+ * Southsea Captain - No 1+ weapon,
+ * Hench-Clan Thug - No 1+ weapon,
+ * Toxicologist - No 1+ weapon,
+ * Dendrologist (Treants) - No Living Mana,
+ * Flobbidinous Floop (Malygos) - Twig of the World Tree,
+ * Mulchmuncher (Treants) - No Living Man
+ * Treespeaker (Treants) - No Living Man
+ * Zilliax (Keywords) - No Corpsetaker,
+ * Electrowright - No Spiteful Summoner,
+ * Subject 9 - no secrets,
+ * Masked Contender - no secrets,
+ * Sunreaver Spy - no secrets,
+ */
+it(`Data test #5: Keeps track of the Standard Druid-Neutral cards
+    that their priorities don't find any cards.`, () => {
   const availableCards = getAvailableCards(cards, 'Druid', 'Standard');
   const interestingCards = getAvailableCards(cards, 'Druid', 'Standard', true);
 
-  const result = cardCountWPrioritiesThatFindNothing(availableCards, interestingCards, 0);
+  const result = prioritiesThatFindNothing(availableCards, interestingCards, 0);
 
-  expect(result).toEqual(3);
+  expect(result.length).toEqual(16);
 });
 
-it("Data test #6: Keeps track of the Wild Hunter-Neutral cards that their priorities don't find any cards.", () => {
+it(`Data test #6: Keeps track of the Wild Hunter-Neutral cards
+    that their priorities don't find any cards.`, () => {
   const availableCards = getAvailableCards(cards, 'Hunter', 'Wild');
   const interestingCards = getAvailableCards(cards, 'Hunter', 'Wild', true);
 
-  const result = cardCountWPrioritiesThatFindNothing(availableCards, interestingCards, 0);
+  const result = prioritiesThatFindNothing(availableCards, interestingCards, 0);
 
-  expect(result).toEqual(0);
+  expect(result.length).toEqual(0);
 });
 
-it("Data test #7: Keeps track of the Standard Hunter-Neutral cards that their priorities don't find any cards.", () => {
+/**
+ * 2 cards in Rise of Shadows
+ *
+ * Zilliax (Keywords) - No Corpsetaker,
+ * Electrowright - No Spiteful Summoner,
+ */
+it(`Data test #7: Keeps track of the Standard Hunter-Neutral cards
+    that their priorities don't find any cards.`, () => {
   const availableCards = getAvailableCards(cards, 'Hunter', 'Standard');
   const interestingCards = getAvailableCards(cards, 'Hunter', 'Standard', true);
 
-  const result = cardCountWPrioritiesThatFindNothing(availableCards, interestingCards, 0);
+  const result = prioritiesThatFindNothing(availableCards, interestingCards, 0);
 
-  expect(result).toEqual(0);
+  expect(result.length).toEqual(2);
 });
 
 // Shimmering Courser, The Voraxx, Hench-Clan Thug, Southsea Captain,
 // Bloodsail Raider, Djinni of Zephyrs, Phantom Freebooter, Spiteful Smith,
 // Naga Corsair, Small-Time Buccaneer, Dragonkin Sorcerer, Eydis Darkbane,
 // Fjola Lightbane, Dread Corsair, Toxicologist, Gurubashi Chicken
-it("Data test #8: Keeps track of the Wild Mage-Neutral cards that their priorities don't find any cards.", () => {
+it(`Data test #8: Keeps track of the Wild Mage-Neutral cards
+    that their priorities don't find any cards.`, () => {
   const availableCards = getAvailableCards(cards, 'Mage', 'Wild');
   const interestingCards = getAvailableCards(cards, 'Mage', 'Wild', true);
 
-  const result = cardCountWPrioritiesThatFindNothing(availableCards, interestingCards, 0, 'MAGE');
+  const result = prioritiesThatFindNothing(availableCards, interestingCards, 0, 'MAGE');
 
-  expect(result).toEqual(16);
+  expect(result.length).toEqual(16);
 });
 
 // Hench-Clan Thug, The Voraxx, Southsea Captain, Dread Corsair, Bloodsail Raider,
 // Shimmering Courser, Phantom Freebooter, Spiteful Smith, Toxicologist, Gurubashi Chicken
-it("Data test #9: Keeps track of the Standard Mage-Neutral cards that their priorities don't find any cards.", () => {
+it(`Data test #9: Keeps track of the Standard Mage-Neutral cards
+    that their priorities don't find any cards.`, () => {
   const availableCards = getAvailableCards(cards, 'Mage', 'Standard');
   const interestingCards = getAvailableCards(cards, 'Mage', 'Standard', true);
 
-  const result = cardCountWPrioritiesThatFindNothing(availableCards, interestingCards, 0);
+  const result = prioritiesThatFindNothing(availableCards, interestingCards, 0);
 
-  expect(result).toEqual(10);
+  expect(result.length).toEqual(10);
 });
 
-// Darkmire Moonkin, Malygos, Spellweaver, Spellzerker
-it("Data test #10: Keeps track of the Wild Paladin-Neutral cards that their priorities don't find any cards.", () => {
+/**
+ * 5 cards in Rise of Shadows
+ *
+ * Malygos (No cheap damage spells)
+ * Darkmire Moonkin (No cheap damage spells)
+ * Spellzerker (No cheap damage spells)
+ * Spellweaver (No cheap damage spells)
+ * Azerite Elemental (No cheap damage spells)
+ */
+it(`Data test #10: Keeps track of the Wild Paladin-Neutral cards
+    that their priorities don't find any cards.`, () => {
   const availableCards = getAvailableCards(cards, 'Paladin', 'Wild');
   const interestingCards = getAvailableCards(cards, 'Paladin', 'Wild', true);
 
-  const result = cardCountWPrioritiesThatFindNothing(availableCards, interestingCards, 0);
-  expect(result).toEqual(4);
+  const result = prioritiesThatFindNothing(availableCards, interestingCards, 0);
+  expect(result.length).toEqual(5);
 });
 
-// Darkmire Moonkin, Val'anyr, Spellweaver, Malygos, Spellzerker
-it("Data test #11: Keeps track of the Standard Paladin-Neutral cards that their priorities don't find any cards.", () => {
+/**
+ * 6 cards in Rise of Shadows
+ *
+ * Malygos (No cheap damage spells)
+ * Darkmire Moonkin (No cheap damage spells)
+ * Spellzerker (No cheap damage spells)
+ * Azerite Elemental (No cheap damage spells)
+ * Zilliax (Keywords) - No Corpsetaker,
+ * Electrowright - No Spiteful Summoner,
+ */
+it(`Data test #11: Keeps track of the Standard Paladin-Neutral cards
+    that their priorities don't find any cards.`, () => {
   const availableCards = getAvailableCards(cards, 'Paladin', 'Standard');
   const interestingCards = getAvailableCards(cards, 'Paladin', 'Standard', true);
 
-  const result = cardCountWPrioritiesThatFindNothing(availableCards, interestingCards, 0);
+  const result = prioritiesThatFindNothing(availableCards, interestingCards, 0);
 
-  expect(result).toEqual(5);
+  expect(result.length).toEqual(6);
 });
 
-// Hench-Clan Thug, Southsea Captain, Dread Corsair, Bloodsail Raider
-// Phantom Freebooter, Mad Scientist, Spiteful Smith, Naga Corsair
-// Small-Time Buccaneer, Subject 9, Toxicologist, Masked Contender
-it("Data test #12: Keeps track of the Wild Priest-Neutral cards that their priorities don't find any cards.", () => {
+/**
+ * 13 cards in Rise of Shadows
+ *
+ * Small-Time Buccaneer - No 1+ weapon,
+ * Naga Corsair - No 1+ weapon,
+ * Spiteful Smith - No 1+ weapon,
+ * Phantom Freebooter - No 1+ weapon,
+ * Bloodsail Raider - No 1+ weapon,
+ * Dread Corsair - No 1+ weapon,
+ * Southsea Captain - No 1+ weapon,
+ * Hench-Clan Thug - No 1+ weapon,
+ * Toxicologist - No 1+ weapon,
+ * Mad Scientist - no secrets,
+ * Subject 9 - no secrets,
+ * Masked Contender - no secrets,
+ * Sunreaver Spy - no secrets,
+ */
+it(`Data test #12: Keeps track of the Wild Priest-Neutral cards
+    that their priorities don't find any cards.`, () => {
   const availableCards = getAvailableCards(cards, 'Priest', 'Wild');
   const interestingCards = getAvailableCards(cards, 'Priest', 'Wild', true);
 
-  const result = cardCountWPrioritiesThatFindNothing(availableCards, interestingCards, 0);
+  const result = prioritiesThatFindNothing(availableCards, interestingCards, 0);
 
-  expect(result).toEqual(12);
+  expect(result.length).toEqual(13);
 });
 
-// Hench-Clan Thug, Southsea Captain, Dread Corsair, Bloodsail Raider
-// Phantom Freebooter, Spiteful Smith, Subject 9, Toxicologist, Masked Contender
-it("Data test #13: Keeps track of the Standard Priest-Neutral cards that their priorities don't find any cards.", () => {
+/**
+ * 14 cards in Rise of Shadows
+ *
+ * Spiteful Smith - No 1+ weapon,
+ * Bloodsail Raider - No 1+ weapon,
+ * Dread Corsair - No 1+ weapon,
+ * Captain Greenskin - No weapons,
+ * Southsea Captain - No 1+ weapon,
+ * Hench-Clan Thug - No 1+ weapon,
+ * Toxicologist - No 1+ weapon,
+ * Zilliax (Keywords) - No Corpsetaker,
+ * Electrowright - No Spiteful Summoner,
+ * Reckless Experimenter (Cube Priest) - No Carnivorous Cube,
+ * Zerek's Cloning Gallery (Deathrattles) - No Shadow Visions,
+ * Subject 9 - no secrets,
+ * Masked Contender - no secrets,
+ * Sunreaver Spy - no secrets,
+ */
+it(`Data test #13: Keeps track of the Standard Priest-Neutral cards
+   that their priorities don't find any cards.`, () => {
   const availableCards = getAvailableCards(cards, 'Priest', 'Standard');
   const interestingCards = getAvailableCards(cards, 'Priest', 'Standard', true);
 
-  const result = cardCountWPrioritiesThatFindNothing(availableCards, interestingCards, 0);
+  const result = prioritiesThatFindNothing(availableCards, interestingCards, 0);
 
-  expect(result).toEqual(9);
+  expect(result.length).toEqual(14);
 });
 
-it("Data test #14: Keeps track of the Wild Rogue-Neutral cards that their priorities don't find any cards.", () => {
+it(`Data test #14: Keeps track of the Wild Rogue-Neutral cards
+    that their priorities don't find any cards.`, () => {
   const availableCards = getAvailableCards(cards, 'Rogue', 'Wild');
   const interestingCards = getAvailableCards(cards, 'Rogue', 'Wild', true);
 
-  const result = cardCountWPrioritiesThatFindNothing(availableCards, interestingCards, 0);
+  const result = prioritiesThatFindNothing(availableCards, interestingCards, 0);
 
-  expect(result).toEqual(0);
+  expect(result.length).toEqual(0);
 });
 
-// Obsidian Shard (Ethereal Peddler)
-it("Data test #15: Keeps track of the Standard Rogue-Neutral cards that their priorities don't find any cards.", () => {
+/**
+ * 5 cards in Rise of Shadows
+ *
+ * Zilliax (Keywords) - No Corpsetaker,
+ * Electrowright - No Spiteful Summoner,
+ * Subject 9 - no secrets,
+ * Masked Contender - no secrets,
+ * Sunreaver Spy - no secrets,
+ */
+it(`Data test #15: Keeps track of the Standard Rogue-Neutral cards
+    that their priorities don't find any cards.`, () => {
   const availableCards = getAvailableCards(cards, 'Rogue', 'Standard');
   const interestingCards = getAvailableCards(cards, 'Rogue', 'Standard', true);
 
-  const result = cardCountWPrioritiesThatFindNothing(availableCards, interestingCards, 0);
+  const result = prioritiesThatFindNothing(availableCards, interestingCards, 0);
 
-  expect(result).toEqual(1);
+  expect(result.length).toEqual(5);
 });
 
-// Mad Scientist, Subject 9, Masked Contender
-it("Data test #16: Keeps track of the Wild Shaman-Neutral cards that their priorities don't find any cards.", () => {
+/**
+ * 4 cards in Rise of Shadows
+ *
+ * Mad Scientist - no secrets,
+ * Subject 9 - no secrets,
+ * Masked Contender - no secrets,
+ * Sunreaver Spy - no secrets,
+ */
+it(`Data test #16: Keeps track of the Wild Shaman-Neutral cards
+    that their priorities don't find any cards.`, () => {
   const availableCards = getAvailableCards(cards, 'Shaman', 'Wild');
   const interestingCards = getAvailableCards(cards, 'Shaman', 'Wild', true);
 
-  const result = cardCountWPrioritiesThatFindNothing(availableCards, interestingCards, 0);
+  const result = prioritiesThatFindNothing(availableCards, interestingCards, 0);
 
-  expect(result).toEqual(3);
+  expect(result.length).toEqual(4);
 });
 
-// Unite the Murlocs (Call in the Finishers), Subject 9, Masked Contender
-it("Data test #17: Keeps track of the Standard Shaman-Neutral cards that their priorities don't find any cards.", () => {
+/**
+ * 5 cards in Rise of Shadows
+ *
+ * Zilliax (Keywords) - No Corpsetaker,
+ * Electrowright - No Spiteful Summoner,
+ * Subject 9 - no secrets,
+ * Masked Contender - no secrets,
+ * Sunreaver Spy - no secrets,
+ */
+it(`Data test #17: Keeps track of the Standard Shaman-Neutral cards
+    that their priorities don't find any cards.`, () => {
   const availableCards = getAvailableCards(cards, 'Shaman', 'Standard');
   const interestingCards = getAvailableCards(cards, 'Shaman', 'Standard', true);
 
-  const result = cardCountWPrioritiesThatFindNothing(availableCards, interestingCards, 0);
+  const result = prioritiesThatFindNothing(availableCards, interestingCards, 0);
 
-  expect(result).toEqual(3);
+  expect(result.length).toEqual(5);
 });
 
-// I don't know. We should change the cardCount... methods., Masked Contender
-it("Data test #18: Keeps track of the Wild Warlock-Neutral cards that their priorities don't find any cards.", () => {
+/**
+ * 13 cards in Rise of Shadows
+ *
+ * Small-Time Buccaneer - No 1+ weapon,
+ * Naga Corsair - No 1+ weapon,
+ * Spiteful Smith - No 1+ weapon,
+ * Phantom Freebooter - No 1+ weapon,
+ * Bloodsail Raider - No 1+ weapon,
+ * Dread Corsair - No 1+ weapon,
+ * Southsea Captain - No 1+ weapon,
+ * Hench-Clan Thug - No 1+ weapon,
+ * Toxicologist - No 1+ weapon,
+ * Mad Scientist - No secrets,
+ * Subject 9 - no secrets,
+ * Masked Contender - no secrets,
+ * Sunreaver Spy - no secrets,
+ */
+it(`Data test #18: Keeps track of the Wild Warlock-Neutral cards
+    that their priorities don't find any cards.`, () => {
   const availableCards = getAvailableCards(cards, 'Warlock', 'Wild');
   const interestingCards = getAvailableCards(cards, 'Warlock', 'Wild', true);
 
-  const result = cardCountWPrioritiesThatFindNothing(availableCards, interestingCards, 0);
+  const result = prioritiesThatFindNothing(availableCards, interestingCards, 0);
 
-  expect(result).toEqual(12);
+  expect(result.length).toEqual(13);
 });
 
-// Hench-Clan Thug, Southsea Captain, Dread Corsair
-// Bloodsail Raider, Phantom Freebooter
-// Spiteful Smith, Subject 9, Toxicologist, Masked Contender
-it("Data test #19: Keeps track of the Standard Warlock-Neutral cards that their priorities don't find any cards.", () => {
+/**
+ * 16 cards in Rise of Shadows
+ *
+ * Spiteful Smith - No 1+ weapon,
+ * Bloodsail Raider - No 1+ weapon,
+ * Dread Corsair - No 1+ weapon,
+ * Southsea Captain - No 1+ weapon,
+ * Hench-Clan Thug - No 1+ weapon,
+ * Toxicologist - No 1+ weapon,
+ * Captain Greenskin - No weapon,
+ * Duskbat - No Lesser Amethyst Spellstone,
+ * Dark Possession - No Lesser Amethyst Spellstone,
+ * Deathweb Spider - No Lesser Amethyst Spellstone,
+ * Blood Witch - No Lesser Amethyst Spellstone,
+ * Zilliax - No Corpsetaker,
+ * Electrowright - No Spiteful Summoner,
+ * Subject 9 - no secrets,
+ * Masked Contender - no secrets,
+ * Sunreaver Spy - no secrets,
+ */
+it(`Data test #19: Keeps track of the Standard Warlock-Neutral cards
+    that their priorities don't find any cards.`, () => {
   const availableCards = getAvailableCards(cards, 'Warlock', 'Standard');
   const interestingCards = getAvailableCards(cards, 'Warlock', 'Standard', true);
 
-  const result = cardCountWPrioritiesThatFindNothing(availableCards, interestingCards, 0);
+  const result = prioritiesThatFindNothing(availableCards, interestingCards, 0);
 
-  expect(result).toEqual(9);
+  expect(result.length).toEqual(16);
 });
 
-// Mad Scientist, Subject 9, Masked Contender
-it("Data test #20: Keeps track of the Wild Warrior-Neutral cards that their priorities don't find any cards.", () => {
+/**
+ * 4 cards in Rise of Shadows.
+ *
+ * Mad Scientist - no secrets,
+ * Subject 9 - no secrets,
+ * Masked Contender - no secrets,
+ * Sunreaver Spy - no secrets,
+ */
+it(`Data test #20: Keeps track of the Wild Warrior-Neutral cards that
+    their priorities don't find any cards.`, () => {
   const availableCards = getAvailableCards(cards, 'Warrior', 'Wild');
   const interestingCards = getAvailableCards(cards, 'Warrior', 'Wild', true);
 
-  const result = cardCountWPrioritiesThatFindNothing(availableCards, interestingCards, 0);
+  const result = prioritiesThatFindNothing(availableCards, interestingCards, 0);
 
-  expect(result).toEqual(3);
+  expect(result.length).toEqual(4);
 });
 
-// Subject 9, Masked Contender
-it("Data test #21: Keeps track of the Standard Warrior-Neutral cards that their priorities don't find any cards.", () => {
+/**
+ * 7 cards in Rise of Shadows.
+ * The Boomship (Finisher) - No Charged Devilsaur,
+ * The Boomship (Big Recruit Warrior) - No RECRUIT minions,
+ * Zilliax (Keywords) - No Corpsetaker,
+ * Electrowright (Big Spell) - Spiteful Summoner,
+ * Subject 9 - secrets,
+ * Masked Contender - secrets,
+ * Sunreaver Spy - secrets
+ */
+
+it(`Data test #21: Keeps track of the Standard Warrior-Neutral cards
+    that their priorities don't find any cards.`, () => {
   const availableCards = getAvailableCards(cards, 'Warrior', 'Standard');
   const interestingCards = getAvailableCards(cards, 'Warrior', 'Standard', true);
 
-  const result = cardCountWPrioritiesThatFindNothing(availableCards, interestingCards, 0);
+  const result = prioritiesThatFindNothing(availableCards, interestingCards, 0);
 
-  expect(result).toEqual(2);
+  expect(result.length).toEqual(7);
 });
 
 // Baku the Mooneater, Genn Greymane, Hench-Clan Thug, Gloom Stag
@@ -262,28 +425,62 @@ it("Data test #21: Keeps track of the Standard Warrior-Neutral cards that their 
 // Bloodsail Raider, Rummaging Kobold, Reno Jackson, Furnacefire Colossus
 // Phantom Freebooter, Spiteful Smith, Aya Blackpaw, Small-Time Buccaneer
 // Jade Spirit, Naga Corsair, Jade Behemoth, Toxicologist
-it('Data test #22: Keeps track of the Wild Druid-Neutral cards that their priorities are not satisfied but return at least 1 card.', () => {
+it(`Data test #22: Keeps track of the Wild Druid-Neutral cards
+    that their priorities are not satisfied but return at least 1 card.`, () => {
   const availableCards = getAvailableCards(cards, 'Druid', 'Wild');
   const interestingCards = getAvailableCards(cards, 'Druid', 'Wild', true);
 
-  const result = cardCountWithUnsatisfiedPrioritiesButNot0(availableCards, interestingCards);
+  const result = prioritiesUnsatisfiedButNo0(availableCards, interestingCards);
 
-  expect(result).toEqual(20);
+  expect(result.length).toEqual(20);
 });
 
-// Baku the Mooneater, Genn Greymane, Hench-Clan Thug
-// Gloom Stag, Southsea Captain, Toxicologist
-// Captain Greenskin, Dread Corsair, Bloodsail Raider, Rummaging Kobold
-// Furnacefire Colossus, Phantom Freebooter, Spiteful Smith
-//
-it('Data test #23: Keeps track of the Standard Druid-Neutral cards that their priorities are not satisfied but return at least 1 card.', () => {
+/**
+ * 3 cards in Rise of Shadows
+ *
+ * Baku the Mooneater
+ * Genn Greymane
+ * Gloom Stag
+ */
+it(`Data test #23: Keeps track of the Standard Druid-Neutral cards
+    that their priorities are not satisfied but return at least 1 card.`, () => {
   const availableCards = getAvailableCards(cards, 'Druid', 'Standard');
   const interestingCards = getAvailableCards(cards, 'Druid', 'Standard', true);
 
-  const result = cardCountWithUnsatisfiedPrioritiesButNot0(availableCards, interestingCards);
+  const result = prioritiesUnsatisfiedButNo0(availableCards, interestingCards);
 
-  expect(result).toEqual(13);
+  expect(result.length).toEqual(3);
 });
+
+// or more specifically, extract unique property names from an array of objects.
+const extractPropertyNames = (uniquePropertyNames, next) => Object.getOwnPropertyNames(next)
+  .filter(propertyName => !uniquePropertyNames.includes(propertyName))
+  .concat(uniquePropertyNames);
+const extractUniqueArrayItems = (uniqueItems, nextItem) => {
+  const isInUniqueArray = uniqueItems.includes(nextItem);
+  return !isInUniqueArray ? uniqueItems.concat(nextItem) : uniqueItems;
+};
+const extractUniqueObjectProperties = (property, uniqueProperties, nextObject) => {
+  const isInUniqueArray = uniqueProperties.includes(nextObject[property]);
+  return !isInUniqueArray ? uniqueProperties.concat(nextObject[property]) : uniqueProperties;
+};
+
+const extractUniqueFactions = partial(extractUniqueObjectProperties, 'faction');
+const extractUniqueOverloads = partial(extractUniqueObjectProperties, 'overload');
+const extractUniqueRaces = partial(extractUniqueObjectProperties, 'race');
+const extractUniqueCosts = partial(extractUniqueObjectProperties, 'cost');
+const extractUniqueRarities = partial(extractUniqueObjectProperties, 'rarity');
+const extractUniqueSets = partial(extractUniqueObjectProperties, 'set');
+const extractUniqueRatings = partial(extractUniqueObjectProperties, 'rating');
+const extractUniqueTypes = partial(extractUniqueObjectProperties, 'type');
+
+const createArtistStats = (artistStats, nextArtistName) => {
+  const artist = artistStats.find(indexedArtist => indexedArtist.name === nextArtistName);
+  if (artist) artist.workCount += 1;
+  else artistStats.push({ name: nextArtistName, workCount: 1 });
+
+  return artistStats;
+};
 
 it('Data test #24: Checks if the unique property number of the card object is 39.', () => {
   const result = cards.reduce(extractPropertyNames, []);
@@ -331,32 +528,6 @@ it('Data test #24: Checks if the unique property number of the card object is 39
   expect(result).toEqual(expectedResult);
   expect(result.length).toEqual(expectedResult.length); // 39
 });
-
-// or more specifically, extract unique property names from an array of objects.
-const extractPropertyNames = (uniquePropertyNames, next) => Object.getOwnPropertyNames(next)
-  .filter(propertyName => !uniquePropertyNames.includes(propertyName))
-  .concat(uniquePropertyNames);
-const extractUniqueArrayItems = (uniqueItems, nextItem) => (!uniqueItems.includes(nextItem) ? uniqueItems.concat(nextItem) : uniqueItems);
-const extractUniqueObjectProperties = (property, uniqueProperties, nextObject) => (!uniqueProperties.includes(nextObject[property])
-  ? uniqueProperties.concat(nextObject[property])
-  : uniqueProperties);
-
-const extractUniqueFactions = partial(extractUniqueObjectProperties, 'faction');
-const extractUniqueOverloads = partial(extractUniqueObjectProperties, 'overload');
-const extractUniqueRaces = partial(extractUniqueObjectProperties, 'race');
-const extractUniqueCosts = partial(extractUniqueObjectProperties, 'cost');
-const extractUniqueRarities = partial(extractUniqueObjectProperties, 'rarity');
-const extractUniqueSets = partial(extractUniqueObjectProperties, 'set');
-const extractUniqueRatings = partial(extractUniqueObjectProperties, 'rating');
-const extractUniqueTypes = partial(extractUniqueObjectProperties, 'type');
-
-const createArtistStats = (artistStats, nextArtistName) => {
-  const artist = artistStats.find(indexedArtist => indexedArtist.name === nextArtistName);
-  if (artist) artist.workCount += 1;
-  else artistStats.push({ name: nextArtistName, workCount: 1 });
-
-  return artistStats;
-};
 
 it('Data test #25: Checks if the are 2 factions available.', () => {
   const expectedResult = ['ALLIANCE', 'HORDE'];
@@ -429,7 +600,7 @@ it('Data test #28: Checks if the are 22 options available for the referencedTags
   expect(result.length).toEqual(25);
 });
 
-it('Data test #29: Checks if the are 35 options available for the mechanics property.', () => {
+it('Data test #29: Checks if the are 41 options available for the mechanics property.', () => {
   const expectedResult = [
     'SECRET',
     'RECEIVES_DOUBLE_SPELLDAMAGE_BONUS',
@@ -470,13 +641,15 @@ it('Data test #29: Checks if the are 35 options available for the mechanics prop
     'AFFECTED_BY_SPELL_POWER',
     'TRIGGER_VISUAL',
     'FINISH_ATTACK_SPELL_ON_DAMAGE',
+    'TWINSPELL',
+    'MULTIPLY_BUFF_VALUE',
   ];
   const result = cards
     .filter(card => card.mechanics)
     .reduce((allMechanics, nextCard) => allMechanics.concat(nextCard.mechanics), [])
     .reduce(extractUniqueArrayItems, []);
   expect(result).toEqual(expectedResult);
-  expect(result.length).toEqual(39);
+  expect(result.length).toEqual(41);
 });
 
 it('Data test #30: Checks if the are 10 options available for the race property.', () => {
@@ -499,7 +672,7 @@ it('Data test #30: Checks if the are 10 options available for the race property.
 
 it('Data test #31: Creates stats for the artists LOL', () => {
   const result = sortBy(cards.map(card => card.artist).reduce(createArtistStats, []), 'workCount');
-  expect(result.length).toEqual(332);
+  expect(result.length).toEqual(340);
 });
 
 it('Data test #32: Checks if the are 15 options available for the cost property.', () => {
@@ -518,11 +691,11 @@ it('Data test #34: Checks if the are 5 options available for the rarity property
   expect(result.length).toEqual(5);
 });
 
-it('Data test #35: Checks if the are 17 options available for the set property.', () => {
-  const expectedResult = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 98, 99];
+it('Data test #35: Checks if the are 18 options available for the set property.', () => {
+  const expectedResult = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 98, 99];
   const result = cards.reduce(extractUniqueSets, []).sort((a, b) => a - b);
   expect(result).toEqual(expectedResult);
-  expect(result.length).toEqual(17);
+  expect(result.length).toEqual(18);
 });
 
 it('Data test #36: Checks if the are 4 options available for the rating property.', () => {
