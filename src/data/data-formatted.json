@@ -1179,7 +1179,7 @@
                   {
                     "property": "text",
                     "operation": "MATCH",
-                    "minValue": "opponent's class"
+                    "minValue": "opponent's class|another class|non-rogue"
                   }
                 ]
               },
@@ -12022,7 +12022,7 @@
         "artist": "Alex Horley Orlandelli",
         "cardClass": ["ROGUE"],
         "collectible": true,
-        "cost": 1,
+        "cost": 2,
         "dbfId": 268,
         "flavor": "'I'm cold blooded, check it and see!'",
         "id": "CS2_073",
@@ -12030,7 +12030,7 @@
         "playRequirements": { "REQ_MINION_TARGET": 0, "REQ_TARGET_TO_PLAY": 0 },
         "rarity": "COMMON",
         "set": 98,
-        "rating": 3,
+        "rating": 2,
         "text": "Give a minion +2 Attack. Combo: +4 Attack instead.",
         "type": "SPELL",
         "extra": ["BUFF", "DAMAGE", "FAST"],
@@ -12214,7 +12214,7 @@
         "artist": "Jimmy Lo",
         "cardClass": ["HUNTER"],
         "collectible": true,
-        "cost": 1,
+        "cost": 2,
         "dbfId": 141,
         "flavor": "Never play 'Hide and Go Seek' with a Hunter.",
         "howToEarn": "Unlocked at Level 6.",
@@ -12223,7 +12223,7 @@
         "playRequirements": { "REQ_MINION_TARGET": 0, "REQ_TARGET_TO_PLAY": 0 },
         "rarity": "FREE",
         "set": 99,
-        "rating": 4,
+        "rating": 2,
         "text": "Change a minion's Health to 1.",
         "type": "SPELL",
         "extra": ["HARD_REMOVAL", "SMALL_REMOVAL", "TEMPO", "FAST"],
@@ -12324,27 +12324,7 @@
         "type": "SPELL",
         "extra": ["HEAL"],
         "imageUrl": "108.png",
-        "tile": "CS2_089.png",
-        "activeVersion": 0,
-        "versions": [
-          {
-            "name": "Default",
-            "priorities": [
-              {
-                "minCards": 2,
-                "maxCards": 2,
-                "id": "6f61c0da-0256-4551-8151-3b36dcabdbf1",
-                "filters": [
-                  {
-                    "property": "name",
-                    "operation": "EQUALS",
-                    "minValue": "Blackguard"
-                  }
-                ]
-              }
-            ]
-          }
-        ]
+        "tile": "CS2_089.png"
       },
       {
         "name": "Light's Justice",
@@ -19289,7 +19269,7 @@
         "activeVersion": 0,
         "versions": [
           {
-            "name": "Default",
+            "name": "Murlocs",
             "priorities": [
               {
                 "minCards": 6,
@@ -20219,7 +20199,7 @@
         "attack": 0,
         "cardClass": ["SHAMAN"],
         "collectible": true,
-        "cost": 2,
+        "cost": 3,
         "dbfId": 1008,
         "flavor": "Totemsmiths like to use the rarest woods for their totems.  There are even rumors of totems made of Ironbark Protectors.",
         "health": 3,
@@ -20230,7 +20210,7 @@
         "race": "TOTEM",
         "rarity": "FREE",
         "set": 99,
-        "rating": 4,
+        "rating": 3,
         "text": "Adjacent minions have +2 Attack.",
         "type": "MINION",
         "extra": ["DAMAGE", "BUFF", "FAST"],
@@ -21516,13 +21496,13 @@
         "artist": "Michal Ivan",
         "cardClass": ["PALADIN"],
         "collectible": true,
-        "cost": 2,
+        "cost": 4,
         "dbfId": 756,
         "flavor": "We are all special unique snowflakes... with 1 Health.",
         "id": "EX1_619",
         "rarity": "RARE",
         "set": 98,
-        "rating": 3,
+        "rating": 2,
         "text": "Change the Health of ALL minions to 1.",
         "type": "SPELL",
         "extra": ["AOE", "HARD_REMOVAL"],
@@ -32907,7 +32887,7 @@
                   {
                     "property": "text",
                     "operation": "MATCH",
-                    "minValue": "opponent's class"
+                    "minValue": "opponent's class|another class|non-rogue"
                   }
                 ]
               },
@@ -36183,14 +36163,14 @@
         "artist": "Joe Wilson",
         "cardClass": ["HUNTER"],
         "collectible": true,
-        "cost": 5,
+        "cost": 6,
         "dbfId": 43363,
         "flavor": "An emerald stone for Tauren hands Who sought its strength to save their lands Their tribes now lost, their rage released Who’s hunting now? And who’s the beast?",
         "id": "LOOT_080",
         "playRequirements": { "REQ_MINION_TARGET": 0 },
         "rarity": "RARE",
         "set": 11,
-        "rating": 4,
+        "rating": 3,
         "text": "Summon two 3/3 Wolves. <i>(Play a Secret to upgrade.)</i>",
         "type": "SPELL",
         "extra": ["TEMPO"],
@@ -46949,7 +46929,7 @@
                   {
                     "property": "text",
                     "operation": "MATCH",
-                    "minValue": "opponent's class"
+                    "minValue": "opponent's class|another class|non-rogue"
                   }
                 ]
               },
@@ -54413,7 +54393,7 @@
                   {
                     "property": "text",
                     "operation": "MATCH",
-                    "minValue": "opponent's class"
+                    "minValue": "opponent's class|another class|non-rogue"
                   }
                 ]
               },
@@ -65565,6 +65545,4847 @@
         ]
       },
       {
+        "artist": "Jim Nelson",
+        "cardClass": ["WARLOCK"],
+        "collectible": true,
+        "collectionText": "Summon 1 1/1 |4(Imp, Imps). <i>(Upgrades each turn!)</i>",
+        "cost": 3,
+        "dbfId": 51371,
+        "flavor": "\"When your first plan fails... imp-rovise.\"",
+        "id": "DAL_007",
+        "name": "Rafaam's Scheme",
+        "rarity": "COMMON",
+        "set": 15,
+        "imageUrl": "rafaams-scheme.png",
+        "tile": "DAL_007.png",
+        "extra": ["MIN_GEN"],
+        "rating": 1,
+        "text": "Summon @ 1/1 |4(Imp, Imps). <i>(Upgrades each turn!)</i>",
+        "type": "SPELL"
+      },
+      {
+        "artist": "Konstantin Turovec",
+        "cardClass": ["WARRIOR"],
+        "collectible": true,
+        "collectionText": "Gain 1 Armor.\n<i>(Upgrades each turn!)</i>",
+        "cost": 4,
+        "dbfId": 51372,
+        "flavor": "“We did it! We blew up the vault!”\n“You mean the vault door?”\n“Oh. The doooor…”",
+        "id": "DAL_008",
+        "name": "Dr. Boom's Scheme",
+        "rarity": "COMMON",
+        "set": 15,
+        "imageUrl": "dr-booms-scheme.png",
+        "tile": "DAL_008.png",
+        "extra": ["HEAL"],
+        "rating": 1,
+        "text": "Gain @ Armor.\n<i>(Upgrades each turn!)</i>",
+        "type": "SPELL"
+      },
+      {
+        "artist": "Arthur Gimaldinov",
+        "cardClass": ["SHAMAN"],
+        "collectible": true,
+        "collectionText": "Deal $1 damage\nto all minions.\n<i>(Upgrades each turn!)</i>",
+        "cost": 5,
+        "dbfId": 51373,
+        "flavor": "\"All shall suffer!\"\n\"But Hagatha, those are your minions...\"\n\"I said ALL!!!\"",
+        "id": "DAL_009",
+        "name": "Hagatha's Scheme",
+        "rarity": "RARE",
+        "set": 15,
+        "imageUrl": "hagathas-scheme.png",
+        "tile": "DAL_009.png",
+        "extra": ["AOE"],
+        "rating": 3,
+        "text": "Deal $@ damage\nto all minions.\n<i>(Upgrades each turn!)</i>",
+        "type": "SPELL"
+      },
+      {
+        "artist": "Konstantin Turovec",
+        "cardClass": ["ROGUE"],
+        "collectible": true,
+        "collectionText": "Choose a minion. Shuffle 1 |4(copy, copies) of it into your deck.\n<i>(Upgrades each turn!)</i>",
+        "cost": 1,
+        "dbfId": 51375,
+        "flavor": "\"Many minions equals many treasures for king. Kobold arithmetic!\"",
+        "id": "DAL_010",
+        "name": "Togwaggle's Scheme",
+        "playRequirements": { "REQ_MINION_TARGET": 0, "REQ_TARGET_TO_PLAY": 0 },
+        "rarity": "RARE",
+        "set": 15,
+        "imageUrl": "togwaggles-scheme.png",
+        "tile": "DAL_010.png",
+        "extra": ["VALUE"],
+        "rating": 2,
+        "text": "Choose a minion. Shuffle @ |4(copy, copies) of it into your deck.\n<i>(Upgrades each turn!)</i>",
+        "type": "SPELL",
+        "activeVersion": 0,
+        "versions": [
+          {
+            "name": "Pogo",
+            "priorities": [
+              {
+                "minCards": 2,
+                "maxCards": 2,
+                "id": "4b2ce54f-6f04-44d0-8fb5-2e6238f87ed3",
+                "filters": [
+                  {
+                    "property": "name",
+                    "operation": "EQUALS",
+                    "minValue": "Pogo-Hopper"
+                  }
+                ]
+              },
+              {
+                "minCards": 4,
+                "maxCards": 4,
+                "id": "c94d4c91-f2f1-4796-b640-021828b365ff",
+                "filters": [
+                  {
+                    "property": "extra",
+                    "operation": "INCLUDES",
+                    "minValue": "CARD_DRAW"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "artist": "J. Axer",
+        "cardClass": ["PRIEST"],
+        "collectible": true,
+        "collectionText": "Reduce the Attack of an enemy minion by\n1 until your next turn. <i>(Upgrades each turn!)</i>",
+        "cost": 0,
+        "dbfId": 51376,
+        "flavor": "\"What's that you're dreaming?\nYou're weak and you're screaming!\nIt must be my scheming...\"",
+        "id": "DAL_011",
+        "name": "Lazul's Scheme",
+        "playRequirements": {
+          "REQ_ENEMY_TARGET": 0,
+          "REQ_MINION_TARGET": 0,
+          "REQ_TARGET_TO_PLAY": 0
+        },
+        "rarity": "EPIC",
+        "set": 15,
+        "imageUrl": "lazuls-scheme.png",
+        "tile": "DAL_011.png",
+        "extra": ["HARD_REMOVAL", "TEMPO"],
+        "rating": 2,
+        "text": "Reduce the Attack of an enemy minion by\n@ until your next turn. <i>(Upgrades each turn!)</i>",
+        "type": "SPELL",
+        "activeVersion": 0,
+        "versions": [
+          {
+            "name": "Cabal Shadow Priest",
+            "priorities": [
+              {
+                "minCards": 2,
+                "maxCards": 2,
+                "id": "87784c4b-1f8c-468f-8af1-0424c878bb8c",
+                "filters": [
+                  {
+                    "property": "name",
+                    "operation": "EQUALS",
+                    "minValue": "Cabal Shadow Priest"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "artist": "Konstantin Turovec",
+        "attack": 2,
+        "cardClass": ["PRIEST"],
+        "collectible": true,
+        "cost": 2,
+        "dbfId": 51567,
+        "flavor": "Terrible at shadow puppets: “This is… a tentacle! And this is… two tentacles!”",
+        "health": 2,
+        "id": "DAL_030",
+        "mechanics": ["BATTLECRY"],
+        "name": "Shadowy Figure",
+        "playRequirements": {
+          "REQ_FRIENDLY_TARGET": 0,
+          "REQ_MINION_TARGET": 0,
+          "REQ_TARGET_IF_AVAILABLE": 0,
+          "REQ_TARGET_WITH_DEATHRATTLE": 0
+        },
+        "rarity": "EPIC",
+        "referencedTags": ["DEATHRATTLE"],
+        "set": 15,
+        "imageUrl": "shadowy-figure.png",
+        "tile": "DAL_030.png",
+        "extra": ["GENERAL"],
+        "rating": 1,
+        "targetingArrowText": "Transform into a 2/2 copy.",
+        "text": "<b>Battlecry:</b> Transform into a 2/2 copy of a friendly <b>Deathrattle</b> minion.",
+        "type": "MINION",
+        "activeVersion": 0,
+        "versions": [
+          {
+            "name": "Some deathrattles",
+            "priorities": [
+              {
+                "minCards": 4,
+                "maxCards": 6,
+                "id": "49ab009f-4719-4a43-91da-c651d560cec7",
+                "filters": [
+                  {
+                    "property": "mechanics",
+                    "operation": "INCLUDES",
+                    "minValue": "DEATHRATTLE"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "artist": "Zoltan Boros",
+        "attack": 2,
+        "cardClass": ["PRIEST"],
+        "collectible": true,
+        "cost": 5,
+        "dbfId": 51714,
+        "flavor": "It’s always nice to steal a familiar face.",
+        "health": 6,
+        "id": "DAL_039",
+        "mechanics": ["DEATHRATTLE", "TAUNT"],
+        "name": "Convincing Infiltrator",
+        "rarity": "RARE",
+        "set": 15,
+        "imageUrl": "convincing-infiltrator.png",
+        "tile": "DAL_039.png",
+        "extra": ["STALL"],
+        "rating": 3,
+        "text": "[x]<b><b>Taunt</b></b>\n<b>Deathrattle:</b> Destroy a\n random enemy minion.",
+        "type": "MINION"
+      },
+      {
+        "artist": "Paul Mafayon",
+        "attack": 4,
+        "cardClass": ["PRIEST"],
+        "collectible": true,
+        "cost": 4,
+        "dbfId": 51715,
+        "flavor": "The Hench-Clan has a point.",
+        "health": 7,
+        "id": "DAL_040",
+        "mechanics": ["DEATHRATTLE"],
+        "name": "Hench-Clan Shadequill",
+        "rarity": "COMMON",
+        "set": 15,
+        "imageUrl": "hench-clan-shadequill.png",
+        "tile": "DAL_040.png",
+        "extra": ["TEMPO", "FAST"],
+        "rating": 3,
+        "text": "<b>Deathrattle:</b> Restore 5 Health to the enemy hero.",
+        "type": "MINION",
+        "activeVersion": 0,
+        "versions": [
+          {
+            "name": "Silence and buffs",
+            "priorities": [
+              {
+                "minCards": 4,
+                "maxCards": 4,
+                "id": "c8346d94-dcc1-47a2-9da4-90dbe9961e21",
+                "filters": [
+                  {
+                    "property": "text",
+                    "operation": "MATCH",
+                    "minValue": "silence"
+                  }
+                ]
+              },
+              {
+                "minCards": 4,
+                "maxCards": 4,
+                "id": "a49ca070-fd06-4d0a-b8c1-4b0431ccd827",
+                "filters": [
+                  {
+                    "property": "extra",
+                    "operation": "INCLUDES",
+                    "minValue": "BUFF"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "artist": "James Ryman",
+        "attack": 4,
+        "cardClass": ["SHAMAN"],
+        "collectible": true,
+        "cost": 8,
+        "dbfId": 51722,
+        "flavor": "The weirdest part is that it doesn't have legs.",
+        "health": 8,
+        "id": "DAL_047",
+        "mechanics": ["LIFESTEAL", "RUSH", "WINDFURY"],
+        "name": "Walking Fountain",
+        "race": "ELEMENTAL",
+        "rarity": "COMMON",
+        "set": 15,
+        "imageUrl": "walking-fountain.png",
+        "tile": "DAL_047.png",
+        "extra": ["VALUE", "SMALL_REMOVAL", "HEAL"],
+        "rating": 2,
+        "text": "<b>Lifesteal</b>, <b>Rush</b>, <b>Windfury</b>",
+        "type": "MINION"
+      },
+      {
+        "artist": "Jim Nelson",
+        "attack": 2,
+        "cardClass": ["SHAMAN"],
+        "collectible": true,
+        "cost": 2,
+        "dbfId": 51724,
+        "flavor": "Attracts murlocs… and moths.",
+        "health": 3,
+        "id": "DAL_049",
+        "mechanics": ["TRIGGER_VISUAL"],
+        "name": "Underbelly Angler",
+        "race": "MURLOC",
+        "rarity": "RARE",
+        "set": 15,
+        "imageUrl": "underbelly-angler.png",
+        "tile": "DAL_049.png",
+        "extra": ["GENERAL"],
+        "rating": 3,
+        "text": "After you play a Murloc, add a random Murloc to your hand.",
+        "type": "MINION",
+        "activeVersion": 0,
+        "versions": [
+          {
+            "name": "Muclocs",
+            "priorities": [
+              {
+                "minCards": 6,
+                "maxCards": 8,
+                "id": "8eb3b53b-f90b-439c-a245-a3ce72e7b737",
+                "filters": [
+                  {
+                    "property": "race",
+                    "operation": "EQUALS",
+                    "minValue": "MURLOC"
+                  },
+                  {
+                    "property": "name",
+                    "operation": "NOT_EQUALS",
+                    "minValue": "Underbelly Angler"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "artist": "Matt Dixon",
+        "attack": 4,
+        "cardClass": ["SHAMAN"],
+        "collectible": true,
+        "cost": 5,
+        "dbfId": 51727,
+        "flavor": "Fan favorite in the muck morphin' sewer strangers.",
+        "health": 4,
+        "id": "DAL_052",
+        "mechanics": ["BATTLECRY"],
+        "name": "Muckmorpher",
+        "rarity": "EPIC",
+        "set": 15,
+        "imageUrl": "muckmorpher.png",
+        "tile": "DAL_052.png",
+        "extra": ["GENERAL"],
+        "rating": 1,
+        "text": "[x]<b>Battlecry:</b> Transform into\na 4/4 copy of a different\nminion in your deck.",
+        "type": "MINION",
+        "activeVersion": 0,
+        "versions": [
+          {
+            "name": "Deathrattles",
+            "priorities": [
+              {
+                "minCards": 4,
+                "maxCards": 4,
+                "id": "35ff038f-9b17-4fd1-b726-c6ffc1d18cc2",
+                "filters": [
+                  {
+                    "property": "mechanics",
+                    "operation": "INCLUDES",
+                    "minValue": "DEATHRATTLE"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "Big stuff",
+            "priorities": [
+              {
+                "minCards": 4,
+                "maxCards": 6,
+                "id": "888e5bb5-2294-4178-baa3-08cf6e4cb110",
+                "filters": [
+                  {
+                    "property": "type",
+                    "operation": "EQUALS",
+                    "minValue": "MINION"
+                  },
+                  {
+                    "property": "extra",
+                    "operation": "INCLUDES",
+                    "minValue": "VALUE"
+                  },
+                  {
+                    "property": "cost",
+                    "operation": "GREATER_THAN",
+                    "minValue": 7
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "artist": "Matt Dixon",
+        "attack": 3,
+        "cardClass": ["NEUTRAL"],
+        "collectible": true,
+        "cost": 4,
+        "dbfId": 51733,
+        "flavor": "Built by goblins, designed by a troll.",
+        "health": 8,
+        "id": "DAL_058",
+        "mechanics": ["BATTLECRY", "TAUNT"],
+        "name": "Hecklebot",
+        "race": "MECHANICAL",
+        "rarity": "RARE",
+        "set": 15,
+        "imageUrl": "hecklebot.png",
+        "tile": "DAL_058.png",
+        "extra": ["STALL"],
+        "rating": 1,
+        "text": "<b>Taunt</b>\n<b>Battlecry:</b> Your opponent summons a minion from their deck.",
+        "type": "MINION"
+      },
+      {
+        "artist": "Daria Tuzova",
+        "cardClass": ["WARRIOR"],
+        "collectible": true,
+        "cost": 10,
+        "dbfId": 51734,
+        "flavor": "The first dimensional ripper had a point.\nThe second fell flat.\nThe THIRD one really started to take shape!",
+        "id": "DAL_059",
+        "name": "Dimensional Ripper",
+        "rarity": "RARE",
+        "set": 15,
+        "imageUrl": "dimensional-ripper.png",
+        "tile": "DAL_059.png",
+        "extra": ["VALUE"],
+        "rating": 2,
+        "text": "Summon 2 copies of a minion in your deck.",
+        "type": "SPELL",
+        "activeVersion": 0,
+        "versions": [
+          {
+            "name": "Large minions",
+            "priorities": [
+              {
+                "minCards": 4,
+                "maxCards": 6,
+                "id": "5af837de-e8f0-4820-bcd0-114906c98802",
+                "filters": [
+                  {
+                    "property": "type",
+                    "operation": "EQUALS",
+                    "minValue": "MINION"
+                  },
+                  {
+                    "property": "cost",
+                    "operation": "GREATER_THAN",
+                    "minValue": 6
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "artist": "A.J. Nazzaro",
+        "attack": 3,
+        "cardClass": ["WARRIOR"],
+        "collectible": true,
+        "cost": 3,
+        "dbfId": 51735,
+        "flavor": "They always wind up bombing.",
+        "health": 3,
+        "id": "DAL_060",
+        "mechanics": ["BATTLECRY"],
+        "name": "Clockwork Goblin",
+        "race": "MECHANICAL",
+        "rarity": "RARE",
+        "set": 15,
+        "imageUrl": "clockwork-goblin.png",
+        "tile": "DAL_060.png",
+        "extra": ["GENERAL"],
+        "rating": 2,
+        "text": "[x]<b>Battlecry:</b> Shuffle a Bomb\ninto your opponent's deck.\nWhen drawn, it explodes\nfor 5 damage.",
+        "type": "MINION",
+        "activeVersion": 0,
+        "versions": [
+          {
+            "name": "Blastmaster Boom",
+            "priorities": [
+              {
+                "minCards": 1,
+                "maxCards": 1,
+                "id": "2e9b13ec-8e1e-44b7-b8e9-1f1e8d5d3d25",
+                "filters": [
+                  {
+                    "property": "name",
+                    "operation": "EQUALS",
+                    "minValue": "Blastmaster Boom"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "artist": "Ivan Fomin",
+        "cardClass": ["WARRIOR"],
+        "collectible": true,
+        "cost": 2,
+        "dbfId": 51737,
+        "flavor": "Infinitely preferable to mopping strikes.",
+        "id": "DAL_062",
+        "name": "Sweeping Strikes",
+        "playRequirements": { "REQ_MINION_TARGET": 0, "REQ_TARGET_TO_PLAY": 0 },
+        "rarity": "RARE",
+        "set": 15,
+        "imageUrl": "sweeping-strikes.png",
+        "tile": "DAL_062.png",
+        "extra": ["GENERAL"],
+        "rating": 1,
+        "text": "Give a minion \"Also damages minions next to whomever this attacks.\"",
+        "type": "SPELL",
+        "activeVersion": 0,
+        "versions": [
+          {
+            "name": "Poisonous",
+            "priorities": [
+              {
+                "minCards": 4,
+                "maxCards": 6,
+                "id": "13ce5809-7a3b-4056-a566-3ae0804f11a8",
+                "filters": [
+                  {
+                    "property": "mechanics",
+                    "operation": "INCLUDES",
+                    "minValue": "POISONOUS"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "Rush",
+            "priorities": [
+              {
+                "minCards": 6,
+                "maxCards": 8,
+                "id": "d3c3ca26-ddbb-4d77-adbf-48fae4b43e76",
+                "filters": [
+                  {
+                    "property": "mechanics",
+                    "operation": "INCLUDES",
+                    "minValue": "RUSH"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "artist": "Akkapoj T.",
+        "attack": 3,
+        "cardClass": ["WARRIOR"],
+        "collectible": true,
+        "cost": 4,
+        "dbfId": 51738,
+        "durability": 2,
+        "flavor": "Whoso pulleth out this wrench from the toolbox is rightwise king of the lab.",
+        "id": "DAL_063",
+        "mechanics": ["TRIGGER_VISUAL"],
+        "name": "Wrenchcalibur",
+        "rarity": "EPIC",
+        "set": 15,
+        "imageUrl": "wrenchcalibur.png",
+        "tile": "DAL_063.png",
+        "extra": ["SMALL_REMOVAL", "DAMAGE"],
+        "rating": 2,
+        "text": "After your hero attacks, shuffle a Bomb into your [x]opponent's deck.",
+        "type": "WEAPON"
+      },
+      {
+        "artist": "Matt Dixon",
+        "attack": 7,
+        "cardClass": ["WARRIOR"],
+        "collectible": true,
+        "cost": 7,
+        "dbfId": 51739,
+        "elite": true,
+        "flavor": "He's gonna fly through the air with the greatest of grease.",
+        "health": 7,
+        "id": "DAL_064",
+        "mechanics": ["BATTLECRY"],
+        "name": "Blastmaster Boom",
+        "rarity": "LEGENDARY",
+        "set": 15,
+        "imageUrl": "blastmaster-boom.png",
+        "tile": "DAL_064.png",
+        "extra": ["VALUE"],
+        "rating": 2,
+        "text": "[x]<b>Battlecry:</b> Summon two 1/1\nBoom Bots for each Bomb\nin your opponent's deck.",
+        "type": "MINION",
+        "activeVersion": 0,
+        "versions": [
+          {
+            "name": "Shuffle bombs",
+            "priorities": [
+              {
+                "minCards": 4,
+                "maxCards": 4,
+                "id": "8798a995-91ee-40bb-99b8-9a7cb7628d1f",
+                "filters": [
+                  {
+                    "property": "text",
+                    "operation": "MATCH",
+                    "minValue": "shuffle.*bomb"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "artist": "Matt Dixon",
+        "cardClass": ["PRIEST"],
+        "collectible": true,
+        "cost": 4,
+        "dbfId": 51847,
+        "flavor": "It's 3 am. Do you know where your soul is?",
+        "id": "DAL_065",
+        "name": "Unsleeping Soul",
+        "playRequirements": {
+          "REQ_FRIENDLY_TARGET": 0,
+          "REQ_MINION_TARGET": 0,
+          "REQ_TARGET_TO_PLAY": 0
+        },
+        "rarity": "COMMON",
+        "referencedTags": ["SILENCE"],
+        "set": 15,
+        "imageUrl": "unsleeping-soul.png",
+        "tile": "DAL_065.png",
+        "extra": ["MIN_GEN"],
+        "rating": 2,
+        "text": "<b>Silence</b> a friendly minion, then summon a copy of it.",
+        "type": "SPELL",
+        "activeVersion": 0,
+        "versions": [
+          {
+            "name": "Minions with high stats",
+            "priorities": [
+              {
+                "minCards": 4,
+                "maxCards": 6,
+                "id": "7ab0d7f7-1809-438a-9ee6-9aa6ec7d32ce",
+                "filters": [
+                  {
+                    "property": "type",
+                    "operation": "EQUALS",
+                    "minValue": "MINION"
+                  },
+                  {
+                    "property": "cost",
+                    "operation": "LESS_THAN",
+                    "minValue": 5
+                  },
+                  {
+                    "property": "health",
+                    "operation": "GREATER_THAN",
+                    "minValue": 6
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "artist": "Jerry Mascho",
+        "attack": 7,
+        "cardClass": ["WARRIOR"],
+        "collectible": true,
+        "cost": 10,
+        "dbfId": 52086,
+        "elite": true,
+        "flavor": "“What’s better than reaving? BOOM reaving!”",
+        "health": 9,
+        "id": "DAL_070",
+        "mechanics": ["BATTLECRY"],
+        "name": "The Boom Reaver",
+        "race": "MECHANICAL",
+        "rarity": "LEGENDARY",
+        "referencedTags": ["RUSH"],
+        "set": 15,
+        "imageUrl": "the-boom-reaver.png",
+        "tile": "DAL_070.png",
+        "extra": ["VALUE", "SMALL_REMOVAL"],
+        "rating": 3,
+        "text": "<b>Battlecry:</b> Summon a copy of a minion in your deck. Give it <b>Rush</b>.",
+        "type": "MINION",
+        "activeVersion": 0,
+        "versions": [
+          {
+            "name": "Some large minions",
+            "priorities": [
+              {
+                "minCards": 4,
+                "maxCards": 6,
+                "id": "bbc91c69-1679-4448-92d7-f05626680374",
+                "filters": [
+                  {
+                    "property": "type",
+                    "operation": "EQUALS",
+                    "minValue": "MINION"
+                  },
+                  {
+                    "property": "cost",
+                    "operation": "GREATER_THAN",
+                    "minValue": 7
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "artist": "Andrew Hou",
+        "cardClass": ["SHAMAN"],
+        "collectible": true,
+        "cost": 0,
+        "dbfId": 52148,
+        "flavor": "You'll get the transformation you want when murlocs fly.",
+        "id": "DAL_071",
+        "name": "Mutate",
+        "playRequirements": {
+          "REQ_FRIENDLY_TARGET": 0,
+          "REQ_MINION_TARGET": 0,
+          "REQ_TARGET_TO_PLAY": 0
+        },
+        "rarity": "COMMON",
+        "set": 15,
+        "imageUrl": "mutate.png",
+        "tile": "DAL_071.png",
+        "extra": ["GENERAL"],
+        "rating": 1,
+        "text": "Transform a friendly minion into a random one that costs (1) more.",
+        "type": "SPELL"
+      },
+      {
+        "artist": "Anton Zemskov",
+        "attack": 1,
+        "cardClass": ["NEUTRAL"],
+        "collectible": true,
+        "cost": 1,
+        "dbfId": 52277,
+        "flavor": "I'm addicted to him, but I know that he's Toxfin.",
+        "health": 2,
+        "id": "DAL_077",
+        "mechanics": ["BATTLECRY"],
+        "name": "Toxfin",
+        "playRequirements": {
+          "REQ_FRIENDLY_TARGET": 0,
+          "REQ_MINION_TARGET": 0,
+          "REQ_TARGET_IF_AVAILABLE": 0,
+          "REQ_TARGET_WITH_RACE": 14
+        },
+        "race": "MURLOC",
+        "rarity": "COMMON",
+        "referencedTags": ["POISONOUS"],
+        "set": 15,
+        "imageUrl": "toxfin.png",
+        "tile": "DAL_077.png",
+        "extra": ["HARD_REMOVAL"],
+        "rating": 3,
+        "targetingArrowText": "Give a friendly Murloc Poisonous.",
+        "text": "<b>Battlecry:</b> Give a friendly Murloc <b>Poisonous</b>.",
+        "type": "MINION",
+        "activeVersion": 0,
+        "versions": [
+          {
+            "name": "Murlocs",
+            "priorities": [
+              {
+                "minCards": 6,
+                "maxCards": 8,
+                "id": "a75b1029-5d13-4d24-9b0f-a9b4b8e8fd7c",
+                "filters": [
+                  {
+                    "property": "text",
+                    "operation": "MATCH",
+                    "minValue": "murloc"
+                  },
+                  {
+                    "property": "name",
+                    "operation": "NOT_EQUALS",
+                    "minValue": "Toxfin"
+                  },
+                  {
+                    "property": "name",
+                    "operation": "NOT_EQUALS",
+                    "minValue": "Hungry Crab"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "artist": "Tod Harris",
+        "attack": 3,
+        "cardClass": ["NEUTRAL"],
+        "collectible": true,
+        "cost": 4,
+        "dbfId": 52278,
+        "flavor": "Some heroes have soft hearts and hard shells.",
+        "health": 2,
+        "id": "DAL_078",
+        "mechanics": ["BATTLECRY", "DIVINE_SHIELD"],
+        "name": "Travelling Healer",
+        "playRequirements": { "REQ_TARGET_IF_AVAILABLE": 0 },
+        "rarity": "COMMON",
+        "set": 15,
+        "imageUrl": "travelling-healer.png",
+        "tile": "DAL_078.png",
+        "extra": ["HEAL"],
+        "rating": 1,
+        "targetingArrowText": "Restore 3 Health.",
+        "text": "[x]<b>Divine Shield</b>\n<b>Battlecry:</b> Restore #3 Health.",
+        "type": "MINION"
+      },
+      {
+        "artist": "Adam Byrne",
+        "attack": 3,
+        "cardClass": ["NEUTRAL"],
+        "collectible": true,
+        "cost": 3,
+        "dbfId": 52281,
+        "flavor": "The fanciest possible way of distracting enemies with shiny things.",
+        "health": 4,
+        "id": "DAL_081",
+        "mechanics": ["BATTLECRY"],
+        "name": "Spellward Jeweler",
+        "rarity": "RARE",
+        "set": 15,
+        "imageUrl": "spellward-jeweler.png",
+        "tile": "DAL_081.png",
+        "extra": ["TEMPO"],
+        "rating": 2,
+        "text": "[x]<b>Battlecry:</b> Your hero can't\nbe targeted by spells or\nHero Powers until your\nnext turn.",
+        "type": "MINION"
+      },
+      {
+        "artist": "James Ryman",
+        "attack": 5,
+        "cardClass": ["NEUTRAL"],
+        "collectible": true,
+        "cost": 5,
+        "dbfId": 52285,
+        "flavor": "Stops for nothing—except donuts.",
+        "health": 4,
+        "id": "DAL_085",
+        "mechanics": ["DIVINE_SHIELD"],
+        "name": "Dalaran Crusader",
+        "rarity": "COMMON",
+        "set": 15,
+        "imageUrl": "dalaran-crusader.png",
+        "tile": "DAL_085.png",
+        "extra": ["GENERAL"],
+        "rating": 1,
+        "text": "<b>Divine Shield</b>",
+        "type": "MINION"
+      },
+      {
+        "artist": "L. Lullabi & K. Turovec",
+        "attack": 2,
+        "cardClass": ["NEUTRAL"],
+        "collectible": true,
+        "cost": 2,
+        "dbfId": 52286,
+        "flavor": "She's watching. Always watching.",
+        "health": 3,
+        "id": "DAL_086",
+        "mechanics": ["BATTLECRY"],
+        "name": "Sunreaver Spy",
+        "rarity": "COMMON",
+        "referencedTags": ["SECRET"],
+        "set": 15,
+        "imageUrl": "sunreaver-spy.png",
+        "tile": "DAL_086.png",
+        "extra": ["GENERAL"],
+        "rating": 3,
+        "text": "<b>Battlecry:</b> If you control a <b>Secret</b>, gain +1/+1.",
+        "type": "MINION",
+        "activeVersion": 0,
+        "versions": [
+          {
+            "name": "Some secrets",
+            "priorities": [
+              {
+                "minCards": 4,
+                "maxCards": 6,
+                "id": "d95f7134-47dd-46e9-b382-da810db683ea",
+                "filters": [
+                  {
+                    "property": "mechanics",
+                    "operation": "INCLUDES",
+                    "minValue": "SECRET"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "artist": "Christopher Hayes",
+        "attack": 3,
+        "cardClass": ["NEUTRAL"],
+        "collectible": true,
+        "cost": 4,
+        "dbfId": 52287,
+        "flavor": "The Hench Clan is an equal opportunity employer, no matter which parts of you came from where.",
+        "health": 3,
+        "id": "DAL_087",
+        "mechanics": ["BATTLECRY"],
+        "name": "Hench-Clan Hag",
+        "rarity": "EPIC",
+        "set": 15,
+        "imageUrl": "hench-clan-hag.png",
+        "tile": "DAL_087.png",
+        "extra": ["MIN_GEN"],
+        "rating": 2,
+        "text": "<b>Battlecry:</b> Summon two 1/1 Amalgams with all minion types.",
+        "type": "MINION"
+      },
+      {
+        "artist": "L. Lullabi & K. Turovec",
+        "attack": 4,
+        "cardClass": ["NEUTRAL"],
+        "collectible": true,
+        "cost": 6,
+        "dbfId": 52288,
+        "flavor": "Keep it secret. Keep it safeguarded!",
+        "health": 5,
+        "id": "DAL_088",
+        "mechanics": ["DEATHRATTLE", "TAUNT"],
+        "name": "Safeguard",
+        "race": "MECHANICAL",
+        "rarity": "COMMON",
+        "set": 15,
+        "imageUrl": "safeguard.png",
+        "tile": "DAL_088.png",
+        "extra": ["STALL"],
+        "rating": 2,
+        "text": "[x]<b>Taunt</b>\n<b>Deathrattle:</b> Summon a 0/5\nVault Safe with <b>Taunt</b>.",
+        "type": "MINION"
+      },
+      {
+        "artist": "Ivan Fomin",
+        "attack": 3,
+        "cardClass": ["NEUTRAL"],
+        "collectible": true,
+        "cost": 2,
+        "dbfId": 52289,
+        "flavor": "You're bound to love his work!",
+        "health": 2,
+        "id": "DAL_089",
+        "mechanics": ["BATTLECRY"],
+        "name": "Spellbook Binder",
+        "rarity": "COMMON",
+        "referencedTags": ["SPELLPOWER"],
+        "set": 15,
+        "imageUrl": "spellbook-binder.png",
+        "tile": "DAL_089.png",
+        "extra": ["CARD_DRAW"],
+        "rating": 2,
+        "text": "<b>Battlecry:</b> If you have <b>Spell Damage</b>, draw a card.",
+        "type": "MINION",
+        "activeVersion": 0,
+        "versions": [
+          {
+            "name": "Some spell damage",
+            "priorities": [
+              {
+                "minCards": 6,
+                "maxCards": 6,
+                "id": "4fdc287b-5ae3-4255-b2b3-740a8f87dad2",
+                "filters": [
+                  {
+                    "property": "mechanics",
+                    "operation": "INCLUDES",
+                    "minValue": "SPELLPOWER"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "artist": "Andrew Hou",
+        "attack": 3,
+        "cardClass": ["NEUTRAL"],
+        "collectible": true,
+        "cost": 3,
+        "dbfId": 52290,
+        "flavor": "He’d be a lot sneakier if he wasn’t trailing 300 yards of power cable…",
+        "health": 3,
+        "id": "DAL_090",
+        "mechanics": ["STEALTH"],
+        "name": "Hench-Clan Sneak",
+        "rarity": "COMMON",
+        "set": 15,
+        "imageUrl": "hench-clan-sneak.png",
+        "tile": "DAL_090.png",
+        "extra": ["GENERAL"],
+        "rating": 2,
+        "text": "<b>Stealth</b>",
+        "type": "MINION"
+      },
+      {
+        "artist": "Wayne Wu",
+        "attack": 2,
+        "cardClass": ["NEUTRAL"],
+        "collectible": true,
+        "cost": 2,
+        "dbfId": 52292,
+        "flavor": "\"Would sir like me to punch something?\"",
+        "health": 3,
+        "id": "DAL_092",
+        "name": "Arcane Servant",
+        "race": "ELEMENTAL",
+        "rarity": "COMMON",
+        "set": 15,
+        "imageUrl": "arcane-servant.png",
+        "tile": "DAL_092.png",
+        "extra": ["GENERAL"],
+        "rating": 1,
+        "type": "MINION"
+      },
+      {
+        "artist": "Luke Mancini",
+        "attack": 1,
+        "cardClass": ["NEUTRAL"],
+        "collectible": true,
+        "cost": 4,
+        "dbfId": 52295,
+        "flavor": "If you have to wield a spell and a sword, then neither is performing to expectation.",
+        "health": 6,
+        "id": "DAL_095",
+        "mechanics": ["BATTLECRY"],
+        "name": "Violet Spellsword",
+        "rarity": "COMMON",
+        "set": 15,
+        "imageUrl": "violet-spellsword.png",
+        "tile": "DAL_095.png",
+        "extra": ["GENERAL"],
+        "rating": 1,
+        "text": "[x]<b>Battlecry:</b> Gain +1 Attack\nfor each spell in your hand.",
+        "type": "MINION",
+        "activeVersion": 0,
+        "versions": [
+          {
+            "name": "Lots of spells",
+            "priorities": [
+              {
+                "minCards": 6,
+                "maxCards": 8,
+                "id": "85c1b527-a5b0-4004-9d91-482619012f33",
+                "filters": [
+                  {
+                    "property": "type",
+                    "operation": "EQUALS",
+                    "minValue": "SPELL"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "artist": "Evgeniy Dlinnov",
+        "attack": 4,
+        "cardClass": ["NEUTRAL"],
+        "collectible": true,
+        "cost": 6,
+        "dbfId": 52296,
+        "flavor": "He's got magic, a shield, and an unwavering obsession with the color purple.",
+        "health": 7,
+        "id": "DAL_096",
+        "mechanics": ["SPELLPOWER", "TAUNT"],
+        "name": "Violet Warden",
+        "rarity": "COMMON",
+        "set": 15,
+        "imageUrl": "violet-warden.png",
+        "tile": "DAL_096.png",
+        "extra": ["GENERAL"],
+        "rating": 1,
+        "spellDamage": 1,
+        "text": "<b>Taunt</b>\n<b>Spell Damage +1</b>",
+        "type": "MINION"
+      },
+      {
+        "artist": "James Ryman",
+        "cardClass": ["PALADIN"],
+        "collectible": true,
+        "cost": 1,
+        "dbfId": 51705,
+        "flavor": "Desperate times call for disparate secrets.",
+        "id": "DAL_141",
+        "mechanics": ["TWINSPELL"],
+        "name": "Desperate Measures",
+        "playRequirements": { "REQ_SECRET_ZONE_CAP_FOR_NON_SECRET": 0 },
+        "rarity": "RARE",
+        "referencedTags": ["SECRET"],
+        "set": 15,
+        "imageUrl": "desperate-measures.png",
+        "tile": "DAL_141.png",
+        "extra": ["FAST"],
+        "rating": 4,
+        "text": "<b>Twinspell</b>\nCast a random Paladin <b>Secret</b>.",
+        "type": "SPELL",
+        "activeVersion": 0,
+        "versions": [
+          {
+            "name": "Secret stuff",
+            "priorities": [
+              {
+                "minCards": 2,
+                "maxCards": 4,
+                "id": "53b35f4c-183f-4cc0-acd6-036851e8d39b",
+                "filters": [
+                  {
+                    "property": "mechanics",
+                    "operation": "INCLUDES",
+                    "minValue": "SECRET"
+                  }
+                ]
+              },
+              {
+                "minCards": 2,
+                "maxCards": 4,
+                "id": "b5bc4159-b121-41a4-88fb-adb700579cd5",
+                "filters": [
+                  {
+                    "property": "referencedTags",
+                    "operation": "INCLUDES",
+                    "minValue": "SECRET"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "artist": "Alex Horley",
+        "attack": 3,
+        "cardClass": ["PALADIN"],
+        "collectible": true,
+        "cost": 3,
+        "dbfId": 51757,
+        "flavor": "This is why you shouldn’t shoot the messenger.",
+        "health": 2,
+        "id": "DAL_146",
+        "mechanics": ["DEATHRATTLE"],
+        "name": "Bronze Herald",
+        "race": "DRAGON",
+        "rarity": "COMMON",
+        "set": 15,
+        "imageUrl": "bronze-herald.png",
+        "tile": "DAL_146.png",
+        "extra": ["VALUE"],
+        "rating": 2,
+        "text": "<b>Deathrattle:</b> Add two 4/4 Dragons to your hand.",
+        "type": "MINION",
+        "activeVersion": 0,
+        "versions": [
+          {
+            "name": "Dragons",
+            "priorities": [
+              {
+                "minCards": 4,
+                "maxCards": 4,
+                "id": "a72ebabd-b13c-4961-af00-60d751409753",
+                "filters": [
+                  {
+                    "property": "race",
+                    "operation": "EQUALS",
+                    "minValue": "DRAGON"
+                  },
+                  {
+                    "property": "name",
+                    "operation": "NOT_EQUALS",
+                    "minValue": "Bronze Herald"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "Control",
+            "priorities": [
+              {
+                "minCards": 2,
+                "maxCards": 4,
+                "id": "d3a603d1-5ebb-4613-82c0-e8c0339e42d0",
+                "filters": [
+                  {
+                    "property": "extra",
+                    "operation": "INCLUDES",
+                    "minValue": "VALUE"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "artist": "Arthur Bozonnet",
+        "attack": 3,
+        "cardClass": ["PALADIN"],
+        "collectible": true,
+        "cost": 5,
+        "dbfId": 51761,
+        "flavor": "All of his speeches really drag on.",
+        "health": 5,
+        "id": "DAL_147",
+        "mechanics": ["BATTLECRY"],
+        "name": "Dragon Speaker",
+        "rarity": "EPIC",
+        "set": 15,
+        "imageUrl": "dragon-speaker.png",
+        "tile": "DAL_147.png",
+        "extra": ["VALUE"],
+        "rating": 2,
+        "text": "<b>Battlecry:</b> Give all Dragons in your hand +3/+3.",
+        "type": "MINION",
+        "activeVersion": 0,
+        "versions": [
+          {
+            "name": "Dragons",
+            "priorities": [
+              {
+                "minCards": 6,
+                "maxCards": 8,
+                "id": "0d16d0c9-4eae-4f85-a26c-bdcac6481d6b",
+                "filters": [
+                  {
+                    "property": "race",
+                    "operation": "EQUALS",
+                    "minValue": "DRAGON"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "artist": "Grace Liu",
+        "attack": 3,
+        "cardClass": ["MAGE"],
+        "collectible": true,
+        "cost": 3,
+        "dbfId": 51943,
+        "flavor": "You can make a collect CAW!",
+        "health": 2,
+        "id": "DAL_163",
+        "mechanics": ["BATTLECRY"],
+        "name": "Messenger Raven",
+        "race": "BEAST",
+        "rarity": "COMMON",
+        "referencedTags": ["DISCOVER"],
+        "set": 15,
+        "imageUrl": "messenger-raven.png",
+        "tile": "DAL_163.png",
+        "extra": ["VALUE"],
+        "rating": 2,
+        "text": "<b>Battlecry:</b> <b>Discover</b> a\nMage minion.",
+        "type": "MINION"
+      },
+      {
+        "artist": "Slawomir Maniak",
+        "cardClass": ["WARLOCK"],
+        "collectible": true,
+        "cost": 6,
+        "dbfId": 51966,
+        "flavor": "It's always darkest just before you find the light switch.",
+        "id": "DAL_173",
+        "name": "Darkest Hour",
+        "rarity": "EPIC",
+        "set": 15,
+        "imageUrl": "darkest-hour.png",
+        "tile": "DAL_173.png",
+        "extra": ["GENERAL"],
+        "rating": 1,
+        "text": "Destroy all friendly minions. For each one, summon a random minion from your deck.",
+        "type": "SPELL",
+        "activeVersion": 0,
+        "versions": [
+          {
+            "name": "Memes",
+            "priorities": [
+              {
+                "minCards": 2,
+                "maxCards": 2,
+                "id": "73ba465e-b388-46c3-a022-590b0b9455e5",
+                "filters": [
+                  {
+                    "property": "name",
+                    "operation": "EQUALS",
+                    "minValue": "Rafaam's Scheme"
+                  }
+                ]
+              },
+              {
+                "minCards": 1,
+                "maxCards": 1,
+                "id": "81422b58-fb4e-4f82-9fb6-7f34a5cea7f4",
+                "filters": [
+                  {
+                    "property": "name",
+                    "operation": "EQUALS",
+                    "minValue": "Arch-Villain Rafaam"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "artist": "Jakub Kasper",
+        "cardClass": ["MAGE"],
+        "collectible": true,
+        "cost": 3,
+        "dbfId": 51971,
+        "flavor": "If only you’d let it go to voicemail…",
+        "id": "DAL_177",
+        "mechanics": ["TWINSPELL"],
+        "name": "Conjurer's Calling",
+        "playRequirements": { "REQ_MINION_TARGET": 0, "REQ_TARGET_TO_PLAY": 0 },
+        "rarity": "RARE",
+        "set": 15,
+        "imageUrl": "conjurers-calling.png",
+        "tile": "DAL_177.png",
+        "extra": ["HARD_REMOVAL", "MIN_GEN", "VALUE", "FAST", "TEMPO"],
+        "rating": 4,
+        "text": "<b>Twinspell</b>\nDestroy a minion. Summon 2 minions of the same Cost to replace it.",
+        "type": "SPELL",
+        "activeVersion": 0,
+        "versions": [
+          {
+            "name": "Some deathrattles",
+            "priorities": [
+              {
+                "minCards": 4,
+                "maxCards": 6,
+                "id": "c4ee221f-8126-4b99-9f8d-4475713d29c0",
+                "filters": [
+                  {
+                    "property": "mechanics",
+                    "operation": "INCLUDES",
+                    "minValue": "DEATHRATTLE"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "No priorities (selects itself)",
+            "priorities": [
+              {
+                "minCards": 2,
+                "maxCards": 2,
+                "id": "002db6bd-6864-4d63-92c2-55a62a564934",
+                "filters": [
+                  {
+                    "property": "type",
+                    "operation": "EQUALS",
+                    "minValue": "SPELL"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "artist": "Patrik Bjorkstrom",
+        "attack": 1,
+        "cardClass": ["MAGE"],
+        "collectible": true,
+        "cost": 2,
+        "dbfId": 51977,
+        "flavor": "There's a powerful throat in this frog.",
+        "health": 3,
+        "id": "DAL_182",
+        "mechanics": ["TRIGGER_VISUAL"],
+        "name": "Magic Dart Frog",
+        "race": "BEAST",
+        "rarity": "COMMON",
+        "set": 15,
+        "imageUrl": "magic-dart-frog.png",
+        "tile": "DAL_182.png",
+        "extra": ["SMALL_REMOVAL"],
+        "rating": 1,
+        "text": "After you cast a spell, deal 1 damage to a random enemy minion.",
+        "type": "MINION",
+        "activeVersion": 0,
+        "versions": [
+          {
+            "name": "Some cheap spells",
+            "priorities": [
+              {
+                "minCards": 6,
+                "maxCards": 6,
+                "id": "b1597a79-43ac-45b6-ac88-8854fc862c70",
+                "filters": [
+                  {
+                    "property": "cost",
+                    "operation": "LESS_THAN",
+                    "minValue": 3
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "artist": "Slawomir Maniak",
+        "attack": 4,
+        "cardClass": ["WARLOCK"],
+        "collectible": true,
+        "cost": 6,
+        "dbfId": 52058,
+        "flavor": "She's got a big brood and a big mood.",
+        "health": 6,
+        "id": "DAL_185",
+        "mechanics": ["TAUNT", "TOPDECK"],
+        "name": "Aranasi Broodmother",
+        "race": "DEMON",
+        "rarity": "COMMON",
+        "set": 15,
+        "imageUrl": "aranasi-broodmother.png",
+        "tile": "DAL_185.png",
+        "extra": ["HEAL"],
+        "rating": 2,
+        "text": "[x]<b>Taunt</b>\nWhen you draw this, restore\n4 Health to your hero.",
+        "type": "MINION"
+      },
+      {
+        "artist": "Vladimir Kafanov",
+        "cardClass": ["DRUID"],
+        "collectible": true,
+        "cost": 8,
+        "dbfId": 52819,
+        "flavor": "Delicious Forest’s Aid! Made from real forests.",
+        "id": "DAL_256",
+        "mechanics": ["TWINSPELL"],
+        "name": "The Forest's Aid",
+        "rarity": "RARE",
+        "set": 15,
+        "imageUrl": "the-forests-aid.png",
+        "tile": "DAL_256.png",
+        "extra": ["MIN_GEN", "VALUE"],
+        "rating": 2,
+        "text": "<b>Twinspell</b>\nSummon five 2/2 Treants.",
+        "type": "SPELL",
+        "activeVersion": 0,
+        "versions": [
+          {
+            "name": "Token",
+            "priorities": [
+              {
+                "minCards": 4,
+                "maxCards": 6,
+                "id": "42732868-bbc3-4e57-97e7-f0a2e9227d7c",
+                "filters": [
+                  {
+                    "property": "extra",
+                    "operation": "INCLUDES",
+                    "minValue": "MIN_GEN"
+                  },
+                  {
+                    "property": "name",
+                    "operation": "NOT_EQUALS",
+                    "minValue": "The Forest's Aid"
+                  }
+                ]
+              },
+              {
+                "minCards": 4,
+                "maxCards": 4,
+                "id": "8a259bae-4552-4ed2-ad82-f0601f0cf31a",
+                "filters": [
+                  {
+                    "property": "extra",
+                    "operation": "INCLUDES",
+                    "minValue": "BUFF"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "artist": "Arthur Bozonnet",
+        "cardClass": ["DRUID"],
+        "collectible": true,
+        "cost": 1,
+        "dbfId": 51769,
+        "flavor": "Often used as healing crystals, but also good for throwing at people.",
+        "id": "DAL_350",
+        "mechanics": ["CHOOSE_ONE"],
+        "name": "Crystal Power",
+        "playRequirements": { "REQ_TARGET_TO_PLAY": 0 },
+        "rarity": "COMMON",
+        "set": 15,
+        "imageUrl": "crystal-power.png",
+        "tile": "DAL_350.png",
+        "extra": ["SMALL_REMOVAL", "HEAL"],
+        "rating": 2,
+        "text": "<b>Choose One -</b> Deal $2 damage to a minion; or Restore #5 Health.",
+        "type": "SPELL"
+      },
+      {
+        "artist": "Steven Prescott",
+        "cardClass": ["DRUID"],
+        "collectible": true,
+        "cost": 3,
+        "dbfId": 51779,
+        "flavor": "Arguably the cutest blessing.",
+        "id": "DAL_351",
+        "mechanics": ["TWINSPELL"],
+        "name": "Blessing of the Ancients",
+        "playRequirements": { "REQ_MINION_TARGET": 0 },
+        "rarity": "COMMON",
+        "set": 15,
+        "imageUrl": "blessing-of-the-ancients.png",
+        "tile": "DAL_351.png",
+        "extra": ["BUFF"],
+        "rating": 2,
+        "text": "<b>Twinspell</b>\nGive your minions +1/+1.",
+        "type": "SPELL",
+        "activeVersion": 0,
+        "versions": [
+          {
+            "name": "Token",
+            "priorities": [
+              {
+                "minCards": 8,
+                "maxCards": 10,
+                "id": "974e430c-8de9-4e16-8af1-13f6b28b0015",
+                "filters": [
+                  {
+                    "property": "extra",
+                    "operation": "INCLUDES",
+                    "minValue": "MIN_GEN"
+                  }
+                ]
+              },
+              {
+                "minCards": 6,
+                "maxCards": 8,
+                "id": "af862c4e-4c51-4bb6-856b-487c41fbc895",
+                "filters": [
+                  {
+                    "property": "extra",
+                    "operation": "INCLUDES",
+                    "minValue": "BUFF"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "artist": "Arthur Bozonnet",
+        "cardClass": ["DRUID"],
+        "collectible": true,
+        "cost": 2,
+        "dbfId": 51781,
+        "flavor": "Experience the draw of the wild!",
+        "id": "DAL_352",
+        "name": "Crystalsong Portal",
+        "rarity": "EPIC",
+        "referencedTags": ["DISCOVER"],
+        "set": 15,
+        "imageUrl": "crystalsong-portal.png",
+        "tile": "DAL_352.png",
+        "extra": ["FAST", "VALUE"],
+        "rating": 2,
+        "text": "<b>Discover</b> a Druid minion. If your hand has no minions, keep all 3.",
+        "type": "SPELL",
+        "activeVersion": 0,
+        "versions": [
+          {
+            "name": "Not many minions",
+            "priorities": [
+              {
+                "minCards": 20,
+                "maxCards": 20,
+                "id": "9bcfa5b8-0a60-4f50-a78d-2c8d751ce111",
+                "filters": [
+                  {
+                    "property": "type",
+                    "operation": "NOT_EQUALS",
+                    "minValue": "MINION"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "Some good non-minions",
+            "priorities": [
+              {
+                "minCards": 2,
+                "maxCards": 4,
+                "id": "89b654e8-8df4-470a-8da6-1aa2b55a37de",
+                "filters": [
+                  {
+                    "property": "type",
+                    "operation": "NOT_EQUALS",
+                    "minValue": "MINION"
+                  },
+                  {
+                    "property": "name",
+                    "operation": "NOT_EQUALS",
+                    "minValue": "Crystalsong Portal"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "artist": "Steven Prescott",
+        "attack": 2,
+        "cardClass": ["DRUID"],
+        "collectible": true,
+        "cost": 1,
+        "dbfId": 51790,
+        "flavor": "You’d be nuts to mess with the squirrel squad.",
+        "health": 1,
+        "id": "DAL_354",
+        "mechanics": ["DEATHRATTLE"],
+        "name": "Acornbearer",
+        "rarity": "COMMON",
+        "set": 15,
+        "imageUrl": "acornbearer.png",
+        "tile": "DAL_354.png",
+        "extra": ["MIN_GEN", "FAST"],
+        "rating": 3,
+        "text": "<b>Deathrattle:</b> Add two 1/1 Squirrels to your hand.",
+        "type": "MINION"
+      },
+      {
+        "artist": "Vladimir Kafanov",
+        "attack": 2,
+        "cardClass": ["DRUID"],
+        "collectible": true,
+        "cost": 3,
+        "dbfId": 51791,
+        "flavor": "Lifeweaving is all well and good until it's time to cut the thread.",
+        "health": 5,
+        "id": "DAL_355",
+        "mechanics": ["TRIGGER_VISUAL"],
+        "name": "Lifeweaver",
+        "rarity": "RARE",
+        "set": 15,
+        "imageUrl": "lifeweaver.png",
+        "tile": "DAL_355.png",
+        "extra": ["VALUE"],
+        "rating": 2,
+        "text": "Whenever you restore Health, add a random Druid spell to your hand.",
+        "type": "MINION",
+        "activeVersion": 0,
+        "versions": [
+          {
+            "name": "Default",
+            "priorities": [
+              {
+                "minCards": 4,
+                "maxCards": 6,
+                "id": "87f2a34c-e14e-4c1b-9e5d-1879d19d0971",
+                "filters": [
+                  {
+                    "property": "text",
+                    "operation": "MATCH",
+                    "minValue": "restore.*health"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "artist": "Steven Prescott",
+        "attack": 4,
+        "cardClass": ["DRUID"],
+        "collectible": true,
+        "cost": 8,
+        "dbfId": 51795,
+        "elite": true,
+        "flavor": "Always feels refreshed after a little dirt nap.",
+        "health": 8,
+        "id": "DAL_357",
+        "mechanics": ["DEATHRATTLE", "TAUNT"],
+        "name": "Lucentbark",
+        "rarity": "LEGENDARY",
+        "set": 15,
+        "imageUrl": "lucentbark.png",
+        "tile": "DAL_357.png",
+        "extra": ["VALUE"],
+        "rating": 1,
+        "text": "<b>Taunt</b>\n<b>Deathrattle:</b> Go dormant. Restore 5 Health to awaken this minion.",
+        "type": "MINION",
+        "activeVersion": 0,
+        "versions": [
+          {
+            "name": "Some heal",
+            "priorities": [
+              {
+                "minCards": 4,
+                "maxCards": 4,
+                "id": "bc3824fe-b88d-47d4-99b2-f1f399f91e8e",
+                "filters": [
+                  {
+                    "property": "text",
+                    "operation": "MATCH",
+                    "minValue": "restore.*health"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "artist": "Akkapoj T.",
+        "cardClass": ["ROGUE"],
+        "collectible": true,
+        "cost": 6,
+        "dbfId": 51827,
+        "entourage": ["DAL_366t1", "DAL_366t2", "DAL_366t3", "DAL_366t4"],
+        "flavor": "The terms of service are constantly changing.",
+        "id": "DAL_366",
+        "name": "Unidentified Contract",
+        "playRequirements": { "REQ_MINION_TARGET": 0, "REQ_TARGET_TO_PLAY": 0 },
+        "rarity": "EPIC",
+        "set": 15,
+        "imageUrl": "unidentified-contract.png",
+        "tile": "DAL_366.png",
+        "extra": ["HARD_REMOVAL", "VALUE"],
+        "rating": 2,
+        "text": "Destroy a minion. Gains a bonus effect in your hand.",
+        "type": "SPELL"
+      },
+      {
+        "artist": "Alex Garner",
+        "cardClass": ["HUNTER"],
+        "collectible": true,
+        "cost": 4,
+        "dbfId": 52070,
+        "flavor": "Obviously it's marked for greatness.",
+        "id": "DAL_371",
+        "name": "Marked Shot",
+        "playRequirements": { "REQ_MINION_TARGET": 0, "REQ_TARGET_TO_PLAY": 0 },
+        "rarity": "COMMON",
+        "referencedTags": ["DISCOVER"],
+        "set": 15,
+        "imageUrl": "marked-shot.png",
+        "tile": "DAL_371.png",
+        "extra": ["SMALL_REMOVAL", "VALUE"],
+        "rating": 3,
+        "text": "Deal $4 damage to a minion. <b>Discover</b> a spell.",
+        "type": "SPELL"
+      },
+      {
+        "artist": "Rafael Zanchetin",
+        "attack": 3,
+        "cardClass": ["HUNTER"],
+        "collectible": true,
+        "cost": 4,
+        "dbfId": 52072,
+        "flavor": "Stop trying to make fletch happen. It's not going to happen.",
+        "health": 3,
+        "id": "DAL_372",
+        "mechanics": ["TRIGGER_VISUAL"],
+        "name": "Arcane Fletcher",
+        "rarity": "EPIC",
+        "set": 15,
+        "imageUrl": "arcane-fletcher.png",
+        "tile": "DAL_372.png",
+        "extra": ["CARD_DRAW"],
+        "rating": 1,
+        "text": "[x]Whenever you play a\n1-Cost minion, draw a\nspell from your deck.",
+        "type": "MINION",
+        "activeVersion": 0,
+        "versions": [
+          {
+            "name": "1 cost minions",
+            "priorities": [
+              {
+                "minCards": 4,
+                "maxCards": 6,
+                "id": "891df469-b1f1-41dd-8e4b-55a689c41bf7",
+                "filters": [
+                  {
+                    "property": "type",
+                    "operation": "EQUALS",
+                    "minValue": "MINION"
+                  },
+                  {
+                    "property": "cost",
+                    "operation": "EQUALS",
+                    "minValue": 1
+                  }
+                ]
+              },
+              {
+                "minCards": 4,
+                "maxCards": 6,
+                "id": "b50d3d8a-eabd-4d5f-ab54-6ba1f33fdc19",
+                "filters": [
+                  {
+                    "property": "type",
+                    "operation": "EQUALS",
+                    "minValue": "SPELL"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "artist": "L. Lullabi & K. Turovec",
+        "cardClass": ["HUNTER"],
+        "collectible": true,
+        "cost": 1,
+        "dbfId": 52076,
+        "flavor": "Pew! Pew!",
+        "id": "DAL_373",
+        "mechanics": ["TWINSPELL"],
+        "name": "Rapid Fire",
+        "playRequirements": { "REQ_TARGET_TO_PLAY": 0 },
+        "rarity": "COMMON",
+        "set": 15,
+        "imageUrl": "rapid-fire.png",
+        "tile": "DAL_373.png",
+        "extra": ["SMALL_REMOVAL", "DAMAGE"],
+        "rating": 3,
+        "text": "<b>Twinspell</b>\nDeal $1 damage.",
+        "type": "SPELL"
+      },
+      {
+        "artist": "Zoltan Boros",
+        "attack": 3,
+        "cardClass": ["HUNTER"],
+        "collectible": true,
+        "cost": 6,
+        "dbfId": 52081,
+        "elite": true,
+        "flavor": "Reduce, reuse, re-rattle!",
+        "health": 4,
+        "id": "DAL_376",
+        "mechanics": ["DEATHRATTLE"],
+        "name": "Oblivitron",
+        "race": "MECHANICAL",
+        "rarity": "LEGENDARY",
+        "set": 15,
+        "imageUrl": "oblivitron.png",
+        "tile": "DAL_376.png",
+        "extra": ["GENERAL"],
+        "rating": 2,
+        "text": "[x]<b>Deathrattle:</b> Summon a\nMech from your hand and\ntrigger its <b>Deathrattle</b>.",
+        "type": "MINION",
+        "activeVersion": 0,
+        "versions": [
+          {
+            "name": "Deathrattle mechs",
+            "priorities": [
+              {
+                "minCards": 4,
+                "maxCards": 6,
+                "id": "47c79952-87bd-49a9-b2ae-3e3e99a39679",
+                "filters": [
+                  {
+                    "property": "mechanics",
+                    "operation": "INCLUDES",
+                    "minValue": "DEATHRATTLE"
+                  },
+                  {
+                    "property": "race",
+                    "operation": "EQUALS",
+                    "minValue": "MECHANICAL"
+                  },
+                  {
+                    "property": "cost",
+                    "operation": "GREATER_THAN",
+                    "minValue": 2
+                  },
+                  {
+                    "property": "name",
+                    "operation": "NOT_EQUALS",
+                    "minValue": "Oblivitron"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "artist": "Anton Zemskov",
+        "cardClass": ["HUNTER"],
+        "collectible": true,
+        "cost": 3,
+        "dbfId": 52082,
+        "flavor": "Beware the night of the living pets!",
+        "id": "DAL_377",
+        "name": "Nine Lives",
+        "playRequirements": {
+          "REQ_FRIENDLY_DEATHRATTLE_MINION_DIED_THIS_GAME": 0
+        },
+        "rarity": "EPIC",
+        "referencedTags": ["DEATHRATTLE", "DISCOVER"],
+        "set": 15,
+        "imageUrl": "nine-lives.png",
+        "tile": "DAL_377.png",
+        "extra": ["VALUE"],
+        "rating": 2,
+        "text": "<b>Discover</b> a friendly <b>Deathrattle</b> minion that died this game. Also trigger its <b>Deathrattle</b>.",
+        "type": "SPELL",
+        "activeVersion": 0,
+        "versions": [
+          {
+            "name": "A few deathrattles",
+            "priorities": [
+              {
+                "minCards": 4,
+                "maxCards": 6,
+                "id": "b2d96b7a-0ce2-460d-aac2-3311220f0db2",
+                "filters": [
+                  {
+                    "property": "mechanics",
+                    "operation": "INCLUDES",
+                    "minValue": "DEATHRATTLE"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "artist": "L. Lullabi & K. Turovec",
+        "cardClass": ["HUNTER"],
+        "collectible": true,
+        "cost": 6,
+        "dbfId": 52089,
+        "flavor": "The Kirin Tor have always been lax in enforcing leash laws.",
+        "id": "DAL_378",
+        "mechanics": ["TWINSPELL"],
+        "name": "Unleash the Beast",
+        "playRequirements": { "REQ_NUM_MINION_SLOTS": 1 },
+        "rarity": "RARE",
+        "referencedTags": ["RUSH"],
+        "set": 15,
+        "imageUrl": "unleash-the-beast.png",
+        "tile": "DAL_378.png",
+        "extra": ["SMALL_REMOVAL", "VALUE"],
+        "rating": 2,
+        "text": "<b>Twinspell</b>\nSummon a 5/5 Wyvern with <b>Rush</b>.",
+        "type": "SPELL"
+      },
+      {
+        "artist": "James Ryman",
+        "attack": 5,
+        "cardClass": ["HUNTER"],
+        "collectible": true,
+        "cost": 7,
+        "dbfId": 52091,
+        "elite": true,
+        "flavor": "Good things come in threes: Windrunner sisters and arrows of Thori'dal.",
+        "health": 6,
+        "id": "DAL_379",
+        "mechanics": ["BATTLECRY"],
+        "name": "Vereesa Windrunner",
+        "rarity": "LEGENDARY",
+        "set": 15,
+        "imageUrl": "vereesa-windrunner.png",
+        "tile": "DAL_379.png",
+        "extra": ["VALUE", "SMALL_REMOVAL", "DAMAGE"],
+        "rating": 3,
+        "text": "<b>Battlecry:</b> Equip Thori'dal, the Stars' Fury.",
+        "type": "MINION",
+        "activeVersion": 0,
+        "versions": [
+          {
+            "name": "Damage spells",
+            "priorities": [
+              {
+                "minCards": 6,
+                "maxCards": 6,
+                "id": "9a6a5490-d63f-48d1-a9e6-388bcf4c5577",
+                "filters": [
+                  {
+                    "property": "text",
+                    "operation": "MATCH",
+                    "minValue": "deal \\$[0-9]* damage"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "artist": "Jim Nelson",
+        "attack": 1,
+        "cardClass": ["NEUTRAL"],
+        "collectible": true,
+        "cost": 2,
+        "dbfId": 51380,
+        "flavor": "Gradually driven to darkness by the promise of unobtainable cheese.",
+        "health": 1,
+        "id": "DAL_400",
+        "mechanics": ["BATTLECRY"],
+        "name": "EVIL Cable Rat",
+        "race": "BEAST",
+        "rarity": "COMMON",
+        "set": 15,
+        "imageUrl": "evil-cable-rat.png",
+        "tile": "DAL_400.png",
+        "extra": ["GENERAL"],
+        "rating": 1,
+        "text": "<b>Battlecry:</b> Add a <b>Lackey</b> to your hand.",
+        "type": "MINION"
+      },
+      {
+        "artist": "Tooth",
+        "attack": 2,
+        "cardClass": ["PRIEST"],
+        "collectible": true,
+        "cost": 2,
+        "dbfId": 52109,
+        "flavor": "Kobold! There’s a place you can handle\nI said kobold! When you’re short in the candle\nCast a spell with the E! V! I! L!",
+        "health": 2,
+        "id": "DAL_413",
+        "mechanics": ["DEATHRATTLE"],
+        "name": "EVIL Conscripter",
+        "rarity": "COMMON",
+        "set": 15,
+        "imageUrl": "evil-conscripter.png",
+        "tile": "DAL_413.png",
+        "extra": ["GENERAL"],
+        "rating": 2,
+        "text": "<b>Deathrattle:</b> Add a <b>Lackey</b> to your hand.",
+        "type": "MINION"
+      },
+      {
+        "artist": "Mike Sass",
+        "attack": 1,
+        "cardClass": ["ROGUE"],
+        "collectible": true,
+        "cost": 3,
+        "dbfId": 52111,
+        "flavor": "Because there are no G.O.O.D. Miscreants.",
+        "health": 5,
+        "id": "DAL_415",
+        "mechanics": ["COMBO"],
+        "name": "EVIL Miscreant",
+        "rarity": "COMMON",
+        "set": 15,
+        "imageUrl": "evil-miscreant.png",
+        "tile": "DAL_415.png",
+        "extra": ["GENERAL"],
+        "rating": 2,
+        "text": "<b>Combo:</b> Add two random <b>Lackeys</b> to your hand.",
+        "type": "MINION"
+      },
+      {
+        "artist": "Anton Zemskov",
+        "attack": 4,
+        "cardClass": ["ROGUE"],
+        "collectible": true,
+        "cost": 4,
+        "dbfId": 52112,
+        "flavor": "She’s more of a rat burglar.",
+        "health": 3,
+        "id": "DAL_416",
+        "mechanics": ["BATTLECRY"],
+        "name": "Hench-Clan Burglar",
+        "race": "PIRATE",
+        "rarity": "COMMON",
+        "referencedTags": ["DISCOVER"],
+        "set": 15,
+        "imageUrl": "hench-clan-burglar.png",
+        "tile": "DAL_416.png",
+        "extra": ["VALUE"],
+        "rating": 3,
+        "text": "<b>Battlecry:</b> <b>Discover</b> a spell from another class.",
+        "type": "MINION"
+      },
+      {
+        "artist": "L. Lullabi & K. Turovec",
+        "attack": 5,
+        "cardClass": ["ROGUE"],
+        "collectible": true,
+        "cost": 6,
+        "dbfId": 52114,
+        "elite": true,
+        "entourage": ["LOOT_998h", "LOOT_998j", "LOOT_998l", "LOOT_998k"],
+        "flavor": "A staunch ally of Rafaam, at least while the shinies keep flowing.",
+        "health": 5,
+        "id": "DAL_417",
+        "mechanics": ["BATTLECRY", "MULTIPLY_BUFF_VALUE"],
+        "name": "Heistbaron Togwaggle",
+        "rarity": "LEGENDARY",
+        "set": 15,
+        "imageUrl": "heistbaron-togwaggle.png",
+        "tile": "DAL_417.png",
+        "extra": ["VALUE"],
+        "rating": 3,
+        "text": "<b>Battlecry:</b> If you control a <b>Lackey</b>, choose a fantastic treasure.",
+        "type": "MINION",
+        "activeVersion": 0,
+        "versions": [
+          {
+            "name": "Lackey",
+            "priorities": [
+              {
+                "minCards": 4,
+                "maxCards": 4,
+                "id": "d31d8e8b-3407-4472-a890-b5795e9d7c53",
+                "filters": [
+                  {
+                    "property": "text",
+                    "operation": "MATCH",
+                    "minValue": "lackey"
+                  },
+                  {
+                    "property": "name",
+                    "operation": "NOT_EQUALS",
+                    "minValue": "Heistbaron Togwaggle"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "artist": "Alex Horley",
+        "attack": 7,
+        "cardClass": ["WARLOCK"],
+        "collectible": true,
+        "cost": 7,
+        "dbfId": 52119,
+        "elite": true,
+        "flavor": "Minions must wash hands before being LIQUIDATED AND REPLACED BY SOMEONE BETTER.",
+        "health": 8,
+        "id": "DAL_422",
+        "mechanics": ["BATTLECRY", "TAUNT"],
+        "name": "Arch-Villain Rafaam",
+        "rarity": "LEGENDARY",
+        "set": 15,
+        "imageUrl": "arch-villain-rafaam.png",
+        "tile": "DAL_422.png",
+        "extra": ["VALUE"],
+        "rating": 3,
+        "text": "<b><b>Taunt</b>\nBattlecry:</b> Replace your hand and deck with <b>Legendary</b> minions.",
+        "type": "MINION"
+      },
+      {
+        "artist": "Alex Horley",
+        "attack": 5,
+        "cardClass": ["SHAMAN"],
+        "collectible": true,
+        "cost": 7,
+        "dbfId": 52409,
+        "elite": true,
+        "entourage": ["DAL_431t"],
+        "flavor": "Rafaam mainly enjoys working with Hagatha because she never laughs at Dr. Boom's jokes.",
+        "health": 5,
+        "id": "DAL_431",
+        "mechanics": ["BATTLECRY"],
+        "name": "Swampqueen Hagatha",
+        "rarity": "LEGENDARY",
+        "set": 15,
+        "imageUrl": "swampqueen-hagatha.png",
+        "tile": "DAL_431.png",
+        "extra": ["VALUE"],
+        "rating": 2,
+        "text": "[x]<b>Battlecry:</b> Add a 5/5\nHorror to your hand. Teach\nit two Shaman spells.",
+        "type": "MINION"
+      },
+      {
+        "artist": "Jakub Kasper",
+        "cardClass": ["SHAMAN"],
+        "collectible": true,
+        "cost": 2,
+        "dbfId": 52421,
+        "flavor": "The swill has eyes!",
+        "id": "DAL_432",
+        "name": "Witch's Brew",
+        "playRequirements": { "REQ_TARGET_TO_PLAY": 0 },
+        "rarity": "EPIC",
+        "set": 15,
+        "imageUrl": "witchs-brew.png",
+        "tile": "DAL_432.png",
+        "extra": ["HEAL"],
+        "rating": 2,
+        "text": "Restore #4 Health. Repeatable this turn.",
+        "type": "SPELL"
+      },
+      {
+        "artist": "Rudy Siswanto",
+        "attack": 2,
+        "cardClass": ["SHAMAN"],
+        "collectible": true,
+        "cost": 1,
+        "dbfId": 52422,
+        "flavor": "You can't stop slurping this delicious sludge!",
+        "health": 1,
+        "id": "DAL_433",
+        "mechanics": ["BATTLECRY", "OVERLOAD"],
+        "name": "Sludge Slurper",
+        "overload": 1,
+        "race": "MURLOC",
+        "rarity": "RARE",
+        "set": 15,
+        "imageUrl": "sludge-slurper.png",
+        "tile": "DAL_433.png",
+        "extra": ["GENERAL"],
+        "rating": 3,
+        "text": "<b>Battlecry:</b> Add a <b>Lackey</b> to your hand. <b>Overload:</b> (1)",
+        "type": "MINION"
+      },
+      {
+        "artist": "Jakub Kasper",
+        "attack": 5,
+        "cardClass": ["NEUTRAL"],
+        "collectible": true,
+        "cost": 3,
+        "dbfId": 52654,
+        "flavor": "Now his watch has ended… until you have Spell Damage.",
+        "health": 6,
+        "id": "DAL_434",
+        "name": "Arcane Watcher",
+        "rarity": "RARE",
+        "referencedTags": ["SPELLPOWER"],
+        "set": 15,
+        "imageUrl": "arcane-watcher.png",
+        "tile": "DAL_434.png",
+        "extra": ["GENERAL"],
+        "rating": 2,
+        "text": "Can't attack unless you have <b>Spell Damage</b>.",
+        "type": "MINION",
+        "activeVersion": 0,
+        "versions": [
+          {
+            "name": "Silence",
+            "priorities": [
+              {
+                "minCards": 2,
+                "maxCards": 4,
+                "id": "3c33da39-fbb1-4f72-9f78-83c0d91d46e1",
+                "filters": [
+                  {
+                    "property": "text",
+                    "operation": "MATCH",
+                    "minValue": "silence"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "Some spell damage",
+            "priorities": [
+              {
+                "minCards": 4,
+                "maxCards": 4,
+                "id": "8746aa66-890e-4ff6-aa9d-3be14d932fe1",
+                "filters": [
+                  {
+                    "property": "mechanics",
+                    "operation": "INCLUDES",
+                    "minValue": "SPELLPOWER"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "artist": "Dave Allsop",
+        "attack": 5,
+        "cardClass": ["NEUTRAL"],
+        "collectible": true,
+        "cost": 6,
+        "dbfId": 52306,
+        "flavor": "Far more effective than the flamboyant saboteur.",
+        "health": 6,
+        "id": "DAL_538",
+        "mechanics": ["BATTLECRY"],
+        "name": "Unseen Saboteur",
+        "rarity": "EPIC",
+        "set": 15,
+        "imageUrl": "unseen-saboteur.png",
+        "tile": "DAL_538.png",
+        "extra": ["GENERAL"],
+        "rating": 1,
+        "text": "<b>Battlecry:</b> Your opponent casts a random spell from their hand <i>(targets chosen randomly)</i>.",
+        "type": "MINION"
+      },
+      {
+        "artist": "Zoltan Boros",
+        "attack": 4,
+        "cardClass": ["NEUTRAL"],
+        "collectible": true,
+        "cost": 5,
+        "dbfId": 52307,
+        "flavor": "What, did you expect the Sunreavers to be coldages?",
+        "health": 4,
+        "id": "DAL_539",
+        "mechanics": ["BATTLECRY"],
+        "name": "Sunreaver Warmage",
+        "playRequirements": { "REQ_DRAG_TO_PLAY": 0 },
+        "rarity": "RARE",
+        "set": 15,
+        "imageUrl": "sunreaver-warmage.png",
+        "tile": "DAL_539.png",
+        "extra": ["SMALL_REMOVAL", "DAMAGE"],
+        "rating": 3,
+        "targetingArrowText": "Deal 4 damage.",
+        "text": "<b>Battlecry:</b> If you're holding a spell that costs (5) or more, deal 4 damage.",
+        "type": "MINION",
+        "activeVersion": 0,
+        "versions": [
+          {
+            "name": "High cost spells",
+            "priorities": [
+              {
+                "minCards": 6,
+                "maxCards": 6,
+                "id": "e339451f-659d-4e51-97d2-62ab9959aee5",
+                "filters": [
+                  {
+                    "property": "type",
+                    "operation": "EQUALS",
+                    "minValue": "SPELL"
+                  },
+                  {
+                    "property": "cost",
+                    "operation": "GREATER_THAN",
+                    "minValue": 4
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "artist": "Rafael Zanchetin",
+        "attack": 1,
+        "cardClass": ["NEUTRAL"],
+        "collectible": true,
+        "cost": 1,
+        "dbfId": 52312,
+        "flavor": "Everyone gets two because that’s all she can hold.",
+        "health": 1,
+        "id": "DAL_544",
+        "mechanics": ["BATTLECRY"],
+        "name": "Potion Vendor",
+        "rarity": "COMMON",
+        "set": 15,
+        "imageUrl": "potion-vendor.png",
+        "tile": "DAL_544.png",
+        "extra": ["FAST", "HEAL", "TEMPO"],
+        "rating": 3,
+        "text": "<b>Battlecry:</b> Restore #2 Health to all friendly characters.",
+        "type": "MINION"
+      },
+      {
+        "artist": "Zoltan Boros",
+        "attack": 4,
+        "cardClass": ["NEUTRAL"],
+        "collectible": true,
+        "cost": 5,
+        "dbfId": 52413,
+        "elite": true,
+        "flavor": "\"Thanks a latte!\"",
+        "health": 5,
+        "id": "DAL_546",
+        "mechanics": ["BATTLECRY"],
+        "name": "Barista Lynchen",
+        "rarity": "LEGENDARY",
+        "set": 15,
+        "imageUrl": "barista-lynchen.png",
+        "tile": "DAL_546.png",
+        "extra": ["VALUE"],
+        "rating": 2,
+        "text": "<b>Battlecry:</b> Add a copy of each of your other <b>Battlecry</b> minions to your hand.",
+        "type": "MINION",
+        "activeVersion": 0,
+        "versions": [
+          {
+            "name": "Some battlecries",
+            "priorities": [
+              {
+                "minCards": 4,
+                "maxCards": 6,
+                "id": "19ebffc2-ac56-48fd-92bc-3dea8224e5e1",
+                "filters": [
+                  {
+                    "property": "mechanics",
+                    "operation": "INCLUDES",
+                    "minValue": "BATTLECRY"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "artist": "Luca Zontini",
+        "attack": 2,
+        "cardClass": ["NEUTRAL"],
+        "collectible": true,
+        "cost": 5,
+        "dbfId": 52415,
+        "flavor": "This is some bad blood.",
+        "health": 7,
+        "id": "DAL_548",
+        "mechanics": ["TRIGGER_VISUAL"],
+        "name": "Azerite Elemental",
+        "race": "ELEMENTAL",
+        "rarity": "EPIC",
+        "referencedTags": ["SPELLPOWER"],
+        "set": 15,
+        "imageUrl": "azarite-elemental.png",
+        "tile": "DAL_548.png",
+        "extra": ["GENERAL"],
+        "rating": 1,
+        "text": "At the start of your turn, gain <b>Spell Damage +2</b>.",
+        "type": "MINION",
+        "activeVersion": 0,
+        "versions": [
+          {
+            "name": "Some cheap damage spells",
+            "priorities": [
+              {
+                "minCards": 4,
+                "maxCards": 6,
+                "id": "2f1d9643-9fdd-4cc9-98a4-dc85f10dac04",
+                "filters": [
+                  {
+                    "property": "text",
+                    "operation": "MATCH",
+                    "minValue": "deal \\$[0-9]* damage"
+                  },
+                  {
+                    "property": "cost",
+                    "operation": "LESS_THAN",
+                    "minValue": 3
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "artist": "Danny Dai",
+        "attack": 3,
+        "cardClass": ["NEUTRAL"],
+        "collectible": true,
+        "cost": 7,
+        "dbfId": 52417,
+        "flavor": "It's always accepting of the less successful adventurers.",
+        "health": 5,
+        "id": "DAL_550",
+        "mechanics": ["TRIGGER_VISUAL"],
+        "name": "Underbelly Ooze",
+        "rarity": "RARE",
+        "set": 15,
+        "imageUrl": "underbelly-ooze.png",
+        "tile": "DAL_550.png",
+        "extra": ["GENERAL"],
+        "rating": 1,
+        "text": "After this minion survives damage, summon a copy of it.",
+        "type": "MINION",
+        "activeVersion": 0,
+        "versions": [
+          {
+            "name": "Bad patron",
+            "priorities": [
+              {
+                "minCards": 4,
+                "maxCards": 6,
+                "id": "7f930d55-6590-4383-9d12-f3e245759a2e",
+                "filters": [
+                  {
+                    "property": "text",
+                    "operation": "MATCH",
+                    "minValue": "1 damage .* all"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "artist": "Arthur Bozonnet",
+        "attack": 2,
+        "cardClass": ["NEUTRAL"],
+        "collectible": true,
+        "cost": 4,
+        "dbfId": 52418,
+        "flavor": "It'll take a humble offender to defeat him.",
+        "health": 6,
+        "id": "DAL_551",
+        "mechanics": ["TAUNT"],
+        "name": "Proud Defender",
+        "rarity": "COMMON",
+        "set": 15,
+        "imageUrl": "proud-defender.png",
+        "tile": "DAL_551.png",
+        "extra": ["STALL"],
+        "rating": 2,
+        "text": "<b>Taunt</b>\nHas +2 Attack while you [x]have no other minions.",
+        "type": "MINION"
+      },
+      {
+        "artist": "Mauricio Herrera",
+        "attack": 6,
+        "cardClass": ["NEUTRAL"],
+        "collectible": true,
+        "cost": 10,
+        "dbfId": 52420,
+        "flavor": "\"My, my, what big minions I have!\"",
+        "health": 6,
+        "id": "DAL_553",
+        "mechanics": ["TRIGGER_VISUAL"],
+        "name": "Big Bad Archmage",
+        "rarity": "EPIC",
+        "set": 15,
+        "imageUrl": "big-bad-archmage.png",
+        "tile": "DAL_553.png",
+        "extra": ["VALUE"],
+        "rating": 1,
+        "text": "At the end of your turn, summon a random\n6-Cost minion.",
+        "type": "MINION"
+      },
+      {
+        "artist": "Sean McNally",
+        "attack": 6,
+        "cardClass": ["NEUTRAL"],
+        "collectible": true,
+        "cost": 7,
+        "dbfId": 52434,
+        "elite": true,
+        "flavor": "His cooking is always very well done.",
+        "health": 6,
+        "id": "DAL_554",
+        "mechanics": ["BATTLECRY"],
+        "name": "Chef Nomi",
+        "rarity": "LEGENDARY",
+        "set": 15,
+        "imageUrl": "chef-nomi.png",
+        "tile": "DAL_554.png",
+        "extra": ["VALUE"],
+        "rating": 2,
+        "text": "<b>Battlecry:</b> If your deck is empty, summon six 6/6 Greasefire Elementals.",
+        "type": "MINION"
+      },
+      {
+        "artist": "James Ryman",
+        "attack": 2,
+        "cardClass": ["NEUTRAL"],
+        "collectible": true,
+        "cost": 4,
+        "dbfId": 52438,
+        "elite": true,
+        "flavor": "He's an archmage, but he might want to brush up on the basics... like aiming.",
+        "health": 6,
+        "id": "DAL_558",
+        "mechanics": ["TRIGGER_VISUAL"],
+        "name": "Archmage Vargoth",
+        "rarity": "LEGENDARY",
+        "set": 15,
+        "imageUrl": "archmage-vargoth.png",
+        "tile": "DAL_558.png",
+        "extra": ["GENERAL"],
+        "rating": 2,
+        "text": "[x]At the end of your turn, cast\na spell you've cast this turn\n<i>(targets are random)</i>.",
+        "type": "MINION",
+        "activeVersion": 0,
+        "versions": [
+          {
+            "name": "Some spells",
+            "priorities": [
+              {
+                "minCards": 4,
+                "maxCards": 4,
+                "id": "d0749046-14f9-41b6-b325-91ac436e10a9",
+                "filters": [
+                  {
+                    "property": "type",
+                    "operation": "EQUALS",
+                    "minValue": "SPELL"
+                  },
+                  {
+                    "property": "cost",
+                    "operation": "LESS_THAN",
+                    "minValue": 7
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "artist": "Maria Trepalina",
+        "attack": 4,
+        "cardClass": ["NEUTRAL"],
+        "collectible": true,
+        "cost": 8,
+        "dbfId": 52479,
+        "flavor": "We reserve the right to refuse service to any 1/1.",
+        "health": 4,
+        "id": "DAL_560",
+        "mechanics": ["BATTLECRY", "TAUNT"],
+        "name": "Heroic Innkeeper",
+        "rarity": "COMMON",
+        "set": 15,
+        "imageUrl": "heroic-inkeeper.png",
+        "tile": "DAL_560.png",
+        "extra": ["GENERAL"],
+        "rating": 1,
+        "text": "<b>Taunt.</b> <b>Battlecry:</b> Gain +2/+2 for each other friendly minion.",
+        "type": "MINION"
+      },
+      {
+        "artist": "James Ryman",
+        "attack": 8,
+        "cardClass": ["WARLOCK"],
+        "collectible": true,
+        "cost": 10,
+        "dbfId": 52480,
+        "flavor": "Jumbo in size! Huge in E.V.I.L.!",
+        "health": 8,
+        "id": "DAL_561",
+        "name": "Jumbo Imp",
+        "race": "DEMON",
+        "rarity": "EPIC",
+        "set": 15,
+        "imageUrl": "jumbo-imp.png",
+        "tile": "DAL_561.png",
+        "extra": ["GENERAL"],
+        "rating": 1,
+        "text": "Costs (1) less whenever a friendly Demon dies while this is in your hand.",
+        "type": "MINION",
+        "activeVersion": 0,
+        "versions": [
+          {
+            "name": "Demons",
+            "priorities": [
+              {
+                "minCards": 6,
+                "maxCards": 8,
+                "id": "94462a9d-4b36-4c4b-9093-334d793d2c80",
+                "filters": [
+                  {
+                    "property": "race",
+                    "operation": "EQUALS",
+                    "minValue": "DEMON"
+                  }
+                ]
+              },
+              {
+                "minCards": 2,
+                "maxCards": 4,
+                "id": "e021fa8e-b01a-4a0a-a028-b3e6013a21c1",
+                "filters": [
+                  {
+                    "property": "text",
+                    "operation": "MATCH",
+                    "minValue": "summon demon|imp"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "artist": "Jim Nelson",
+        "attack": 2,
+        "cardClass": ["WARLOCK"],
+        "collectible": true,
+        "cost": 4,
+        "dbfId": 52482,
+        "flavor": "Eager to please, even if it kills him.",
+        "health": 2,
+        "id": "DAL_563",
+        "mechanics": ["DEATHRATTLE"],
+        "name": "Eager Underling",
+        "rarity": "RARE",
+        "set": 15,
+        "imageUrl": "eager-underling.png",
+        "tile": "DAL_563.png",
+        "extra": ["BUFF"],
+        "rating": 2,
+        "text": "<b>Deathrattle:</b> Give two random friendly minions +2/+2.",
+        "type": "MINION",
+        "activeVersion": 0,
+        "versions": [
+          {
+            "name": "Fast deck",
+            "priorities": [
+              {
+                "minCards": 8,
+                "maxCards": 10,
+                "id": "77a054f2-aac3-4127-8f75-32a3ce0d3e13",
+                "filters": [
+                  {
+                    "property": "extra",
+                    "operation": "INCLUDES",
+                    "minValue": "FAST"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "artist": "Nicola Saviori",
+        "attack": 5,
+        "cardClass": ["NEUTRAL"],
+        "collectible": true,
+        "cost": 6,
+        "dbfId": 52486,
+        "flavor": "It’s like an interdimensional game of demon tag.",
+        "health": 6,
+        "id": "DAL_565",
+        "mechanics": ["BATTLECRY"],
+        "name": "Portal Overfiend",
+        "race": "DEMON",
+        "rarity": "EPIC",
+        "referencedTags": ["RUSH"],
+        "set": 15,
+        "imageUrl": "portal-overfiend.png",
+        "tile": "DAL_565.png",
+        "extra": ["GENERAL"],
+        "rating": 2,
+        "text": "[x]<b>Battlecry:</b> Shuffle 3 Portals\ninto your deck. When drawn,\nsummon a 2/2 Demon\nwith <b>Rush</b>.",
+        "type": "MINION"
+      },
+      {
+        "artist": "Charlene LeScanff",
+        "attack": 6,
+        "cardClass": ["NEUTRAL"],
+        "collectible": true,
+        "cost": 6,
+        "dbfId": 52487,
+        "flavor": "Them’s fightin’ words!",
+        "health": 4,
+        "id": "DAL_566",
+        "mechanics": ["DEATHRATTLE"],
+        "name": "Eccentric Scribe",
+        "rarity": "COMMON",
+        "set": 15,
+        "imageUrl": "eccentric-scribe.png",
+        "tile": "DAL_566.png",
+        "extra": ["GENERAL"],
+        "rating": 1,
+        "text": "<b>Deathrattle:</b> Summon\nfour 1/1 Vengeful Scrolls.",
+        "type": "MINION"
+      },
+      {
+        "artist": "Vladimir Kafanov",
+        "cardClass": ["PALADIN"],
+        "collectible": true,
+        "cost": 2,
+        "dbfId": 52490,
+        "flavor": "Some might call this a lightforgery.",
+        "id": "DAL_568",
+        "mechanics": ["TWINSPELL"],
+        "name": "Lightforged Blessing",
+        "playRequirements": {
+          "REQ_FRIENDLY_TARGET": 0,
+          "REQ_MINION_TARGET": 0,
+          "REQ_TARGET_TO_PLAY": 0
+        },
+        "rarity": "COMMON",
+        "referencedTags": ["LIFESTEAL"],
+        "set": 15,
+        "imageUrl": "lightforged-blessing.png",
+        "tile": "DAL_568.png",
+        "extra": ["BUFF", "HEAL"],
+        "rating": 1,
+        "text": "<b>Twinspell</b>\nGive a friendly minion <b>Lifesteal</b>.",
+        "type": "SPELL"
+      },
+      {
+        "artist": "Mauricio Herrera",
+        "cardClass": ["PALADIN"],
+        "collectible": true,
+        "cost": 1,
+        "dbfId": 52494,
+        "flavor": "But sometimes concede.",
+        "id": "DAL_570",
+        "mechanics": ["SECRET"],
+        "name": "Never Surrender!",
+        "rarity": "COMMON",
+        "set": 15,
+        "imageUrl": "never-surrender.png",
+        "tile": "DAL_570.png",
+        "extra": ["FAST"],
+        "rating": 3,
+        "text": "<b>Secret:</b> When your opponent casts a spell, give your minions +2 Health.",
+        "type": "SPELL"
+      },
+      {
+        "artist": "Vlad Botos",
+        "attack": 2,
+        "cardClass": ["PALADIN"],
+        "collectible": true,
+        "cost": 2,
+        "dbfId": 52496,
+        "durability": 2,
+        "flavor": "It knows every secret you have left.",
+        "id": "DAL_571",
+        "mechanics": ["BATTLECRY"],
+        "name": "Mysterious Blade",
+        "rarity": "RARE",
+        "referencedTags": ["SECRET"],
+        "set": 15,
+        "imageUrl": "mysterious-blade.png",
+        "tile": "DAL_571.png",
+        "extra": ["SMALL_REMOVAL", "DAMAGE"],
+        "rating": 3,
+        "text": "<b>Battlecry:</b> If you control a\n<b>Secret</b>, gain +1 Attack.",
+        "type": "WEAPON",
+        "activeVersion": 0,
+        "versions": [
+          {
+            "name": "Some secrets",
+            "priorities": [
+              {
+                "minCards": 4,
+                "maxCards": 6,
+                "id": "af4b608a-6f72-4572-a7d7-e55e670fea80",
+                "filters": [
+                  {
+                    "property": "mechanics",
+                    "operation": "INCLUDES",
+                    "minValue": "SECRET"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "artist": "Luke Mancini",
+        "attack": 4,
+        "cardClass": ["PALADIN"],
+        "collectible": true,
+        "cost": 3,
+        "dbfId": 52500,
+        "elite": true,
+        "flavor": "Two people can keep a secret as long as neither of them are Commander Rhyssa.",
+        "health": 3,
+        "id": "DAL_573",
+        "mechanics": ["AURA", "TRIGGER_VISUAL"],
+        "name": "Commander Rhyssa",
+        "rarity": "LEGENDARY",
+        "referencedTags": ["SECRET"],
+        "set": 15,
+        "imageUrl": "commander-rhyssa.png",
+        "tile": "DAL_573.png",
+        "extra": ["FAST"],
+        "rating": 4,
+        "text": "Your <b>Secrets</b> trigger twice.",
+        "type": "MINION",
+        "activeVersion": 0,
+        "versions": [
+          {
+            "name": "Secrets",
+            "priorities": [
+              {
+                "minCards": 4,
+                "maxCards": 6,
+                "id": "39e05dbe-c3d0-47c9-a49a-c65e089c961a",
+                "filters": [
+                  {
+                    "property": "mechanics",
+                    "operation": "INCLUDES",
+                    "minValue": "SECRET"
+                  }
+                ]
+              },
+              {
+                "minCards": 2,
+                "maxCards": 4,
+                "id": "99047060-2302-4158-88f2-a0254340fb27",
+                "filters": [
+                  {
+                    "property": "referencedTags",
+                    "operation": "INCLUDES",
+                    "minValue": "SECRET"
+                  },
+                  {
+                    "property": "name",
+                    "operation": "NOT_EQUALS",
+                    "minValue": "Commander Rhyssa"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "artist": "Evgeniy Zagumyenny",
+        "attack": 2,
+        "cardClass": ["MAGE"],
+        "collectible": true,
+        "cost": 2,
+        "dbfId": 52502,
+        "elite": true,
+        "flavor": "\"What do you call two minions summoned at once? Twinions, haha! Wait... where are you going?\"",
+        "health": 2,
+        "id": "DAL_575",
+        "mechanics": ["TRIGGER_VISUAL"],
+        "name": "Khadgar",
+        "rarity": "LEGENDARY",
+        "set": 15,
+        "imageUrl": "khadgar.png",
+        "tile": "DAL_575.png",
+        "extra": ["VALUE"],
+        "rating": 3,
+        "text": "Your cards that summon minions summon twice as many.",
+        "type": "MINION",
+        "activeVersion": 0,
+        "versions": [
+          {
+            "name": "Cards that summon minions",
+            "priorities": [
+              {
+                "minCards": 6,
+                "maxCards": 6,
+                "id": "03f9867f-e6ed-4c80-ad0d-078e119fc837",
+                "filters": [
+                  {
+                    "property": "text",
+                    "operation": "MATCH",
+                    "minValue": "summon"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "artist": "Zoltan Boros",
+        "attack": 3,
+        "cardClass": ["MAGE"],
+        "collectible": true,
+        "cost": 4,
+        "dbfId": 52638,
+        "flavor": "The math checks out!",
+        "health": 3,
+        "id": "DAL_576",
+        "mechanics": ["AURA", "SPELLPOWER"],
+        "name": "Kirin Tor Tricaster",
+        "rarity": "RARE",
+        "set": 15,
+        "imageUrl": "kirin-tor-tricaster.png",
+        "tile": "DAL_576.png",
+        "extra": ["GENERAL"],
+        "rating": 1,
+        "spellDamage": 3,
+        "text": "<b>Spell Damage +3</b>\nYour spells cost (1) more.",
+        "type": "MINION",
+        "activeVersion": 0,
+        "versions": [
+          {
+            "name": "Some cheap damage spells",
+            "priorities": [
+              {
+                "minCards": 4,
+                "maxCards": 6,
+                "id": "5938523f-61e2-4aff-83a6-7b8e8f67c364",
+                "filters": [
+                  {
+                    "property": "text",
+                    "operation": "MATCH",
+                    "minValue": "deal \\$[0-9]* damage"
+                  },
+                  {
+                    "property": "cost",
+                    "operation": "LESS_THAN",
+                    "minValue": 3
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "artist": "Alex Garner",
+        "cardClass": ["MAGE"],
+        "collectible": true,
+        "cost": 1,
+        "dbfId": 52639,
+        "flavor": "If you have zero chill, this can help.",
+        "id": "DAL_577",
+        "mechanics": ["TWINSPELL"],
+        "name": "Ray of Frost",
+        "playRequirements": { "REQ_MINION_TARGET": 0, "REQ_TARGET_TO_PLAY": 0 },
+        "rarity": "COMMON",
+        "referencedTags": ["FREEZE"],
+        "set": 15,
+        "imageUrl": "ray-of-frost.png",
+        "tile": "DAL_577.png",
+        "extra": ["SMALL_REMOVAL", "STALL"],
+        "rating": 2,
+        "text": "<b>Twinspell</b>\n<b>Freeze</b> a minion.\nIf it's already <b>Frozen</b>,\ndeal $2 damage to it.",
+        "type": "SPELL"
+      },
+      {
+        "artist": "Zoltan Boros",
+        "cardClass": ["MAGE"],
+        "collectible": true,
+        "cost": 8,
+        "dbfId": 52640,
+        "flavor": "Mostly used for party tricks, to be honest.",
+        "id": "DAL_578",
+        "name": "Power of Creation",
+        "playRequirements": { "REQ_NUM_MINION_SLOTS": 1 },
+        "rarity": "EPIC",
+        "referencedTags": ["DISCOVER"],
+        "set": 15,
+        "imageUrl": "power-of-creation.png",
+        "tile": "DAL_578.png",
+        "extra": ["VALUE"],
+        "rating": 2,
+        "text": "<b>Discover</b> a 6-Cost minion. Summon two copies of it.",
+        "type": "SPELL"
+      },
+      {
+        "artist": "Arthur Gimaldinov",
+        "attack": 4,
+        "cardClass": ["PALADIN"],
+        "collectible": true,
+        "cost": 10,
+        "dbfId": 52685,
+        "elite": true,
+        "flavor": "In another timeline, she was called Yeszari.",
+        "health": 12,
+        "id": "DAL_581",
+        "mechanics": ["BATTLECRY"],
+        "name": "Nozari",
+        "race": "DRAGON",
+        "rarity": "LEGENDARY",
+        "set": 15,
+        "imageUrl": "nozari.png",
+        "tile": "DAL_581.png",
+        "extra": ["STALL", "HEAL"],
+        "rating": 2,
+        "text": "<b>Battlecry:</b> Restore both heroes to full Health.",
+        "type": "MINION",
+        "activeVersion": 0,
+        "versions": [
+          {
+            "name": "Control",
+            "priorities": [
+              {
+                "minCards": 2,
+                "maxCards": 4,
+                "id": "626420d1-2802-43ac-b190-e02fc5d6d85f",
+                "filters": [
+                  {
+                    "property": "extra",
+                    "operation": "INCLUDES",
+                    "minValue": "VALUE"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "Thekal & Bloodclaw",
+            "priorities": [
+              {
+                "minCards": 3,
+                "maxCards": 3,
+                "id": "cbd68554-a74d-4a63-8463-84cf78f627a8",
+                "filters": [
+                  {
+                    "property": "name",
+                    "operation": "IS_INCLUDED_IN",
+                    "minValue": ["High Priest Thekal", "Bloodclaw"]
+                  }
+                ]
+              },
+              {
+                "minCards": 2,
+                "maxCards": 4,
+                "id": "df6585a8-acf1-443f-84c7-3b48209fb896",
+                "filters": [
+                  {
+                    "property": "text",
+                    "operation": "MATCH",
+                    "minValue": "restore.*health"
+                  },
+                  {
+                    "property": "name",
+                    "operation": "NOT_EQUALS",
+                    "minValue": "Nozari"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "artist": "Nicola Saviori",
+        "attack": 5,
+        "cardClass": ["NEUTRAL"],
+        "collectible": true,
+        "cost": 4,
+        "dbfId": 52707,
+        "flavor": "No longer allowed to be “it” when playing demon tag.",
+        "health": 2,
+        "id": "DAL_582",
+        "mechanics": ["BATTLECRY"],
+        "name": "Portal Keeper",
+        "race": "DEMON",
+        "rarity": "RARE",
+        "referencedTags": ["RUSH"],
+        "set": 15,
+        "imageUrl": "portal-keeper.png",
+        "tile": "DAL_582.png",
+        "extra": ["GENERAL"],
+        "rating": 1,
+        "text": "[x]<b>Battlecry:</b> Shuffle 3 Portals\ninto your deck. When drawn,\nsummon a 2/2 Demon\nwith <b>Rush</b>.",
+        "type": "MINION"
+      },
+      {
+        "artist": "Cecile He",
+        "attack": 1,
+        "cardClass": ["HUNTER"],
+        "collectible": true,
+        "cost": 1,
+        "dbfId": 52894,
+        "entourage": ["NEW1_032", "NEW1_033", "NEW1_034"],
+        "flavor": "Plenty of buzz around this card.",
+        "health": 1,
+        "id": "DAL_587",
+        "mechanics": ["DEATHRATTLE"],
+        "name": "Shimmerfly",
+        "race": "BEAST",
+        "rarity": "RARE",
+        "set": 15,
+        "imageUrl": "shimmerfly.png",
+        "tile": "DAL_587.png",
+        "extra": ["GENERAL"],
+        "rating": 3,
+        "text": "<b>Deathrattle:</b> Add a random Hunter spell to your hand.",
+        "type": "MINION"
+      },
+      {
+        "artist": "Jim Nelson",
+        "cardClass": ["HUNTER"],
+        "collectible": true,
+        "cost": 5,
+        "dbfId": 53099,
+        "flavor": "Not sure I’d call it a good party if everyone ends up beside themselves.",
+        "id": "DAL_589",
+        "name": "Hunting Party",
+        "rarity": "RARE",
+        "set": 15,
+        "imageUrl": "hunting-party.png",
+        "tile": "DAL_589.png",
+        "extra": ["VALUE"],
+        "rating": 1,
+        "text": "Copy all Beasts in your hand.",
+        "type": "SPELL",
+        "activeVersion": 0,
+        "versions": [
+          {
+            "name": "Beasts",
+            "priorities": [
+              {
+                "minCards": 8,
+                "maxCards": 10,
+                "id": "883888c7-5d78-440f-a3c1-7b36e72c783b",
+                "filters": [
+                  {
+                    "property": "race",
+                    "operation": "EQUALS",
+                    "minValue": "BEAST"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "artist": "MAR Studio",
+        "attack": 3,
+        "cardClass": ["NEUTRAL"],
+        "collectible": true,
+        "cost": 8,
+        "dbfId": 53251,
+        "flavor": "When it comes to problem-solving, he always uses his head.",
+        "health": 12,
+        "id": "DAL_592",
+        "mechanics": ["RUSH", "TRIGGER_VISUAL"],
+        "name": "Batterhead",
+        "rarity": "EPIC",
+        "set": 15,
+        "imageUrl": "batterhead.png",
+        "tile": "DAL_592.png",
+        "extra": ["VALUE", "SMALL_REMOVAL"],
+        "rating": 2,
+        "text": "<b>Rush</b>. After this attacks and kills a minion, it may attack again.",
+        "type": "MINION"
+      },
+      {
+        "artist": "Arthur Gimaldinov",
+        "cardClass": ["WARLOCK"],
+        "collectible": true,
+        "cost": 2,
+        "dbfId": 52698,
+        "flavor": "It’s coming from inside the deck!",
+        "id": "DAL_602",
+        "name": "Plot Twist",
+        "rarity": "RARE",
+        "set": 15,
+        "imageUrl": "plot-twist.png",
+        "tile": "DAL_602.png",
+        "extra": ["GENERAL"],
+        "rating": 2,
+        "text": "Shuffle your hand\ninto your deck.\nDraw that many cards.",
+        "type": "SPELL",
+        "activeVersion": 0,
+        "versions": [
+          {
+            "name": "Shuffle stuff",
+            "priorities": [
+              {
+                "minCards": 4,
+                "maxCards": 6,
+                "id": "2ed40689-b1ac-4627-a60f-ae531c217e6e",
+                "filters": [
+                  {
+                    "property": "text",
+                    "operation": "MATCH",
+                    "minValue": "shuffle.*your deck"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "Control",
+            "priorities": [
+              {
+                "minCards": 2,
+                "maxCards": 2,
+                "id": "c0dcb8fc-1c63-4472-aac3-a3656342b32e",
+                "filters": [
+                  {
+                    "property": "extra",
+                    "operation": "INCLUDES",
+                    "minValue": "VALUE"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "artist": "Ware Li",
+        "attack": 2,
+        "cardClass": ["MAGE"],
+        "collectible": true,
+        "cost": 2,
+        "dbfId": 52706,
+        "flavor": "It'll put a good spin on your spells.",
+        "health": 2,
+        "id": "DAL_603",
+        "mechanics": ["BATTLECRY"],
+        "name": "Mana Cyclone",
+        "race": "ELEMENTAL",
+        "rarity": "EPIC",
+        "set": 15,
+        "imageUrl": "mana-cyclone.png",
+        "tile": "DAL_603.png",
+        "extra": ["VALUE"],
+        "rating": 3,
+        "text": "[x]<b>Battlecry:</b> For each spell\nyou've cast this turn, add\na random Mage spell\nto your hand.",
+        "type": "MINION",
+        "activeVersion": 0,
+        "versions": [
+          {
+            "name": "Spells",
+            "priorities": [
+              {
+                "minCards": 6,
+                "maxCards": 6,
+                "id": "771c6a34-acde-480b-b859-35014b3d9ff4",
+                "filters": [
+                  {
+                    "property": "type",
+                    "operation": "EQUALS",
+                    "minValue": "SPELL"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "Cheap Spells",
+            "priorities": [
+              {
+                "minCards": 6,
+                "maxCards": 8,
+                "id": "5bea1e8c-a0e4-475e-b00c-24c06f976961",
+                "filters": [
+                  {
+                    "property": "type",
+                    "operation": "EQUALS",
+                    "minValue": "SPELL"
+                  },
+                  {
+                    "property": "cost",
+                    "operation": "LESS_THAN",
+                    "minValue": 4
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "artist": "Zoltan Boros",
+        "attack": 3,
+        "cardClass": ["HUNTER"],
+        "collectible": true,
+        "cost": 3,
+        "dbfId": 52790,
+        "flavor": "It's been programmed to include all the bear necessities.",
+        "health": 3,
+        "id": "DAL_604",
+        "mechanics": ["DEATHRATTLE"],
+        "name": "Ursatron",
+        "race": "MECHANICAL",
+        "rarity": "COMMON",
+        "set": 15,
+        "imageUrl": "ursatron.png",
+        "tile": "DAL_604.png",
+        "extra": ["GENERAL"],
+        "rating": 2,
+        "text": "<b>Deathrattle:</b> Draw a Mech from your deck.",
+        "type": "MINION",
+        "activeVersion": 0,
+        "versions": [
+          {
+            "name": "Some Mechs",
+            "priorities": [
+              {
+                "minCards": 4,
+                "maxCards": 6,
+                "id": "16ed056c-fe06-411c-89fa-d6c7642ab82d",
+                "filters": [
+                  {
+                    "property": "race",
+                    "operation": "EQUALS",
+                    "minValue": "MECHANICAL"
+                  },
+                  {
+                    "property": "name",
+                    "operation": "NOT_EQUALS",
+                    "minValue": "Ursatron"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "A lost of Mechs",
+            "priorities": [
+              {
+                "minCards": 8,
+                "maxCards": 10,
+                "id": "3473068f-ab1f-444c-aabf-37cd18d8820e",
+                "filters": [
+                  {
+                    "property": "race",
+                    "operation": "EQUALS",
+                    "minValue": "MECHANICAL"
+                  },
+                  {
+                    "property": "name",
+                    "operation": "NOT_EQUALS",
+                    "minValue": "Ursatron"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "artist": "Chris Hayes",
+        "cardClass": ["WARLOCK"],
+        "collectible": true,
+        "cost": 3,
+        "dbfId": 52871,
+        "flavor": "Imps don't get mad when you set them on fire. They think it's cozy.",
+        "id": "DAL_605",
+        "name": "Impferno",
+        "playRequirements": {
+          "REQ_MINION_TARGET": 0,
+          "REQ_TARGET_WITH_RACE": 15
+        },
+        "rarity": "RARE",
+        "set": 15,
+        "imageUrl": "impferno.png",
+        "tile": "DAL_605.png",
+        "extra": ["AOE", "BUFF"],
+        "rating": 2,
+        "text": "Give your Demons +1 Attack. Deal $1 damage to all enemy minions.",
+        "type": "SPELL",
+        "activeVersion": 0,
+        "versions": [
+          {
+            "name": "Demons",
+            "priorities": [
+              {
+                "minCards": 6,
+                "maxCards": 8,
+                "id": "a9d92cf4-569b-4e33-8488-d03068578759",
+                "filters": [
+                  {
+                    "property": "race",
+                    "operation": "EQUALS",
+                    "minValue": "DEMON"
+                  }
+                ]
+              },
+              {
+                "minCards": 2,
+                "maxCards": 4,
+                "id": "34132a98-57f7-46b6-920e-9531b5b3a68a",
+                "filters": [
+                  {
+                    "property": "text",
+                    "operation": "MATCH",
+                    "minValue": "summon demon|imp"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "artist": "Rudy Siswanto",
+        "attack": 2,
+        "cardClass": ["WARLOCK"],
+        "collectible": true,
+        "cost": 2,
+        "dbfId": 52872,
+        "flavor": "You do not want to be on the business end of this intellect!",
+        "health": 2,
+        "id": "DAL_606",
+        "mechanics": ["BATTLECRY"],
+        "name": "EVIL Genius",
+        "playRequirements": {
+          "REQ_FRIENDLY_TARGET": 0,
+          "REQ_MINION_TARGET": 0,
+          "REQ_TARGET_IF_AVAILABLE": 0
+        },
+        "rarity": "COMMON",
+        "set": 15,
+        "imageUrl": "evil-genius.png",
+        "tile": "DAL_606.png",
+        "extra": ["GENERAL"],
+        "rating": 2,
+        "targetingArrowText": "Destroy a friendly minion.",
+        "text": "<b>Battlecry:</b> Destroy a friendly minion to add 2 random <b>Lackeys</b> to your hand.",
+        "type": "MINION",
+        "activeVersion": 0,
+        "versions": [
+          {
+            "name": "Deathrattles",
+            "priorities": [
+              {
+                "minCards": 6,
+                "maxCards": 6,
+                "id": "4140bd7c-c44e-4ab1-88e0-1668d486ebd0",
+                "filters": [
+                  {
+                    "property": "mechanics",
+                    "operation": "INCLUDES",
+                    "minValue": "DEATHRATTLE"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "artist": "Nicola Saviori",
+        "attack": 5,
+        "cardClass": ["WARLOCK"],
+        "collectible": true,
+        "cost": 8,
+        "dbfId": 52873,
+        "elite": true,
+        "flavor": "Nobody else likes rush hour.",
+        "health": 7,
+        "id": "DAL_607",
+        "mechanics": ["TRIGGER_VISUAL"],
+        "name": "Fel Lord Betrug",
+        "race": "DEMON",
+        "rarity": "LEGENDARY",
+        "referencedTags": ["RUSH"],
+        "set": 15,
+        "imageUrl": "fel-lord-betrug.png",
+        "tile": "DAL_607.png",
+        "extra": ["VALUE"],
+        "rating": 2,
+        "text": "[x]Whenever you draw a\nminion, summon a copy\n with <b>Rush</b> that dies at\nend of turn.",
+        "type": "MINION",
+        "activeVersion": 0,
+        "versions": [
+          {
+            "name": "Not small minions",
+            "priorities": [
+              {
+                "minCards": 6,
+                "maxCards": 8,
+                "id": "b411bec2-33bf-4481-83d3-81547f847d3e",
+                "filters": [
+                  {
+                    "property": "type",
+                    "operation": "EQUALS",
+                    "minValue": "MINION"
+                  },
+                  {
+                    "property": "cost",
+                    "operation": "GREATER_THAN",
+                    "minValue": 3
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "Deathrattles",
+            "priorities": [
+              {
+                "minCards": 6,
+                "maxCards": 8,
+                "id": "0e0f202e-1b96-4e15-b89d-bcd972556229",
+                "filters": [
+                  {
+                    "property": "type",
+                    "operation": "EQUALS",
+                    "minValue": "MINION"
+                  },
+                  {
+                    "property": "mechanics",
+                    "operation": "INCLUDES",
+                    "minValue": "DEATHRATTLE"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "artist": "Ivan Fomin",
+        "cardClass": ["MAGE"],
+        "collectible": true,
+        "cost": 1,
+        "dbfId": 52991,
+        "flavor": "The world is not ready for an illusion of this depth and intricacy!",
+        "id": "DAL_608",
+        "name": "Magic Trick",
+        "rarity": "RARE",
+        "referencedTags": ["DISCOVER"],
+        "set": 15,
+        "imageUrl": "magic-trick.png",
+        "tile": "DAL_608.png",
+        "extra": ["VALUE"],
+        "rating": 2,
+        "text": "<b>Discover</b> a spell that costs (3) or less.",
+        "type": "SPELL"
+      },
+      {
+        "artist": "Chris Rahn",
+        "attack": 4,
+        "cardClass": ["MAGE"],
+        "collectible": true,
+        "cost": 10,
+        "dbfId": 53002,
+        "elite": true,
+        "flavor": "He was once the Aspect of Magic but gave it up to focus on cheap tricks.",
+        "health": 12,
+        "id": "DAL_609",
+        "mechanics": ["AURA", "BATTLECRY", "DISCOVER"],
+        "name": "Kalecgos",
+        "race": "DRAGON",
+        "rarity": "LEGENDARY",
+        "set": 15,
+        "imageUrl": "kalecgos.png",
+        "tile": "DAL_609.png",
+        "extra": ["VALUE"],
+        "rating": 3,
+        "text": "Your first spell each\nturn costs (0).\n<b>Battlecry:</b> <b>Discover</b>\na spell.",
+        "type": "MINION",
+        "activeVersion": 0,
+        "versions": [
+          {
+            "name": "Some expensive spells",
+            "priorities": [
+              {
+                "minCards": 4,
+                "maxCards": 6,
+                "id": "68627c5b-a910-47c6-be38-c53a2c27a05c",
+                "filters": [
+                  {
+                    "property": "type",
+                    "operation": "EQUALS",
+                    "minValue": "SPELL"
+                  },
+                  {
+                    "property": "cost",
+                    "operation": "GREATER_THAN",
+                    "minValue": 4
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "artist": "Jason Kang",
+        "cardClass": ["SHAMAN"],
+        "collectible": true,
+        "cost": 2,
+        "dbfId": 52468,
+        "flavor": "Previously thought nonexistent.",
+        "id": "DAL_710",
+        "name": "Soul of the Murloc",
+        "rarity": "COMMON",
+        "referencedTags": ["DEATHRATTLE"],
+        "set": 15,
+        "imageUrl": "soul-of-the-murloc.png",
+        "tile": "DAL_710.png",
+        "extra": ["GENERAL"],
+        "rating": 1,
+        "text": "Give your minions \"<b>Deathrattle:</b> Summon a 1/1 Murloc.\"",
+        "type": "SPELL"
+      },
+      {
+        "artist": "Arthur Bozonnet",
+        "attack": 2,
+        "cardClass": ["ROGUE"],
+        "collectible": true,
+        "cost": 2,
+        "dbfId": 52603,
+        "flavor": "She’ll take anything you have—except scruples and a good work ethic.",
+        "health": 3,
+        "id": "DAL_714",
+        "mechanics": ["BATTLECRY"],
+        "name": "Underbelly Fence",
+        "rarity": "RARE",
+        "referencedTags": ["RUSH"],
+        "set": 15,
+        "imageUrl": "underbelly-fence.png",
+        "tile": "DAL_714.png",
+        "extra": ["GENERAL"],
+        "rating": 2,
+        "text": "[x]<b>Battlecry:</b> If you're holding\na card from another class,\n gain +1/+1 and <b><b>Rush</b>.</b>",
+        "type": "MINION",
+        "activeVersion": 0,
+        "versions": [
+          {
+            "name": "Steal & return",
+            "priorities": [
+              {
+                "minCards": 4,
+                "maxCards": 6,
+                "id": "53310261-511a-4caf-86f6-71664acac9d2",
+                "filters": [
+                  {
+                    "property": "text",
+                    "operation": "MATCH",
+                    "minValue": "opponent's class|another class|non-rogue"
+                  }
+                ]
+              },
+              {
+                "minCards": 2,
+                "maxCards": 4,
+                "id": "68b03ff1-d578-4f0f-a56a-896b694b5c8f",
+                "filters": [
+                  {
+                    "property": "text",
+                    "operation": "MATCH",
+                    "minValue": "return.*minion"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "artist": "Jim Nelson",
+        "cardClass": ["ROGUE"],
+        "collectible": true,
+        "cost": 4,
+        "dbfId": 52606,
+        "flavor": "A vengeful and vicarious vanguard against violent villains or vexed victims.",
+        "id": "DAL_716",
+        "name": "Vendetta",
+        "playRequirements": { "REQ_MINION_TARGET": 0, "REQ_TARGET_TO_PLAY": 0 },
+        "rarity": "RARE",
+        "set": 15,
+        "imageUrl": "vendetta.png",
+        "tile": "DAL_716.png",
+        "extra": ["SMALL_REMOVAL"],
+        "rating": 3,
+        "text": "Deal $4 damage to a minion. Costs (0) if you're holding a card from another class.",
+        "type": "SPELL",
+        "activeVersion": 0,
+        "versions": [
+          {
+            "name": "Steal cards",
+            "priorities": [
+              {
+                "minCards": 4,
+                "maxCards": 6,
+                "id": "92068e51-8d02-4690-ad1e-95582ee8fbef",
+                "filters": [
+                  {
+                    "property": "text",
+                    "operation": "MATCH",
+                    "minValue": "opponent's class|another class|non-rogue"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "artist": "Rafael Zanchetin",
+        "attack": 6,
+        "cardClass": ["ROGUE"],
+        "collectible": true,
+        "cost": 7,
+        "dbfId": 52616,
+        "elite": true,
+        "flavor": "\"One for me and one for future me!\"",
+        "health": 6,
+        "id": "DAL_719",
+        "mechanics": ["TRIGGER_VISUAL"],
+        "name": "Tak Nozwhisker",
+        "rarity": "LEGENDARY",
+        "set": 15,
+        "imageUrl": "tak-nozwhisker.png",
+        "tile": "DAL_719.png",
+        "extra": ["VALUE"],
+        "rating": 1,
+        "text": "[x]Whenever you shuffle a\ncard into your deck, add\na copy to your hand.",
+        "type": "MINION",
+        "activeVersion": 0,
+        "versions": [
+          {
+            "name": "Shuffle",
+            "priorities": [
+              {
+                "minCards": 4,
+                "maxCards": 6,
+                "id": "7ec5e52a-f2b5-46a8-bfe1-727166791328",
+                "filters": [
+                  {
+                    "property": "text",
+                    "operation": "MATCH",
+                    "minValue": "shuffle.*your deck"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "artist": "Jason Kang",
+        "attack": 4,
+        "cardClass": ["ROGUE"],
+        "collectible": true,
+        "cost": 4,
+        "dbfId": 52617,
+        "durability": 2,
+        "flavor": "Kobolds informally refer to its effect as a deathwaggle.",
+        "id": "DAL_720",
+        "mechanics": ["DEATHRATTLE"],
+        "name": "Waggle Pick",
+        "rarity": "EPIC",
+        "set": 15,
+        "imageUrl": "waggle-pick.png",
+        "tile": "DAL_720.png",
+        "extra": ["SMALL_REMOVAL", "DAMAGE"],
+        "rating": 1,
+        "text": "[x]<b>Deathrattle:</b> Return\na random friendly\nminion to your hand.\nIt costs (2) less.",
+        "type": "WEAPON",
+        "activeVersion": 0,
+        "versions": [
+          {
+            "name": "Some battlecries",
+            "priorities": [
+              {
+                "minCards": 4,
+                "maxCards": 6,
+                "id": "7a6b7e29-e317-4c28-9d03-7a050abc6406",
+                "filters": [
+                  {
+                    "property": "mechanics",
+                    "operation": "INCLUDES",
+                    "minValue": "BATTLECRY"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "artist": "Mike Sass",
+        "attack": 6,
+        "cardClass": ["PRIEST"],
+        "collectible": true,
+        "cost": 8,
+        "dbfId": 52627,
+        "elite": true,
+        "flavor": "She always manages to lift your spirits.",
+        "health": 8,
+        "id": "DAL_721",
+        "mechanics": ["TRIGGER_VISUAL"],
+        "name": "Catrina Muerte",
+        "rarity": "LEGENDARY",
+        "set": 15,
+        "imageUrl": "catrina-muerte.png",
+        "tile": "DAL_721.png",
+        "extra": ["VALUE"],
+        "rating": 2,
+        "text": "[x]At the end of your turn,\nsummon a friendly minion\nthat died this game.",
+        "type": "MINION"
+      },
+      {
+        "artist": "J. Axer",
+        "cardClass": ["PRIEST"],
+        "collectible": true,
+        "cost": 0,
+        "dbfId": 52632,
+        "flavor": "Please confirm your age before reading this flavor text.",
+        "id": "DAL_723",
+        "name": "Forbidden Words",
+        "playRequirements": { "REQ_MINION_TARGET": 0, "REQ_TARGET_TO_PLAY": 0 },
+        "rarity": "RARE",
+        "set": 15,
+        "imageUrl": "forbidden-words.png",
+        "tile": "DAL_723.png",
+        "extra": ["HARD_REMOVAL", "SMALL_REMOVAL"],
+        "rating": 3,
+        "text": "[x]Spend all your Mana.\nDestroy a minion with that\nmuch Attack or less.",
+        "type": "SPELL"
+      },
+      {
+        "artist": "Arthur Bozonnet",
+        "cardClass": ["PRIEST"],
+        "collectible": true,
+        "cost": 9,
+        "dbfId": 52633,
+        "flavor": "One's company, two's a crowd, and three's a “mass” resurrection, apparently.",
+        "id": "DAL_724",
+        "name": "Mass Resurrection",
+        "playRequirements": {
+          "REQ_FRIENDLY_MINION_DIED_THIS_GAME": 0,
+          "REQ_NUM_MINION_SLOTS": 1
+        },
+        "rarity": "RARE",
+        "set": 15,
+        "imageUrl": "mass-resurrection.png",
+        "tile": "DAL_724.png",
+        "extra": ["VALUE"],
+        "rating": 2,
+        "text": "Summon 3 friendly minions that died\nthis game.",
+        "type": "SPELL"
+      },
+      {
+        "artist": "Alex Horley",
+        "attack": 4,
+        "cardClass": ["SHAMAN"],
+        "collectible": true,
+        "cost": 4,
+        "dbfId": 52636,
+        "elite": true,
+        "flavor": "Wanna know how he got those scars? So does he.",
+        "health": 4,
+        "id": "DAL_726",
+        "mechanics": ["AURA"],
+        "name": "Scargil",
+        "race": "MURLOC",
+        "rarity": "LEGENDARY",
+        "set": 15,
+        "imageUrl": "scargil.png",
+        "tile": "DAL_726.png",
+        "extra": ["GENERAL"],
+        "rating": 3,
+        "text": "Your Murlocs cost (1).",
+        "type": "MINION",
+        "activeVersion": 0,
+        "versions": [
+          {
+            "name": "Lots of murlocks",
+            "priorities": [
+              {
+                "minCards": 8,
+                "maxCards": 10,
+                "id": "6bc7593c-805d-42d4-9187-8916a6a52bce",
+                "filters": [
+                  {
+                    "property": "text",
+                    "operation": "MATCH",
+                    "minValue": "murloc"
+                  },
+                  {
+                    "property": "name",
+                    "operation": "NOT_EQUALS",
+                    "minValue": "Scargil"
+                  },
+                  {
+                    "property": "name",
+                    "operation": "NOT_EQUALS",
+                    "minValue": "Hungry Crab"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "artist": "Eva Widermann",
+        "cardClass": ["PALADIN"],
+        "collectible": true,
+        "cost": 3,
+        "dbfId": 52660,
+        "flavor": "Even the smallest minion can change the outcome of the game.",
+        "id": "DAL_727",
+        "name": "Call to Adventure",
+        "rarity": "RARE",
+        "set": 15,
+        "imageUrl": "call-to-adventure.png",
+        "tile": "DAL_727.png",
+        "extra": ["CARD_DRAW"],
+        "rating": 2,
+        "text": "Draw the lowest Cost minion from your deck. Give it +2/+2.",
+        "type": "SPELL",
+        "activeVersion": 0,
+        "versions": [
+          {
+            "name": "Cheap minions",
+            "priorities": [
+              {
+                "minCards": 2,
+                "maxCards": 2,
+                "id": "29d6e98a-8073-45f5-a28f-fdb4b8ce9676",
+                "filters": [
+                  {
+                    "property": "name",
+                    "operation": "EQUALS",
+                    "minValue": "Immortal Prelate"
+                  }
+                ]
+              },
+              {
+                "minCards": 6,
+                "maxCards": 8,
+                "id": "496d6d3c-8bf0-4f6d-ad2f-d1a01d992cc1",
+                "filters": [
+                  {
+                    "property": "type",
+                    "operation": "EQUALS",
+                    "minValue": "MINION"
+                  },
+                  {
+                    "property": "cost",
+                    "operation": "LESS_THAN",
+                    "minValue": 3
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "Immortal Prelate",
+            "priorities": [
+              {
+                "minCards": 2,
+                "maxCards": 2,
+                "id": "94ab986b-544a-4b75-8810-e8662eba3db7",
+                "filters": [
+                  {
+                    "property": "name",
+                    "operation": "EQUALS",
+                    "minValue": "Immortal Prelate"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "artist": "L. Lullabi & K. Turovec",
+        "cardClass": ["ROGUE"],
+        "collectible": true,
+        "cost": 1,
+        "dbfId": 52679,
+        "flavor": "Impossible to cast without cackling evilly.",
+        "id": "DAL_728",
+        "name": "Daring Escape",
+        "rarity": "COMMON",
+        "set": 15,
+        "imageUrl": "daring-escape.png",
+        "tile": "DAL_728.png",
+        "extra": ["GENERAL"],
+        "rating": 2,
+        "text": "Return all friendly minions to your hand.",
+        "type": "SPELL",
+        "activeVersion": 0,
+        "versions": [
+          {
+            "name": "Some battlecries",
+            "priorities": [
+              {
+                "minCards": 4,
+                "maxCards": 6,
+                "id": "347c769d-ddbb-44a9-8c58-758ff781662f",
+                "filters": [
+                  {
+                    "property": "mechanics",
+                    "operation": "INCLUDES",
+                    "minValue": "BATTLECRY"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "artist": "J. Axer",
+        "attack": 3,
+        "cardClass": ["PRIEST"],
+        "collectible": true,
+        "cost": 3,
+        "dbfId": 52715,
+        "elite": true,
+        "flavor": "Of course she knows the future, she’s been looking at your cards the WHOLE TIME!",
+        "health": 2,
+        "id": "DAL_729",
+        "mechanics": ["BATTLECRY"],
+        "name": "Madame Lazul",
+        "rarity": "LEGENDARY",
+        "referencedTags": ["DISCOVER"],
+        "set": 15,
+        "imageUrl": "madame-lazul.png",
+        "tile": "DAL_729.png",
+        "extra": ["VALUE"],
+        "rating": 3,
+        "text": "[x]<b>Battlecry:</b> <b>Discover</b> a\ncopy of a card in your\nopponent's hand.",
+        "type": "MINION"
+      },
+      {
+        "artist": "Konstantin Turovec",
+        "cardClass": ["PALADIN"],
+        "collectible": true,
+        "cost": 5,
+        "dbfId": 52742,
+        "flavor": "If you don’t fight to the death, it’s Duel Yielding.",
+        "id": "DAL_731",
+        "name": "Duel!",
+        "rarity": "EPIC",
+        "set": 15,
+        "imageUrl": "duel.png",
+        "tile": "DAL_731.png",
+        "extra": ["GENERAL"],
+        "rating": 1,
+        "text": "Summon a minion from each player's deck.\nThey fight!",
+        "type": "SPELL",
+        "activeVersion": 0,
+        "versions": [
+          {
+            "name": "Big Minions",
+            "priorities": [
+              {
+                "minCards": 4,
+                "maxCards": 6,
+                "id": "bb207d4e-dc0b-4f0e-8b49-8e15af4ec26c",
+                "filters": [
+                  {
+                    "property": "type",
+                    "operation": "EQUALS",
+                    "minValue": "MINION"
+                  },
+                  {
+                    "property": "cost",
+                    "operation": "GREATER_THAN",
+                    "minValue": 7
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "artist": "James Ryman",
+        "attack": 2,
+        "cardClass": ["DRUID"],
+        "collectible": true,
+        "cost": 2,
+        "dbfId": 52809,
+        "elite": true,
+        "flavor": "Keeps your choices handy.",
+        "health": 3,
+        "id": "DAL_732",
+        "mechanics": ["TRIGGER_VISUAL"],
+        "name": "Keeper Stalladris",
+        "rarity": "LEGENDARY",
+        "set": 15,
+        "imageUrl": "keeper-stallandris.png",
+        "tile": "DAL_732.png",
+        "extra": ["VALUE"],
+        "rating": 3,
+        "text": "After you cast a <b>Choose One</b> spell, add copies of both choices to your hand.",
+        "type": "MINION",
+        "activeVersion": 0,
+        "versions": [
+          {
+            "name": "Default",
+            "priorities": [
+              {
+                "minCards": 6,
+                "maxCards": 8,
+                "id": "ea35ca00-9db7-4458-912c-155064f78cac",
+                "filters": [
+                  {
+                    "property": "text",
+                    "operation": "MATCH",
+                    "minValue": "choose one"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "artist": "L. Lullabi & K. Turovec",
+        "cardClass": ["DRUID"],
+        "collectible": true,
+        "cost": 2,
+        "dbfId": 52810,
+        "flavor": "They're a nightmare to deal with.",
+        "id": "DAL_733",
+        "name": "Dreamway Guardians",
+        "playRequirements": { "REQ_MINION_TARGET": 0 },
+        "rarity": "RARE",
+        "referencedTags": ["LIFESTEAL"],
+        "set": 15,
+        "imageUrl": "dreamway-guardians.png",
+        "tile": "DAL_733.png",
+        "extra": ["MIN_GEN"],
+        "rating": 2,
+        "text": "Summon two 1/2 Dryads with <b>Lifesteal</b>.",
+        "type": "SPELL"
+      },
+      {
+        "artist": "Sean McNally",
+        "attack": 2,
+        "cardClass": ["NEUTRAL"],
+        "collectible": true,
+        "cost": 2,
+        "dbfId": 52866,
+        "flavor": "Don't make her raise her \"shush\"!",
+        "health": 3,
+        "id": "DAL_735",
+        "mechanics": ["BATTLECRY"],
+        "name": "Dalaran Librarian",
+        "rarity": "COMMON",
+        "referencedTags": ["SILENCE"],
+        "set": 15,
+        "imageUrl": "dalaran-librarian.png",
+        "tile": "DAL_735.png",
+        "extra": ["GENERAL"],
+        "rating": 2,
+        "text": "<b>Battlecry:</b> <b>Silence</b>\nadjacent minions.",
+        "type": "MINION"
+      },
+      {
+        "artist": "James Ryman",
+        "attack": 7,
+        "cardClass": ["NEUTRAL"],
+        "collectible": true,
+        "cost": 8,
+        "dbfId": 52870,
+        "elite": true,
+        "flavor": "Your deck is just another organizational challenge to her.",
+        "health": 7,
+        "id": "DAL_736",
+        "mechanics": ["BATTLECRY"],
+        "name": "Archivist Elysiana",
+        "rarity": "LEGENDARY",
+        "referencedTags": ["DISCOVER"],
+        "set": 15,
+        "imageUrl": "archivist-elysiana.png",
+        "tile": "DAL_736.png",
+        "extra": ["VALUE"],
+        "rating": 2,
+        "text": "<b>Battlecry:</b> <b>Discover</b> 5 cards. Replace your deck with 2 copies of each.",
+        "type": "MINION"
+      },
+      {
+        "artist": "Wayne Wu",
+        "attack": 6,
+        "cardClass": ["NEUTRAL"],
+        "collectible": true,
+        "cost": 8,
+        "dbfId": 52902,
+        "flavor": "And your minions with mega-windfury get... dizzy.",
+        "health": 6,
+        "id": "DAL_742",
+        "mechanics": ["AURA"],
+        "name": "Whirlwind Tempest",
+        "race": "ELEMENTAL",
+        "rarity": "EPIC",
+        "referencedTags": ["WINDFURY"],
+        "set": 15,
+        "imageUrl": "whirlwind-tempest.png",
+        "tile": "DAL_742.png",
+        "extra": ["GENERAL"],
+        "rating": 1,
+        "text": "Your minions with <b>Windfury</b> have <b>Mega-Windfury</b>.",
+        "type": "MINION",
+        "activeVersion": 0,
+        "versions": [
+          {
+            "name": "Windfury minions",
+            "priorities": [
+              {
+                "minCards": 6,
+                "maxCards": 6,
+                "id": "483fd933-a237-44bb-af5d-a69b231adc86",
+                "filters": [
+                  {
+                    "property": "mechanics",
+                    "operation": "INCLUDES",
+                    "minValue": "WINDFURY"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "artist": "Matt Dixon",
+        "attack": 2,
+        "cardClass": ["NEUTRAL"],
+        "collectible": true,
+        "cost": 2,
+        "dbfId": 52935,
+        "flavor": "This is CLEARLY their first rodeo.",
+        "health": 1,
+        "id": "DAL_743",
+        "mechanics": ["DEATHRATTLE", "RUSH"],
+        "name": "Hench-Clan Hogsteed",
+        "race": "BEAST",
+        "rarity": "COMMON",
+        "set": 15,
+        "imageUrl": "hench-clan-hogsteed.png",
+        "tile": "DAL_743.png",
+        "extra": ["SMALL_REMOVAL"],
+        "rating": 2,
+        "text": "<b>Rush</b>\n<b>Deathrattle:</b> Summon a 1/1 Murloc.",
+        "type": "MINION"
+      },
+      {
+        "artist": "Anton Zemskov",
+        "attack": 5,
+        "cardClass": ["NEUTRAL"],
+        "collectible": true,
+        "cost": 3,
+        "dbfId": 52936,
+        "flavor": "When you need to rage anonymously.",
+        "health": 1,
+        "id": "DAL_744",
+        "mechanics": ["BATTLECRY"],
+        "name": "Faceless Rager",
+        "playRequirements": {
+          "REQ_FRIENDLY_TARGET": 0,
+          "REQ_MINION_TARGET": 0,
+          "REQ_TARGET_IF_AVAILABLE": 0
+        },
+        "rarity": "COMMON",
+        "set": 15,
+        "imageUrl": "faceless-rager.png",
+        "tile": "DAL_744.png",
+        "extra": ["TEMPO"],
+        "rating": 3,
+        "targetingArrowText": "Copy a friendly minion's Health.",
+        "text": "<b>Battlecry:</b> Copy a friendly minion's Health.",
+        "type": "MINION",
+        "activeVersion": 0,
+        "versions": [
+          {
+            "name": "Midrange/high-health minions",
+            "priorities": [
+              {
+                "minCards": 4,
+                "maxCards": 4,
+                "id": "35ef147a-4980-4601-a7f8-832c2e26243c",
+                "filters": [
+                  {
+                    "property": "type",
+                    "operation": "EQUALS",
+                    "minValue": "MINION"
+                  },
+                  {
+                    "property": "cost",
+                    "operation": "LESS_THAN",
+                    "minValue": 5
+                  },
+                  {
+                    "property": "health",
+                    "operation": "GREATER_THAN",
+                    "minValue": 4
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "artist": "Evgeniy Dlinnov",
+        "attack": 3,
+        "cardClass": ["NEUTRAL"],
+        "collectible": true,
+        "cost": 3,
+        "dbfId": 52940,
+        "faction": "ALLIANCE",
+        "flavor": "Your gryphon will be summoned following a brief safety demonstration.",
+        "health": 4,
+        "id": "DAL_747",
+        "mechanics": ["BATTLECRY"],
+        "name": "Flight Master",
+        "rarity": "COMMON",
+        "set": 15,
+        "imageUrl": "flight-master.png",
+        "tile": "DAL_747.png",
+        "extra": ["MIN_GEN", "FAST"],
+        "rating": 2,
+        "text": "<b>Battlecry:</b> Summon a 2/2 Gryphon for each player.",
+        "type": "MINION"
+      },
+      {
+        "artist": "Jakub Kasper",
+        "attack": 0,
+        "cardClass": ["NEUTRAL"],
+        "collectible": true,
+        "cost": 2,
+        "dbfId": 52942,
+        "flavor": "If it soaks too long, it becomes a reservoir hog.",
+        "health": 6,
+        "id": "DAL_748",
+        "mechanics": ["SPELLPOWER"],
+        "name": "Mana Reservoir",
+        "race": "ELEMENTAL",
+        "rarity": "COMMON",
+        "set": 15,
+        "imageUrl": "mana-reservoir.png",
+        "tile": "DAL_748.png",
+        "extra": ["GENERAL"],
+        "rating": 1,
+        "spellDamage": 2,
+        "text": "<b>Spell Damage +1</b>",
+        "type": "MINION",
+        "activeVersion": 0,
+        "versions": [
+          {
+            "name": "Some damage spells",
+            "priorities": [
+              {
+                "minCards": 4,
+                "maxCards": 6,
+                "id": "2e0fe6ba-4976-48a5-93c3-5b89305e71d1",
+                "filters": [
+                  {
+                    "property": "type",
+                    "operation": "EQUALS",
+                    "minValue": "SPELL"
+                  },
+                  {
+                    "property": "text",
+                    "operation": "MATCH",
+                    "minValue": "deal \\$[0-9]* damage"
+                  },
+                  {
+                    "property": "cost",
+                    "operation": "LESS_THAN",
+                    "minValue": 6
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "artist": "Matt Dixon",
+        "attack": 3,
+        "cardClass": ["NEUTRAL"],
+        "collectible": true,
+        "cost": 5,
+        "dbfId": 52943,
+        "flavor": "Mwahahaha! You'll never catch him this time!",
+        "health": 6,
+        "id": "DAL_749",
+        "mechanics": ["DEATHRATTLE"],
+        "name": "Recurring Villain",
+        "rarity": "RARE",
+        "set": 15,
+        "imageUrl": "recurring-villain.png",
+        "tile": "DAL_749.png",
+        "extra": ["GENERAL"],
+        "rating": 1,
+        "text": "<b>Deathrattle:</b> If this minion has 4 or more Attack, resummon it.",
+        "type": "MINION",
+        "activeVersion": 0,
+        "versions": [
+          {
+            "name": "Some buffs",
+            "priorities": [
+              {
+                "minCards": 4,
+                "maxCards": 4,
+                "id": "c1ccd1f4-48cb-40df-af1c-9da3859f576f",
+                "filters": [
+                  {
+                    "property": "extra",
+                    "operation": "INCLUDES",
+                    "minValue": "BUFF"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "artist": "Konstantin Turovec",
+        "attack": 4,
+        "cardClass": ["NEUTRAL"],
+        "collectible": true,
+        "cost": 6,
+        "dbfId": 52950,
+        "faction": "ALLIANCE",
+        "flavor": "Does he summon because of his madness, or is he mad from all the summoning?",
+        "health": 4,
+        "id": "DAL_751",
+        "mechanics": ["BATTLECRY"],
+        "name": "Mad Summoner",
+        "race": "DEMON",
+        "rarity": "RARE",
+        "set": 15,
+        "imageUrl": "mad-summoner.png",
+        "tile": "DAL_751.png",
+        "extra": ["MIN_GEN"],
+        "rating": 2,
+        "text": "[x]<b>Battlecry:</b> Fill each player's\nboard with 1/1 Imps.",
+        "type": "MINION"
+      },
+      {
+        "artist": "Anton Zemskov",
+        "attack": 6,
+        "cardClass": ["NEUTRAL"],
+        "collectible": true,
+        "cost": 8,
+        "dbfId": 52954,
+        "elite": true,
+        "flavor": "“I’m a real toy now!”",
+        "health": 6,
+        "id": "DAL_752",
+        "mechanics": ["BATTLECRY"],
+        "name": "Jepetto Joybuzz",
+        "rarity": "LEGENDARY",
+        "set": 15,
+        "imageUrl": "jepetto-joybuzz.png",
+        "tile": "DAL_752.png",
+        "extra": ["VALUE"],
+        "rating": 2,
+        "text": "<b>Battlecry:</b> Draw 2 minions from your deck. Set their Attack, Health, and Cost to 1.",
+        "type": "MINION"
+      },
+      {
+        "artist": "Dave Allsop",
+        "attack": 2,
+        "cardClass": ["WARRIOR"],
+        "collectible": true,
+        "cost": 2,
+        "dbfId": 53104,
+        "flavor": "It begs for scraps.",
+        "health": 2,
+        "id": "DAL_759",
+        "mechanics": ["TRIGGER_VISUAL"],
+        "name": "Vicious Scraphound",
+        "race": "MECHANICAL",
+        "rarity": "COMMON",
+        "set": 15,
+        "imageUrl": "vicious-scraphound.png",
+        "tile": "DAL_759.png",
+        "extra": ["GENERAL"],
+        "rating": 1,
+        "text": "Whenever this minion\ndeals damage, gain that much Armor.",
+        "type": "MINION"
+      },
+      {
+        "artist": "Matt Dixon",
+        "attack": 9,
+        "cardClass": ["NEUTRAL"],
+        "collectible": true,
+        "cost": 9,
+        "dbfId": 53024,
+        "flavor": "Shovel beats paper and rock!",
+        "health": 9,
+        "id": "DAL_760",
+        "mechanics": ["RUSH"],
+        "name": "Burly Shovelfist",
+        "rarity": "COMMON",
+        "set": 15,
+        "imageUrl": "burly-shovelfist.png",
+        "tile": "DAL_760.png",
+        "extra": ["VALUE"],
+        "rating": 2,
+        "text": "<b>Rush</b>",
+        "type": "MINION"
+      },
+      {
+        "artist": "Matt Dixon",
+        "cardClass": ["WARRIOR"],
+        "collectible": true,
+        "cost": 1,
+        "dbfId": 53124,
+        "flavor": "\"The beatings will continue until MY morale improves.\"",
+        "id": "DAL_769",
+        "name": "Improve Morale",
+        "playRequirements": { "REQ_MINION_TARGET": 0, "REQ_TARGET_TO_PLAY": 0 },
+        "rarity": "COMMON",
+        "set": 15,
+        "imageUrl": "improve-morale.png",
+        "tile": "DAL_769.png",
+        "extra": ["SMALL_REMOVAL"],
+        "rating": 2,
+        "text": "[x]Deal $1 damage\nto a minion.\nIf it survives, add a\n<b>Lackey</b> to your hand.",
+        "type": "SPELL"
+      },
+      {
+        "artist": "Jim Nelson",
+        "attack": 4,
+        "cardClass": ["WARRIOR"],
+        "collectible": true,
+        "cost": 4,
+        "dbfId": 53138,
+        "flavor": "The Alpha Devastator didn’t devastate enough. The Beta Devastator devastated too much. But the Omega was just right!",
+        "health": 5,
+        "id": "DAL_770",
+        "mechanics": ["BATTLECRY"],
+        "name": "Omega Devastator",
+        "playRequirements": { "REQ_MINION_TARGET": 0 },
+        "race": "MECHANICAL",
+        "rarity": "EPIC",
+        "set": 15,
+        "imageUrl": "omega-devastator.png",
+        "tile": "DAL_770.png",
+        "extra": ["HARD_REMOVAL"],
+        "rating": 2,
+        "targetingArrowText": "Deal 10 damage.",
+        "text": "[x]<b>Battlecry:</b> If you have 10\nMana Crystals, deal 10\ndamage to a minion.",
+        "type": "MINION"
+      },
+      {
+        "artist": "Rafael Zanchetin",
+        "attack": 5,
+        "cardClass": ["NEUTRAL"],
+        "collectible": true,
+        "cost": 4,
+        "dbfId": 53171,
+        "flavor": "His allies call him invaluable.",
+        "health": 6,
+        "id": "DAL_771",
+        "mechanics": ["TRIGGER_VISUAL"],
+        "name": "Soldier of Fortune",
+        "race": "ELEMENTAL",
+        "rarity": "COMMON",
+        "set": 15,
+        "imageUrl": "soldier-of-fortune.png",
+        "tile": "DAL_771.png",
+        "extra": ["TEMPO"],
+        "rating": 2,
+        "text": "Whenever this minion attacks, give your opponent a Coin.",
+        "type": "MINION"
+      },
+      {
+        "artist": "Tod Harris",
+        "attack": 1,
+        "cardClass": ["NEUTRAL"],
+        "collectible": true,
+        "cost": 3,
+        "dbfId": 53173,
+        "flavor": "Its small yet fierce riders are affectionately known as rug rats.",
+        "health": 6,
+        "id": "DAL_773",
+        "mechanics": ["TRIGGER_VISUAL"],
+        "name": "Magic Carpet",
+        "rarity": "EPIC",
+        "referencedTags": ["RUSH"],
+        "set": 15,
+        "imageUrl": "magic-carpet.png",
+        "tile": "DAL_773.png",
+        "extra": ["FAST", "BUFF"],
+        "rating": 2,
+        "text": "After you play a 1-Cost minion, give it +1 Attack and <b>Rush</b>.",
+        "type": "MINION",
+        "activeVersion": 0,
+        "versions": [
+          {
+            "name": "1 cost minions",
+            "priorities": [
+              {
+                "minCards": 6,
+                "maxCards": 8,
+                "id": "55f2333e-d99f-412f-af18-0ee6cf7d0b6f",
+                "filters": [
+                  {
+                    "property": "type",
+                    "operation": "EQUALS",
+                    "minValue": "MINION"
+                  },
+                  { "property": "cost", "operation": "EQUALS", "minValue": 1 }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "artist": "Maria Trepalina",
+        "attack": 5,
+        "cardClass": ["NEUTRAL"],
+        "collectible": true,
+        "cost": 7,
+        "dbfId": 53218,
+        "flavor": "*Taps roof of mammoth* “You can fit so many squirrels in this thing!”",
+        "health": 8,
+        "id": "DAL_774",
+        "mechanics": ["TRIGGER_VISUAL"],
+        "name": "Exotic Mountseller",
+        "rarity": "RARE",
+        "set": 15,
+        "imageUrl": "exotic-mountseller.png",
+        "tile": "DAL_774.png",
+        "extra": ["VALUE"],
+        "rating": 2,
+        "text": "Whenever you cast a spell, summon a random\n3-Cost Beast.",
+        "type": "MINION",
+        "activeVersion": 0,
+        "versions": [
+          {
+            "name": "Cheap Spells",
+            "priorities": [
+              {
+                "minCards": 4,
+                "maxCards": 4,
+                "id": "32b51236-f9df-474e-8f71-e9e43ec05a37",
+                "filters": [
+                  {
+                    "property": "type",
+                    "operation": "EQUALS",
+                    "minValue": "SPELL"
+                  },
+                  {
+                    "property": "cost",
+                    "operation": "LESS_THAN",
+                    "minValue": 4
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "artist": "Ivan Fomin",
+        "attack": 3,
+        "cardClass": ["NEUTRAL"],
+        "collectible": true,
+        "cost": 7,
+        "dbfId": 53249,
+        "flavor": "And you always thought they wore the candles just for fun.",
+        "health": 7,
+        "id": "DAL_775",
+        "mechanics": ["DEATHRATTLE", "TAUNT"],
+        "name": "Tunnel Blaster",
+        "rarity": "RARE",
+        "set": 15,
+        "imageUrl": "tunnel-blaster.png",
+        "tile": "DAL_775.png",
+        "extra": ["AOE"],
+        "rating": 2,
+        "text": "[x]<b>Taunt</b>\n<b>Deathrattle:</b> Deal 3 damage\nto all minions.",
+        "type": "MINION"
+      },
+      {
+        "artist": "Patrik Bjorkstrom",
+        "attack": 4,
+        "cardClass": ["DRUID"],
+        "collectible": true,
+        "collectionText": "<b>Rush</b>. <b>Battlecry:</b> If you've restored 5 Health this game, summon a copy of this.",
+        "cost": 5,
+        "dbfId": 53179,
+        "flavor": "Arrives alone, but usually leaves with a friend just like him.",
+        "health": 4,
+        "id": "DAL_799",
+        "mechanics": ["BATTLECRY", "RUSH"],
+        "name": "Crystal Stag",
+        "race": "BEAST",
+        "rarity": "EPIC",
+        "set": 15,
+        "imageUrl": "crystal-stag.png",
+        "tile": "DAL_799.png",
+        "extra": ["MIN_GEN"],
+        "rating": 2,
+        "text": "<b>Rush</b>. <b>Battlecry:</b> If you've restored 5 Health this game, summon a copy of this.@ <i>({0} left!)</i>@ <i>(Ready!)</i>",
+        "type": "MINION",
+        "activeVersion": 0,
+        "versions": [
+          {
+            "name": "Restore health",
+            "priorities": [
+              {
+                "minCards": 4,
+                "maxCards": 6,
+                "id": "3b898fbc-e6e9-44de-8da6-27c95ba57917",
+                "filters": [
+                  {
+                    "property": "text",
+                    "operation": "MATCH",
+                    "minValue": "restore.*health"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
         "artist": "Arthur Gimaldinov",
         "cardClass": ["MAGE"],
         "collectible": true,
@@ -66856,6 +71677,16 @@
         "operation": "EQUALS",
         "minValue": 14,
         "set": 14
+      },
+      {
+        "id": "a12f899e-f15a-4783-949e-86a7d6da5652",
+        "dbfId": 23,
+        "name": "Rise of Shadows",
+        "group": "Set",
+        "property": "set",
+        "operation": "EQUALS",
+        "minValue": 15,
+        "set": 15
       }
     ]
   }
