@@ -66,12 +66,13 @@ const prioritiesUnsatisfiedButNo0 = (availableCards, interestingCards) => intere
   }, []);
 
 /**
- * 4 cards in Rise of Shadows
+ * 5 cards in Rise of Shadows
  *
  * Mad Scientist - no secrets,
  * Subject 9 - no secrets,
  * Masked Contender - no secrets,
  * Sunreaver Spy - no secrets,
+ * Whirlwind Tempest (Windfury(Shaman) & buffs) - Windfury (spell)
  */
 it(`Data test #4: Keeps track of the Wild Druid-Neutral cards
     that their priorities don't find any cards.`, () => {
@@ -80,11 +81,11 @@ it(`Data test #4: Keeps track of the Wild Druid-Neutral cards
 
   const result = prioritiesThatFindNothing(availableCards, interestingCards, 0);
 
-  expect(result.length).toEqual(4);
+  expect(result.length).toEqual(5);
 });
 
 /**
- * 16 cards in Rise of Shadows
+ * 17 cards in Rise of Shadows
  *
  * Spiteful Smith - No 1+ weapon,
  * Bloodsail Raider - No 1+ weapon,
@@ -102,6 +103,7 @@ it(`Data test #4: Keeps track of the Wild Druid-Neutral cards
  * Subject 9 - no secrets,
  * Masked Contender - no secrets,
  * Sunreaver Spy - no secrets,
+ * Whirlwind Tempest (Windfury(Shaman) & buffs) - Windfury (spell)
  */
 it(`Data test #5: Keeps track of the Standard Druid-Neutral cards
     that their priorities don't find any cards.`, () => {
@@ -110,9 +112,14 @@ it(`Data test #5: Keeps track of the Standard Druid-Neutral cards
 
   const result = prioritiesThatFindNothing(availableCards, interestingCards, 0);
 
-  expect(result.length).toEqual(16);
+  expect(result.length).toEqual(17);
 });
 
+/**
+ * 1 cards in Rise of Shadows
+ *
+ * Whirlwind Tempest (Windfury(Shaman) & buffs) - Windfury (spell)
+ */
 it(`Data test #6: Keeps track of the Wild Hunter-Neutral cards
     that their priorities don't find any cards.`, () => {
   const availableCards = getAvailableCards(cards, 'Hunter', 'Wild');
@@ -120,14 +127,15 @@ it(`Data test #6: Keeps track of the Wild Hunter-Neutral cards
 
   const result = prioritiesThatFindNothing(availableCards, interestingCards, 0);
 
-  expect(result.length).toEqual(0);
+  expect(result.length).toEqual(1);
 });
 
 /**
- * 2 cards in Rise of Shadows
+ * 3 cards in Rise of Shadows
  *
  * Zilliax (Keywords) - No Corpsetaker,
  * Electrowright - No Spiteful Summoner,
+ * Whirlwind Tempest (Windfury(Shaman) & buffs) - Windfury (spell)
  */
 it(`Data test #7: Keeps track of the Standard Hunter-Neutral cards
     that their priorities don't find any cards.`, () => {
@@ -136,7 +144,7 @@ it(`Data test #7: Keeps track of the Standard Hunter-Neutral cards
 
   const result = prioritiesThatFindNothing(availableCards, interestingCards, 0);
 
-  expect(result.length).toEqual(2);
+  expect(result.length).toEqual(3);
 });
 
 // Shimmering Courser, The Voraxx, Hench-Clan Thug, Southsea Captain,
@@ -150,7 +158,7 @@ it(`Data test #8: Keeps track of the Wild Mage-Neutral cards
 
   const result = prioritiesThatFindNothing(availableCards, interestingCards, 0, 'MAGE');
 
-  expect(result.length).toEqual(16);
+  expect(result.length).toEqual(17);
 });
 
 // Hench-Clan Thug, The Voraxx, Southsea Captain, Dread Corsair, Bloodsail Raider,
@@ -162,25 +170,7 @@ it(`Data test #9: Keeps track of the Standard Mage-Neutral cards
 
   const result = prioritiesThatFindNothing(availableCards, interestingCards, 0);
 
-  expect(result.length).toEqual(10);
-});
-
-/**
- * 5 cards in Rise of Shadows
- *
- * Malygos (No cheap damage spells)
- * Darkmire Moonkin (No cheap damage spells)
- * Spellzerker (No cheap damage spells)
- * Spellweaver (No cheap damage spells)
- * Azerite Elemental (No cheap damage spells)
- */
-it(`Data test #10: Keeps track of the Wild Paladin-Neutral cards
-    that their priorities don't find any cards.`, () => {
-  const availableCards = getAvailableCards(cards, 'Paladin', 'Wild');
-  const interestingCards = getAvailableCards(cards, 'Paladin', 'Wild', true);
-
-  const result = prioritiesThatFindNothing(availableCards, interestingCards, 0);
-  expect(result.length).toEqual(5);
+  expect(result.length).toEqual(11);
 });
 
 /**
@@ -189,9 +179,29 @@ it(`Data test #10: Keeps track of the Wild Paladin-Neutral cards
  * Malygos (No cheap damage spells)
  * Darkmire Moonkin (No cheap damage spells)
  * Spellzerker (No cheap damage spells)
+ * Spellweaver (No cheap damage spells)
+ * Azerite Elemental (No cheap damage spells)
+ * Whirlwind Tempest (Windfury(Shaman) & buffs) - Windfury (spell)
+ */
+it(`Data test #10: Keeps track of the Wild Paladin-Neutral cards
+    that their priorities don't find any cards.`, () => {
+  const availableCards = getAvailableCards(cards, 'Paladin', 'Wild');
+  const interestingCards = getAvailableCards(cards, 'Paladin', 'Wild', true);
+
+  const result = prioritiesThatFindNothing(availableCards, interestingCards, 0);
+  expect(result.length).toEqual(6);
+});
+
+/**
+ * 7 cards in Rise of Shadows
+ *
+ * Malygos (No cheap damage spells)
+ * Darkmire Moonkin (No cheap damage spells)
+ * Spellzerker (No cheap damage spells)
  * Azerite Elemental (No cheap damage spells)
  * Zilliax (Keywords) - No Corpsetaker,
  * Electrowright - No Spiteful Summoner,
+ * Whirlwind Tempest (Windfury(Shaman) & buffs) - Windfury (spell)
  */
 it(`Data test #11: Keeps track of the Standard Paladin-Neutral cards
     that their priorities don't find any cards.`, () => {
@@ -200,11 +210,11 @@ it(`Data test #11: Keeps track of the Standard Paladin-Neutral cards
 
   const result = prioritiesThatFindNothing(availableCards, interestingCards, 0);
 
-  expect(result.length).toEqual(6);
+  expect(result.length).toEqual(7);
 });
 
 /**
- * 13 cards in Rise of Shadows
+ * 14 cards in Rise of Shadows
  *
  * Small-Time Buccaneer - No 1+ weapon,
  * Naga Corsair - No 1+ weapon,
@@ -219,6 +229,7 @@ it(`Data test #11: Keeps track of the Standard Paladin-Neutral cards
  * Subject 9 - no secrets,
  * Masked Contender - no secrets,
  * Sunreaver Spy - no secrets,
+ * Whirlwind Tempest (Windfury(Shaman) & buffs) - Windfury (spell)
  */
 it(`Data test #12: Keeps track of the Wild Priest-Neutral cards
     that their priorities don't find any cards.`, () => {
@@ -227,11 +238,11 @@ it(`Data test #12: Keeps track of the Wild Priest-Neutral cards
 
   const result = prioritiesThatFindNothing(availableCards, interestingCards, 0);
 
-  expect(result.length).toEqual(13);
+  expect(result.length).toEqual(14);
 });
 
 /**
- * 14 cards in Rise of Shadows
+ * 15 cards in Rise of Shadows
  *
  * Spiteful Smith - No 1+ weapon,
  * Bloodsail Raider - No 1+ weapon,
@@ -247,6 +258,7 @@ it(`Data test #12: Keeps track of the Wild Priest-Neutral cards
  * Subject 9 - no secrets,
  * Masked Contender - no secrets,
  * Sunreaver Spy - no secrets,
+ * Whirlwind Tempest (Windfury(Shaman) & buffs) - Windfury (spell)
  */
 it(`Data test #13: Keeps track of the Standard Priest-Neutral cards
    that their priorities don't find any cards.`, () => {
@@ -255,9 +267,14 @@ it(`Data test #13: Keeps track of the Standard Priest-Neutral cards
 
   const result = prioritiesThatFindNothing(availableCards, interestingCards, 0);
 
-  expect(result.length).toEqual(14);
+  expect(result.length).toEqual(15);
 });
 
+/**
+ * 1 card in Rise of Shadows
+ *
+ * Whirlwind Tempest (Windfury(Shaman) & buffs) - Windfury (spell)
+ */
 it(`Data test #14: Keeps track of the Wild Rogue-Neutral cards
     that their priorities don't find any cards.`, () => {
   const availableCards = getAvailableCards(cards, 'Rogue', 'Wild');
@@ -265,17 +282,18 @@ it(`Data test #14: Keeps track of the Wild Rogue-Neutral cards
 
   const result = prioritiesThatFindNothing(availableCards, interestingCards, 0);
 
-  expect(result.length).toEqual(0);
+  expect(result.length).toEqual(1);
 });
 
 /**
- * 5 cards in Rise of Shadows
+ * 6 cards in Rise of Shadows
  *
  * Zilliax (Keywords) - No Corpsetaker,
  * Electrowright - No Spiteful Summoner,
  * Subject 9 - no secrets,
  * Masked Contender - no secrets,
  * Sunreaver Spy - no secrets,
+ * Whirlwind Tempest (Windfury(Shaman) & buffs) - Windfury (spell)
  */
 it(`Data test #15: Keeps track of the Standard Rogue-Neutral cards
     that their priorities don't find any cards.`, () => {
@@ -284,16 +302,17 @@ it(`Data test #15: Keeps track of the Standard Rogue-Neutral cards
 
   const result = prioritiesThatFindNothing(availableCards, interestingCards, 0);
 
-  expect(result.length).toEqual(5);
+  expect(result.length).toEqual(6);
 });
 
 /**
- * 4 cards in Rise of Shadows
+ * 5 cards in Rise of Shadows
  *
  * Mad Scientist - no secrets,
  * Subject 9 - no secrets,
  * Masked Contender - no secrets,
  * Sunreaver Spy - no secrets,
+ * Archmage Vargoth (Some valuable spells)
  */
 it(`Data test #16: Keeps track of the Wild Shaman-Neutral cards
     that their priorities don't find any cards.`, () => {
@@ -302,17 +321,18 @@ it(`Data test #16: Keeps track of the Wild Shaman-Neutral cards
 
   const result = prioritiesThatFindNothing(availableCards, interestingCards, 0);
 
-  expect(result.length).toEqual(4);
+  expect(result.length).toEqual(5);
 });
 
 /**
- * 5 cards in Rise of Shadows
+ * 6 cards in Rise of Shadows
  *
  * Zilliax (Keywords) - No Corpsetaker,
  * Electrowright - No Spiteful Summoner,
  * Subject 9 - no secrets,
  * Masked Contender - no secrets,
  * Sunreaver Spy - no secrets,
+ * Archmage Vargoth (Some valuable spells)
  */
 it(`Data test #17: Keeps track of the Standard Shaman-Neutral cards
     that their priorities don't find any cards.`, () => {
@@ -321,11 +341,11 @@ it(`Data test #17: Keeps track of the Standard Shaman-Neutral cards
 
   const result = prioritiesThatFindNothing(availableCards, interestingCards, 0);
 
-  expect(result.length).toEqual(5);
+  expect(result.length).toEqual(6);
 });
 
 /**
- * 13 cards in Rise of Shadows
+ * 15 cards in Rise of Shadows
  *
  * Small-Time Buccaneer - No 1+ weapon,
  * Naga Corsair - No 1+ weapon,
@@ -340,6 +360,8 @@ it(`Data test #17: Keeps track of the Standard Shaman-Neutral cards
  * Subject 9 - no secrets,
  * Masked Contender - no secrets,
  * Sunreaver Spy - no secrets,
+ * Whirlwind Tempest (Windfury(Shaman) & buffs) - Windfury (spell)
+ * Archmage Vargoth (Some valuable spells)
  */
 it(`Data test #18: Keeps track of the Wild Warlock-Neutral cards
     that their priorities don't find any cards.`, () => {
@@ -348,11 +370,11 @@ it(`Data test #18: Keeps track of the Wild Warlock-Neutral cards
 
   const result = prioritiesThatFindNothing(availableCards, interestingCards, 0);
 
-  expect(result.length).toEqual(13);
+  expect(result.length).toEqual(15);
 });
 
 /**
- * 16 cards in Rise of Shadows
+ * 18 cards in Rise of Shadows
  *
  * Spiteful Smith - No 1+ weapon,
  * Bloodsail Raider - No 1+ weapon,
@@ -370,6 +392,8 @@ it(`Data test #18: Keeps track of the Wild Warlock-Neutral cards
  * Subject 9 - no secrets,
  * Masked Contender - no secrets,
  * Sunreaver Spy - no secrets,
+ * Whirlwind Tempest (Windfury(Shaman) & buffs) - Windfury (spell)
+ * Archmage Vargoth (Some valuable spells)
  */
 it(`Data test #19: Keeps track of the Standard Warlock-Neutral cards
     that their priorities don't find any cards.`, () => {
@@ -378,16 +402,17 @@ it(`Data test #19: Keeps track of the Standard Warlock-Neutral cards
 
   const result = prioritiesThatFindNothing(availableCards, interestingCards, 0);
 
-  expect(result.length).toEqual(16);
+  expect(result.length).toEqual(18);
 });
 
 /**
- * 4 cards in Rise of Shadows.
+ * 5 cards in Rise of Shadows.
  *
  * Mad Scientist - no secrets,
  * Subject 9 - no secrets,
  * Masked Contender - no secrets,
  * Sunreaver Spy - no secrets,
+ * Whirlwind Tempest (Windfury(Shaman) & buffs) - Windfury (spell)
  */
 it(`Data test #20: Keeps track of the Wild Warrior-Neutral cards that
     their priorities don't find any cards.`, () => {
@@ -396,11 +421,11 @@ it(`Data test #20: Keeps track of the Wild Warrior-Neutral cards that
 
   const result = prioritiesThatFindNothing(availableCards, interestingCards, 0);
 
-  expect(result.length).toEqual(4);
+  expect(result.length).toEqual(5);
 });
 
 /**
- * 7 cards in Rise of Shadows.
+ * 8 cards in Rise of Shadows.
  * The Boomship (Finisher) - No Charged Devilsaur,
  * The Boomship (Big Recruit Warrior) - No RECRUIT minions,
  * Zilliax (Keywords) - No Corpsetaker,
@@ -408,6 +433,7 @@ it(`Data test #20: Keeps track of the Wild Warrior-Neutral cards that
  * Subject 9 - secrets,
  * Masked Contender - secrets,
  * Sunreaver Spy - secrets
+ * Whirlwind Tempest (Windfury(Shaman) & buffs) - Windfury (spell)
  */
 
 it(`Data test #21: Keeps track of the Standard Warrior-Neutral cards
@@ -417,7 +443,7 @@ it(`Data test #21: Keeps track of the Standard Warrior-Neutral cards
 
   const result = prioritiesThatFindNothing(availableCards, interestingCards, 0);
 
-  expect(result.length).toEqual(7);
+  expect(result.length).toEqual(8);
 });
 
 // Baku the Mooneater, Genn Greymane, Hench-Clan Thug, Gloom Stag
@@ -432,15 +458,16 @@ it(`Data test #22: Keeps track of the Wild Druid-Neutral cards
 
   const result = prioritiesUnsatisfiedButNo0(availableCards, interestingCards);
 
-  expect(result.length).toEqual(20);
+  expect(result.length).toEqual(21);
 });
 
 /**
- * 3 cards in Rise of Shadows
+ * 4 cards in Rise of Shadows
  *
  * Baku the Mooneater
  * Genn Greymane
  * Gloom Stag
+ * Archmage Vargoth (Some valuable spells)
  */
 it(`Data test #23: Keeps track of the Standard Druid-Neutral cards
     that their priorities are not satisfied but return at least 1 card.`, () => {
@@ -449,7 +476,7 @@ it(`Data test #23: Keeps track of the Standard Druid-Neutral cards
 
   const result = prioritiesUnsatisfiedButNo0(availableCards, interestingCards);
 
-  expect(result.length).toEqual(3);
+  expect(result.length).toEqual(4);
 });
 
 // or more specifically, extract unique property names from an array of objects.

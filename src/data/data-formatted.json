@@ -54354,7 +54354,7 @@
         "rarity": "COMMON",
         "set": 12,
         "extra": ["HEAL"],
-        "rating": 3,
+        "rating": 2,
         "imageUrl": "636576870438475496.png",
         "tile": "GIL_667.png",
         "text": "Taunt Deathrattle: Restore 4 Health to your hero.",
@@ -57552,7 +57552,7 @@
         "text": "Change the Cost of minions in your deck to (1).",
         "type": "SPELL",
         "set": 13,
-        "rating": 3,
+        "rating": 2,
         "activeVersion": 0,
         "extra": ["GENERAL"],
         "imageUrl": "636688326666053416.png",
@@ -61629,7 +61629,7 @@
         "set": 14,
         "text": "Draw 2 Pirates from your deck. Combo: And a weapon.",
         "type": "SPELL",
-        "rating": 4,
+        "rating": 3,
         "extra": ["CARD_DRAW"],
         "imageUrl": "636791251192911489.png",
         "tile": "TRL_124.png",
@@ -65559,7 +65559,7 @@
         "imageUrl": "rafaams-scheme.png",
         "tile": "DAL_007.png",
         "extra": ["MIN_GEN"],
-        "rating": 1,
+        "rating": 2,
         "text": "Summon @ 1/1 |4(Imp, Imps). <i>(Upgrades each turn!)</i>",
         "type": "SPELL"
       },
@@ -65739,6 +65739,11 @@
                     "property": "mechanics",
                     "operation": "INCLUDES",
                     "minValue": "DEATHRATTLE"
+                  },
+                  {
+                    "property": "cost",
+                    "operation": "GREATER_THAN",
+                    "minValue": 3
                   }
                 ]
               }
@@ -66079,10 +66084,10 @@
         "imageUrl": "sweeping-strikes.png",
         "tile": "DAL_062.png",
         "extra": ["GENERAL"],
-        "rating": 1,
+        "rating": 2,
         "text": "Give a minion \"Also damages minions next to whomever this attacks.\"",
         "type": "SPELL",
-        "activeVersion": 0,
+        "activeVersion": 1,
         "versions": [
           {
             "name": "Poisonous",
@@ -66213,7 +66218,7 @@
             "priorities": [
               {
                 "minCards": 4,
-                "maxCards": 6,
+                "maxCards": 4,
                 "id": "7ab0d7f7-1809-438a-9ee6-9aa6ec7d32ce",
                 "filters": [
                   {
@@ -66229,7 +66234,29 @@
                   {
                     "property": "health",
                     "operation": "GREATER_THAN",
-                    "minValue": 6
+                    "minValue": 5
+                  },
+                  {
+                    "property": "name",
+                    "operation": "NOT_EQUALS",
+                    "minValue": "Doomsayer"
+                  }
+                ]
+              },
+              {
+                "minCards": 4,
+                "maxCards": 4,
+                "id": "c7d40dd9-84b9-4538-b872-3c32b4911f1b",
+                "filters": [
+                  {
+                    "property": "type",
+                    "operation": "EQUALS",
+                    "minValue": "MINION"
+                  },
+                  {
+                    "property": "text",
+                    "operation": "MATCH",
+                    "minValue": "can't attack"
                   }
                 ]
               }
@@ -66267,7 +66294,7 @@
             "priorities": [
               {
                 "minCards": 4,
-                "maxCards": 6,
+                "maxCards": 4,
                 "id": "bbc91c69-1679-4448-92d7-f05626680374",
                 "filters": [
                   {
@@ -66279,6 +66306,11 @@
                     "property": "cost",
                     "operation": "GREATER_THAN",
                     "minValue": 7
+                  },
+                  {
+                    "property": "name",
+                    "operation": "NOT_EQUALS",
+                    "minValue": "The Boom Reaver"
                   }
                 ]
               }
@@ -66711,6 +66743,11 @@
                     "property": "referencedTags",
                     "operation": "INCLUDES",
                     "minValue": "SECRET"
+                  },
+                  {
+                    "property": "name",
+                    "operation": "NOT_EQUALS",
+                    "minValue": "Desperate Measures"
                   }
                 ]
               }
@@ -66775,6 +66812,11 @@
                     "property": "extra",
                     "operation": "INCLUDES",
                     "minValue": "VALUE"
+                  },
+                  {
+                    "property": "name",
+                    "operation": "NOT_EQUALS",
+                    "minValue": "Bronze Herald"
                   }
                 ]
               }
@@ -66929,6 +66971,11 @@
                     "property": "mechanics",
                     "operation": "INCLUDES",
                     "minValue": "DEATHRATTLE"
+                  },
+                  {
+                    "property": "cost",
+                    "operation": "GREATER_THAN",
+                    "minValue": 2
                   }
                 ]
               }
@@ -66984,6 +67031,11 @@
                 "maxCards": 6,
                 "id": "b1597a79-43ac-45b6-ac88-8854fc862c70",
                 "filters": [
+                  {
+                    "property": "type",
+                    "operation": "EQUALS",
+                    "minValue": "SPELL"
+                  },
                   {
                     "property": "cost",
                     "operation": "LESS_THAN",
@@ -67250,7 +67302,7 @@
         "activeVersion": 0,
         "versions": [
           {
-            "name": "Default",
+            "name": "Restore health",
             "priorities": [
               {
                 "minCards": 4,
@@ -67261,6 +67313,11 @@
                     "property": "text",
                     "operation": "MATCH",
                     "minValue": "restore.*health"
+                  },
+                  {
+                    "property": "name",
+                    "operation": "NOT_EQUALS",
+                    "minValue": "Lifeweaver"
                   }
                 ]
               }
@@ -67295,14 +67352,19 @@
             "name": "Some heal",
             "priorities": [
               {
-                "minCards": 4,
-                "maxCards": 4,
+                "minCards": 8,
+                "maxCards": 8,
                 "id": "bc3824fe-b88d-47d4-99b2-f1f399f91e8e",
                 "filters": [
                   {
                     "property": "text",
                     "operation": "MATCH",
                     "minValue": "restore.*health"
+                  },
+                  {
+                    "property": "name",
+                    "operation": "NOT_EQUALS",
+                    "minValue": "Lucentbark"
                   }
                 ]
               }
@@ -67373,7 +67435,7 @@
         "activeVersion": 0,
         "versions": [
           {
-            "name": "1 cost minions",
+            "name": "One cost minions",
             "priorities": [
               {
                 "minCards": 4,
@@ -67581,9 +67643,14 @@
                 "id": "9a6a5490-d63f-48d1-a9e6-388bcf4c5577",
                 "filters": [
                   {
+                    "property": "type",
+                    "operation": "EQUALS",
+                    "minValue": "SPELL"
+                  },
+                  {
                     "property": "text",
                     "operation": "MATCH",
-                    "minValue": "deal \\$[0-9]* damage"
+                    "minValue": "deal.*damage"
                   }
                 ]
               }
@@ -67982,7 +68049,7 @@
         "rating": 2,
         "text": "<b>Battlecry:</b> Add a copy of each of your other <b>Battlecry</b> minions to your hand.",
         "type": "MINION",
-        "activeVersion": 0,
+        "activeVersion": 1,
         "versions": [
           {
             "name": "Some battlecries",
@@ -67996,6 +68063,38 @@
                     "property": "mechanics",
                     "operation": "INCLUDES",
                     "minValue": "BATTLECRY"
+                  },
+                  {
+                    "property": "name",
+                    "operation": "NOT_EQUALS",
+                    "minValue": "Barista Lynchen"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "Some valuable battlecries",
+            "priorities": [
+              {
+                "minCards": 4,
+                "maxCards": 6,
+                "id": "c685bd69-564d-4f4c-a3a8-6c63469d9a23",
+                "filters": [
+                  {
+                    "property": "mechanics",
+                    "operation": "INCLUDES",
+                    "minValue": "BATTLECRY"
+                  },
+                  {
+                    "property": "extra",
+                    "operation": "INCLUDES",
+                    "minValue": "VALUE"
+                  },
+                  {
+                    "property": "name",
+                    "operation": "NOT_EQUALS",
+                    "minValue": "Barista Lynchen"
                   }
                 ]
               }
@@ -68036,9 +68135,14 @@
                 "id": "2f1d9643-9fdd-4cc9-98a4-dc85f10dac04",
                 "filters": [
                   {
+                    "property": "type",
+                    "operation": "EQUALS",
+                    "minValue": "SPELL"
+                  },
+                  {
                     "property": "text",
                     "operation": "MATCH",
-                    "minValue": "deal \\$[0-9]* damage"
+                    "minValue": "deal.*damage"
                   },
                   {
                     "property": "cost",
@@ -68184,13 +68288,40 @@
             "priorities": [
               {
                 "minCards": 4,
-                "maxCards": 4,
+                "maxCards": 6,
                 "id": "d0749046-14f9-41b6-b325-91ac436e10a9",
                 "filters": [
                   {
                     "property": "type",
                     "operation": "EQUALS",
                     "minValue": "SPELL"
+                  },
+                  {
+                    "property": "cost",
+                    "operation": "LESS_THAN",
+                    "minValue": 7
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "Some valuable spells",
+            "priorities": [
+              {
+                "minCards": 4,
+                "maxCards": 4,
+                "id": "32583478-cdce-4680-882b-839e45d33993",
+                "filters": [
+                  {
+                    "property": "type",
+                    "operation": "EQUALS",
+                    "minValue": "SPELL"
+                  },
+                  {
+                    "property": "extra",
+                    "operation": "INCLUDES",
+                    "minValue": "VALUE"
                   },
                   {
                     "property": "cost",
@@ -68251,18 +68382,23 @@
             "priorities": [
               {
                 "minCards": 6,
-                "maxCards": 8,
+                "maxCards": 6,
                 "id": "94462a9d-4b36-4c4b-9093-334d793d2c80",
                 "filters": [
                   {
                     "property": "race",
                     "operation": "EQUALS",
                     "minValue": "DEMON"
+                  },
+                  {
+                    "property": "name",
+                    "operation": "NOT_EQUALS",
+                    "minValue": "Jumbo Imp"
                   }
                 ]
               },
               {
-                "minCards": 2,
+                "minCards": 4,
                 "maxCards": 4,
                 "id": "e021fa8e-b01a-4a0a-a028-b3e6013a21c1",
                 "filters": [
@@ -68303,8 +68439,8 @@
             "name": "Fast deck",
             "priorities": [
               {
-                "minCards": 8,
-                "maxCards": 10,
+                "minCards": 10,
+                "maxCards": 12,
                 "id": "77a054f2-aac3-4127-8f75-32a3ce0d3e13",
                 "filters": [
                   {
@@ -68577,14 +68713,14 @@
             "name": "Some cheap damage spells",
             "priorities": [
               {
-                "minCards": 4,
-                "maxCards": 6,
+                "minCards": 6,
+                "maxCards": 8,
                 "id": "5938523f-61e2-4aff-83a6-7b8e8f67c364",
                 "filters": [
                   {
                     "property": "text",
                     "operation": "MATCH",
-                    "minValue": "deal \\$[0-9]* damage"
+                    "minValue": "deal.*damage"
                   },
                   {
                     "property": "cost",
@@ -68853,6 +68989,18 @@
                     "minValue": "shuffle.*your deck"
                   }
                 ]
+              },
+              {
+                "minCards": 2,
+                "maxCards": 2,
+                "id": "7d5c9c95-312a-4551-97d6-6bb4b249c50e",
+                "filters": [
+                  {
+                    "property": "name",
+                    "operation": "EQUALS",
+                    "minValue": "Augmented Elekk"
+                  }
+                ]
               }
             ]
           },
@@ -68896,7 +69044,7 @@
         "rating": 3,
         "text": "[x]<b>Battlecry:</b> For each spell\nyou've cast this turn, add\na random Mage spell\nto your hand.",
         "type": "MINION",
-        "activeVersion": 0,
+        "activeVersion": 1,
         "versions": [
           {
             "name": "Spells",
@@ -69102,6 +69250,11 @@
                     "property": "mechanics",
                     "operation": "INCLUDES",
                     "minValue": "DEATHRATTLE"
+                  },
+                  {
+                    "property": "name",
+                    "operation": "NOT_INCLUDED_IN",
+                    "minValue": ["Saronite Taskmaster"]
                   }
                 ]
               }
@@ -69157,7 +69310,7 @@
             ]
           },
           {
-            "name": "Deathrattles",
+            "name": "Not small deathrattles",
             "priorities": [
               {
                 "minCards": 6,
@@ -69173,6 +69326,11 @@
                     "property": "mechanics",
                     "operation": "INCLUDES",
                     "minValue": "DEATHRATTLE"
+                  },
+                  {
+                    "property": "cost",
+                    "operation": "GREATER_THAN",
+                    "minValue": 3
                   }
                 ]
               }
@@ -69261,8 +69419,8 @@
         "set": 15,
         "imageUrl": "soul-of-the-murloc.png",
         "tile": "DAL_710.png",
-        "extra": ["GENERAL"],
-        "rating": 1,
+        "extra": ["BUFF"],
+        "rating": 2,
         "text": "Give your minions \"<b>Deathrattle:</b> Summon a 1/1 Murloc.\"",
         "type": "SPELL"
       },
@@ -69301,6 +69459,11 @@
                     "property": "text",
                     "operation": "MATCH",
                     "minValue": "opponent's class|another class|non-rogue"
+                  },
+                  {
+                    "property": "name",
+                    "operation": "NOT_EQUALS",
+                    "minValue": "Underbelly Fence"
                   }
                 ]
               },
@@ -69312,7 +69475,7 @@
                   {
                     "property": "text",
                     "operation": "MATCH",
-                    "minValue": "return.*minion"
+                    "minValue": "return.*friendly.*minion"
                   }
                 ]
               }
@@ -69352,6 +69515,11 @@
                     "property": "text",
                     "operation": "MATCH",
                     "minValue": "opponent's class|another class|non-rogue"
+                  },
+                  {
+                    "property": "name",
+                    "operation": "NOT_EQUALS",
+                    "minValue": "Vendetta"
                   }
                 ]
               }
@@ -69394,6 +69562,11 @@
                     "property": "text",
                     "operation": "MATCH",
                     "minValue": "shuffle.*your deck"
+                  },
+                  {
+                    "property": "name",
+                    "operation": "NOT_EQUALS",
+                    "minValue": "Tak Nozwhisker"
                   }
                 ]
               }
@@ -69431,6 +69604,11 @@
                 "maxCards": 6,
                 "id": "7a6b7e29-e317-4c28-9d03-7a050abc6406",
                 "filters": [
+                  {
+                    "property": "type",
+                    "operation": "EQUALS",
+                    "minValue": "MINION"
+                  },
                   {
                     "property": "mechanics",
                     "operation": "INCLUDES",
@@ -69530,7 +69708,7 @@
         "activeVersion": 0,
         "versions": [
           {
-            "name": "Lots of murlocks",
+            "name": "Lots of murlocs",
             "priorities": [
               {
                 "minCards": 8,
@@ -69581,18 +69759,6 @@
             "name": "Cheap minions",
             "priorities": [
               {
-                "minCards": 2,
-                "maxCards": 2,
-                "id": "29d6e98a-8073-45f5-a28f-fdb4b8ce9676",
-                "filters": [
-                  {
-                    "property": "name",
-                    "operation": "EQUALS",
-                    "minValue": "Immortal Prelate"
-                  }
-                ]
-              },
-              {
                 "minCards": 6,
                 "maxCards": 8,
                 "id": "496d6d3c-8bf0-4f6d-ad2f-d1a01d992cc1",
@@ -69606,6 +69772,18 @@
                     "property": "cost",
                     "operation": "LESS_THAN",
                     "minValue": 3
+                  }
+                ]
+              },
+              {
+                "minCards": 2,
+                "maxCards": 2,
+                "id": "29d6e98a-8073-45f5-a28f-fdb4b8ce9676",
+                "filters": [
+                  {
+                    "property": "name",
+                    "operation": "EQUALS",
+                    "minValue": "Immortal Prelate"
                   }
                 ]
               }
@@ -69657,6 +69835,11 @@
                 "maxCards": 6,
                 "id": "347c769d-ddbb-44a9-8c58-758ff781662f",
                 "filters": [
+                  {
+                    "property": "type",
+                    "operation": "EQUALS",
+                    "minValue": "MINION"
+                  },
                   {
                     "property": "mechanics",
                     "operation": "INCLUDES",
@@ -69758,7 +69941,7 @@
         "activeVersion": 0,
         "versions": [
           {
-            "name": "Default",
+            "name": "Choose two",
             "priorities": [
               {
                 "minCards": 6,
@@ -69874,6 +70057,62 @@
                 "id": "483fd933-a237-44bb-af5d-a69b231adc86",
                 "filters": [
                   {
+                    "property": "type",
+                    "operation": "EQUALS",
+                    "minValue": "MINION"
+                  },
+                  {
+                    "property": "mechanics",
+                    "operation": "INCLUDES",
+                    "minValue": "WINDFURY"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "Windfury(Shaman) & buffs",
+            "priorities": [
+              {
+                "minCards": 2,
+                "maxCards": 2,
+                "id": "d2bfe0d6-a75f-43f2-91db-c1fae91c56aa",
+                "filters": [
+                  {
+                    "property": "name",
+                    "operation": "EQUALS",
+                    "minValue": "Windfury"
+                  }
+                ]
+              },
+              {
+                "minCards": 6,
+                "maxCards": 6,
+                "id": "9309a420-6148-4566-865f-9930ddc1c5ee",
+                "filters": [
+                  {
+                    "property": "extra",
+                    "operation": "INCLUDES",
+                    "minValue": "BUFF"
+                  },
+                  {
+                    "property": "name",
+                    "operation": "NOT_EQUALS",
+                    "minValue": "Windfury"
+                  }
+                ]
+              },
+              {
+                "minCards": 2,
+                "maxCards": 4,
+                "id": "3fe9e409-9f14-443a-b735-434aa79e2c66",
+                "filters": [
+                  {
+                    "property": "type",
+                    "operation": "EQUALS",
+                    "minValue": "MINION"
+                  },
+                  {
                     "property": "mechanics",
                     "operation": "INCLUDES",
                     "minValue": "WINDFURY"
@@ -69928,7 +70167,7 @@
         "imageUrl": "faceless-rager.png",
         "tile": "DAL_744.png",
         "extra": ["TEMPO"],
-        "rating": 3,
+        "rating": 2,
         "targetingArrowText": "Copy a friendly minion's Health.",
         "text": "<b>Battlecry:</b> Copy a friendly minion's Health.",
         "type": "MINION",
@@ -69955,7 +70194,12 @@
                   {
                     "property": "health",
                     "operation": "GREATER_THAN",
-                    "minValue": 4
+                    "minValue": 5
+                  },
+                  {
+                    "property": "name",
+                    "operation": "NOT_EQUALS",
+                    "minValue": "Doomsayer"
                   }
                 ]
               }
@@ -70025,7 +70269,7 @@
                   {
                     "property": "text",
                     "operation": "MATCH",
-                    "minValue": "deal \\$[0-9]* damage"
+                    "minValue": "deal.*damage"
                   },
                   {
                     "property": "cost",
@@ -70065,7 +70309,7 @@
             "priorities": [
               {
                 "minCards": 4,
-                "maxCards": 4,
+                "maxCards": 6,
                 "id": "c1ccd1f4-48cb-40df-af1c-9da3859f576f",
                 "filters": [
                   {
@@ -70256,7 +70500,7 @@
         "activeVersion": 0,
         "versions": [
           {
-            "name": "1 cost minions",
+            "name": "One cost minions",
             "priorities": [
               {
                 "minCards": 6,
@@ -70337,7 +70581,7 @@
         "set": 15,
         "imageUrl": "tunnel-blaster.png",
         "tile": "DAL_775.png",
-        "extra": ["AOE"],
+        "extra": ["AOE", "STALL"],
         "rating": 2,
         "text": "[x]<b>Taunt</b>\n<b>Deathrattle:</b> Deal 3 damage\nto all minions.",
         "type": "MINION"
@@ -70378,6 +70622,11 @@
                     "property": "text",
                     "operation": "MATCH",
                     "minValue": "restore.*health"
+                  },
+                  {
+                    "property": "name",
+                    "operation": "NOT_EQUALS",
+                    "minValue": "Crystal Stag"
                   }
                 ]
               }
