@@ -65551,7 +65551,7 @@
         "collectionText": "Summon 1 1/1 |4(Imp, Imps). <i>(Upgrades each turn!)</i>",
         "cost": 3,
         "dbfId": 51371,
-        "flavor": "\"When your first plan fails... imp-rovise.\"",
+        "flavor": "'When your first plan fails... imp-rovise.'",
         "id": "DAL_007",
         "name": "Rafaam's Scheme",
         "rarity": "COMMON",
@@ -65567,10 +65567,10 @@
         "artist": "Konstantin Turovec",
         "cardClass": ["WARRIOR"],
         "collectible": true,
-        "collectionText": "Gain 1 Armor.\n<i>(Upgrades each turn!)</i>",
+        "collectionText": "Gain 1 Armor. <i>(Upgrades each turn!)</i>",
         "cost": 4,
         "dbfId": 51372,
-        "flavor": "“We did it! We blew up the vault!”\n“You mean the vault door?”\n“Oh. The doooor…”",
+        "flavor": "“We did it! We blew up the vault!” “You mean the vault door?” “Oh. The doooor…”",
         "id": "DAL_008",
         "name": "Dr. Boom's Scheme",
         "rarity": "COMMON",
@@ -65579,17 +65579,17 @@
         "tile": "DAL_008.png",
         "extra": ["HEAL"],
         "rating": 1,
-        "text": "Gain @ Armor.\n<i>(Upgrades each turn!)</i>",
+        "text": "Gain @ Armor. <i>(Upgrades each turn!)</i>",
         "type": "SPELL"
       },
       {
         "artist": "Arthur Gimaldinov",
         "cardClass": ["SHAMAN"],
         "collectible": true,
-        "collectionText": "Deal $1 damage\nto all minions.\n<i>(Upgrades each turn!)</i>",
+        "collectionText": "Deal $1 damage to all minions. <i>(Upgrades each turn!)</i>",
         "cost": 5,
         "dbfId": 51373,
-        "flavor": "\"All shall suffer!\"\n\"But Hagatha, those are your minions...\"\n\"I said ALL!!!\"",
+        "flavor": "'All shall suffer!' 'But Hagatha, those are your minions...' 'I said ALL!!!'",
         "id": "DAL_009",
         "name": "Hagatha's Scheme",
         "rarity": "RARE",
@@ -65598,17 +65598,17 @@
         "tile": "DAL_009.png",
         "extra": ["AOE"],
         "rating": 3,
-        "text": "Deal $@ damage\nto all minions.\n<i>(Upgrades each turn!)</i>",
+        "text": "Deal $@ damage to all minions. <i>(Upgrades each turn!)</i>",
         "type": "SPELL"
       },
       {
         "artist": "Konstantin Turovec",
         "cardClass": ["ROGUE"],
         "collectible": true,
-        "collectionText": "Choose a minion. Shuffle 1 |4(copy, copies) of it into your deck.\n<i>(Upgrades each turn!)</i>",
+        "collectionText": "Choose a minion. Shuffle 1 |4(copy, copies) of it into your deck. <i>(Upgrades each turn!)</i>",
         "cost": 1,
         "dbfId": 51375,
-        "flavor": "\"Many minions equals many treasures for king. Kobold arithmetic!\"",
+        "flavor": "'Many minions equals many treasures for king. Kobold arithmetic!'",
         "id": "DAL_010",
         "name": "Togwaggle's Scheme",
         "playRequirements": { "REQ_MINION_TARGET": 0, "REQ_TARGET_TO_PLAY": 0 },
@@ -65618,7 +65618,7 @@
         "tile": "DAL_010.png",
         "extra": ["VALUE"],
         "rating": 2,
-        "text": "Choose a minion. Shuffle @ |4(copy, copies) of it into your deck.\n<i>(Upgrades each turn!)</i>",
+        "text": "Choose a minion. Shuffle @ |4(copy, copies) of it into your deck. <i>(Upgrades each turn!)</i>",
         "type": "SPELL",
         "activeVersion": 0,
         "versions": [
@@ -65657,10 +65657,10 @@
         "artist": "J. Axer",
         "cardClass": ["PRIEST"],
         "collectible": true,
-        "collectionText": "Reduce the Attack of an enemy minion by\n1 until your next turn. <i>(Upgrades each turn!)</i>",
+        "collectionText": "Reduce the Attack of an enemy minion by 1 until your next turn. <i>(Upgrades each turn!)</i>",
         "cost": 0,
         "dbfId": 51376,
-        "flavor": "\"What's that you're dreaming?\nYou're weak and you're screaming!\nIt must be my scheming...\"",
+        "flavor": "'What's that you're dreaming? You're weak and you're screaming! It must be my scheming...'",
         "id": "DAL_011",
         "name": "Lazul's Scheme",
         "playRequirements": {
@@ -65674,7 +65674,7 @@
         "tile": "DAL_011.png",
         "extra": ["HARD_REMOVAL", "TEMPO"],
         "rating": 2,
-        "text": "Reduce the Attack of an enemy minion by\n@ until your next turn. <i>(Upgrades each turn!)</i>",
+        "text": "Reduce the Attack of an enemy minion by @ until your next turn. <i>(Upgrades each turn!)</i>",
         "type": "SPELL",
         "activeVersion": 0,
         "versions": [
@@ -65723,7 +65723,7 @@
         "extra": ["GENERAL"],
         "rating": 1,
         "targetingArrowText": "Transform into a 2/2 copy.",
-        "text": "<b>Battlecry:</b> Transform into a 2/2 copy of a friendly <b>Deathrattle</b> minion.",
+        "text": "Battlecry: Transform into a 2/2 copy of a friendly Deathrattle minion.",
         "type": "MINION",
         "activeVersion": 0,
         "versions": [
@@ -65769,7 +65769,7 @@
         "tile": "DAL_039.png",
         "extra": ["STALL"],
         "rating": 3,
-        "text": "[x]<b><b>Taunt</b></b>\n<b>Deathrattle:</b> Destroy a\n random enemy minion.",
+        "text": "Taunt Deathrattle: Destroy a  random enemy minion.",
         "type": "MINION"
       },
       {
@@ -65790,7 +65790,7 @@
         "tile": "DAL_040.png",
         "extra": ["TEMPO", "FAST"],
         "rating": 3,
-        "text": "<b>Deathrattle:</b> Restore 5 Health to the enemy hero.",
+        "text": "Deathrattle: Restore 5 Health to the enemy hero.",
         "type": "MINION",
         "activeVersion": 0,
         "versions": [
@@ -65844,7 +65844,7 @@
         "tile": "DAL_047.png",
         "extra": ["VALUE", "SMALL_REMOVAL", "HEAL"],
         "rating": 2,
-        "text": "<b>Lifesteal</b>, <b>Rush</b>, <b>Windfury</b>",
+        "text": "Lifesteal, Rush, Windfury",
         "type": "MINION"
       },
       {
@@ -65912,7 +65912,7 @@
         "tile": "DAL_052.png",
         "extra": ["GENERAL"],
         "rating": 1,
-        "text": "[x]<b>Battlecry:</b> Transform into\na 4/4 copy of a different\nminion in your deck.",
+        "text": "Battlecry: Transform into a 4/4 copy of a different minion in your deck.",
         "type": "MINION",
         "activeVersion": 0,
         "versions": [
@@ -65981,7 +65981,7 @@
         "tile": "DAL_058.png",
         "extra": ["STALL"],
         "rating": 1,
-        "text": "<b>Taunt</b>\n<b>Battlecry:</b> Your opponent summons a minion from their deck.",
+        "text": "Taunt Battlecry: Your opponent summons a minion from their deck.",
         "type": "MINION"
       },
       {
@@ -65990,7 +65990,7 @@
         "collectible": true,
         "cost": 10,
         "dbfId": 51734,
-        "flavor": "The first dimensional ripper had a point.\nThe second fell flat.\nThe THIRD one really started to take shape!",
+        "flavor": "The first dimensional ripper had a point. The second fell flat. The THIRD one really started to take shape!",
         "id": "DAL_059",
         "name": "Dimensional Ripper",
         "rarity": "RARE",
@@ -66046,7 +66046,7 @@
         "tile": "DAL_060.png",
         "extra": ["GENERAL"],
         "rating": 2,
-        "text": "[x]<b>Battlecry:</b> Shuffle a Bomb\ninto your opponent's deck.\nWhen drawn, it explodes\nfor 5 damage.",
+        "text": "Battlecry: Shuffle a Bomb into your opponent's deck. When drawn, it explodes for 5 damage.",
         "type": "MINION",
         "activeVersion": 0,
         "versions": [
@@ -66085,7 +66085,7 @@
         "tile": "DAL_062.png",
         "extra": ["GENERAL"],
         "rating": 2,
-        "text": "Give a minion \"Also damages minions next to whomever this attacks.\"",
+        "text": "Give a minion 'Also damages minions next to whomever this attacks.'",
         "type": "SPELL",
         "activeVersion": 1,
         "versions": [
@@ -66143,7 +66143,7 @@
         "tile": "DAL_063.png",
         "extra": ["SMALL_REMOVAL", "DAMAGE"],
         "rating": 2,
-        "text": "After your hero attacks, shuffle a Bomb into your [x]opponent's deck.",
+        "text": "After your hero attacks, shuffle a Bomb into your opponent's deck.",
         "type": "WEAPON"
       },
       {
@@ -66165,7 +66165,7 @@
         "tile": "DAL_064.png",
         "extra": ["VALUE"],
         "rating": 2,
-        "text": "[x]<b>Battlecry:</b> Summon two 1/1\nBoom Bots for each Bomb\nin your opponent's deck.",
+        "text": "Battlecry: Summon two 1/1 Boom Bots for each Bomb in your opponent's deck.",
         "type": "MINION",
         "activeVersion": 0,
         "versions": [
@@ -66209,7 +66209,7 @@
         "tile": "DAL_065.png",
         "extra": ["MIN_GEN"],
         "rating": 2,
-        "text": "<b>Silence</b> a friendly minion, then summon a copy of it.",
+        "text": "Silence a friendly minion, then summon a copy of it.",
         "type": "SPELL",
         "activeVersion": 0,
         "versions": [
@@ -66285,7 +66285,7 @@
         "tile": "DAL_070.png",
         "extra": ["VALUE", "SMALL_REMOVAL"],
         "rating": 3,
-        "text": "<b>Battlecry:</b> Summon a copy of a minion in your deck. Give it <b>Rush</b>.",
+        "text": "Battlecry: Summon a copy of a minion in your deck. Give it Rush.",
         "type": "MINION",
         "activeVersion": 0,
         "versions": [
@@ -66368,7 +66368,7 @@
         "extra": ["HARD_REMOVAL"],
         "rating": 3,
         "targetingArrowText": "Give a friendly Murloc Poisonous.",
-        "text": "<b>Battlecry:</b> Give a friendly Murloc <b>Poisonous</b>.",
+        "text": "Battlecry: Give a friendly Murloc Poisonous.",
         "type": "MINION",
         "activeVersion": 0,
         "versions": [
@@ -66421,7 +66421,7 @@
         "extra": ["HEAL"],
         "rating": 1,
         "targetingArrowText": "Restore 3 Health.",
-        "text": "[x]<b>Divine Shield</b>\n<b>Battlecry:</b> Restore #3 Health.",
+        "text": "Divine Shield Battlecry: Restore #3 Health.",
         "type": "MINION"
       },
       {
@@ -66442,7 +66442,7 @@
         "tile": "DAL_081.png",
         "extra": ["TEMPO"],
         "rating": 2,
-        "text": "[x]<b>Battlecry:</b> Your hero can't\nbe targeted by spells or\nHero Powers until your\nnext turn.",
+        "text": "Battlecry: Your hero can't be targeted by spells or Hero Powers until your next turn.",
         "type": "MINION"
       },
       {
@@ -66463,7 +66463,7 @@
         "tile": "DAL_085.png",
         "extra": ["GENERAL"],
         "rating": 1,
-        "text": "<b>Divine Shield</b>",
+        "text": "Divine Shield",
         "type": "MINION"
       },
       {
@@ -66485,7 +66485,7 @@
         "tile": "DAL_086.png",
         "extra": ["GENERAL"],
         "rating": 3,
-        "text": "<b>Battlecry:</b> If you control a <b>Secret</b>, gain +1/+1.",
+        "text": "Battlecry: If you control a Secret, gain +1/+1.",
         "type": "MINION",
         "activeVersion": 0,
         "versions": [
@@ -66526,7 +66526,7 @@
         "tile": "DAL_087.png",
         "extra": ["MIN_GEN"],
         "rating": 2,
-        "text": "<b>Battlecry:</b> Summon two 1/1 Amalgams with all minion types.",
+        "text": "Battlecry: Summon two 1/1 Amalgams with all minion types.",
         "type": "MINION"
       },
       {
@@ -66548,7 +66548,7 @@
         "tile": "DAL_088.png",
         "extra": ["STALL"],
         "rating": 2,
-        "text": "[x]<b>Taunt</b>\n<b>Deathrattle:</b> Summon a 0/5\nVault Safe with <b>Taunt</b>.",
+        "text": "Taunt Deathrattle: Summon a 0/5 Vault Safe with Taunt.",
         "type": "MINION"
       },
       {
@@ -66570,7 +66570,7 @@
         "tile": "DAL_089.png",
         "extra": ["CARD_DRAW"],
         "rating": 2,
-        "text": "<b>Battlecry:</b> If you have <b>Spell Damage</b>, draw a card.",
+        "text": "Battlecry: If you have Spell Damage, draw a card.",
         "type": "MINION",
         "activeVersion": 0,
         "versions": [
@@ -66611,7 +66611,7 @@
         "tile": "DAL_090.png",
         "extra": ["GENERAL"],
         "rating": 2,
-        "text": "<b>Stealth</b>",
+        "text": "Stealth",
         "type": "MINION"
       },
       {
@@ -66621,7 +66621,7 @@
         "collectible": true,
         "cost": 2,
         "dbfId": 52292,
-        "flavor": "\"Would sir like me to punch something?\"",
+        "flavor": "'Would sir like me to punch something?'",
         "health": 3,
         "id": "DAL_092",
         "name": "Arcane Servant",
@@ -66652,7 +66652,7 @@
         "tile": "DAL_095.png",
         "extra": ["GENERAL"],
         "rating": 1,
-        "text": "[x]<b>Battlecry:</b> Gain +1 Attack\nfor each spell in your hand.",
+        "text": "Battlecry: Gain +1 Attack for each spell in your hand.",
         "type": "MINION",
         "activeVersion": 0,
         "versions": [
@@ -66694,7 +66694,7 @@
         "extra": ["GENERAL"],
         "rating": 1,
         "spellDamage": 1,
-        "text": "<b>Taunt</b>\n<b>Spell Damage +1</b>",
+        "text": "Taunt Spell Damage +1",
         "type": "MINION"
       },
       {
@@ -66715,7 +66715,7 @@
         "tile": "DAL_141.png",
         "extra": ["FAST"],
         "rating": 4,
-        "text": "<b>Twinspell</b>\nCast a random Paladin <b>Secret</b>.",
+        "text": "Twinspell Cast a random Paladin Secret.",
         "type": "SPELL",
         "activeVersion": 0,
         "versions": [
@@ -66774,7 +66774,7 @@
         "tile": "DAL_146.png",
         "extra": ["VALUE"],
         "rating": 2,
-        "text": "<b>Deathrattle:</b> Add two 4/4 Dragons to your hand.",
+        "text": "Deathrattle: Add two 4/4 Dragons to your hand.",
         "type": "MINION",
         "activeVersion": 0,
         "versions": [
@@ -66842,7 +66842,7 @@
         "tile": "DAL_147.png",
         "extra": ["VALUE"],
         "rating": 2,
-        "text": "<b>Battlecry:</b> Give all Dragons in your hand +3/+3.",
+        "text": "Battlecry: Give all Dragons in your hand +3/+3.",
         "type": "MINION",
         "activeVersion": 0,
         "versions": [
@@ -66885,7 +66885,7 @@
         "tile": "DAL_163.png",
         "extra": ["VALUE"],
         "rating": 2,
-        "text": "<b>Battlecry:</b> <b>Discover</b> a\nMage minion.",
+        "text": "Battlecry: Discover a Mage minion.",
         "type": "MINION"
       },
       {
@@ -66955,7 +66955,7 @@
         "tile": "DAL_177.png",
         "extra": ["HARD_REMOVAL", "MIN_GEN", "VALUE", "FAST", "TEMPO"],
         "rating": 4,
-        "text": "<b>Twinspell</b>\nDestroy a minion. Summon 2 minions of the same Cost to replace it.",
+        "text": "Twinspell Destroy a minion. Summon 2 minions of the same Cost to replace it.",
         "type": "SPELL",
         "activeVersion": 0,
         "versions": [
@@ -67066,7 +67066,7 @@
         "tile": "DAL_185.png",
         "extra": ["HEAL"],
         "rating": 2,
-        "text": "[x]<b>Taunt</b>\nWhen you draw this, restore\n4 Health to your hero.",
+        "text": "Taunt When you draw this, restore 4 Health to your hero.",
         "type": "MINION"
       },
       {
@@ -67085,7 +67085,7 @@
         "tile": "DAL_256.png",
         "extra": ["MIN_GEN", "VALUE"],
         "rating": 2,
-        "text": "<b>Twinspell</b>\nSummon five 2/2 Treants.",
+        "text": "Twinspell Summon five 2/2 Treants.",
         "type": "SPELL",
         "activeVersion": 0,
         "versions": [
@@ -67142,7 +67142,7 @@
         "tile": "DAL_350.png",
         "extra": ["SMALL_REMOVAL", "HEAL"],
         "rating": 2,
-        "text": "<b>Choose One -</b> Deal $2 damage to a minion; or Restore #5 Health.",
+        "text": "Choose One - Deal $2 damage to a minion; or Restore #5 Health.",
         "type": "SPELL"
       },
       {
@@ -67162,7 +67162,7 @@
         "tile": "DAL_351.png",
         "extra": ["BUFF"],
         "rating": 2,
-        "text": "<b>Twinspell</b>\nGive your minions +1/+1.",
+        "text": "Twinspell Give your minions +1/+1.",
         "type": "SPELL",
         "activeVersion": 0,
         "versions": [
@@ -67213,7 +67213,7 @@
         "tile": "DAL_352.png",
         "extra": ["FAST", "VALUE"],
         "rating": 2,
-        "text": "<b>Discover</b> a Druid minion. If your hand has no minions, keep all 3.",
+        "text": "Discover a Druid minion. If your hand has no minions, keep all 3.",
         "type": "SPELL",
         "activeVersion": 0,
         "versions": [
@@ -67276,7 +67276,7 @@
         "tile": "DAL_354.png",
         "extra": ["MIN_GEN", "FAST"],
         "rating": 3,
-        "text": "<b>Deathrattle:</b> Add two 1/1 Squirrels to your hand.",
+        "text": "Deathrattle: Add two 1/1 Squirrels to your hand.",
         "type": "MINION"
       },
       {
@@ -67344,7 +67344,7 @@
         "tile": "DAL_357.png",
         "extra": ["VALUE"],
         "rating": 1,
-        "text": "<b>Taunt</b>\n<b>Deathrattle:</b> Go dormant. Restore 5 Health to awaken this minion.",
+        "text": "Taunt Deathrattle: Go dormant. Restore 5 Health to awaken this minion.",
         "type": "MINION",
         "activeVersion": 0,
         "versions": [
@@ -67409,7 +67409,7 @@
         "tile": "DAL_371.png",
         "extra": ["SMALL_REMOVAL", "VALUE"],
         "rating": 3,
-        "text": "Deal $4 damage to a minion. <b>Discover</b> a spell.",
+        "text": "Deal $4 damage to a minion. Discover a spell.",
         "type": "SPELL"
       },
       {
@@ -67430,7 +67430,7 @@
         "tile": "DAL_372.png",
         "extra": ["CARD_DRAW"],
         "rating": 1,
-        "text": "[x]Whenever you play a\n1-Cost minion, draw a\nspell from your deck.",
+        "text": "Whenever you play a 1-Cost minion, draw a spell from your deck.",
         "type": "MINION",
         "activeVersion": 0,
         "versions": [
@@ -67487,7 +67487,7 @@
         "tile": "DAL_373.png",
         "extra": ["SMALL_REMOVAL", "DAMAGE"],
         "rating": 3,
-        "text": "<b>Twinspell</b>\nDeal $1 damage.",
+        "text": "Twinspell Deal $1 damage.",
         "type": "SPELL"
       },
       {
@@ -67510,7 +67510,7 @@
         "tile": "DAL_376.png",
         "extra": ["GENERAL"],
         "rating": 2,
-        "text": "[x]<b>Deathrattle:</b> Summon a\nMech from your hand and\ntrigger its <b>Deathrattle</b>.",
+        "text": "Deathrattle: Summon a Mech from your hand and trigger its Deathrattle.",
         "type": "MINION",
         "activeVersion": 0,
         "versions": [
@@ -67567,7 +67567,7 @@
         "tile": "DAL_377.png",
         "extra": ["VALUE"],
         "rating": 2,
-        "text": "<b>Discover</b> a friendly <b>Deathrattle</b> minion that died this game. Also trigger its <b>Deathrattle</b>.",
+        "text": "Discover a friendly Deathrattle minion that died this game. Also trigger its Deathrattle.",
         "type": "SPELL",
         "activeVersion": 0,
         "versions": [
@@ -67608,7 +67608,7 @@
         "tile": "DAL_378.png",
         "extra": ["SMALL_REMOVAL", "VALUE"],
         "rating": 2,
-        "text": "<b>Twinspell</b>\nSummon a 5/5 Wyvern with <b>Rush</b>.",
+        "text": "Twinspell Summon a 5/5 Wyvern with Rush.",
         "type": "SPELL"
       },
       {
@@ -67630,7 +67630,7 @@
         "tile": "DAL_379.png",
         "extra": ["VALUE", "SMALL_REMOVAL", "DAMAGE"],
         "rating": 3,
-        "text": "<b>Battlecry:</b> Equip Thori'dal, the Stars' Fury.",
+        "text": "Battlecry: Equip Thori'dal, the Stars' Fury.",
         "type": "MINION",
         "activeVersion": 0,
         "versions": [
@@ -67677,7 +67677,7 @@
         "tile": "DAL_400.png",
         "extra": ["GENERAL"],
         "rating": 1,
-        "text": "<b>Battlecry:</b> Add a <b>Lackey</b> to your hand.",
+        "text": "Battlecry: Add a Lackey to your hand.",
         "type": "MINION"
       },
       {
@@ -67687,7 +67687,7 @@
         "collectible": true,
         "cost": 2,
         "dbfId": 52109,
-        "flavor": "Kobold! There’s a place you can handle\nI said kobold! When you’re short in the candle\nCast a spell with the E! V! I! L!",
+        "flavor": "Kobold! There’s a place you can handle I said kobold! When you’re short in the candle Cast a spell with the E! V! I! L!",
         "health": 2,
         "id": "DAL_413",
         "mechanics": ["DEATHRATTLE"],
@@ -67698,7 +67698,7 @@
         "tile": "DAL_413.png",
         "extra": ["GENERAL"],
         "rating": 2,
-        "text": "<b>Deathrattle:</b> Add a <b>Lackey</b> to your hand.",
+        "text": "Deathrattle: Add a Lackey to your hand.",
         "type": "MINION"
       },
       {
@@ -67719,7 +67719,7 @@
         "tile": "DAL_415.png",
         "extra": ["GENERAL"],
         "rating": 2,
-        "text": "<b>Combo:</b> Add two random <b>Lackeys</b> to your hand.",
+        "text": "Combo: Add two random Lackeys to your hand.",
         "type": "MINION"
       },
       {
@@ -67742,7 +67742,7 @@
         "tile": "DAL_416.png",
         "extra": ["VALUE"],
         "rating": 3,
-        "text": "<b>Battlecry:</b> <b>Discover</b> a spell from another class.",
+        "text": "Battlecry: Discover a spell from another class.",
         "type": "MINION"
       },
       {
@@ -67765,7 +67765,7 @@
         "tile": "DAL_417.png",
         "extra": ["VALUE"],
         "rating": 3,
-        "text": "<b>Battlecry:</b> If you control a <b>Lackey</b>, choose a fantastic treasure.",
+        "text": "Battlecry: If you control a Lackey, choose a fantastic treasure.",
         "type": "MINION",
         "activeVersion": 0,
         "versions": [
@@ -67812,7 +67812,7 @@
         "tile": "DAL_422.png",
         "extra": ["VALUE"],
         "rating": 3,
-        "text": "<b><b>Taunt</b>\nBattlecry:</b> Replace your hand and deck with <b>Legendary</b> minions.",
+        "text": "Taunt Battlecry: Replace your hand and deck with Legendary minions.",
         "type": "MINION"
       },
       {
@@ -67835,7 +67835,7 @@
         "tile": "DAL_431.png",
         "extra": ["VALUE"],
         "rating": 2,
-        "text": "[x]<b>Battlecry:</b> Add a 5/5\nHorror to your hand. Teach\nit two Shaman spells.",
+        "text": "Battlecry: Add a 5/5 Horror to your hand. Teach it two Shaman spells.",
         "type": "MINION"
       },
       {
@@ -67877,7 +67877,7 @@
         "tile": "DAL_433.png",
         "extra": ["GENERAL"],
         "rating": 3,
-        "text": "<b>Battlecry:</b> Add a <b>Lackey</b> to your hand. <b>Overload:</b> (1)",
+        "text": "Battlecry: Add a Lackey to your hand. Overload: (1)",
         "type": "MINION"
       },
       {
@@ -67898,7 +67898,7 @@
         "tile": "DAL_434.png",
         "extra": ["GENERAL"],
         "rating": 2,
-        "text": "Can't attack unless you have <b>Spell Damage</b>.",
+        "text": "Can't attack unless you have Spell Damage.",
         "type": "MINION",
         "activeVersion": 0,
         "versions": [
@@ -67956,7 +67956,7 @@
         "tile": "DAL_538.png",
         "extra": ["GENERAL"],
         "rating": 1,
-        "text": "<b>Battlecry:</b> Your opponent casts a random spell from their hand <i>(targets chosen randomly)</i>.",
+        "text": "Battlecry: Your opponent casts a random spell from their hand <i>(targets chosen randomly)</i>.",
         "type": "MINION"
       },
       {
@@ -67979,7 +67979,7 @@
         "extra": ["SMALL_REMOVAL", "DAMAGE"],
         "rating": 3,
         "targetingArrowText": "Deal 4 damage.",
-        "text": "<b>Battlecry:</b> If you're holding a spell that costs (5) or more, deal 4 damage.",
+        "text": "Battlecry: If you're holding a spell that costs (5) or more, deal 4 damage.",
         "type": "MINION",
         "activeVersion": 0,
         "versions": [
@@ -68025,7 +68025,7 @@
         "tile": "DAL_544.png",
         "extra": ["FAST", "HEAL", "TEMPO"],
         "rating": 3,
-        "text": "<b>Battlecry:</b> Restore #2 Health to all friendly characters.",
+        "text": "Battlecry: Restore #2 Health to all friendly characters.",
         "type": "MINION"
       },
       {
@@ -68036,7 +68036,7 @@
         "cost": 5,
         "dbfId": 52413,
         "elite": true,
-        "flavor": "\"Thanks a latte!\"",
+        "flavor": "'Thanks a latte!'",
         "health": 5,
         "id": "DAL_546",
         "mechanics": ["BATTLECRY"],
@@ -68047,7 +68047,7 @@
         "tile": "DAL_546.png",
         "extra": ["VALUE"],
         "rating": 2,
-        "text": "<b>Battlecry:</b> Add a copy of each of your other <b>Battlecry</b> minions to your hand.",
+        "text": "Battlecry: Add a copy of each of your other Battlecry minions to your hand.",
         "type": "MINION",
         "activeVersion": 1,
         "versions": [
@@ -68122,7 +68122,7 @@
         "tile": "DAL_548.png",
         "extra": ["GENERAL"],
         "rating": 1,
-        "text": "At the start of your turn, gain <b>Spell Damage +2</b>.",
+        "text": "At the start of your turn, gain Spell Damage +2.",
         "type": "MINION",
         "activeVersion": 0,
         "versions": [
@@ -68214,7 +68214,7 @@
         "tile": "DAL_551.png",
         "extra": ["STALL"],
         "rating": 2,
-        "text": "<b>Taunt</b>\nHas +2 Attack while you [x]have no other minions.",
+        "text": "Taunt Has +2 Attack while you have no other minions.",
         "type": "MINION"
       },
       {
@@ -68224,7 +68224,7 @@
         "collectible": true,
         "cost": 10,
         "dbfId": 52420,
-        "flavor": "\"My, my, what big minions I have!\"",
+        "flavor": "'My, my, what big minions I have!'",
         "health": 6,
         "id": "DAL_553",
         "mechanics": ["TRIGGER_VISUAL"],
@@ -68235,7 +68235,7 @@
         "tile": "DAL_553.png",
         "extra": ["VALUE"],
         "rating": 1,
-        "text": "At the end of your turn, summon a random\n6-Cost minion.",
+        "text": "At the end of your turn, summon a random 6-Cost minion.",
         "type": "MINION"
       },
       {
@@ -68257,7 +68257,7 @@
         "tile": "DAL_554.png",
         "extra": ["VALUE"],
         "rating": 2,
-        "text": "<b>Battlecry:</b> If your deck is empty, summon six 6/6 Greasefire Elementals.",
+        "text": "Battlecry: If your deck is empty, summon six 6/6 Greasefire Elementals.",
         "type": "MINION"
       },
       {
@@ -68279,7 +68279,7 @@
         "tile": "DAL_558.png",
         "extra": ["GENERAL"],
         "rating": 2,
-        "text": "[x]At the end of your turn, cast\na spell you've cast this turn\n<i>(targets are random)</i>.",
+        "text": "At the end of your turn, cast a spell you've cast this turn <i>(targets are random)</i>.",
         "type": "MINION",
         "activeVersion": 0,
         "versions": [
@@ -68352,7 +68352,7 @@
         "tile": "DAL_560.png",
         "extra": ["GENERAL"],
         "rating": 1,
-        "text": "<b>Taunt.</b> <b>Battlecry:</b> Gain +2/+2 for each other friendly minion.",
+        "text": "Taunt. Battlecry: Gain +2/+2 for each other friendly minion.",
         "type": "MINION"
       },
       {
@@ -68431,7 +68431,7 @@
         "tile": "DAL_563.png",
         "extra": ["BUFF"],
         "rating": 2,
-        "text": "<b>Deathrattle:</b> Give two random friendly minions +2/+2.",
+        "text": "Deathrattle: Give two random friendly minions +2/+2.",
         "type": "MINION",
         "activeVersion": 0,
         "versions": [
@@ -68474,7 +68474,7 @@
         "tile": "DAL_565.png",
         "extra": ["GENERAL"],
         "rating": 2,
-        "text": "[x]<b>Battlecry:</b> Shuffle 3 Portals\ninto your deck. When drawn,\nsummon a 2/2 Demon\nwith <b>Rush</b>.",
+        "text": "Battlecry: Shuffle 3 Portals into your deck. When drawn, summon a 2/2 Demon with Rush.",
         "type": "MINION"
       },
       {
@@ -68495,7 +68495,7 @@
         "tile": "DAL_566.png",
         "extra": ["GENERAL"],
         "rating": 1,
-        "text": "<b>Deathrattle:</b> Summon\nfour 1/1 Vengeful Scrolls.",
+        "text": "Deathrattle: Summon four 1/1 Vengeful Scrolls.",
         "type": "MINION"
       },
       {
@@ -68520,7 +68520,7 @@
         "tile": "DAL_568.png",
         "extra": ["BUFF", "HEAL"],
         "rating": 1,
-        "text": "<b>Twinspell</b>\nGive a friendly minion <b>Lifesteal</b>.",
+        "text": "Twinspell Give a friendly minion Lifesteal.",
         "type": "SPELL"
       },
       {
@@ -68539,7 +68539,7 @@
         "tile": "DAL_570.png",
         "extra": ["FAST"],
         "rating": 3,
-        "text": "<b>Secret:</b> When your opponent casts a spell, give your minions +2 Health.",
+        "text": "Secret: When your opponent casts a spell, give your minions +2 Health.",
         "type": "SPELL"
       },
       {
@@ -68561,7 +68561,7 @@
         "tile": "DAL_571.png",
         "extra": ["SMALL_REMOVAL", "DAMAGE"],
         "rating": 3,
-        "text": "<b>Battlecry:</b> If you control a\n<b>Secret</b>, gain +1 Attack.",
+        "text": "Battlecry: If you control a Secret, gain +1 Attack.",
         "type": "WEAPON",
         "activeVersion": 0,
         "versions": [
@@ -68604,7 +68604,7 @@
         "tile": "DAL_573.png",
         "extra": ["FAST"],
         "rating": 4,
-        "text": "Your <b>Secrets</b> trigger twice.",
+        "text": "Your Secrets trigger twice.",
         "type": "MINION",
         "activeVersion": 0,
         "versions": [
@@ -68652,7 +68652,7 @@
         "cost": 2,
         "dbfId": 52502,
         "elite": true,
-        "flavor": "\"What do you call two minions summoned at once? Twinions, haha! Wait... where are you going?\"",
+        "flavor": "'What do you call two minions summoned at once? Twinions, haha! Wait... where are you going?'",
         "health": 2,
         "id": "DAL_575",
         "mechanics": ["TRIGGER_VISUAL"],
@@ -68705,7 +68705,7 @@
         "extra": ["GENERAL"],
         "rating": 1,
         "spellDamage": 3,
-        "text": "<b>Spell Damage +3</b>\nYour spells cost (1) more.",
+        "text": "Spell Damage +3 Your spells cost (1) more.",
         "type": "MINION",
         "activeVersion": 0,
         "versions": [
@@ -68751,7 +68751,7 @@
         "tile": "DAL_577.png",
         "extra": ["SMALL_REMOVAL", "STALL"],
         "rating": 2,
-        "text": "<b>Twinspell</b>\n<b>Freeze</b> a minion.\nIf it's already <b>Frozen</b>,\ndeal $2 damage to it.",
+        "text": "Twinspell Freeze a minion. If it's already Frozen, deal $2 damage to it.",
         "type": "SPELL"
       },
       {
@@ -68771,7 +68771,7 @@
         "tile": "DAL_578.png",
         "extra": ["VALUE"],
         "rating": 2,
-        "text": "<b>Discover</b> a 6-Cost minion. Summon two copies of it.",
+        "text": "Discover a 6-Cost minion. Summon two copies of it.",
         "type": "SPELL"
       },
       {
@@ -68794,7 +68794,7 @@
         "tile": "DAL_581.png",
         "extra": ["STALL", "HEAL"],
         "rating": 2,
-        "text": "<b>Battlecry:</b> Restore both heroes to full Health.",
+        "text": "Battlecry: Restore both heroes to full Health.",
         "type": "MINION",
         "activeVersion": 0,
         "versions": [
@@ -68871,7 +68871,7 @@
         "tile": "DAL_582.png",
         "extra": ["GENERAL"],
         "rating": 1,
-        "text": "[x]<b>Battlecry:</b> Shuffle 3 Portals\ninto your deck. When drawn,\nsummon a 2/2 Demon\nwith <b>Rush</b>.",
+        "text": "Battlecry: Shuffle 3 Portals into your deck. When drawn, summon a 2/2 Demon with Rush.",
         "type": "MINION"
       },
       {
@@ -68894,7 +68894,7 @@
         "tile": "DAL_587.png",
         "extra": ["GENERAL"],
         "rating": 3,
-        "text": "<b>Deathrattle:</b> Add a random Hunter spell to your hand.",
+        "text": "Deathrattle: Add a random Hunter spell to your hand.",
         "type": "MINION"
       },
       {
@@ -68953,7 +68953,7 @@
         "tile": "DAL_592.png",
         "extra": ["VALUE", "SMALL_REMOVAL"],
         "rating": 2,
-        "text": "<b>Rush</b>. After this attacks and kills a minion, it may attack again.",
+        "text": "Rush. After this attacks and kills a minion, it may attack again.",
         "type": "MINION"
       },
       {
@@ -68971,7 +68971,7 @@
         "tile": "DAL_602.png",
         "extra": ["GENERAL"],
         "rating": 2,
-        "text": "Shuffle your hand\ninto your deck.\nDraw that many cards.",
+        "text": "Shuffle your hand into your deck. Draw that many cards.",
         "type": "SPELL",
         "activeVersion": 0,
         "versions": [
@@ -69042,7 +69042,7 @@
         "tile": "DAL_603.png",
         "extra": ["VALUE"],
         "rating": 3,
-        "text": "[x]<b>Battlecry:</b> For each spell\nyou've cast this turn, add\na random Mage spell\nto your hand.",
+        "text": "Battlecry: For each spell you've cast this turn, add a random Mage spell to your hand.",
         "type": "MINION",
         "activeVersion": 1,
         "versions": [
@@ -69106,7 +69106,7 @@
         "tile": "DAL_604.png",
         "extra": ["GENERAL"],
         "rating": 2,
-        "text": "<b>Deathrattle:</b> Draw a Mech from your deck.",
+        "text": "Deathrattle: Draw a Mech from your deck.",
         "type": "MINION",
         "activeVersion": 0,
         "versions": [
@@ -69234,7 +69234,7 @@
         "extra": ["GENERAL"],
         "rating": 2,
         "targetingArrowText": "Destroy a friendly minion.",
-        "text": "<b>Battlecry:</b> Destroy a friendly minion to add 2 random <b>Lackeys</b> to your hand.",
+        "text": "Battlecry: Destroy a friendly minion to add 2 random Lackeys to your hand.",
         "type": "MINION",
         "activeVersion": 0,
         "versions": [
@@ -69283,7 +69283,7 @@
         "tile": "DAL_607.png",
         "extra": ["VALUE"],
         "rating": 2,
-        "text": "[x]Whenever you draw a\nminion, summon a copy\n with <b>Rush</b> that dies at\nend of turn.",
+        "text": "Whenever you draw a minion, summon a copy  with Rush that dies at end of turn.",
         "type": "MINION",
         "activeVersion": 0,
         "versions": [
@@ -69354,7 +69354,7 @@
         "tile": "DAL_608.png",
         "extra": ["VALUE"],
         "rating": 2,
-        "text": "<b>Discover</b> a spell that costs (3) or less.",
+        "text": "Discover a spell that costs (3) or less.",
         "type": "SPELL"
       },
       {
@@ -69377,7 +69377,7 @@
         "tile": "DAL_609.png",
         "extra": ["VALUE"],
         "rating": 3,
-        "text": "Your first spell each\nturn costs (0).\n<b>Battlecry:</b> <b>Discover</b>\na spell.",
+        "text": "Your first spell each turn costs (0). Battlecry: Discover a spell.",
         "type": "MINION",
         "activeVersion": 0,
         "versions": [
@@ -69421,7 +69421,7 @@
         "tile": "DAL_710.png",
         "extra": ["BUFF"],
         "rating": 2,
-        "text": "Give your minions \"<b>Deathrattle:</b> Summon a 1/1 Murloc.\"",
+        "text": "Give your minions 'Deathrattle: Summon a 1/1 Murloc.'",
         "type": "SPELL"
       },
       {
@@ -69443,7 +69443,7 @@
         "tile": "DAL_714.png",
         "extra": ["GENERAL"],
         "rating": 2,
-        "text": "[x]<b>Battlecry:</b> If you're holding\na card from another class,\n gain +1/+1 and <b><b>Rush</b>.</b>",
+        "text": "Battlecry: If you're holding a card from another class,  gain +1/+1 and Rush.",
         "type": "MINION",
         "activeVersion": 0,
         "versions": [
@@ -69535,7 +69535,7 @@
         "cost": 7,
         "dbfId": 52616,
         "elite": true,
-        "flavor": "\"One for me and one for future me!\"",
+        "flavor": "'One for me and one for future me!'",
         "health": 6,
         "id": "DAL_719",
         "mechanics": ["TRIGGER_VISUAL"],
@@ -69546,7 +69546,7 @@
         "tile": "DAL_719.png",
         "extra": ["VALUE"],
         "rating": 1,
-        "text": "[x]Whenever you shuffle a\ncard into your deck, add\na copy to your hand.",
+        "text": "Whenever you shuffle a card into your deck, add a copy to your hand.",
         "type": "MINION",
         "activeVersion": 0,
         "versions": [
@@ -69592,7 +69592,7 @@
         "tile": "DAL_720.png",
         "extra": ["SMALL_REMOVAL", "DAMAGE"],
         "rating": 1,
-        "text": "[x]<b>Deathrattle:</b> Return\na random friendly\nminion to your hand.\nIt costs (2) less.",
+        "text": "Deathrattle: Return a random friendly minion to your hand. It costs (2) less.",
         "type": "WEAPON",
         "activeVersion": 0,
         "versions": [
@@ -69639,7 +69639,7 @@
         "tile": "DAL_721.png",
         "extra": ["VALUE"],
         "rating": 2,
-        "text": "[x]At the end of your turn,\nsummon a friendly minion\nthat died this game.",
+        "text": "At the end of your turn, summon a friendly minion that died this game.",
         "type": "MINION"
       },
       {
@@ -69658,7 +69658,7 @@
         "tile": "DAL_723.png",
         "extra": ["HARD_REMOVAL", "SMALL_REMOVAL"],
         "rating": 3,
-        "text": "[x]Spend all your Mana.\nDestroy a minion with that\nmuch Attack or less.",
+        "text": "Spend all your Mana. Destroy a minion with that much Attack or less.",
         "type": "SPELL"
       },
       {
@@ -69680,7 +69680,7 @@
         "tile": "DAL_724.png",
         "extra": ["VALUE"],
         "rating": 2,
-        "text": "Summon 3 friendly minions that died\nthis game.",
+        "text": "Summon 3 friendly minions that died this game.",
         "type": "SPELL"
       },
       {
@@ -69871,7 +69871,7 @@
         "tile": "DAL_729.png",
         "extra": ["VALUE"],
         "rating": 3,
-        "text": "[x]<b>Battlecry:</b> <b>Discover</b> a\ncopy of a card in your\nopponent's hand.",
+        "text": "Battlecry: Discover a copy of a card in your opponent's hand.",
         "type": "MINION"
       },
       {
@@ -69889,7 +69889,7 @@
         "tile": "DAL_731.png",
         "extra": ["GENERAL"],
         "rating": 1,
-        "text": "Summon a minion from each player's deck.\nThey fight!",
+        "text": "Summon a minion from each player's deck. They fight!",
         "type": "SPELL",
         "activeVersion": 0,
         "versions": [
@@ -69936,7 +69936,7 @@
         "tile": "DAL_732.png",
         "extra": ["VALUE"],
         "rating": 3,
-        "text": "After you cast a <b>Choose One</b> spell, add copies of both choices to your hand.",
+        "text": "After you cast a Choose One spell, add copies of both choices to your hand.",
         "type": "MINION",
         "activeVersion": 0,
         "versions": [
@@ -69976,7 +69976,7 @@
         "tile": "DAL_733.png",
         "extra": ["MIN_GEN"],
         "rating": 2,
-        "text": "Summon two 1/2 Dryads with <b>Lifesteal</b>.",
+        "text": "Summon two 1/2 Dryads with Lifesteal.",
         "type": "SPELL"
       },
       {
@@ -69986,7 +69986,7 @@
         "collectible": true,
         "cost": 2,
         "dbfId": 52866,
-        "flavor": "Don't make her raise her \"shush\"!",
+        "flavor": "Don't make her raise her 'shush'!",
         "health": 3,
         "id": "DAL_735",
         "mechanics": ["BATTLECRY"],
@@ -69998,7 +69998,7 @@
         "tile": "DAL_735.png",
         "extra": ["GENERAL"],
         "rating": 2,
-        "text": "<b>Battlecry:</b> <b>Silence</b>\nadjacent minions.",
+        "text": "Battlecry: Silence adjacent minions.",
         "type": "MINION"
       },
       {
@@ -70021,7 +70021,7 @@
         "tile": "DAL_736.png",
         "extra": ["VALUE"],
         "rating": 2,
-        "text": "<b>Battlecry:</b> <b>Discover</b> 5 cards. Replace your deck with 2 copies of each.",
+        "text": "Battlecry: Discover 5 cards. Replace your deck with 2 copies of each.",
         "type": "MINION"
       },
       {
@@ -70044,7 +70044,7 @@
         "tile": "DAL_742.png",
         "extra": ["GENERAL"],
         "rating": 1,
-        "text": "Your minions with <b>Windfury</b> have <b>Mega-Windfury</b>.",
+        "text": "Your minions with Windfury have Mega-Windfury.",
         "type": "MINION",
         "activeVersion": 0,
         "versions": [
@@ -70142,7 +70142,7 @@
         "tile": "DAL_743.png",
         "extra": ["SMALL_REMOVAL"],
         "rating": 2,
-        "text": "<b>Rush</b>\n<b>Deathrattle:</b> Summon a 1/1 Murloc.",
+        "text": "Rush Deathrattle: Summon a 1/1 Murloc.",
         "type": "MINION"
       },
       {
@@ -70169,7 +70169,7 @@
         "extra": ["TEMPO"],
         "rating": 2,
         "targetingArrowText": "Copy a friendly minion's Health.",
-        "text": "<b>Battlecry:</b> Copy a friendly minion's Health.",
+        "text": "Battlecry: Copy a friendly minion's Health.",
         "type": "MINION",
         "activeVersion": 0,
         "versions": [
@@ -70226,7 +70226,7 @@
         "tile": "DAL_747.png",
         "extra": ["MIN_GEN", "FAST"],
         "rating": 2,
-        "text": "<b>Battlecry:</b> Summon a 2/2 Gryphon for each player.",
+        "text": "Battlecry: Summon a 2/2 Gryphon for each player.",
         "type": "MINION"
       },
       {
@@ -70249,7 +70249,7 @@
         "extra": ["GENERAL"],
         "rating": 1,
         "spellDamage": 2,
-        "text": "<b>Spell Damage +1</b>",
+        "text": "Spell Damage +1",
         "type": "MINION",
         "activeVersion": 0,
         "versions": [
@@ -70300,7 +70300,7 @@
         "tile": "DAL_749.png",
         "extra": ["GENERAL"],
         "rating": 1,
-        "text": "<b>Deathrattle:</b> If this minion has 4 or more Attack, resummon it.",
+        "text": "Deathrattle: If this minion has 4 or more Attack, resummon it.",
         "type": "MINION",
         "activeVersion": 0,
         "versions": [
@@ -70343,7 +70343,7 @@
         "tile": "DAL_751.png",
         "extra": ["MIN_GEN"],
         "rating": 2,
-        "text": "[x]<b>Battlecry:</b> Fill each player's\nboard with 1/1 Imps.",
+        "text": "Battlecry: Fill each player's board with 1/1 Imps.",
         "type": "MINION"
       },
       {
@@ -70365,7 +70365,7 @@
         "tile": "DAL_752.png",
         "extra": ["VALUE"],
         "rating": 2,
-        "text": "<b>Battlecry:</b> Draw 2 minions from your deck. Set their Attack, Health, and Cost to 1.",
+        "text": "Battlecry: Draw 2 minions from your deck. Set their Attack, Health, and Cost to 1.",
         "type": "MINION"
       },
       {
@@ -70387,7 +70387,7 @@
         "tile": "DAL_759.png",
         "extra": ["GENERAL"],
         "rating": 1,
-        "text": "Whenever this minion\ndeals damage, gain that much Armor.",
+        "text": "Whenever this minion deals damage, gain that much Armor.",
         "type": "MINION"
       },
       {
@@ -70408,7 +70408,7 @@
         "tile": "DAL_760.png",
         "extra": ["VALUE"],
         "rating": 2,
-        "text": "<b>Rush</b>",
+        "text": "Rush",
         "type": "MINION"
       },
       {
@@ -70417,7 +70417,7 @@
         "collectible": true,
         "cost": 1,
         "dbfId": 53124,
-        "flavor": "\"The beatings will continue until MY morale improves.\"",
+        "flavor": "'The beatings will continue until MY morale improves.'",
         "id": "DAL_769",
         "name": "Improve Morale",
         "playRequirements": { "REQ_MINION_TARGET": 0, "REQ_TARGET_TO_PLAY": 0 },
@@ -70427,7 +70427,7 @@
         "tile": "DAL_769.png",
         "extra": ["SMALL_REMOVAL"],
         "rating": 2,
-        "text": "[x]Deal $1 damage\nto a minion.\nIf it survives, add a\n<b>Lackey</b> to your hand.",
+        "text": "Deal $1 damage to a minion. If it survives, add a Lackey to your hand.",
         "type": "SPELL"
       },
       {
@@ -70451,7 +70451,7 @@
         "extra": ["HARD_REMOVAL"],
         "rating": 2,
         "targetingArrowText": "Deal 10 damage.",
-        "text": "[x]<b>Battlecry:</b> If you have 10\nMana Crystals, deal 10\ndamage to a minion.",
+        "text": "Battlecry: If you have 10 Mana Crystals, deal 10 damage to a minion.",
         "type": "MINION"
       },
       {
@@ -70495,7 +70495,7 @@
         "tile": "DAL_773.png",
         "extra": ["FAST", "BUFF"],
         "rating": 2,
-        "text": "After you play a 1-Cost minion, give it +1 Attack and <b>Rush</b>.",
+        "text": "After you play a 1-Cost minion, give it +1 Attack and Rush.",
         "type": "MINION",
         "activeVersion": 0,
         "versions": [
@@ -70537,7 +70537,7 @@
         "tile": "DAL_774.png",
         "extra": ["VALUE"],
         "rating": 2,
-        "text": "Whenever you cast a spell, summon a random\n3-Cost Beast.",
+        "text": "Whenever you cast a spell, summon a random 3-Cost Beast.",
         "type": "MINION",
         "activeVersion": 0,
         "versions": [
@@ -70583,7 +70583,7 @@
         "tile": "DAL_775.png",
         "extra": ["AOE", "STALL"],
         "rating": 2,
-        "text": "[x]<b>Taunt</b>\n<b>Deathrattle:</b> Deal 3 damage\nto all minions.",
+        "text": "Taunt Deathrattle: Deal 3 damage to all minions.",
         "type": "MINION"
       },
       {
@@ -70591,7 +70591,7 @@
         "attack": 4,
         "cardClass": ["DRUID"],
         "collectible": true,
-        "collectionText": "<b>Rush</b>. <b>Battlecry:</b> If you've restored 5 Health this game, summon a copy of this.",
+        "collectionText": "Rush. Battlecry: If you've restored 5 Health this game, summon a copy of this.",
         "cost": 5,
         "dbfId": 53179,
         "flavor": "Arrives alone, but usually leaves with a friend just like him.",
@@ -70606,7 +70606,7 @@
         "tile": "DAL_799.png",
         "extra": ["MIN_GEN"],
         "rating": 2,
-        "text": "<b>Rush</b>. <b>Battlecry:</b> If you've restored 5 Health this game, summon a copy of this.@ <i>({0} left!)</i>@ <i>(Ready!)</i>",
+        "text": "Rush. Battlecry: If you've restored 5 Health this game, summon a copy of this.@ <i>({0} left!)</i>@ <i>(Ready!)</i>",
         "type": "MINION",
         "activeVersion": 0,
         "versions": [
