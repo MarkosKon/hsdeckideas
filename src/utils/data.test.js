@@ -161,8 +161,22 @@ it(`Data test #8: Keeps track of the Wild Mage-Neutral cards
   expect(result.length).toEqual(17);
 });
 
-// Hench-Clan Thug, The Voraxx, Southsea Captain, Dread Corsair, Bloodsail Raider,
-// Shimmering Courser, Phantom Freebooter, Spiteful Smith, Toxicologist, Gurubashi Chicken
+/**
+ * 12 cards in Rise of Shadows
+ *
+ * Spiteful Smith - No 1+ weapon,
+ * Bloodsail Raider - No 1+ weapon,
+ * Dread Corsair - No 1+ weapon,
+ * Captain Greenskin - No 1+ weapon,
+ * Southsea Captain - No 1+ weapon,
+ * Hench-Clan Thug - No 1+ weapon,
+ * Toxicologist - No 1+ weapon,
+ * Zilliax (Keywords) - No Corpsetaker,
+ * Electrowright - No Spiteful Summoner,
+ * Jan'alai, the Dragonhawk - No odd stuff,
+ * Gurubashi chicken - No buffs,
+ * Whirlwind Tempest (Windfury(Shaman) & buffs) - Windfury (spell)
+ */
 it(`Data test #9: Keeps track of the Standard Mage-Neutral cards
     that their priorities don't find any cards.`, () => {
   const availableCards = getAvailableCards(cards, 'Mage', 'Standard');
@@ -170,7 +184,7 @@ it(`Data test #9: Keeps track of the Standard Mage-Neutral cards
 
   const result = prioritiesThatFindNothing(availableCards, interestingCards, 0);
 
-  expect(result.length).toEqual(11);
+  expect(result.length).toEqual(12);
 });
 
 /**
@@ -462,11 +476,8 @@ it(`Data test #22: Keeps track of the Wild Druid-Neutral cards
 });
 
 /**
- * 4 cards in Rise of Shadows
+ * 1 card in Rise of Shadows
  *
- * Baku the Mooneater
- * Genn Greymane
- * Gloom Stag
  * Archmage Vargoth (Some valuable spells)
  */
 it(`Data test #23: Keeps track of the Standard Druid-Neutral cards
@@ -476,7 +487,7 @@ it(`Data test #23: Keeps track of the Standard Druid-Neutral cards
 
   const result = prioritiesUnsatisfiedButNo0(availableCards, interestingCards);
 
-  expect(result.length).toEqual(4);
+  expect(result.length).toEqual(1);
 });
 
 // or more specifically, extract unique property names from an array of objects.
@@ -780,7 +791,7 @@ it('Data test #39: Checks if each expansion has the expected number of cards.', 
   const TWW = cards.filter(card => card.set === 12);
   const CLA = cards.filter(card => card.set === 98);
   const BAS = cards.filter(card => card.set === 99);
-  expect(HOF.length).toEqual(13);
+  expect(HOF.length).toEqual(22);
   expect(NAX.length).toEqual(30);
   expect(GVG.length).toEqual(123);
   expect(BRM.length).toEqual(31);
@@ -792,7 +803,7 @@ it('Data test #39: Checks if each expansion has the expected number of cards.', 
   expect(UNG.length).toEqual(135);
   expect(KFT.length).toEqual(135);
   expect(KNC.length).toEqual(135);
-  expect(TWW.length).toEqual(135);
-  expect(CLA.length).toEqual(240);
+  expect(TWW.length).toEqual(129);
+  expect(CLA.length).toEqual(237);
   expect(BAS.length).toEqual(133);
 });
