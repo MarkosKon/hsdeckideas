@@ -80,7 +80,7 @@ const FAQ = () => {
         lang="en"
         title="Hearthstone Deck Ideas | Frequently Asked Questions"
         description="In this page we share some personal information and explain how the random deck generator works by answering some frequently asked questions. "
-        image="https://hsdeckideas.netlify.com/homepage.jpg"
+        image="https://hsdeckideas.netlify.com/app-preview.jpg"
         url="https://hsdeckideas.netlify.com/faq/"
         keywords="hearthstone random deck generator"
       />

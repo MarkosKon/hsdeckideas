@@ -431,7 +431,7 @@ class Home extends Component {
           lang="en"
           title="Hearthstone Deck Ideas - Random deck generator"
           description="Hearthstone Deck Ideas is a random deck generator for Hearthstone that creates decks with synergy. Create a random deck in seconds or select some filters and get the deck you want."
-          image="https://hsdeckideas.netlify.com/homepage.jpg"
+          image="https://hsdeckideas.netlify.com/app-preview.jpg"
           url="https://hsdeckideas.netlify.com/"
           keywords="hearthstone random deck generator"
         />

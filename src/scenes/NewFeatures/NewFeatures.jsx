@@ -33,7 +33,7 @@ const NewFeatures = () => {
         lang="en"
         title="Hearthstone Deck Ideas | New Features"
         description="The purpose of this page is to inform you about future developments and what to expect in the near future. In addition to that we list by chronological order, notable features that are already implemented."
-        image="https://hsdeckideas.netlify.com/homepage.jpg"
+        image="https://hsdeckideas.netlify.com/app-preview.jpg"
         url="https://hsdeckideas.netlify.com/new-features/"
         keywords="hearthstone random deck generator"
       />
