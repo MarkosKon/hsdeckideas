@@ -45,6 +45,7 @@ const combineNodesToTreeObject = (nodeArray, startNode) => {
       toAppend.push(combineNodesToTreeObject(nodeArray, hasChildren));
     } else toAppend.push({ name: childName });
   });
+  // eslint-disable-next-line no-param-reassign
   startNode.children = toAppend;
   return startNode;
 };

@@ -45,6 +45,7 @@
     "d3-zoom": "^1.7.3",
     "deckstrings": "1.1.0",
     "immutability-helper": "^2.9.0",
+    "lodash.clonedeep": "^4.5.0",
     "lodash.get": "^4.4.2",
     "lodash.partial": "^4.2.1",
     "lodash.sortby": "^4.7.0",

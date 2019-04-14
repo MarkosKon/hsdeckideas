@@ -1,4 +1,6 @@
 import { encode } from 'deckstrings';
+// import cloneDeep from 'lodash.clonedeep';
+
 import {
   byCostAndName, byName, removeArrayElement, getRandom,
 } from 'some-utils';
@@ -98,19 +100,19 @@ export const initializeDeck = ({
 
 export const message = {
   default: 'In this step the priorities come from the origin card(s).',
-  defaultPlusArchetype: `In this step the priorities come from the origin card(s) and from the 
+  defaultPlusArchetype: `In this step the priorities come from the origin card(s) and from the
     archetype you selected.`,
-  noAvailableCards: `Yeah.. really smart choices congratulations... There are no available 
+  noAvailableCards: `Yeah.. really smart choices congratulations... There are no available
     cards to fill the deck.`,
-  deckWideFilters: `In this step the origin card(s) have deck wide filters. In this case 
-    we'll limit the available card pool according to the filters and remove the inappropriate 
+  deckWideFilters: `In this step the origin card(s) have deck wide filters. In this case
+    we'll limit the available card pool according to the filters and remove the inappropriate
     cards from the deck. Finally we'll proceed with the priorities (if any).`,
   noOriginCards: `We don't have 'origin' cards for this step. This happens when the cards
     don't have any priorities or when the priorities of the cards added are already satisfied
     or when we don't have cards for the priority. So because we are still at the start
     (the deck size is less or equal to 10 cards) we continue by adding an additional
     'interesting' card.`,
-  archetypeChosenNoPriorities: `The origin cards for this step 
+  archetypeChosenNoPriorities: `The origin cards for this step
   don't have priorities and we have already added an archetype. In this case we proceed by adding
   some completely random good cards`,
   dontHaveCards: "We don't have cards for this priority.",
@@ -128,7 +130,7 @@ export const message = {
     cardsAdded,
     availableCards,
     deckCards,
-  ) => `We chose ${cardsAdded} card(s) in total from a pool of ${availableCards} different card(s). 
+  ) => `We chose ${cardsAdded} card(s) in total from a pool of ${availableCards} different card(s).
     In the deck we had ${deckCards} cards that met those requirements.`,
 };
 
@@ -141,6 +143,275 @@ export const initializeStep = (originCards, deck) => ({
   priorities: [],
   prioritiesInfo: [],
 });
+
+export const calculateCardQuantity = (deck, card, otherCase) => {
+  const check = isHighlander(deck) || sizeEquals29(deck) || isLegendary(card);
+  if (otherCase !== undefined) return check || otherCase ? 1 : 2;
+  return check ? 1 : 2;
+};
+
+const calculateCardsToAdd = (cardsAdded, interestingCard) => {
+  const numberOfCardsAddedSoFar = getSize(cardsAdded);
+  if (numberOfCardsAddedSoFar < 28) cardsAdded.push(interestingCard);
+  else if (numberOfCardsAddedSoFar === 29) {
+    interestingCard.quantity = 1;
+    cardsAdded.push(interestingCard);
+  }
+  return cardsAdded;
+};
+
+export const addInterestingCards = (deck, interestingCards) => {
+  interestingCards = resetQuantity(interestingCards);
+  if (getSize(interestingCards) > 30) {
+    interestingCards = interestingCards.reduce(calculateCardsToAdd, []);
+  }
+  deck.cards = deck.cards.concat(interestingCards);
+  deck.size = getSize(deck.cards);
+  deck.history.steps.push(initializeStep(interestingCards, deck));
+};
+
+export const addOtherCards = (deck, currentStep, otherCards) => {
+  const addedOtherCards = [];
+  currentStep.extra += message.otherCardsSelected;
+  currentStep.otherCards = true;
+  let i = 0;
+  while (sizeLessThan30(deck) && i < otherCards.length) {
+    const card = otherCards[i];
+    card.quantity = calculateCardQuantity(deck, card);
+    deck.cards.push(card);
+    deck.size += card.quantity;
+    addedOtherCards.push(card);
+    i += 1;
+  }
+  return addedOtherCards;
+};
+
+export const getActiveVersion = card => card.versions[card.activeVersion];
+
+// const getRandomVersion = versions => versions[getRandom(0, versions.length - 1)];
+
+const toPriorities = (priorities, card) => priorities.concat(getActiveVersion(card).priorities);
+const isPriorityExamined = (deck, priority) => deck.history.totalPrioritiesExamined[priority.id];
+/**
+ * This method takes as input the deck and returns an array of priorities extracted
+ * from the deck's cards. It does not return priorities that have already been examined.
+ * @param {Object} deck
+ */
+export const obtainPriorities = deck => deck.cards
+  .filter(hasPriorities)
+  .reduce(toPriorities, [])
+  .filter(priority => !isPriorityExamined(deck, priority));
+
+/**
+ * This method checks if a deck satisfies a priority. If it does
+ * returns true else returns how many cards the deck contains that satisfy
+ * the priority. It is different from getCardsForFilters because it takes
+ * into account the hero power.
+ * @param {Object} deck
+ * @param {Object} priority
+ */
+export const deckSatisfiesPriority = (deck, priority) => {
+  let cardCount = getSize(getCardsForFilters(deck.cards, priority.filters, false));
+  if (cardSatisfiesFilters(deck.heroPower, priority.filters, false)) {
+    cardCount += 2;
+  }
+  if (cardCount >= priority.maxCards) return true;
+  return cardCount;
+};
+
+const toInfo = priority => ({
+  priority,
+  priorityAddedCards: [],
+  extra: 'Priority not processed',
+});
+
+/**
+ * This is a helper method that transforms an array of priorities to
+ * an array of info for those priorities. The info contain an initial
+ * state where later on we change it.
+ * @param {Array} priorities
+ */
+export const getInfoFromPriorities = priorities => priorities.map(toInfo);
+
+const toDeckWideFilters = (filters, card) => filters.concat(card.deckFilters);
+const isFilterExamined = (deck, filter) => {
+  if (!deck.history.totalDeckFiltersExamined[filter.id]) {
+    deck.history.totalDeckFiltersExamined[filter.id] = filter;
+    return false;
+  }
+  return true;
+};
+export const obtainDeckWideFilters = deck => deck.cards
+  .filter(hasDeckWideFilters)
+  .reduce(toDeckWideFilters, [])
+  .filter(filter => !isFilterExamined(deck, filter));
+
+export const toCardCount = (priority, deck) => {
+  const cardCount = deckSatisfiesPriority(deck, priority);
+  if (cardCount === true) return priority.maxCards;
+  return cardCount;
+};
+const toStats = (archetype, deck) => ({
+  archetype,
+  cardCount: archetype.priorities
+    .map(priority => toCardCount(priority, deck))
+    .reduce((totalCount, count) => (totalCount + count), 0),
+});
+
+export const computeMaxCount = partial(computeMax, 'cardCount');
+/**
+ * This method takes as input the deck and the available archetypes
+ * and returns which archetype better represents the deck. This is
+ * determined by the total number of cards that satisfy each archetype
+ * priority.
+ * @param {*} deck
+ * @param {*} archetypes
+ */
+export const getClosestArchetype = (deck, archetypes) => {
+  const archetypeStats = archetypes.map(archetype => toStats(archetype, deck));
+
+  const max = archetypeStats.reduce(computeMaxCount, 0);
+
+  if (max === 0) return archetypes[getRandom(0, archetypes.length - 1)];
+
+  const mostSatisfiedArchetypes = archetypeStats.filter(stat => stat.cardCount === max);
+  if (mostSatisfiedArchetypes.length > 1) {
+    return mostSatisfiedArchetypes[getRandom(0, mostSatisfiedArchetypes.length - 1)].archetype;
+  }
+  return mostSatisfiedArchetypes[0].archetype;
+};
+
+/**
+ * This method finishes the deck randomly, from a pool
+ * of "good" cards for the selected class. It doesn't
+ * check their priorities or deck wide filters.
+ * @param {Object} deck
+ * @param {Array} availableCards
+ */
+export const completeDeckRandomly = (deck, availableCards) => {
+  availableCards = removeSubset(availableCards, deck.cards);
+
+  while (sizeLessThan30(deck) && availableCards.length > 0) {
+    let cardToPut = getCard(availableCards, deck.isCompetitive);
+    removeArrayElement(availableCards, cardToPut);
+    cardToPut.quantity = calculateCardQuantity(deck, cardToPut);
+    cardToPut = {
+      ...cardToPut,
+      isRandom: true,
+      isFrom: 'Random',
+    };
+    deck.cards.push(cardToPut);
+    deck.size += cardToPut.quantity;
+  }
+  return deck;
+};
+
+export const calculateHowManyCardsToPut = (
+  deckSize,
+  totalDeckCardsThatSatisfyPriority,
+  priority,
+) => {
+  const freeSlots = 30 - deckSize;
+
+  let minNumberOfCardsToPut = priority.minCards - totalDeckCardsThatSatisfyPriority;
+  if (minNumberOfCardsToPut < 0) minNumberOfCardsToPut = 0;
+
+  const maxNumberOfCardsToPut = priority.maxCards - totalDeckCardsThatSatisfyPriority;
+
+  let numberOfCardsToPut;
+  if (freeSlots < minNumberOfCardsToPut) numberOfCardsToPut = freeSlots;
+  else if (freeSlots < maxNumberOfCardsToPut) {
+    numberOfCardsToPut = getRandom(minNumberOfCardsToPut, freeSlots);
+  } else {
+    numberOfCardsToPut = getRandom(minNumberOfCardsToPut, maxNumberOfCardsToPut);
+  }
+
+  return numberOfCardsToPut;
+};
+
+// Each priority inside a step.
+export const addCardsForPriority = (
+  availableCards,
+  deck,
+  priority,
+  totalDeckCardsThatSatisfyPriority,
+) => {
+  const currentStep = getLastStep(deck);
+  const currentPriorityInfo = currentStep.prioritiesInfo.find(info => info.priority === priority);
+
+  let availableCardsThatSatisfyPriority = getCardsForFilters(
+    availableCards,
+    priority.filters,
+    false,
+  );
+  // remove the deck cards from the available cards.
+  availableCardsThatSatisfyPriority = removeSubset(availableCardsThatSatisfyPriority, deck.cards);
+  if (availableCardsThatSatisfyPriority.length === 0) {
+    currentPriorityInfo.extra = message.dontHaveCards;
+    return deck;
+  }
+
+  let numberOfCardsWeWantToAdd = calculateHowManyCardsToPut(
+    deck.size,
+    totalDeckCardsThatSatisfyPriority,
+    priority,
+  );
+  const cardsWeAdded = [];
+
+  while (numberOfCardsWeWantToAdd > 0 && availableCardsThatSatisfyPriority.length > 0) {
+    const cardToPut = getCard(availableCardsThatSatisfyPriority, deck.isCompetitive);
+    removeArrayElement(availableCardsThatSatisfyPriority, cardToPut);
+    cardToPut.quantity = calculateCardQuantity(deck, cardToPut, numberOfCardsWeWantToAdd < 2);
+    numberOfCardsWeWantToAdd -= cardToPut.quantity;
+    cardsWeAdded.push(cardToPut);
+  }
+
+  deck.cards = deck.cards.concat(cardsWeAdded);
+  deck.size = getSize(deck.cards);
+
+  // 3. History object manipulations.
+  if (cardsWeAdded.length === 0) {
+    currentPriorityInfo.extra = message.notAddingWeAlreadyHave(totalDeckCardsThatSatisfyPriority);
+  } else {
+    currentPriorityInfo.extra = message.successfullyAdded(
+      getSize(cardsWeAdded),
+      availableCardsThatSatisfyPriority.length,
+      totalDeckCardsThatSatisfyPriority,
+    );
+  }
+  currentPriorityInfo.priorityAddedCards = cardsWeAdded;
+  currentStep.totalAddedCards = currentStep.totalAddedCards.concat(cardsWeAdded);
+
+  return deck;
+};
+
+// Each step.
+export const completeDeckByPriorities = (deck, availableCards, priorities) => {
+  const currentStep = getLastStep(deck);
+
+  // For each priority...
+  // eslint-disable-next-line no-restricted-syntax
+  for (const priority of priorities) {
+    const currentPriorityInfo = currentStep.prioritiesInfo.find(info => info.priority === priority);
+
+    // Just make an entry for checking if we reviewed that priority
+    // (extract priorities method does that), do not add more info.
+    deck.history.totalPrioritiesExamined[priority.id] = priority;
+
+    if (sizeGreaterThan29(deck)) {
+      currentPriorityInfo.extra = message.deckIsFull;
+      break;
+    }
+    // Keep in mind that deckSatisfiesPriority method returns TRUE if the number
+    // of cards the deck has for that particular priority is equal of higher to the max.
+    // If it's smaller returns how many card it needs.
+    const dSatisfiesPriority = deckSatisfiesPriority(deck, priority);
+    if (sizeLessThan30(deck) && dSatisfiesPriority !== true) {
+      deck = addCardsForPriority(availableCards, deck, priority, dSatisfiesPriority);
+    } else currentPriorityInfo.extra = message.deckIsOversatisfied;
+  }
+  return deck;
+};
 
 /**
  * The main method of the file.
@@ -201,7 +472,8 @@ export const getDeck = (
     }
 
     // Deck wide FILTERS.
-    currentStep.deckWideFilters = obtainDeckWideFilters(deck); // Show somewhere in the deck that we added extra filters.
+    // Show somewhere in the deck that we added extra filters.
+    currentStep.deckWideFilters = obtainDeckWideFilters(deck);
     if (currentStep.deckWideFilters.length > 0) {
       availableCards = getCardsForFilters(availableCards, currentStep.deckWideFilters, false); // A.
       const remainingDeckCards = getCardsForFilters(deck.cards, currentStep.deckWideFilters, false);
@@ -230,7 +502,7 @@ export const getDeck = (
       deck.cards.push(anInterestingCard);
       deck.size = getSize(deck.cards);
       deck.history.steps.push(initializeStep([anInterestingCard], deck));
-      numberOfSteps++;
+      numberOfSteps += 1;
       continue;
     }
 
@@ -261,7 +533,7 @@ export const getDeck = (
     // TODO when errors stop do here the priority - priorityinfo extraction.
     // Note if we do that here we will have to drop the "continue"'s also.
 
-    numberOfSteps++;
+    numberOfSteps += 1;
   }
 
   deck = completeDeckRandomly(deck, availableCards);
@@ -273,201 +545,14 @@ export const getDeck = (
   return deck;
 };
 
-export const hasDuplicates = deck => deck.cards
-  .sort(byName)
-  .reduce(
-    (result, card, i, cards) => (i === cards.length - 1 ? result : !!(card.name === cards[i + 1].name || result)),
-    false,
-  );
-
 /**
- * This method finishes the deck randomly, from a pool
- * of "good" cards for the selected class. It doesn't
- * check their priorities or deck wide filters.
- * @param {Object} deck
- * @param {Array} availableCards
- */
-export const completeDeckRandomly = (deck, availableCards) => {
-  availableCards = removeSubset(availableCards, deck.cards);
-
-  while (sizeLessThan30(deck) && availableCards.length > 0) {
-    let cardToPut = getCard(availableCards, deck.isCompetitive);
-    removeArrayElement(availableCards, cardToPut);
-    cardToPut.quantity = calculateCardQuantity(deck, cardToPut);
-    cardToPut = {
-      ...cardToPut,
-      isRandom: true,
-      isFrom: 'Random',
-    };
-    deck.cards.push(cardToPut);
-    deck.size += cardToPut.quantity;
-  }
-  return deck;
-};
-
-// Each step.
-export const completeDeckByPriorities = (deck, availableCards, priorities) => {
-  const currentStep = getLastStep(deck);
-
-  // For each priority...
-  for (const priority of priorities) {
-    const currentPriorityInfo = currentStep.prioritiesInfo.find(info => info.priority === priority);
-
-    // Just make an entry for checking if we reviewed that priority
-    // (extract priorities method does that), do not add more info.
-    deck.history.totalPrioritiesExamined[priority.id] = priority;
-
-    if (sizeGreaterThan29(deck)) {
-      currentPriorityInfo.extra = message.deckIsFull;
-      break;
-    }
-    // Keep in mind that deckSatisfiesPriority method returns TRUE if the number
-    // of cards the deck has for that particular priority is equal of higher to the max.
-    // If it's smaller returns how many card it needs.
-    const dSatisfiesPriority = deckSatisfiesPriority(deck, priority);
-    if (sizeLessThan30(deck) && dSatisfiesPriority !== true) {
-      deck = addCardsForPriority(availableCards, deck, priority, dSatisfiesPriority);
-    } else currentPriorityInfo.extra = message.deckIsOversatisfied;
-  }
-  return deck;
-};
-
-// Each priority inside a step.
-export const addCardsForPriority = (
-  availableCards,
-  deck,
-  priority,
-  totalDeckCardsThatSatisfyPriority,
-) => {
-  const currentStep = getLastStep(deck);
-  const currentPriorityInfo = currentStep.prioritiesInfo.find(info => info.priority === priority);
-
-  let availableCardsThatSatisfyPriority = getCardsForFilters(
-    availableCards,
-    priority.filters,
-    false,
-  );
-  // remove the deck cards from the available cards.
-  availableCardsThatSatisfyPriority = removeSubset(availableCardsThatSatisfyPriority, deck.cards);
-  if (availableCardsThatSatisfyPriority.length === 0) {
-    currentPriorityInfo.extra = message.dontHaveCards;
-    return deck;
-  }
-
-  let numberOfCardsWeWantToAdd = calculateHowManyCardsToPut(
-    deck.size,
-    totalDeckCardsThatSatisfyPriority,
-    priority,
-  );
-  const cardsWeAdded = [];
-
-  while (numberOfCardsWeWantToAdd > 0 && availableCardsThatSatisfyPriority.length > 0) {
-    const cardToPut = getCard(availableCardsThatSatisfyPriority, deck.isCompetitive);
-    removeArrayElement(availableCardsThatSatisfyPriority, cardToPut);
-    cardToPut.quantity = calculateCardQuantity(deck, cardToPut, numberOfCardsWeWantToAdd < 2);
-    numberOfCardsWeWantToAdd -= cardToPut.quantity;
-    cardsWeAdded.push(cardToPut);
-  }
-
-  deck.cards = deck.cards.concat(cardsWeAdded);
-  deck.size = getSize(deck.cards);
-
-  // 3. History object manipulations.
-  if (cardsWeAdded.length === 0) {
-    currentPriorityInfo.extra = message.notAddingWeAlreadyHave(totalDeckCardsThatSatisfyPriority);
-  } else {
-    currentPriorityInfo.extra = message.successfullyAdded(
-      getSize(cardsWeAdded),
-      availableCardsThatSatisfyPriority.length,
-      totalDeckCardsThatSatisfyPriority,
-    );
-  }
-  currentPriorityInfo.priorityAddedCards = cardsWeAdded;
-  currentStep.totalAddedCards = currentStep.totalAddedCards.concat(cardsWeAdded);
-
-  return deck;
-};
-
-export const calculateHowManyCardsToPut = (
-  deckSize,
-  totalDeckCardsThatSatisfyPriority,
-  priority,
-) => {
-  const freeSlots = 30 - deckSize;
-
-  let minNumberOfCardsToPut = priority.minCards - totalDeckCardsThatSatisfyPriority;
-  if (minNumberOfCardsToPut < 0) minNumberOfCardsToPut = 0;
-
-  const maxNumberOfCardsToPut = priority.maxCards - totalDeckCardsThatSatisfyPriority;
-
-  let numberOfCardsToPut;
-  if (freeSlots < minNumberOfCardsToPut) numberOfCardsToPut = freeSlots;
-  else if (freeSlots < maxNumberOfCardsToPut) {
-    numberOfCardsToPut = getRandom(minNumberOfCardsToPut, freeSlots);
-  } else {
-    numberOfCardsToPut = getRandom(minNumberOfCardsToPut, maxNumberOfCardsToPut);
-  }
-
-  return numberOfCardsToPut;
-};
-
-export const calculateCardQuantity = (deck, card, otherCase) => {
-  const check = isHighlander(deck) || sizeEquals29(deck) || isLegendary(card);
-  if (otherCase !== undefined) return check || otherCase ? 1 : 2;
-  return check ? 1 : 2;
-};
-
-export const toCardCount = (priority, deck) => {
-  const cardCount = deckSatisfiesPriority(deck, priority);
-  if (cardCount === true) return priority.maxCards;
-  return cardCount;
-};
-const toStats = (archetype, deck) => ({
-  archetype,
-  cardCount: archetype.priorities
-    .map(priority => toCardCount(priority, deck))
-    .reduce((totalCount, count) => (totalCount += count), 0),
-});
-
-export const computeMaxCount = partial(computeMax, 'cardCount');
-/**
- * This method takes as input the deck and the available archetypes
- * and returns which archetype better represents the deck. This is
- * determined by the total number of cards that satisfy each archetype
- * priority.
+ * Used only in tests atm.
  * @param {*} deck
- * @param {*} archetypes
  */
-export const getClosestArchetype = (deck, archetypes) => {
-  const archetypeStats = archetypes.map(archetype => toStats(archetype, deck));
-
-  const max = archetypeStats.reduce(computeMaxCount, 0);
-
-  if (max === 0) return archetypes[getRandom(0, archetypes.length - 1)];
-
-  const mostSatisfiedArchetypes = archetypeStats.filter(stat => stat.cardCount === max);
-  if (mostSatisfiedArchetypes.length > 1) {
-    return mostSatisfiedArchetypes[getRandom(0, mostSatisfiedArchetypes.length - 1)].archetype;
-  }
-  return mostSatisfiedArchetypes[0].archetype;
-};
-
-/**
- * This method checks if a deck satisfies a priority. If it does
- * returns true else returns how many cards the deck contains that satisfy
- * the priority. It is different from getCardsForFilters because it takes
- * into account the hero power.
- * @param {Object} deck
- * @param {Object} priority
- */
-export const deckSatisfiesPriority = (deck, priority) => {
-  let cardCount = getSize(getCardsForFilters(deck.cards, priority.filters, false));
-  if (cardSatisfiesFilters(deck.heroPower, priority.filters, false)) {
-    cardCount += 2;
-  }
-  if (cardCount >= priority.maxCards) return true;
-  return cardCount;
-};
+export const hasDuplicates = deck => deck.cards.sort(byName).reduce((result, card, i, cards) => {
+  if (i === cards.length - 1) return result;
+  return !!(card.name === cards[i + 1].name || result);
+}, false);
 
 const idEquals = (priority, priorityId) => priority.id === priorityId;
 export const versionsToPriorities = (priorities, version) => priorities.concat(version.priorities);
@@ -481,80 +566,3 @@ export const getCardThatRequestedPriority = (deck, priorityId) => deck.cards.fin
   card => hasPriorities(card)
       && card.versions.reduce(versionsToPriorities, []).find(p => idEquals(p, priorityId)),
 );
-
-const isPriorityExamined = (deck, priority) => deck.history.totalPrioritiesExamined[priority.id];
-export const getActiveVersion = card => card.versions[card.activeVersion];
-const toPriorities = (priorities, card) => priorities.concat(getActiveVersion(card).priorities);
-/**
- * This method takes as input the deck and returns an array of priorities extracted
- * from the deck's cards. It does not return priorities that have already been examined.
- * @param {Object} deck
- */
-export const obtainPriorities = deck => deck.cards
-  .filter(hasPriorities)
-  .reduce(toPriorities, [])
-  .filter(priority => !isPriorityExamined(deck, priority));
-
-// const getRandomVersion = versions => versions[getRandom(0, versions.length - 1)];
-
-const toDeckWideFilters = (filters, card) => filters.concat(card.deckFilters);
-const isFilterExamined = (deck, filter) => {
-  if (!deck.history.totalDeckFiltersExamined[filter.id]) {
-    deck.history.totalDeckFiltersExamined[filter.id] = filter;
-    return false;
-  }
-  return true;
-};
-export const obtainDeckWideFilters = deck => deck.cards
-  .filter(hasDeckWideFilters)
-  .reduce(toDeckWideFilters, [])
-  .filter(filter => !isFilterExamined(deck, filter));
-
-const toInfo = priority => ({
-  priority,
-  priorityAddedCards: [],
-  extra: 'Priority not processed',
-});
-
-/**
- * This is a helper method that transforms an array of priorities to
- * an array of info for those priorities. The info contain an initial
- * state where later on we change it.
- * @param {Array} priorities
- */
-export const getInfoFromPriorities = priorities => priorities.map(toInfo);
-
-const calculateCardsToAdd = (cardsAdded, interestingCard) => {
-  const numberOfCardsAddedSoFar = getSize(cardsAdded);
-  if (numberOfCardsAddedSoFar < 28) cardsAdded.push(interestingCard);
-  else if (numberOfCardsAddedSoFar === 29) {
-    interestingCard.quantity = 1;
-    cardsAdded.push(interestingCard);
-  }
-  return cardsAdded;
-};
-export const addInterestingCards = (deck, interestingCards) => {
-  interestingCards = resetQuantity(interestingCards);
-  if (getSize(interestingCards) > 30) {
-    interestingCards = interestingCards.reduce(calculateCardsToAdd, []);
-  }
-  deck.cards = deck.cards.concat(interestingCards);
-  deck.size = getSize(deck.cards);
-  deck.history.steps.push(initializeStep(interestingCards, deck));
-};
-
-export const addOtherCards = (deck, currentStep, otherCards) => {
-  const addedOtherCards = [];
-  currentStep.extra += message.otherCardsSelected;
-  currentStep.otherCards = true;
-  let i = 0;
-  while (sizeLessThan30(deck) && i < otherCards.length) {
-    const card = otherCards[i];
-    card.quantity = calculateCardQuantity(deck, card);
-    deck.cards.push(card);
-    deck.size += card.quantity;
-    addedOtherCards.push(card);
-    i++;
-  }
-  return addedOtherCards;
-};

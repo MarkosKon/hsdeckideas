@@ -14,7 +14,10 @@ export const getBestCard = (cards) => {
   const bestCards = cards.filter(c => c.rating === maxRating);
   return bestCards[getRandom(0, bestCards.length - 1)];
 };
-export const getCard = (cards, isCompetitive) => (isCompetitive ? getBestCard(cards) : getRandomCard(cards));
+export const getCard = (cards, isCompetitive) => {
+  if (isCompetitive) return getBestCard(cards);
+  return getRandomCard(cards);
+};
 
 export const hasPriorities = card => card.versions;
 export const hasDeckWideFilters = card => card.deckFilters;
@@ -36,11 +39,15 @@ export const chooseInterestingCard = (availableCards, deckCards) => {
 export const findCardByName = (cards, name) => cards.find(c => c.name === name);
 export const findCardsByNames = (cards, names) => cards.filter(c => names.includes(c.name));
 
-export const removeSubset = (array, subset) => array.reduce((result, item) => (!cardExists(subset, item) ? result.concat(item) : result), []);
+export const removeSubset = (array, subset) => array.reduce((result, item) => {
+  const cardNotExists = !cardExists(subset, item);
+  return cardNotExists ? result.concat(item) : result;
+}, []);
 
 export const resetToNoRandom = (cards) => {
-  cards.forEach((c) => {
-    c.isRandom = false;
+  cards.forEach((card) => {
+    // eslint-disable-next-line no-param-reassign
+    card.isRandom = false;
   });
   return cards;
 };
@@ -66,35 +73,15 @@ export const getAvailableCards = (cardDb, heroName, format, isInteresting) => {
   return availableCards;
 };
 
-export const cardSatisfiesFilters = (card, filters, breakIfOneFilterIsTrue) => {
-  let satisfiesFilters;
-  for (const filter of filters) {
-    satisfiesFilters = false;
-    if (get(card, filter.property) === undefined && filter.operation !== 'IS_UNDEFINED') {
-      satisfiesFilters = false;
-      break;
-    }
-    satisfiesFilters = cardSatisfiesFilter(card, filter);
-    if (satisfiesFilters === breakIfOneFilterIsTrue) break;
-  }
-  return satisfiesFilters;
-};
-// This method is similar to getAvailableCards but it is used
-// in a later stage and assumes that the cards are ALREADY FILTERED
-//  by hero and format.
-export const getCardsForFilters = (filteredCards, filters, breakIfOneFilterIsTrue) => filteredCards.filter(
-  card => cardSatisfiesFilters(card, filters, breakIfOneFilterIsTrue)
-      || filters.find(f => f.initiatorName && f.initiatorName === card.name), // This check is for the princes.
-);
-
 export const cardSatisfiesFilter = (card, filter) => {
   switch (filter.operation) {
-    case 'EQUALS':
+    case 'EQUALS': {
       const cardPropertyValue = get(card, filter.property);
       if (cardPropertyValue === filter.minValue || cardPropertyValue === 'ALL') {
         return true;
       }
       return false;
+    }
     case 'NOT_EQUALS':
       if (get(card, filter.property) !== filter.minValue) return true;
       return false;
@@ -150,4 +137,30 @@ export const cardSatisfiesFilter = (card, filter) => {
     default:
       return false;
   }
+};
+
+export const cardSatisfiesFilters = (card, filters, breakIfOneFilterIsTrue) => {
+  let satisfiesFilters;
+  // eslint-disable-next-line no-restricted-syntax
+  for (const filter of filters) {
+    satisfiesFilters = false;
+    if (get(card, filter.property) === undefined && filter.operation !== 'IS_UNDEFINED') {
+      satisfiesFilters = false;
+      break;
+    }
+    satisfiesFilters = cardSatisfiesFilter(card, filter);
+    if (satisfiesFilters === breakIfOneFilterIsTrue) break;
+  }
+  return satisfiesFilters;
+};
+// This method is similar to getAvailableCards but it is used
+// in a later stage and assumes that the cards are ALREADY FILTERED
+//  by hero and format.
+// eslint-disable-next-line arrow-body-style
+export const getCardsForFilters = (filteredCards, filters, breakIfOneFilterIsTrue) => {
+  return filteredCards.filter(
+    card => cardSatisfiesFilters(card, filters, breakIfOneFilterIsTrue)
+      // This following check is for the princes.
+      || filters.find(f => f.initiatorName && f.initiatorName === card.name),
+  );
 };
