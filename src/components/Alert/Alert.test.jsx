@@ -9,3 +9,16 @@ it('renders without crashing', () => {
     div,
   );
 });
+
+it('renders without crashing (timeout)', () => {
+  const div = document.createElement('div');
+  ReactDOM.render(
+    <Alert
+      message="Test alert"
+      callback={() => {}}
+      timeout={500}
+      style={{ transform: 'something' }}
+    />,
+    div,
+  );
+});

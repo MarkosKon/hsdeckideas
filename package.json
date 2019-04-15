@@ -10,6 +10,7 @@
     "build:static": "yarn build && react-snap",
     "test": "jest",
     "test:watch": "jest --watch",
+    "test:coverage": "yarn jest --coverage --collectCoverageFrom=\"src/**/*.{jsx,js}\"",
     "lint": "eslint --ext js,jsx src",
     "lint:fix": "eslint --ext js,jsx src --fix",
     "format": "prettier-eslint --write \"src/**/*.{js,jsx}\"",
