@@ -4,5 +4,10 @@ import UICard from './UICard';
 
 it('renders without crashing', () => {
   const div = document.createElement('div');
-  ReactDOM.render(<UICard />, div);
+  ReactDOM.render(
+    <UICard>
+      <div>Content</div>
+    </UICard>,
+    div,
+  );
 });

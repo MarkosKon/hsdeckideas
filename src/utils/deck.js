@@ -1,5 +1,5 @@
 import { encode } from 'deckstrings';
-// import cloneDeep from 'lodash.clonedeep';
+import cloneDeep from 'lodash.clonedeep';
 
 import {
   byCostAndName, byName, removeArrayElement, getRandom,
@@ -12,7 +12,7 @@ import {
   chooseInterestingCard,
   getCardsForFilters,
   cardSatisfiesFilters,
-  resetQuantity,
+  initializeQuantity,
   removeSubset,
   getCard,
 } from './card';
@@ -48,13 +48,13 @@ const createBarCharDataForCost = (chartData, card) => {
   else chartData[card.cost].cardCount += card.quantity;
   return chartData;
 };
-const createInitalBarChartData = () => ['0', '1', '2', '3', '4', '5', '6', '7+'].map(item => ({
+const createInitialBarChartData = () => ['0', '1', '2', '3', '4', '5', '6', '7+'].map(item => ({
   manaCost: item,
   cardCount: 0,
 }));
 // prettier-ignore
 export const getManaCurveChartData = deck => deck.cards && deck.cards
-  .reduce(createBarCharDataForCost, createInitalBarChartData());
+  .reduce(createBarCharDataForCost, createInitialBarChartData());
 
 export const getDeckCode = (deck, heroCode, format) => encode({
   cards: deck.cards.map(card => [card.dbfId, card.quantity]),
@@ -62,17 +62,13 @@ export const getDeckCode = (deck, heroCode, format) => encode({
   format: format === 'Standard' ? 2 : 1,
 });
 
-/* eslint-disable no-nested-ternary */
-const calculateDust = (sum, card) => (isCommon(card)
-  ? sum + 40 * card.quantity
-  : isRare(card)
-    ? sum + 100 * card.quantity
-    : isEpic(card)
-      ? sum + 400 * card.quantity
-      : isLegendary(card)
-        ? sum + 1600
-        : sum);
-/* eslint-enable no-nested-ternary */
+const calculateDust = (totalDust, card) => {
+  if (isCommon(card)) return totalDust + 40 * card.quantity;
+  if (isRare(card)) return totalDust + 100 * card.quantity;
+  if (isEpic(card)) return totalDust + 400 * card.quantity;
+  if (isLegendary(card)) return totalDust + 1600;
+  return totalDust;
+};
 
 const calculateScore = (sum, card) => sum + card.rating * card.quantity;
 export const getTotalDust = deck => deck.cards.reduce(calculateDust, 0);
@@ -138,36 +134,37 @@ export const initializeStep = (originCards, deck) => ({
   extra: message.default,
   sizeBefore: getSize(deck.cards),
   originCards,
+  otherCards: [],
   totalAddedCards: [],
   deckWideFilters: [],
   priorities: [],
   prioritiesInfo: [],
 });
 
-export const calculateCardQuantity = (deck, card, otherCase) => {
-  const check = isHighlander(deck) || sizeEquals29(deck) || isLegendary(card);
-  if (otherCase !== undefined) return check || otherCase ? 1 : 2;
-  return check ? 1 : 2;
+export const calculateCardQuantity = (deck, card, otherCase = false) => {
+  const shouldBe1 = isHighlander(deck) || sizeEquals29(deck) || isLegendary(card);
+  return shouldBe1 || otherCase ? 1 : 2;
 };
 
 const calculateCardsToAdd = (cardsAdded, interestingCard) => {
-  const numberOfCardsAddedSoFar = getSize(cardsAdded);
-  if (numberOfCardsAddedSoFar < 28) cardsAdded.push(interestingCard);
-  else if (numberOfCardsAddedSoFar === 29) {
-    interestingCard.quantity = 1;
-    cardsAdded.push(interestingCard);
+  const numberOfCardsAdded = getSize(cardsAdded);
+  if (numberOfCardsAdded < 28) cardsAdded.push(interestingCard);
+  else if (numberOfCardsAdded === 29) {
+    cardsAdded.push({ ...interestingCard, quantity: 1 });
   }
   return cardsAdded;
 };
 
 export const addInterestingCards = (deck, interestingCards) => {
-  interestingCards = resetQuantity(interestingCards);
-  if (getSize(interestingCards) > 30) {
-    interestingCards = interestingCards.reduce(calculateCardsToAdd, []);
-  }
-  deck.cards = deck.cards.concat(interestingCards);
-  deck.size = getSize(deck.cards);
-  deck.history.steps.push(initializeStep(interestingCards, deck));
+  const deckCopy = cloneDeep(deck);
+  const interestingCardsWithQuantity = initializeQuantity(interestingCards);
+
+  deckCopy.cards = getSize(interestingCardsWithQuantity) > 30
+    ? interestingCardsWithQuantity.reduce(calculateCardsToAdd, [])
+    : deckCopy.cards.concat(interestingCardsWithQuantity);
+  deckCopy.size = getSize(deckCopy.cards);
+  deckCopy.history.steps.push(initializeStep(interestingCardsWithQuantity, deckCopy));
+  return deckCopy;
 };
 
 export const addOtherCards = (deck, currentStep, otherCards) => {
@@ -188,6 +185,7 @@ export const addOtherCards = (deck, currentStep, otherCards) => {
 
 export const getActiveVersion = card => card.versions[card.activeVersion];
 
+// why not?
 // const getRandomVersion = versions => versions[getRandom(0, versions.length - 1)];
 
 const toPriorities = (priorities, card) => priorities.concat(getActiveVersion(card).priorities);
@@ -235,8 +233,9 @@ export const getInfoFromPriorities = priorities => priorities.map(toInfo);
 
 const toDeckWideFilters = (filters, card) => filters.concat(card.deckFilters);
 const isFilterExamined = (deck, filter) => {
-  if (!deck.history.totalDeckFiltersExamined[filter.id]) {
-    deck.history.totalDeckFiltersExamined[filter.id] = filter;
+  const totalFiltersExamined = deck.history.totalDeckFiltersExamined;
+  if (!totalFiltersExamined[filter.id]) {
+    totalFiltersExamined[filter.id] = filter;
     return false;
   }
   return true;
@@ -255,7 +254,7 @@ const toStats = (archetype, deck) => ({
   archetype,
   cardCount: archetype.priorities
     .map(priority => toCardCount(priority, deck))
-    .reduce((totalCount, count) => (totalCount + count), 0),
+    .reduce((totalCount, count) => totalCount + count, 0),
 });
 
 export const computeMaxCount = partial(computeMax, 'cardCount');
@@ -289,11 +288,11 @@ export const getClosestArchetype = (deck, archetypes) => {
  * @param {Array} availableCards
  */
 export const completeDeckRandomly = (deck, availableCards) => {
-  availableCards = removeSubset(availableCards, deck.cards);
+  const cardPool = removeSubset(availableCards, deck.cards);
 
-  while (sizeLessThan30(deck) && availableCards.length > 0) {
-    let cardToPut = getCard(availableCards, deck.isCompetitive);
-    removeArrayElement(availableCards, cardToPut);
+  while (sizeLessThan30(deck) && cardPool.length > 0) {
+    let cardToPut = getCard(cardPool, deck.isCompetitive);
+    removeArrayElement(cardPool, cardToPut);
     cardToPut.quantity = calculateCardQuantity(deck, cardToPut);
     cardToPut = {
       ...cardToPut,
@@ -421,31 +420,33 @@ export const completeDeckByPriorities = (deck, availableCards, priorities) => {
  * @param {Array} interestingCards
  * @param {Array} otherCards
  */
-export const getDeck = (
-  deck,
+export const getDeck = ({
+  deck: inputDeck,
   availableCards,
   archetypes,
   interestingCards,
   otherCards,
-  extraDeckWideFilters,
-) => {
+  extraDeckWideFilters = [],
+}) => {
   let firstTime = true;
   let addedArchetypePriorities = false;
+  let cardPool = cloneDeep(availableCards);
+  let deck = cloneDeep(inputDeck);
 
   if (extraDeckWideFilters.length > 0) {
-    availableCards = getCardsForFilters(availableCards, extraDeckWideFilters, true);
+    cardPool = getCardsForFilters(cardPool, extraDeckWideFilters, true);
   }
 
   // interesting cards.
-  addInterestingCards(
+  deck = addInterestingCards(
     deck,
-    interestingCards || [chooseInterestingCard(availableCards, deck.cards)],
+    interestingCards || [chooseInterestingCard(cardPool, deck.cards)],
   );
 
   let currentStep = getLastStep(deck);
 
   // other cards.
-  currentStep.otherCards = otherCards ? addOtherCards(deck, currentStep, otherCards) : [];
+  if (otherCards) currentStep.otherCards = addOtherCards(deck, currentStep, otherCards);
 
   currentStep.priorities = obtainPriorities(deck);
 
@@ -466,7 +467,6 @@ export const getDeck = (
     if (firstTime) firstTime = false;
     else {
       currentStep = getLastStep(deck);
-      // Priorities.
       currentStep.priorities = obtainPriorities(deck);
       currentStep.prioritiesInfo = getInfoFromPriorities(currentStep.priorities);
     }
@@ -475,9 +475,9 @@ export const getDeck = (
     // Show somewhere in the deck that we added extra filters.
     currentStep.deckWideFilters = obtainDeckWideFilters(deck);
     if (currentStep.deckWideFilters.length > 0) {
-      availableCards = getCardsForFilters(availableCards, currentStep.deckWideFilters, false); // A.
+      cardPool = getCardsForFilters(cardPool, currentStep.deckWideFilters, false);
       const remainingDeckCards = getCardsForFilters(deck.cards, currentStep.deckWideFilters, false);
-      if (availableCards.length === 0) {
+      if (cardPool.length === 0) {
         currentStep.extra = message.noAvailableCards;
         break;
       }
@@ -488,14 +488,14 @@ export const getDeck = (
       // Check if filter is highlander.
       if (currentStep.deckWideFilters.find(f => f.operation === 'HIGHLANDER')) {
         deck.isHighlander = true;
-        deck.cards = resetQuantity(deck.cards, true);
+        deck.cards = initializeQuantity(deck.cards, { isHightlander: true });
         deck.size = getSize(deck.cards);
       }
     }
 
     // Choose an interesting card.
     if (sizeLessThan11(deck) && currentStep.priorities.length === 0) {
-      const anInterestingCard = chooseInterestingCard(availableCards, deck.cards);
+      const anInterestingCard = chooseInterestingCard(cardPool, deck.cards);
       anInterestingCard.quantity = calculateCardQuantity(deck, anInterestingCard);
       currentStep.totalAddedCards = [anInterestingCard];
       currentStep.extra = message.noOriginCards;
@@ -526,7 +526,7 @@ export const getDeck = (
       currentStep.extra = message.archetypeIn(deck.archetype.name);
     }
 
-    deck = completeDeckByPriorities(deck, availableCards, currentStep.priorities);
+    deck = completeDeckByPriorities(deck, cardPool, currentStep.priorities);
     if (sizeLessThan30(deck)) {
       deck.history.steps.push(initializeStep(currentStep.totalAddedCards, deck));
     }
@@ -536,7 +536,7 @@ export const getDeck = (
     numberOfSteps += 1;
   }
 
-  deck = completeDeckRandomly(deck, availableCards);
+  deck = completeDeckRandomly(deck, cardPool);
 
   deck.totalDust = getTotalDust(deck);
   deck.score = getDeckScore(deck);

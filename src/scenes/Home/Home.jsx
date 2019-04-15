@@ -221,14 +221,10 @@ class Home extends Component {
     const newHeroPower = heroPowers[newHeroNumber];
 
     // Choose an interesting card.
-    const newInterestingCards = selectInterestingCards.includes('Random')
-      ? null
-      : selectInterestingCards;
+    const interestingCards = !selectInterestingCards.includes('Random') && selectInterestingCards;
 
     // Choose other cards
-    const otherCards = selectNonInterestingCards.includes('None')
-      ? null
-      : selectNonInterestingCards;
+    const otherCards = !selectNonInterestingCards.includes('None') && selectNonInterestingCards;
 
     // Find the available cards, initialize the deck.
     const availableCards = getAvailableCards(cards, newHero, selectFormat);
@@ -240,14 +236,14 @@ class Home extends Component {
     });
 
     this.worker
-      .getDeck(
+      .getDeck({
         deck,
         availableCards,
         archetypes,
-        newInterestingCards,
+        interestingCards,
         otherCards,
-        selectedExtraDeckWideFilters,
-      )
+        extraDeckWideFilters: selectedExtraDeckWideFilters,
+      })
       .then(deckUI => Promise.all([
         this.worker.getDeckCode(deckUI, heroCodes[newHeroNumber], selectFormat),
         this.worker.getManaCurveChartData(deckUI),
@@ -259,7 +255,7 @@ class Home extends Component {
         hero: newHeroNumber,
         archetype: deckUI.archetype,
         chosenInterestingCards: deckUI.history.steps[0].originCards, // Watch this..
-        chosenNonInterestingCards: otherCards,
+        chosenNonInterestingCards: otherCards || null,
       })));
   }
 

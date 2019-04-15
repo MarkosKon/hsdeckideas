@@ -25,7 +25,7 @@ import {
   getAvailableCards,
   isCardInteresting,
   findCardByName,
-  resetQuantity,
+  initializeQuantity,
   findCardsByNames,
 } from './card';
 
@@ -342,6 +342,7 @@ it('initializeStep test #1: Checks if edits the step correctly', () => {
     extra: 'In this step the priorities come from the origin card(s).',
     sizeBefore: 0,
     originCards: [],
+    otherCards: [],
     totalAddedCards: [],
     deckWideFilters: [],
     priorities: [],
@@ -361,7 +362,11 @@ it('getDeck test #1: Checks if returns a deck with 30 cards for Standard Druid.'
     archetype: 'Random',
   });
 
-  const result = getDeck(deck, availableCards, archetypes, null, null, []);
+  const result = getDeck({
+    deck,
+    availableCards,
+    archetypes,
+  });
 
   expect(getSize(result.cards)).toEqual(30);
 });
@@ -402,7 +407,12 @@ it('getDeck test #3: Checks if returns a deck with 30 cards for Standard Hunter 
     archetype: 'Random',
   });
 
-  const result = getDeck(deck, availableCards, archetypes, null, allOtherCards, []);
+  const result = getDeck({
+    deck,
+    availableCards,
+    archetypes,
+    otherCards: allOtherCards,
+  });
 
   expect(getSize(result.cards)).toEqual(30);
 });
@@ -418,7 +428,11 @@ it('getDeck test #4: Checks if the deck has duplicate cards.', () => {
     archetype: 'Random',
   });
 
-  const result = getDeck(deck, availableCards, archetypes, null, null, []);
+  const result = getDeck({
+    deck,
+    availableCards,
+    archetypes,
+  });
 
   expect(hasDuplicates(result)).toEqual(false);
 });
@@ -438,7 +452,12 @@ it('getDeck test #5: Checks if the deck has duplicate cards when the user select
     archetype: 'Random',
   });
 
-  const result = getDeck(deck, availableCards, archetypes, [ui, nourish], null, []);
+  const result = getDeck({
+    deck,
+    availableCards,
+    archetypes,
+    interestingCards: [ui, nourish],
+  });
 
   expect(hasDuplicates(result)).toEqual(false);
 });
@@ -458,12 +477,17 @@ it('getDeck test #6: Checks if the deck has duplicate cards when the user select
     archetype: 'Random',
   });
 
-  const result = getDeck(deck, availableCards, archetypes, [chargedDevilsaur, malfurion], null, []);
+  const result = getDeck({
+    deck,
+    availableCards,
+    archetypes,
+    otherCards: [chargedDevilsaur, malfurion],
+  });
 
   expect(hasDuplicates(result)).toEqual(false);
 });
 
-it(`getDeck test #7: Checks if the deck has duplicate cards when the user selected some interesting 
+it(`getDeck test #7: Checks if the deck has duplicate cards when the user selected some interesting
   and some non intereting cards.`, () => {
   const heroName = 'Druid';
   const druidHeroPower = heroPowers.find(hp => hp.name === 'Shapeshift');
@@ -479,16 +503,22 @@ it(`getDeck test #7: Checks if the deck has duplicate cards when the user select
     archetype: 'Random',
   });
 
-  const result = getDeck(deck, availableCards, archetypes, [livingMana], [malfurion], []);
+  const result = getDeck({
+    deck,
+    availableCards,
+    archetypes,
+    interestingCards: [livingMana],
+    otherCards: [malfurion],
+  });
 
   expect(hasDuplicates(result)).toEqual(false);
 });
 
-it(`getDeck test #8: Checks for a discovered bug related to state mutation. We used to assign 
-      the interesting cards to the deck.cards instead of concat and later on we changed the 
-      deck.cards(or interestingCards, i'm not sure) variable. As a result interesting cards was 
-      also assigned as the first step's origin cards. This particular card returns no cards for 
-      Priest (Priest has no suited weapons) and as a result it chooses another interesting and 
+it(`getDeck test #8: Checks for a discovered bug related to state mutation. We used to assign
+      the interesting cards to the deck.cards instead of concat and later on we changed the
+      deck.cards(or interestingCards, i'm not sure) variable. As a result interesting cards was
+      also assigned as the first step's origin cards. This particular card returns no cards for
+      Priest (Priest has no suited weapons) and as a result it chooses another interesting and
       it seemed that the user had selected the new card also.`, () => {
   const heroName = 'Priest';
   const heroPower = heroPowers.find(hp => hp.name === 'Lesser Heal');
@@ -502,7 +532,12 @@ it(`getDeck test #8: Checks for a discovered bug related to state mutation. We u
     archetype: 'Random',
   });
 
-  const result = getDeck(deck, availableCards, archetypes, [phantomFreebooter], null, []);
+  const result = getDeck({
+    deck,
+    availableCards,
+    archetypes,
+    interestingCards: [phantomFreebooter],
+  });
 
   expect(result.history.steps[0].originCards.length).toEqual(1);
 });
@@ -520,7 +555,12 @@ it('getDeck test #9: Checks if returns a deck with 30 cards if we have 1 extra d
     isCompetitive: true,
   });
 
-  const result = getDeck(deck, availableCards, archetypes, null, null, extraDeckWideFilters);
+  const result = getDeck({
+    deck,
+    availableCards,
+    archetypes,
+    extraDeckWideFilters,
+  });
 
   expect(getSize(result.cards)).toEqual(30);
 });
@@ -539,7 +579,12 @@ it('getDeck test #10: Checks if returns a deck with 30 cards if we have multiple
     isCompetitive: true,
   });
 
-  const result = getDeck(deck, availableCards, archetypes, null, null, extraDeckWideFilters);
+  const result = getDeck({
+    deck,
+    availableCards,
+    archetypes,
+    extraDeckWideFilters,
+  });
 
   expect(getSize(result.cards)).toEqual(30);
 });
@@ -1194,8 +1239,8 @@ it('obtainPriorities test #5: Checks if extracts the priorities of a deck with 2
   expect(result).toEqual([]);
 });
 
-// extractDeckWideFilters tests
-it('extractDeckWideFilters test #1: Checks if extracts the deck-wide filters of a deck.', () => {
+// obtainDeckWideFilters tests
+it('obtainDeckWideFilters test #1: Checks if extracts the deck-wide filters of a deck.', () => {
   const princeKeleseth = cards.find(c => c.name === 'Prince Keleseth');
   const saroniteChainGang = cards.find(c => c.name === 'Saronite Chain Gang');
   const deck = {
@@ -1208,7 +1253,7 @@ it('extractDeckWideFilters test #1: Checks if extracts the deck-wide filters of 
   expect(result).toEqual(princeKeleseth.deckFilters);
 });
 
-it('extractDeckWideFilters test #2: Checks if returns an empty array when it has already examined the deck-wide filters', () => {
+it('obtainDeckWideFilters test #2: Checks if returns an empty array when it has already examined the deck-wide filters', () => {
   const princeKeleseth = cards.find(c => c.name === 'Prince Keleseth');
   const saroniteChainGang = cards.find(c => c.name === 'Saronite Chain Gang');
   const deck = {
@@ -1223,7 +1268,7 @@ it('extractDeckWideFilters test #2: Checks if returns an empty array when it has
   expect(result).toEqual([]);
 });
 
-it('extractDeckWideFilters test #3: Checks if returns an empty array when the cards have no deck-wide filters', () => {
+it('obtainDeckWideFilters test #3: Checks if returns an empty array when the cards have no deck-wide filters', () => {
   const frostwolfGrunt = cards.find(c => c.name === 'Frostwolf Grunt');
   const voidWalker = cards.find(c => c.name === 'Voidwalker');
   const saroniteChainGang = cards.find(c => c.name === 'Saronite Chain Gang');
@@ -1237,7 +1282,7 @@ it('extractDeckWideFilters test #3: Checks if returns an empty array when the ca
   expect(result).toEqual([]);
 });
 
-it('extractDeckWideFilters test #4: Checks if returns an empty array when the deck has no cards.', () => {
+it('obtainDeckWideFilters test #4: Checks if returns an empty array when the deck has no cards.', () => {
   const deck = {
     cards: [],
     history: {
@@ -1318,7 +1363,7 @@ it(`addOtherCards test #1: Checks if returns a deck with 30 cards.
     findCardByName(cards, 'Primalfin Lookout'),
     findCardByName(cards, 'Marin the Fox'),
   ];
-  interestingCards = resetQuantity(interestingCards, false);
+  interestingCards = initializeQuantity(interestingCards, false);
 
   const otherCards = [
     findCardByName(cards, 'Bittertide Hydra'),
@@ -1355,7 +1400,7 @@ it(`addOtherCards test #2: Checks if returns a deck with 30 cards.
     findCardByName(cards, 'Humongous Razorleaf'),
     findCardByName(cards, 'Primalfin Lookout'),
   ];
-  interestingCards = resetQuantity(interestingCards, false);
+  interestingCards = initializeQuantity(interestingCards, false);
 
   const otherCards = [
     findCardByName(cards, 'Bittertide Hydra'),

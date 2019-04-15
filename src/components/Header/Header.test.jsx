@@ -7,7 +7,9 @@ it('renders without crashing', () => {
   const div = document.createElement('div');
   ReactDOM.render(
     <Router>
-      <Header />
+      <Header>
+        <h1>Hello world!</h1>
+      </Header>
     </Router>,
     div,
   );

@@ -5,7 +5,7 @@ import {
   cardExists,
   getAvailableCards,
   resetToNoRandom,
-  resetQuantity,
+  initializeQuantity,
 } from './card';
 import { versionsToPriorities } from './deck';
 
@@ -237,8 +237,8 @@ it("resetToNoRandom test #4: Checks if resets the isRandom property to false eve
   expect(result.length).toEqual(6);
 });
 
-// resetQuantity tests.
-it('resetQuantity test #1: Checks if resets the quantity property.', () => {
+// initializeQuantity tests.
+it('initializeQuantity test #1: Checks if resets the quantity property.', () => {
   const cardSet = [
     { quantity: 1, rarity: 'COMMON' },
     { quantity: 1, rarity: 'COMMON' },
@@ -247,11 +247,11 @@ it('resetQuantity test #1: Checks if resets the quantity property.', () => {
     { quantity: 1, rarity: 'COMMON' },
     { quantity: 1, rarity: 'COMMON' },
   ];
-  const result = resetQuantity(cardSet).filter(c => c.quantity === 2);
+  const result = initializeQuantity(cardSet).filter(c => c.quantity === 2);
   expect(result.length).toEqual(6);
 });
 
-it('resetQuantity test #2: Checks if resets the quantity property if the deck is highlander.', () => {
+it('initializeQuantity test #2: Checks if resets the quantity property if the deck is highlander.', () => {
   const cardSet = [
     { quantity: 2, rarity: 'DOESNT MATTER' },
     { quantity: 4, rarity: 'DOESNT MATTER' },
@@ -260,11 +260,11 @@ it('resetQuantity test #2: Checks if resets the quantity property if the deck is
     { quantity: 1, rarity: 'DOESNT MATTER' },
     { quantity: 4, rarity: 'DOESNT MATTER' },
   ];
-  const result = resetQuantity(cardSet, true).filter(c => c.quantity === 1);
+  const result = initializeQuantity(cardSet, { isHighlander: true }).filter(c => c.quantity === 1);
   expect(result.length).toEqual(6);
 });
 
-it('resetQuantity test #3: Checks if resets the quantity property.', () => {
+it('initializeQuantity test #3: Checks if resets the quantity property.', () => {
   const cardSet = [
     { quantity: 2, rarity: 'RARE' },
     { quantity: 4, rarity: 'RARE' },
@@ -273,7 +273,7 @@ it('resetQuantity test #3: Checks if resets the quantity property.', () => {
     { quantity: 1, rarity: 'RARE' },
     { quantity: 4, rarity: 'RARE' },
   ];
-  const result = resetQuantity(cardSet, false).filter(c => c.quantity === 2);
+  const result = initializeQuantity(cardSet, { isHighlander: false }).filter(c => c.quantity === 2);
   expect(result.length).toEqual(6);
 });
 

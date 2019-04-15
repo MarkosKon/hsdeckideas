@@ -11,6 +11,7 @@
   "plugins": [
     "@babel/proposal-object-rest-spread",
     "@babel/proposal-class-properties",
-    "@babel/syntax-dynamic-import"
+    "@babel/syntax-dynamic-import",
+    "styled-components"
   ]
 }

@@ -52,9 +52,11 @@ export const resetToNoRandom = (cards) => {
   return cards;
 };
 
-export const resetQuantity = (cards, isHighlander) => (isHighlander
-  ? cards.map(c => ({ ...c, quantity: 1 }))
-  : cards.map(c => ({ ...c, quantity: c.rarity === 'LEGENDARY' ? 1 : 2 })));
+export const initializeQuantity = (cards, options = {}) => {
+  const { isHighlander } = options;
+  if (isHighlander) return cards.map(card => ({ ...card, quantity: 1 }));
+  return cards.map(card => ({ ...card, quantity: card.rarity === 'LEGENDARY' ? 1 : 2 }));
+};
 
 export const getAvailableCards = (cardDb, heroName, format, isInteresting) => {
   const expansionLimit = format === 'Standard' ? 12 : 0;
