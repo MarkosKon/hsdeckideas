@@ -421,7 +421,7 @@ export const completeDeckByPriorities = (deck, availableCards, priorities) => {
  * @param {Array} otherCards
  */
 export const getDeck = ({
-  deck: inputDeck,
+  initialDeck,
   availableCards,
   archetypes,
   interestingCards,
@@ -431,7 +431,7 @@ export const getDeck = ({
   let firstTime = true;
   let addedArchetypePriorities = false;
   let cardPool = cloneDeep(availableCards);
-  let deck = cloneDeep(inputDeck);
+  let deck = cloneDeep(initialDeck);
 
   if (extraDeckWideFilters.length > 0) {
     cardPool = getCardsForFilters(cardPool, extraDeckWideFilters, true);

@@ -3,6 +3,9 @@
     [
       "@babel/env",
       {
+        "targets": {
+          "node": 10
+        },
         "useBuiltIns": "entry"
       }
     ],
@@ -12,6 +15,7 @@
     "@babel/proposal-object-rest-spread",
     "@babel/proposal-class-properties",
     "@babel/syntax-dynamic-import",
+    "dynamic-import-node",
     "styled-components"
   ]
 }

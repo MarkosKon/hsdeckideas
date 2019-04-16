@@ -82,7 +82,14 @@ const TreeDiagram = ({ closeModal, deck }) => {
       id="dendrogram"
       title="Deck Diagram"
       modalButton={(
-        <Button transparent c="black" fs="60px" hc="darkorange" onClick={closeModal}>
+        <Button
+          aria-label="close modal"
+          transparent
+          c="black"
+          fs="60px"
+          hc="darkorange"
+          onClick={closeModal}
+        >
           <FontAwesomeIcon icon={faTimes} />
         </Button>
 )}

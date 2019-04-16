@@ -47,7 +47,14 @@ const History = ({
     id="deck-history"
     title="History (text)"
     modalButton={(
-      <Button transparent c="black" hc="darkorange" fs="60px" onClick={closeModal}>
+      <Button
+        aria-label="close modal"
+        transparent
+        c="black"
+        hc="darkorange"
+        fs="60px"
+        onClick={closeModal}
+      >
         <FontAwesomeIcon icon={faTimes} />
       </Button>
 )}
@@ -182,7 +189,7 @@ step(s)
                       <ol style={{ listStyleType: 'lower-alpha' }}>
                         {filters.map(filter => (
                           <li key={`${id}-${JSON.stringify(filter)}`}>
-                            {`${filter.property} ${filter.operation} 
+                            {`${filter.property} ${filter.operation}
                                 ${
                                   Array.isArray(filter.minValue)
                                     ? filter.minValue.join(' or ')

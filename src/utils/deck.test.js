@@ -363,7 +363,7 @@ it('getDeck test #1: Checks if returns a deck with 30 cards for Standard Druid.'
   });
 
   const result = getDeck({
-    deck,
+    initialDeck: deck,
     availableCards,
     archetypes,
   });
@@ -408,7 +408,7 @@ it('getDeck test #3: Checks if returns a deck with 30 cards for Standard Hunter 
   });
 
   const result = getDeck({
-    deck,
+    initialDeck: deck,
     availableCards,
     archetypes,
     otherCards: allOtherCards,
@@ -429,7 +429,7 @@ it('getDeck test #4: Checks if the deck has duplicate cards.', () => {
   });
 
   const result = getDeck({
-    deck,
+    initialDeck: deck,
     availableCards,
     archetypes,
   });
@@ -453,7 +453,7 @@ it('getDeck test #5: Checks if the deck has duplicate cards when the user select
   });
 
   const result = getDeck({
-    deck,
+    initialDeck: deck,
     availableCards,
     archetypes,
     interestingCards: [ui, nourish],
@@ -478,7 +478,7 @@ it('getDeck test #6: Checks if the deck has duplicate cards when the user select
   });
 
   const result = getDeck({
-    deck,
+    initialDeck: deck,
     availableCards,
     archetypes,
     otherCards: [chargedDevilsaur, malfurion],
@@ -504,7 +504,7 @@ it(`getDeck test #7: Checks if the deck has duplicate cards when the user select
   });
 
   const result = getDeck({
-    deck,
+    initialDeck: deck,
     availableCards,
     archetypes,
     interestingCards: [livingMana],
@@ -533,7 +533,7 @@ it(`getDeck test #8: Checks for a discovered bug related to state mutation. We u
   });
 
   const result = getDeck({
-    deck,
+    initialDeck: deck,
     availableCards,
     archetypes,
     interestingCards: [phantomFreebooter],
@@ -556,7 +556,7 @@ it('getDeck test #9: Checks if returns a deck with 30 cards if we have 1 extra d
   });
 
   const result = getDeck({
-    deck,
+    initialDeck: deck,
     availableCards,
     archetypes,
     extraDeckWideFilters,
@@ -580,7 +580,7 @@ it('getDeck test #10: Checks if returns a deck with 30 cards if we have multiple
   });
 
   const result = getDeck({
-    deck,
+    initialDeck: deck,
     availableCards,
     archetypes,
     extraDeckWideFilters,

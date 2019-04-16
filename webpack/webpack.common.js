@@ -38,6 +38,10 @@ module.exports = {
         test: /\.(png|jpg|gif)$/,
         use: [{ loader: 'file-loader' }],
       },
+      // {
+      //   test: /deck.js$/,
+      //   use: [{ loader: 'workerize-loader' }],
+      // },
     ],
   },
   plugins: [

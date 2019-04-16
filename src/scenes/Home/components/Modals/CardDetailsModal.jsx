@@ -82,7 +82,14 @@ const CardDetailsModal = ({ isOpen, closeModal, card }) => (
     contentLabel="Card details modal"
   >
     <Content c="white" bc="transparent" p="50px 15px">
-      <ButtonTopRight transparent c="white" fs="60px" hc="burlywood" onClick={closeModal}>
+      <ButtonTopRight
+        aria-label="close modal"
+        transparent
+        c="white"
+        fs="60px"
+        hc="burlywood"
+        onClick={closeModal}
+      >
         <FontAwesomeIcon icon={faTimes} />
       </ButtonTopRight>
       {card && (

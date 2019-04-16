@@ -12,15 +12,16 @@ import Loadable from 'react-loadable';
 import ReactGA from 'react-ga';
 import { Transition } from 'react-spring';
 
-// eslint-disable-next-line import/no-webpack-loader-syntax, import/no-unresolved
-import deckUtils from 'workerize-loader!../../utils/deck';
 import Loading from '../../components/Loading/Loading';
 import Header from '../../components/Header/Header';
 import Footer from '../../components/Footer/Footer';
 import Filters from './components/Filters/Filters';
 import Navbar from '../../components/Navbar/Navbar';
 import { getAvailableCards } from '../../utils/card';
-import { initializeDeck } from '../../utils/deck';
+import {
+  initializeDeck, getDeck, getDeckCode, getManaCurveChartData,
+} from '../../utils/deck';
+// import deckUtils from '../../utils/deck';
 import UICard from '../../components/UICard/UICard';
 import Alert from '../../components/Alert/Alert';
 import SEO from '../../components/SEO/SEO';
@@ -103,7 +104,7 @@ class Home extends Component {
     this.openCardDetailsModal = this.openCardDetailsModal.bind(this);
     this.closeCardDetailsModal = this.closeCardDetailsModal.bind(this);
 
-    this.worker = deckUtils();
+    // this.worker = deckUtils();
 
     this.state = {
       firstSuggestionLoaded: false,
@@ -228,35 +229,63 @@ class Home extends Component {
 
     // Find the available cards, initialize the deck.
     const availableCards = getAvailableCards(cards, newHero, selectFormat);
-    const deck = initializeDeck({
+
+    // No web worker, check the comments below for the alternative.
+    const initialDeck = initializeDeck({
       heroName: newHero,
       heroPower: newHeroPower,
       archetype: selectArchetype,
       isCompetitive,
     });
+    const deck = getDeck({
+      initialDeck,
+      availableCards,
+      archetypes,
+      interestingCards,
+      otherCards,
+      extraDeckWideFilters: selectedExtraDeckWideFilters,
+    });
+    this.setState({
+      firstSuggestionLoaded: true,
+      deckCode: getDeckCode(deck, heroCodes[newHeroNumber], selectFormat),
+      deckForUI: deck,
+      manaCurveChartData: getManaCurveChartData(deck),
+      hero: newHeroNumber,
+      archetype: deck.archetype,
+      chosenInterestingCards: deck.history.steps[0].originCards,
+      chosenNonInterestingCards: otherCards || null,
+    });
 
-    this.worker
-      .getDeck({
-        deck,
-        availableCards,
-        archetypes,
-        interestingCards,
-        otherCards,
-        extraDeckWideFilters: selectedExtraDeckWideFilters,
-      })
-      .then(deckUI => Promise.all([
-        this.worker.getDeckCode(deckUI, heroCodes[newHeroNumber], selectFormat),
-        this.worker.getManaCurveChartData(deckUI),
-      ]).then(results => this.setState({
-        firstSuggestionLoaded: true,
-        deckCode: results[0],
-        deckForUI: deckUI,
-        manaCurveChartData: results[1],
-        hero: newHeroNumber,
-        archetype: deckUI.archetype,
-        chosenInterestingCards: deckUI.history.steps[0].originCards, // Watch this..
-        chosenNonInterestingCards: otherCards || null,
-      })));
+    // dropped the worker from workerize-loader because I can't mock it in tests.
+    //   this.worker
+    //     .initializeDeck({
+    //       heroName: newHero,
+    //       heroPower: newHeroPower,
+    //       archetype: selectArchetype,
+    //       isCompetitive,
+    //     })
+    //     .then(deck => this.worker
+    //       .getDeck({
+    //         deck,
+    //         availableCards,
+    //         archetypes,
+    //         interestingCards,
+    //         otherCards,
+    //         extraDeckWideFilters: selectedExtraDeckWideFilters,
+    //       })
+    //       .then(deckUI => Promise.all([
+    //         this.worker.getDeckCode(deckUI, heroCodes[newHeroNumber], selectFormat),
+    //         this.worker.getManaCurveChartData(deckUI),
+    //       ]).then(results => this.setState({
+    //         firstSuggestionLoaded: true,
+    //         deckCode: results[0],
+    //         deckForUI: deckUI,
+    //         manaCurveChartData: results[1],
+    //         hero: newHeroNumber,
+    //         archetype: deckUI.archetype,
+    //         chosenInterestingCards: deckUI.history.steps[0].originCards, // Watch this..
+    //         chosenNonInterestingCards: otherCards || null,
+    //       }))));
   }
 
   handleQuery() {
