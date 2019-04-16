@@ -5,3 +5,4 @@ analyze
 .netlify
 .env
 TODO.md
+cypress/videos
