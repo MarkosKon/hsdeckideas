@@ -6,3 +6,4 @@ analyze
 .env
 TODO.md
 cypress/videos
+cypress/screenshots

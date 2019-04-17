@@ -169,13 +169,17 @@ export const addInterestingCards = (deck, interestingCards) => {
 
 export const addOtherCards = (deck, currentStep, otherCards) => {
   const addedOtherCards = [];
+
+  // eslint-disable-next-line no-param-reassign
   currentStep.extra += message.otherCardsSelected;
+  // eslint-disable-next-line no-param-reassign
   currentStep.otherCards = true;
   let i = 0;
   while (sizeLessThan30(deck) && i < otherCards.length) {
     const card = otherCards[i];
     card.quantity = calculateCardQuantity(deck, card);
     deck.cards.push(card);
+    // eslint-disable-next-line no-param-reassign
     deck.size += card.quantity;
     addedOtherCards.push(card);
     i += 1;
@@ -288,21 +292,22 @@ export const getClosestArchetype = (deck, archetypes) => {
  * @param {Array} availableCards
  */
 export const completeDeckRandomly = (deck, availableCards) => {
-  const cardPool = removeSubset(availableCards, deck.cards);
+  const deckCopy = cloneDeep(deck);
+  const cardPool = removeSubset(availableCards, deckCopy.cards);
 
-  while (sizeLessThan30(deck) && cardPool.length > 0) {
-    let cardToPut = getCard(cardPool, deck.isCompetitive);
+  while (sizeLessThan30(deckCopy) && cardPool.length > 0) {
+    let cardToPut = getCard(cardPool, deckCopy.isCompetitive);
     removeArrayElement(cardPool, cardToPut);
-    cardToPut.quantity = calculateCardQuantity(deck, cardToPut);
+    cardToPut.quantity = calculateCardQuantity(deckCopy, cardToPut);
     cardToPut = {
       ...cardToPut,
       isRandom: true,
       isFrom: 'Random',
     };
-    deck.cards.push(cardToPut);
-    deck.size += cardToPut.quantity;
+    deckCopy.cards.push(cardToPut);
+    deckCopy.size += cardToPut.quantity;
   }
-  return deck;
+  return deckCopy;
 };
 
 export const calculateHowManyCardsToPut = (
@@ -365,7 +370,9 @@ export const addCardsForPriority = (
     cardsWeAdded.push(cardToPut);
   }
 
+  // eslint-disable-next-line no-param-reassign
   deck.cards = deck.cards.concat(cardsWeAdded);
+  // eslint-disable-next-line no-param-reassign
   deck.size = getSize(deck.cards);
 
   // 3. History object manipulations.
@@ -395,6 +402,7 @@ export const completeDeckByPriorities = (deck, availableCards, priorities) => {
 
     // Just make an entry for checking if we reviewed that priority
     // (extract priorities method does that), do not add more info.
+    // eslint-disable-next-line no-param-reassign
     deck.history.totalPrioritiesExamined[priority.id] = priority;
 
     if (sizeGreaterThan29(deck)) {
@@ -406,6 +414,7 @@ export const completeDeckByPriorities = (deck, availableCards, priorities) => {
     // If it's smaller returns how many card it needs.
     const dSatisfiesPriority = deckSatisfiesPriority(deck, priority);
     if (sizeLessThan30(deck) && dSatisfiesPriority !== true) {
+      // eslint-disable-next-line no-param-reassign
       deck = addCardsForPriority(availableCards, deck, priority, dSatisfiesPriority);
     } else currentPriorityInfo.extra = message.deckIsOversatisfied;
   }
@@ -503,6 +512,7 @@ export const getDeck = ({
       deck.size = getSize(deck.cards);
       deck.history.steps.push(initializeStep([anInterestingCard], deck));
       numberOfSteps += 1;
+      // eslint-disable-next-line no-continue
       continue;
     }
 
@@ -510,6 +520,7 @@ export const getDeck = ({
     if (addedArchetypePriorities && currentStep.priorities.length === 0) {
       currentStep.extra = message.archetypeChosenNoPriorities;
       continueLooping = false;
+      // eslint-disable-next-line no-continue
       continue;
     }
 

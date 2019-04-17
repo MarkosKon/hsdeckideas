@@ -7,6 +7,7 @@
 describe('User happy path homepage', () => {
   it('Visits home page and clicks generate deck button', () => {
     cy.visit('/')
+      .wait(500) // wait a bit for the data in fetch.
       .getByText(/filters/i)
       .getByLabelText(/generate idea/i)
       .click()
@@ -38,6 +39,7 @@ describe('User happy menu navigation', () => {
 describe('Check if deck related buttons work', () => {
   it('Visits home page, generates a deck and open the deck diagram', () => {
     cy.visit('/')
+      .wait(500)
       .getByLabelText(/generate idea/i)
       .click()
       .getByText(/deck diagram/i)
@@ -49,6 +51,7 @@ describe('Check if deck related buttons work', () => {
 
   it('Visits home page, generates a deck and opens the deck History', () => {
     cy.visit('/')
+      .wait(500)
       .getByLabelText(/generate idea/i)
       .click()
       .getByText(/deck history/i)
