@@ -33,6 +33,10 @@ module.exports = {
           extensions: ['.js', '.jsx'],
         },
       },
+      {
+        test: /\.mdx?$/,
+        use: ['babel-loader', '@mdx-js/loader'],
+      },
       { test: /\.css$/, use: ['style-loader', 'css-loader'] },
       {
         test: /\.(png|jpg|gif)$/,

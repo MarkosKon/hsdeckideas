@@ -22,7 +22,7 @@ const LoadableNotFound = Loadable({
   loading: Loading,
 });
 const LoadableNewFeatures = Loadable({
-  loader: () => import(/* webpackChunkName: "newfeatures", webpackPreload: true */ './scenes/NewFeatures/NewFeatures'),
+  loader: () => import(/* webpackChunkName: "newfeatures", webpackPreload: true */ './NewFeatures.mdx'),
   loading: Loading,
 });
 

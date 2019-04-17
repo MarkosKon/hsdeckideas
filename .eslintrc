@@ -6,7 +6,7 @@
       "version": "16.7"
     }
   },
-  "extends": ["airbnb", "plugin:jest/recommended"],
+  "extends": ["airbnb", "plugin:jest/recommended", "plugin:mdx/recommended"],
   "env": {
     "browser": true,
     "node": true
