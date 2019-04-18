@@ -1,21 +1,29 @@
 {
+  "env": {
+    "test": {
+      "presets": [
+        [
+          "@babel/env",
+          {
+            "targets": {
+              "node": 10
+            },
+            "useBuiltIns": "entry"
+          }
+        ],
+        "@babel/react"
+      ],
+      "plugins": ["dynamic-import-node"]
+    }
+  },
   "presets": [
-    [
-      "@babel/env",
-      {
-        "targets": {
-          "node": 10
-        },
-        "useBuiltIns": "entry"
-      }
-    ],
+    ["@babel/env", { "useBuiltIns": "entry", "corejs": "2" }],
     "@babel/react"
   ],
   "plugins": [
     "@babel/proposal-object-rest-spread",
     "@babel/proposal-class-properties",
     "@babel/syntax-dynamic-import",
-    "dynamic-import-node",
     "styled-components"
   ]
 }

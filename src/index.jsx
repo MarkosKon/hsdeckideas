@@ -13,6 +13,8 @@ else render(<App />, root);
 if (process.env.NODE_ENV === 'production' && 'serviceWorker' in navigator) {
   // Use the window load event to keep the page load performant
   window.addEventListener('load', () => {
+    // This should not throw a lint error because we have an if.
+    // eslint-disable-next-line compat/compat
     navigator.serviceWorker.register('/service-worker.js');
   });
 }

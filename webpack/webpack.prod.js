@@ -7,6 +7,7 @@ const common = require('./webpack.common.js');
 console.log('We in production!');
 module.exports = merge(common, {
   mode: 'production',
+  devtool: 'source-map',
   plugins: [
     new BundleAnalyzerPlugin({
       analyzerMode: 'static',
@@ -18,6 +19,7 @@ module.exports = merge(common, {
       exclude: [
         /resources/,
         /_redirects/,
+        /.map$/,
         /.eot$/,
         /.ttf$/,
         /.woff$/,
