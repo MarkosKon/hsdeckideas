@@ -2,5 +2,6 @@
   "editor.formatOnSave": false,
   "prettier.eslintIntegration": true,
   "spellright.language": ["el"],
-  "spellright.documentTypes": ["latex", "plaintext"]
+  "spellright.documentTypes": ["latex", "plaintext"],
+  "javascript.validate.enable": false
 }

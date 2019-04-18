@@ -10,6 +10,61 @@ const data = require('../../public/resources/data/data.json');
 
 const cards = data[0].content;
 
+const prioritiesThatFindNothing = (availableCards, interestingCards, boundary) => interestingCards
+  .reduce((versions, card) => versions.concat(card.versions), [])
+  .reduce(versionsToPriorities, [])
+  .reduce((problematicPriorities, priority) => {
+    const check = getCardsForFilters(availableCards, priority.filters, false).length === boundary;
+    return check ? problematicPriorities.concat(priority) : problematicPriorities;
+  }, []);
+
+const prioritiesUnsatisfiedButNo0 = (availableCards, interestingCards) => interestingCards
+  .reduce((versions, card) => versions.concat(card.versions), [])
+  .reduce(versionsToPriorities, [])
+  .reduce((problematicPriorities, priority) => {
+    const maxPossibleNumber = getCardsForFilters(availableCards, priority.filters, false).reduce(
+      (maxPossible, c) => {
+        if (c.rarity === 'LEGENDARY') return maxPossible + 1;
+        return maxPossible + 2;
+      },
+      0,
+    );
+    if (maxPossibleNumber !== 0 && maxPossibleNumber < priority.minCards) {
+      return problematicPriorities.concat(priority);
+    }
+    return problematicPriorities;
+  }, []);
+
+// or more specifically, extract unique property names from an array of objects.
+const extractPropertyNames = (uniquePropertyNames, next) => Object.getOwnPropertyNames(next)
+  .filter(propertyName => !uniquePropertyNames.includes(propertyName))
+  .concat(uniquePropertyNames);
+const extractUniqueArrayItems = (uniqueItems, nextItem) => {
+  const isInUniqueArray = uniqueItems.includes(nextItem);
+  return !isInUniqueArray ? uniqueItems.concat(nextItem) : uniqueItems;
+};
+const extractUniqueObjectProperties = (property, uniqueProperties, nextObject) => {
+  const isInUniqueArray = uniqueProperties.includes(nextObject[property]);
+  return !isInUniqueArray ? uniqueProperties.concat(nextObject[property]) : uniqueProperties;
+};
+
+const extractUniqueFactions = partial(extractUniqueObjectProperties, 'faction');
+const extractUniqueOverloads = partial(extractUniqueObjectProperties, 'overload');
+const extractUniqueRaces = partial(extractUniqueObjectProperties, 'race');
+const extractUniqueCosts = partial(extractUniqueObjectProperties, 'cost');
+const extractUniqueRarities = partial(extractUniqueObjectProperties, 'rarity');
+const extractUniqueSets = partial(extractUniqueObjectProperties, 'set');
+const extractUniqueRatings = partial(extractUniqueObjectProperties, 'rating');
+const extractUniqueTypes = partial(extractUniqueObjectProperties, 'type');
+
+const createArtistStats = (artistStats, nextArtistName) => {
+  const artist = artistStats.find(indexedArtist => indexedArtist.name === nextArtistName);
+  if (artist) artist.workCount += 1;
+  else artistStats.push({ name: nextArtistName, workCount: 1 });
+
+  return artistStats;
+};
+
 // 1. Data tests.
 it('Data test #1: Checks how many cards we have.', () => {
   expect(cards.length).toEqual(2003);
@@ -39,31 +94,6 @@ it('Data test #3: Checks if all cards have ratings.', () => {
   const result = cards.reduce((sum, card) => (card.rating ? sum + 1 : sum), 0);
   expect(result).toEqual(2003);
 });
-
-const prioritiesThatFindNothing = (availableCards, interestingCards, boundary) => interestingCards
-  .reduce((versions, card) => versions.concat(card.versions), [])
-  .reduce(versionsToPriorities, [])
-  .reduce((problematicPriorities, priority) => {
-    const check = getCardsForFilters(availableCards, priority.filters, false).length === boundary;
-    return check ? problematicPriorities.concat(priority) : problematicPriorities;
-  }, []);
-
-const prioritiesUnsatisfiedButNo0 = (availableCards, interestingCards) => interestingCards
-  .reduce((versions, card) => versions.concat(card.versions), [])
-  .reduce(versionsToPriorities, [])
-  .reduce((problematicPriorities, priority) => {
-    const maxPossibleNumber = getCardsForFilters(availableCards, priority.filters, false).reduce(
-      (maxPossible, c) => {
-        if (c.rarity === 'LEGENDARY') return maxPossible + 1;
-        return maxPossible + 2;
-      },
-      0,
-    );
-    if (maxPossibleNumber !== 0 && maxPossibleNumber < priority.minCards) {
-      return problematicPriorities.concat(priority);
-    }
-    return problematicPriorities;
-  }, []);
 
 /**
  * 5 cards in Rise of Shadows
@@ -489,36 +519,6 @@ it(`Data test #23: Keeps track of the Standard Druid-Neutral cards
 
   expect(result.length).toEqual(1);
 });
-
-// or more specifically, extract unique property names from an array of objects.
-const extractPropertyNames = (uniquePropertyNames, next) => Object.getOwnPropertyNames(next)
-  .filter(propertyName => !uniquePropertyNames.includes(propertyName))
-  .concat(uniquePropertyNames);
-const extractUniqueArrayItems = (uniqueItems, nextItem) => {
-  const isInUniqueArray = uniqueItems.includes(nextItem);
-  return !isInUniqueArray ? uniqueItems.concat(nextItem) : uniqueItems;
-};
-const extractUniqueObjectProperties = (property, uniqueProperties, nextObject) => {
-  const isInUniqueArray = uniqueProperties.includes(nextObject[property]);
-  return !isInUniqueArray ? uniqueProperties.concat(nextObject[property]) : uniqueProperties;
-};
-
-const extractUniqueFactions = partial(extractUniqueObjectProperties, 'faction');
-const extractUniqueOverloads = partial(extractUniqueObjectProperties, 'overload');
-const extractUniqueRaces = partial(extractUniqueObjectProperties, 'race');
-const extractUniqueCosts = partial(extractUniqueObjectProperties, 'cost');
-const extractUniqueRarities = partial(extractUniqueObjectProperties, 'rarity');
-const extractUniqueSets = partial(extractUniqueObjectProperties, 'set');
-const extractUniqueRatings = partial(extractUniqueObjectProperties, 'rating');
-const extractUniqueTypes = partial(extractUniqueObjectProperties, 'type');
-
-const createArtistStats = (artistStats, nextArtistName) => {
-  const artist = artistStats.find(indexedArtist => indexedArtist.name === nextArtistName);
-  if (artist) artist.workCount += 1;
-  else artistStats.push({ name: nextArtistName, workCount: 1 });
-
-  return artistStats;
-};
 
 it('Data test #24: Checks if the unique property number of the card object is 39.', () => {
   const result = cards.reduce(extractPropertyNames, []);

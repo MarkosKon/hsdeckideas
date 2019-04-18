@@ -35911,7 +35911,7 @@
                     "operation": "INCLUDES",
                     "minValue": "RECRUIT"
                   },
-                  { "property": "text", "operation": "MATCH", "minValue": 4 }
+                  { "property": "text", "operation": "MATCH", "minValue": "\\(4\\)" }
                 ]
               }
             ]

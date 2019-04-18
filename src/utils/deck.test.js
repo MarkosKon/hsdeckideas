@@ -21,13 +21,11 @@ import {
   getManaCurveChartData,
 } from './deck';
 import {
-  getSize,
-  getAvailableCards,
-  isCardInteresting,
-  findCardByName,
-  initializeQuantity,
-  findCardsByNames,
+  getSize, getAvailableCards, isCardInteresting, initializeQuantity,
 } from './card';
+
+const findCardByName = (cards, name) => cards.find(c => c.name === name);
+const findCardsByNames = (cards, names) => cards.filter(c => names.includes(c.name));
 
 // Data init.
 const data = require('../../public/resources/data/data.json');
@@ -37,7 +35,6 @@ const archetypes = data[1].content;
 const heroPowers = data[3].content;
 const extraFilters = data[4].content;
 
-// getManaCurve tests
 it('getManaCurveChartData test #1: Checks if returns the expected mana curve for a deck.', () => {
   const deck = {
     cards: [
@@ -177,7 +174,6 @@ it('getManaCurveChartData test #6: Checks if returns undefined for a deck with n
   expect(result).toEqual(undefined);
 });
 
-// getTotalDust tests
 it('getTotalDust test #1: Checks if returns the expected total dust for a deck.', () => {
   const deck = {
     cards: [
@@ -271,7 +267,6 @@ it('getTotalDust test #5: Checks if returns 0 for a deck with no cards', () => {
   expect(result).toEqual(0);
 });
 
-// getDeckScore tests.
 it('getDeckScore test #1: Checks if returns the expected score.', () => {
   const deck = {
     cards: [
@@ -306,7 +301,6 @@ it('getDeckScore test #2: Checks if returns the expected score.', () => {
   expect(result).toEqual(3 + 6 + 6 + 16);
 });
 
-// initializeDeck tests.
 it('initializeDeck test #1: Checks if initializes the deck correctly.', () => {
   const heroName = 'Paladin';
   const paladinHeroPower = heroPowers.find(hp => hp.name === 'Reinforce');
@@ -334,7 +328,6 @@ it('initializeDeck test #1: Checks if initializes the deck correctly.', () => {
   });
 });
 
-// initializeStep tests.
 it('initializeStep test #1: Checks if edits the step correctly', () => {
   const step = initializeStep([], { cards: [] });
 
@@ -350,7 +343,6 @@ it('initializeStep test #1: Checks if edits the step correctly', () => {
   });
 });
 
-// getDeck tests.
 it('getDeck test #1: Checks if returns a deck with 30 cards for Standard Druid.', () => {
   const heroName = 'Druid';
   const druidHeroPower = heroPowers.find(hp => hp.name === 'Shapeshift');
@@ -371,29 +363,28 @@ it('getDeck test #1: Checks if returns a deck with 30 cards for Standard Druid.'
   expect(getSize(result.cards)).toEqual(30);
 });
 
-// It fails.
-// it(`getDeck test #2: Checks if returns a deck with 30 cards for
-// Standard Hunter if the user selected all the interesting cards.`, () => {
-//   const heroName = 'Hunter';
-//   const druidHeroPower = heroPowers.find(hp => hp.name === 'Steady Shot');
-//   const format = 'Standard';
-//   const availableCards = getAvailableCards(cards, heroName, format);
-//   const allInterestingCards = availableCards.filter(isCardInteresting);
-//   console.log(allInterestingCards.length);
+it(`getDeck test #2: Checks if returns a deck with 30 cards for
+Standard Hunter if the user selected all the interesting cards.`, () => {
+  const heroName = 'Hunter';
+  const hunterHeroPower = heroPowers.find(hp => hp.name === 'Steady Shot');
+  const format = 'Standard';
+  const availableCards = getAvailableCards(cards, heroName, format);
+  const allInterestingCards = availableCards.filter(isCardInteresting);
+  const initialDeck = initializeDeck({
+    heroName,
+    heroPower: hunterHeroPower,
+    archetype: 'Random',
+  });
 
-//   const result = getDeck(
-//     cards,
-//     heroName,
-//     druidHeroPower,
-//     format,
-//     'Random',
-//     archetypes,
-//     allInterestingCards,
-//     null,
-//   );
+  const result = getDeck({
+    initialDeck,
+    availableCards,
+    archetypes,
+    allInterestingCards,
+  });
 
-//   expect(getSize(result.cards)).toEqual(30);
-// });
+  expect(getSize(result.cards)).toEqual(30);
+});
 
 it('getDeck test #3: Checks if returns a deck with 30 cards for Standard Hunter if the user selected all the non interesting cards.', () => {
   const heroName = 'Hunter';
@@ -589,7 +580,6 @@ it('getDeck test #10: Checks if returns a deck with 30 cards if we have multiple
   expect(getSize(result.cards)).toEqual(30);
 });
 
-// hasDuplicates function and tests.
 it('hasDuplicates test #1: Checks if works.', () => {
   const deck = {
     cards: [{ name: 'One' }, { name: 'Two' }, { name: 'Three' }, { name: 'Four' }],
@@ -630,7 +620,6 @@ it('hasDuplicates test #5: Checks if works with capitalization.', () => {
   expect(hasDuplicates(deck)).toEqual(false);
 });
 
-// completeDeckRandomly tests
 it('completeDeckRandomly test #1: Checks if returns a deck with 30 cards.', () => {
   const deck = {
     cards: [],
@@ -750,7 +739,6 @@ it('completeDeckRandomly test #11: Checks if returns a deck with duplicates', ()
 // addCardsForPriority tests.
 // TODO
 
-// calculateHowManyCardsToPut tests.
 it('calculateHowManyCardsToPut test #1: Deck at 10 cards, priority cards in deck at the minimum value.', () => {
   const priority = {
     minCards: 4,
@@ -798,7 +786,6 @@ it('calculateHowManyCardsToPut test #5: Deck will be full after, priority cards 
   expect(result).toEqual(1);
 });
 
-// calculateCardQuantity tests.
 it('calculateCardQuantity test #1: ', () => {
   const deck = {
     size: 0,
@@ -889,7 +876,6 @@ it("calculateCardQuantity test #9: This will not happen because if the deck is f
   expect(result).toEqual(2);
 });
 
-// getClosestArchetype tests
 it('getClosestArchetype test #1: Checks if returns the expected archetype.', () => {
   const aggroArchetype = archetypes.find(a => a.name === 'Aggro');
   const deckCards = cards
@@ -964,7 +950,6 @@ it('getClosestArchetype test #3: Checks if returns the expected archetype.', () 
 // toStats tests
 // TODO
 
-// toCardCount tests.
 it('toCardCount test #1: Checks if returns the expected value.', () => {
   const aggroArchetype = archetypes.find(a => a.name === 'Aggro');
   const deckCards = cards
@@ -1040,7 +1025,6 @@ it('toCardCount test #4: Checks if takes into account the hero power for +2 card
   expect(result).toEqual(2);
 });
 
-// computeMaxCount tests
 it('computeMaxCount test #1: Checks if returns the expected value.', () => {
   const result = computeMaxCount(5, { cardCount: 6 });
   expect(result).toEqual(6);
@@ -1090,7 +1074,6 @@ it('computeMaxCount test #10: Checks if returns undefined when the parameters ar
   expect(computeMaxCount).toThrow();
 });
 
-// deckSatisfiesPriority tests
 it('deckSatisfiesPriority test #1: Checks if returns the count of cards in deck that satisfy the priority.', () => {
   const knifeJuggler = findCardByName(cards, 'Knife Juggler');
   const cardNames = ['Knife Juggler', 'Violet Teacher', 'Mire Keeper'];
@@ -1146,7 +1129,6 @@ it('deckSatisfiesPriority test #3: Checks if returns true when the deck over-sat
   expect(result).toEqual(true);
 });
 
-// getCardThatRequestedPriority tests
 it('getCardThatRequestedPriority test #1: Checks if returns the card that request the priority.', () => {
   const knifeJuggler = cards.find(c => c.name === 'Knife Juggler');
   const argentSquire = cards.find(c => c.name === 'Argent Squire');
@@ -1163,7 +1145,6 @@ it('getCardThatRequestedPriority test #1: Checks if returns the card that reques
   expect(result).toEqual(knifeJuggler);
 });
 
-// obtainPriorities tests.
 it('obtainPriorities test #1: Checks if extracts the priorities of a deck without cards correctly', () => {
   const deck = {
     cards: [],
@@ -1239,7 +1220,6 @@ it('obtainPriorities test #5: Checks if extracts the priorities of a deck with 2
   expect(result).toEqual([]);
 });
 
-// obtainDeckWideFilters tests
 it('obtainDeckWideFilters test #1: Checks if extracts the deck-wide filters of a deck.', () => {
   const princeKeleseth = cards.find(c => c.name === 'Prince Keleseth');
   const saroniteChainGang = cards.find(c => c.name === 'Saronite Chain Gang');
@@ -1293,7 +1273,6 @@ it('obtainDeckWideFilters test #4: Checks if returns an empty array when the dec
   expect(result).toEqual([]);
 });
 
-// getInfoFromPriorities tests.
 it('getInfoFromPriorities test #1: Checks if gets info from priorities correctly', () => {
   const priorities = [{ no: '1' }, { no: '2' }, { no: '3' }];
 
@@ -1351,7 +1330,6 @@ it('getInfoFromPriorities test #2: Checks if gets info from priorities correctly
   ]);
 });
 
-// addOtherCards tests
 it(`addOtherCards test #1: Checks if returns a deck with 30 cards.
     It also checks if the the deck has 29 cards and the last card is not
     a legendary the quantity of the last card is 1.`, () => {

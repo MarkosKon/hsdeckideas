@@ -7,8 +7,7 @@
           {
             "targets": {
               "node": 10
-            },
-            "useBuiltIns": "entry"
+            }
           }
         ],
         "@babel/react"
@@ -18,7 +17,8 @@
   },
   "presets": [
     ["@babel/env", { "useBuiltIns": "entry", "corejs": "2" }],
-    "@babel/react"
+    "@babel/react",
+    "@babel/flow"
   ],
   "plugins": [
     "@babel/proposal-object-rest-spread",

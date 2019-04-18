@@ -7,13 +7,19 @@
     },
     "polyfills": ["fetch"]
   },
-  "extends": ["airbnb", "plugin:jest/recommended", "plugin:compat/recommended"],
+  "extends": [
+    "airbnb",
+    "plugin:jest/recommended",
+    "plugin:compat/recommended",
+    "plugin:flowtype/recommended"
+  ],
   "env": {
     "browser": true,
     "node": true
   },
-  "plugins": ["jest", "react-hooks"],
+  "plugins": ["jest", "react-hooks", "flowtype"],
   "rules": {
-    "react-hooks/rules-of-hooks": "error"
+    "react-hooks/rules-of-hooks": "error",
+    "arrow-body-style": "off"
   }
 }

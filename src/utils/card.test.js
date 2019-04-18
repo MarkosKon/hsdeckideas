@@ -4,7 +4,6 @@ import {
   chooseInterestingCard,
   cardExists,
   getAvailableCards,
-  resetToNoRandom,
   initializeQuantity,
 } from './card';
 import { versionsToPriorities } from './deck';
@@ -13,6 +12,14 @@ import { versionsToPriorities } from './deck';
 const data = require('../../public/resources/data/data.json');
 
 const cards = data[0].content;
+
+const resetToNoRandom = (inputCards) => {
+  inputCards.forEach((card) => {
+    // eslint-disable-next-line no-param-reassign
+    card.isRandom = false;
+  });
+  return inputCards;
+};
 
 // getSize tests.
 it('getSize test #1: Checks if returns the expected deck size', () => {
@@ -284,7 +291,7 @@ it('cardExists test #1: Checks if it finds a card in the collection.', () => {
   const collection = [abomination, chillwindYeti];
 
   const result = cardExists(collection, abomination);
-  expect(result).toEqual(abomination);
+  expect(result).toEqual(true);
 });
 
 it("cardExists test #2: Checks if returns undefined when it doesn't find the card in the collection.", () => {
@@ -294,7 +301,7 @@ it("cardExists test #2: Checks if returns undefined when it doesn't find the car
   const collection = [abomination, chillwindYeti];
 
   const result = cardExists(collection, fungalmancer);
-  expect(result).toBeUndefined();
+  expect(result).toEqual(false);
 });
 
 // getAvailableCards tests.
