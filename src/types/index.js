@@ -1,6 +1,6 @@
 // @flow
 
-export type CardType = {
+type Card = {
   name: string,
   artist: string,
   cardClass: string,
@@ -10,7 +10,7 @@ export type CardType = {
   flavor: string,
   id: string,
   mechanics: string,
-  playRequirements: Object, // to generic?
+  playRequirements: Object, // too generic?
   rarity: string,
   set: number,
   rating: number,
@@ -43,10 +43,45 @@ export type CardType = {
   quantity: number,
 };
 
-export type FilterType = {
+type Filter = {
   property: string,
   operation: string,
   minValue: number | string | Array<string>,
   maxValue?: number | string | Array<string>,
   initiatorName?: string,
+};
+
+type Priority = {};
+
+type Step = {
+  deckWideFilters: Array<Object>, // too generic?
+  extra: string,
+  originCards: Array<Card>,
+  otherCards: Array<Card>,
+  priorities: Array<Priority>,
+  prioritiesInfo: Array<Object>, // too generic?,
+  sizeBefore: number,
+  totalAddedCards: Array<Card>,
+};
+
+type Archetype = {};
+type Deck = {
+  archetype: Archetype,
+  cards: Array<Card>,
+  hero: string,
+  heroPower: Object,
+  history: {
+    steps: Array<Step>,
+    totalDeckFiltersExamined: Array<Filter>,
+    totalPrioritiesExamined: Array<Priority>,
+  },
+  isCompetitive: boolean,
+  isHighlander: boolean,
+  score: number,
+  size: number,
+  totalDust: number,
+};
+
+export type {
+  Card, Filter, Step, Deck,
 };

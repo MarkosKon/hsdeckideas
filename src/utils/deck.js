@@ -1,9 +1,7 @@
 import { encode } from 'deckstrings';
 import cloneDeep from 'lodash.clonedeep';
 
-import {
-  byCostAndName, byName, removeArrayElement, getRandom,
-} from 'some-utils';
+import { byCostAndName, removeArrayElement, getRandom } from 'some-utils';
 import getLastStep from './history';
 import {
   getSize,
@@ -53,10 +51,10 @@ const createInitialBarChartData = () => ['0', '1', '2', '3', '4', '5', '6', '7+'
   cardCount: 0,
 }));
 // prettier-ignore
-export const getManaCurveChartData = deck => deck.cards && deck.cards
+const getManaCurveChartData = deck => deck.cards && deck.cards
   .reduce(createBarCharDataForCost, createInitialBarChartData());
 
-export const getDeckCode = (deck, heroCode, format) => encode({
+const getDeckCode = (deck, heroCode, format) => encode({
   cards: deck.cards.map(card => [card.dbfId, card.quantity]),
   heroes: [heroCode],
   format: format === 'Standard' ? 2 : 1,
@@ -71,11 +69,11 @@ const calculateDust = (totalDust, card) => {
 };
 
 const calculateScore = (sum, card) => sum + card.rating * card.quantity;
-export const getTotalDust = deck => deck.cards.reduce(calculateDust, 0);
+const getTotalDust = deck => deck.cards.reduce(calculateDust, 0);
 
-export const getDeckScore = deck => deck.cards.reduce(calculateScore, 0);
+const getDeckScore = deck => deck.cards.reduce(calculateScore, 0);
 
-export const initializeDeck = ({
+const initializeDeck = ({
   heroName, heroPower, archetype, isCompetitive,
 }) => ({
   cards: [],
@@ -94,7 +92,7 @@ export const initializeDeck = ({
   },
 });
 
-export const message = {
+const message = {
   default: 'In this step the priorities come from the origin card(s).',
   defaultPlusArchetype: `In this step the priorities come from the origin card(s) and from the
     archetype you selected.`,
@@ -130,7 +128,7 @@ export const message = {
     In the deck we had ${deckCards} cards that met those requirements.`,
 };
 
-export const initializeStep = (originCards, deck) => ({
+const initializeStep = (originCards, deck) => ({
   extra: message.default,
   sizeBefore: getSize(deck.cards),
   originCards,
@@ -141,7 +139,7 @@ export const initializeStep = (originCards, deck) => ({
   prioritiesInfo: [],
 });
 
-export const calculateCardQuantity = (deck, card, otherCase = false) => {
+const calculateCardQuantity = (deck, card, otherCase = false) => {
   const shouldBe1 = isHighlander(deck) || sizeEquals29(deck) || isLegendary(card);
   return shouldBe1 || otherCase ? 1 : 2;
 };
@@ -155,7 +153,7 @@ const calculateCardsToAdd = (cardsAdded, interestingCard) => {
   return cardsAdded;
 };
 
-export const addInterestingCards = (deck, interestingCards) => {
+const addInterestingCards = (deck, interestingCards) => {
   const deckCopy = cloneDeep(deck);
   const interestingCardsWithQuantity = initializeQuantity(interestingCards);
 
@@ -167,7 +165,7 @@ export const addInterestingCards = (deck, interestingCards) => {
   return deckCopy;
 };
 
-export const addOtherCards = (deck, currentStep, otherCards) => {
+const addOtherCards = (deck, currentStep, otherCards) => {
   const addedOtherCards = [];
 
   // eslint-disable-next-line no-param-reassign
@@ -187,7 +185,7 @@ export const addOtherCards = (deck, currentStep, otherCards) => {
   return addedOtherCards;
 };
 
-export const getActiveVersion = card => card.versions[card.activeVersion];
+const getActiveVersion = card => card.versions[card.activeVersion];
 
 // why not?
 // const getRandomVersion = versions => versions[getRandom(0, versions.length - 1)];
@@ -199,7 +197,7 @@ const isPriorityExamined = (deck, priority) => deck.history.totalPrioritiesExami
  * from the deck's cards. It does not return priorities that have already been examined.
  * @param {Object} deck
  */
-export const obtainPriorities = deck => deck.cards
+const obtainPriorities = deck => deck.cards
   .filter(hasPriorities)
   .reduce(toPriorities, [])
   .filter(priority => !isPriorityExamined(deck, priority));
@@ -212,7 +210,7 @@ export const obtainPriorities = deck => deck.cards
  * @param {Object} deck
  * @param {Object} priority
  */
-export const deckSatisfiesPriority = (deck, priority) => {
+const deckSatisfiesPriority = (deck, priority) => {
   let cardCount = getSize(getCardsForFilters(deck.cards, priority.filters, false));
   if (cardSatisfiesFilters(deck.heroPower, priority.filters, false)) {
     cardCount += 2;
@@ -233,7 +231,7 @@ const toInfo = priority => ({
  * state where later on we change it.
  * @param {Array} priorities
  */
-export const getInfoFromPriorities = priorities => priorities.map(toInfo);
+const getInfoFromPriorities = priorities => priorities.map(toInfo);
 
 const toDeckWideFilters = (filters, card) => filters.concat(card.deckFilters);
 const isFilterExamined = (deck, filter) => {
@@ -244,12 +242,12 @@ const isFilterExamined = (deck, filter) => {
   }
   return true;
 };
-export const obtainDeckWideFilters = deck => deck.cards
+const obtainDeckWideFilters = deck => deck.cards
   .filter(hasDeckWideFilters)
   .reduce(toDeckWideFilters, [])
   .filter(filter => !isFilterExamined(deck, filter));
 
-export const toCardCount = (priority, deck) => {
+const toCardCount = (priority, deck) => {
   const cardCount = deckSatisfiesPriority(deck, priority);
   if (cardCount === true) return priority.maxCards;
   return cardCount;
@@ -261,7 +259,7 @@ const toStats = (archetype, deck) => ({
     .reduce((totalCount, count) => totalCount + count, 0),
 });
 
-export const computeMaxCount = partial(computeMax, 'cardCount');
+const computeMaxCount = partial(computeMax, 'cardCount');
 /**
  * This method takes as input the deck and the available archetypes
  * and returns which archetype better represents the deck. This is
@@ -270,7 +268,7 @@ export const computeMaxCount = partial(computeMax, 'cardCount');
  * @param {*} deck
  * @param {*} archetypes
  */
-export const getClosestArchetype = (deck, archetypes) => {
+const getClosestArchetype = (deck, archetypes) => {
   const archetypeStats = archetypes.map(archetype => toStats(archetype, deck));
 
   const max = archetypeStats.reduce(computeMaxCount, 0);
@@ -291,7 +289,7 @@ export const getClosestArchetype = (deck, archetypes) => {
  * @param {Object} deck
  * @param {Array} availableCards
  */
-export const completeDeckRandomly = (deck, availableCards) => {
+const completeDeckRandomly = (deck, availableCards) => {
   const deckCopy = cloneDeep(deck);
   const cardPool = removeSubset(availableCards, deckCopy.cards);
 
@@ -310,11 +308,7 @@ export const completeDeckRandomly = (deck, availableCards) => {
   return deckCopy;
 };
 
-export const calculateHowManyCardsToPut = (
-  deckSize,
-  totalDeckCardsThatSatisfyPriority,
-  priority,
-) => {
+const calculateHowManyCardsToPut = (deckSize, totalDeckCardsThatSatisfyPriority, priority) => {
   const freeSlots = 30 - deckSize;
 
   let minNumberOfCardsToPut = priority.minCards - totalDeckCardsThatSatisfyPriority;
@@ -334,12 +328,7 @@ export const calculateHowManyCardsToPut = (
 };
 
 // Each priority inside a step.
-export const addCardsForPriority = (
-  availableCards,
-  deck,
-  priority,
-  totalDeckCardsThatSatisfyPriority,
-) => {
+const addCardsForPriority = (availableCards, deck, priority, totalDeckCardsThatSatisfyPriority) => {
   const currentStep = getLastStep(deck);
   const currentPriorityInfo = currentStep.prioritiesInfo.find(info => info.priority === priority);
 
@@ -392,7 +381,7 @@ export const addCardsForPriority = (
 };
 
 // Each step.
-export const completeDeckByPriorities = (deck, availableCards, priorities) => {
+const completeDeckByPriorities = (deck, availableCards, priorities) => {
   const currentStep = getLastStep(deck);
 
   // For each priority...
@@ -429,7 +418,7 @@ export const completeDeckByPriorities = (deck, availableCards, priorities) => {
  * @param {Array} interestingCards
  * @param {Array} otherCards
  */
-export const getDeck = ({
+const getDeck = ({
   initialDeck,
   availableCards,
   archetypes,
@@ -556,24 +545,41 @@ export const getDeck = ({
   return deck;
 };
 
-/**
- * Used only in tests atm.
- * @param {*} deck
- */
-export const hasDuplicates = deck => deck.cards.sort(byName).reduce((result, card, i, cards) => {
-  if (i === cards.length - 1) return result;
-  return !!(card.name === cards[i + 1].name || result);
-}, false);
-
 const idEquals = (priority, priorityId) => priority.id === priorityId;
-export const versionsToPriorities = (priorities, version) => priorities.concat(version.priorities);
+const versionsToPriorities = (priorities, version) => priorities.concat(version.priorities);
 /**
  * This method is used by the getDendrogramData method and by the History component.
  * It assumes that each card priority has a unique id.
- * @param {Object} deck
- * @param {String} priorityId
  */
-export const getCardThatRequestedPriority = (deck, priorityId) => deck.cards.find(
+const getCardThatRequestedPriority = (deck, priorityId) => deck.cards.find(
   card => hasPriorities(card)
       && card.versions.reduce(versionsToPriorities, []).find(p => idEquals(p, priorityId)),
 );
+
+// we export them because we want to test them.
+export {
+  getTotalDust,
+  getDeckScore,
+  initializeStep,
+  calculateCardQuantity,
+  addOtherCards,
+  obtainPriorities,
+  deckSatisfiesPriority,
+  getInfoFromPriorities,
+  obtainDeckWideFilters,
+  toCardCount,
+  computeMaxCount,
+  getClosestArchetype,
+  completeDeckRandomly,
+  calculateHowManyCardsToPut,
+};
+
+// we export them because they are used in other files
+export {
+  getManaCurveChartData,
+  getDeckCode,
+  initializeDeck,
+  getDeck,
+  getCardThatRequestedPriority,
+  versionsToPriorities,
+};

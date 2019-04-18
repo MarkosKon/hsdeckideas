@@ -1,8 +1,8 @@
+import { byName } from 'some-utils';
 import {
   getTotalDust,
   getDeckScore,
   getDeck,
-  hasDuplicates,
   completeDeckRandomly,
   getClosestArchetype,
   toCardCount,
@@ -26,6 +26,10 @@ import {
 
 const findCardByName = (cards, name) => cards.find(c => c.name === name);
 const findCardsByNames = (cards, names) => cards.filter(c => names.includes(c.name));
+const hasDuplicates = deck => deck.cards.sort(byName).reduce((result, card, i, cards) => {
+  if (i === cards.length - 1) return result;
+  return !!(card.name === cards[i + 1].name || result);
+}, false);
 
 // Data init.
 const data = require('../../public/resources/data/data.json');
