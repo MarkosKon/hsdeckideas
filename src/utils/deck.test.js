@@ -175,7 +175,7 @@ it('getManaCurveChartData test #5: Checks if returns the expected mana curve for
 it('getManaCurveChartData test #6: Checks if returns undefined for a deck with no cards property', () => {
   const deck = {};
   const result = getManaCurveChartData(deck);
-  expect(result).toEqual(undefined);
+  expect(result).toEqual([]);
 });
 
 it('getTotalDust test #1: Checks if returns the expected total dust for a deck.', () => {

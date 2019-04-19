@@ -26,13 +26,13 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged"
+      "pre-commit": "flow check && lint-staged"
     }
   },
   "lint-staged": {
     "*.{js,jsx}": [
-      "yarn lint",
-      "yarn format",
+      "eslint",
+      "prettier-eslint --write",
       "git add",
       "yarn test:staged"
     ]

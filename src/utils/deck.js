@@ -1,7 +1,8 @@
+// @flow
 import { encode } from 'deckstrings';
 import cloneDeep from 'lodash.clonedeep';
-
 import { byCostAndName, removeArrayElement, getRandom } from 'some-utils';
+
 import getLastStep from './history';
 import {
   getSize,
@@ -17,6 +18,9 @@ import {
 import {
   computeMax, fieldEquals, fieldGreaterThan, fieldLessThan,
 } from './object';
+import type {
+  Deck, Card, Archetype, Step, Priority, Filter,
+} from '../types';
 
 const partial = require('lodash.partial');
 
@@ -39,7 +43,7 @@ const isRare = rarityEquals('RARE');
 const isEpic = rarityEquals('EPIC');
 const isLegendary = rarityEquals('LEGENDARY');
 
-const createBarCharDataForCost = (chartData, card) => {
+const createBarCharDataForCost = (chartData: Object, card: Card): Object => {
   // eslint-disable-next-line no-param-reassign
   if (costsMoreThan7(card)) chartData[7].cardCount += card.quantity;
   // eslint-disable-next-line no-param-reassign
@@ -50,17 +54,18 @@ const createInitialBarChartData = () => ['0', '1', '2', '3', '4', '5', '6', '7+'
   manaCost: item,
   cardCount: 0,
 }));
-// prettier-ignore
-const getManaCurveChartData = deck => deck.cards && deck.cards
-  .reduce(createBarCharDataForCost, createInitialBarChartData());
+const getManaCurveChartData = (deck: Deck): Object => {
+  if (deck.cards) return deck.cards.reduce(createBarCharDataForCost, createInitialBarChartData());
+  return [];
+};
 
-const getDeckCode = (deck, heroCode, format) => encode({
+const getDeckCode = (deck: Deck, heroCode: string, format: string): string => encode({
   cards: deck.cards.map(card => [card.dbfId, card.quantity]),
   heroes: [heroCode],
   format: format === 'Standard' ? 2 : 1,
 });
 
-const calculateDust = (totalDust, card) => {
+const calculateDust = (totalDust: number, card: Card): number => {
   if (isCommon(card)) return totalDust + 40 * card.quantity;
   if (isRare(card)) return totalDust + 100 * card.quantity;
   if (isEpic(card)) return totalDust + 400 * card.quantity;
@@ -68,14 +73,22 @@ const calculateDust = (totalDust, card) => {
   return totalDust;
 };
 
-const calculateScore = (sum, card) => sum + card.rating * card.quantity;
-const getTotalDust = deck => deck.cards.reduce(calculateDust, 0);
+const calculateScore = (sum: number, card: Card): number => sum + card.rating * card.quantity;
+const getTotalDust = (deck: Deck): number => deck.cards.reduce(calculateDust, 0);
 
-const getDeckScore = deck => deck.cards.reduce(calculateScore, 0);
+const getDeckScore = (deck: Deck): number => deck.cards.reduce(calculateScore, 0);
 
 const initializeDeck = ({
-  heroName, heroPower, archetype, isCompetitive,
-}) => ({
+  heroName,
+  heroPower,
+  archetype,
+  isCompetitive,
+}: {
+  heroName: string,
+  heroPower: Object,
+  archetype: Archetype,
+  isCompetitive: boolean,
+}): Deck => ({
   cards: [],
   hero: heroName,
   heroPower,
@@ -128,7 +141,7 @@ const message = {
     In the deck we had ${deckCards} cards that met those requirements.`,
 };
 
-const initializeStep = (originCards, deck) => ({
+const initializeStep = (originCards: Array<Card>, deck: Deck): Step => ({
   extra: message.default,
   sizeBefore: getSize(deck.cards),
   originCards,
@@ -139,12 +152,12 @@ const initializeStep = (originCards, deck) => ({
   prioritiesInfo: [],
 });
 
-const calculateCardQuantity = (deck, card, otherCase = false) => {
+const calculateCardQuantity = (deck: Deck, card: Card, otherCase: boolean = false): number => {
   const shouldBe1 = isHighlander(deck) || sizeEquals29(deck) || isLegendary(card);
   return shouldBe1 || otherCase ? 1 : 2;
 };
 
-const calculateCardsToAdd = (cardsAdded, interestingCard) => {
+const calculateCardsToAdd = (cardsAdded: Array<Card>, interestingCard: Card): Array<Card> => {
   const numberOfCardsAdded = getSize(cardsAdded);
   if (numberOfCardsAdded < 28) cardsAdded.push(interestingCard);
   else if (numberOfCardsAdded === 29) {
@@ -153,7 +166,7 @@ const calculateCardsToAdd = (cardsAdded, interestingCard) => {
   return cardsAdded;
 };
 
-const addInterestingCards = (deck, interestingCards) => {
+const addInterestingCards = (deck: Deck, interestingCards: Array<Card>): Deck => {
   const deckCopy = cloneDeep(deck);
   const interestingCardsWithQuantity = initializeQuantity(interestingCards);
 
@@ -165,13 +178,11 @@ const addInterestingCards = (deck, interestingCards) => {
   return deckCopy;
 };
 
-const addOtherCards = (deck, currentStep, otherCards) => {
+const addOtherCards = (deck: Deck, currentStep: Step, otherCards: Array<Card>): Array<Card> => {
   const addedOtherCards = [];
 
   // eslint-disable-next-line no-param-reassign
   currentStep.extra += message.otherCardsSelected;
-  // eslint-disable-next-line no-param-reassign
-  currentStep.otherCards = true;
   let i = 0;
   while (sizeLessThan30(deck) && i < otherCards.length) {
     const card = otherCards[i];
@@ -185,19 +196,22 @@ const addOtherCards = (deck, currentStep, otherCards) => {
   return addedOtherCards;
 };
 
-const getActiveVersion = card => card.versions[card.activeVersion];
+const getActiveVersion = (card: Card): Object => card.versions[card.activeVersion];
 
 // why not?
 // const getRandomVersion = versions => versions[getRandom(0, versions.length - 1)];
 
-const toPriorities = (priorities, card) => priorities.concat(getActiveVersion(card).priorities);
-const isPriorityExamined = (deck, priority) => deck.history.totalPrioritiesExamined[priority.id];
+const toPriorities = (priorities: Array<Priority>, card: Card): Array<Priority> => {
+  return priorities.concat(getActiveVersion(card).priorities);
+};
+const isPriorityExamined = (deck: Deck, priority: Priority): boolean => {
+  return deck.history.totalPrioritiesExamined[priority.id];
+};
 /**
  * This method takes as input the deck and returns an array of priorities extracted
  * from the deck's cards. It does not return priorities that have already been examined.
- * @param {Object} deck
  */
-const obtainPriorities = deck => deck.cards
+const obtainPriorities = (deck: Deck): Array<Priority> => deck.cards
   .filter(hasPriorities)
   .reduce(toPriorities, [])
   .filter(priority => !isPriorityExamined(deck, priority));
@@ -207,10 +221,8 @@ const obtainPriorities = deck => deck.cards
  * returns true else returns how many cards the deck contains that satisfy
  * the priority. It is different from getCardsForFilters because it takes
  * into account the hero power.
- * @param {Object} deck
- * @param {Object} priority
  */
-const deckSatisfiesPriority = (deck, priority) => {
+const deckSatisfiesPriority = (deck: Deck, priority: Priority): true | number => {
   let cardCount = getSize(getCardsForFilters(deck.cards, priority.filters, false));
   if (cardSatisfiesFilters(deck.heroPower, priority.filters, false)) {
     cardCount += 2;
@@ -219,22 +231,18 @@ const deckSatisfiesPriority = (deck, priority) => {
   return cardCount;
 };
 
-const toInfo = priority => ({
+const toInfo = (priority: Priority): Object => ({
   priority,
   priorityAddedCards: [],
   extra: 'Priority not processed',
 });
 
-/**
- * This is a helper method that transforms an array of priorities to
- * an array of info for those priorities. The info contain an initial
- * state where later on we change it.
- * @param {Array} priorities
- */
-const getInfoFromPriorities = priorities => priorities.map(toInfo);
+const getInfoFromPriorities = (priorities: Array<Priority>): Object => priorities.map(toInfo);
 
-const toDeckWideFilters = (filters, card) => filters.concat(card.deckFilters);
-const isFilterExamined = (deck, filter) => {
+const toDeckWideFilters = (filters: Array<Filter>, card: Card): Object => {
+  return filters.concat(card.deckFilters);
+};
+const isFilterExamined = (deck: Deck, filter: Filter): boolean => {
   const totalFiltersExamined = deck.history.totalDeckFiltersExamined;
   if (!totalFiltersExamined[filter.id]) {
     totalFiltersExamined[filter.id] = filter;
@@ -242,17 +250,17 @@ const isFilterExamined = (deck, filter) => {
   }
   return true;
 };
-const obtainDeckWideFilters = deck => deck.cards
+const obtainDeckWideFilters = (deck: Deck): Object => deck.cards
   .filter(hasDeckWideFilters)
   .reduce(toDeckWideFilters, [])
   .filter(filter => !isFilterExamined(deck, filter));
 
-const toCardCount = (priority, deck) => {
+const toCardCount = (priority: Priority, deck: Deck): number => {
   const cardCount = deckSatisfiesPriority(deck, priority);
   if (cardCount === true) return priority.maxCards;
   return cardCount;
 };
-const toStats = (archetype, deck) => ({
+const toStats = (archetype: Archetype, deck: Deck): Object => ({
   archetype,
   cardCount: archetype.priorities
     .map(priority => toCardCount(priority, deck))
@@ -265,10 +273,8 @@ const computeMaxCount = partial(computeMax, 'cardCount');
  * and returns which archetype better represents the deck. This is
  * determined by the total number of cards that satisfy each archetype
  * priority.
- * @param {*} deck
- * @param {*} archetypes
  */
-const getClosestArchetype = (deck, archetypes) => {
+const getClosestArchetype = (deck: Deck, archetypes: Array<Archetype>): Archetype => {
   const archetypeStats = archetypes.map(archetype => toStats(archetype, deck));
 
   const max = archetypeStats.reduce(computeMaxCount, 0);
@@ -286,10 +292,8 @@ const getClosestArchetype = (deck, archetypes) => {
  * This method finishes the deck randomly, from a pool
  * of "good" cards for the selected class. It doesn't
  * check their priorities or deck wide filters.
- * @param {Object} deck
- * @param {Array} availableCards
  */
-const completeDeckRandomly = (deck, availableCards) => {
+const completeDeckRandomly = (deck: Deck, availableCards: Array<Card>): Deck => {
   const deckCopy = cloneDeep(deck);
   const cardPool = removeSubset(availableCards, deckCopy.cards);
 
@@ -308,7 +312,11 @@ const completeDeckRandomly = (deck, availableCards) => {
   return deckCopy;
 };
 
-const calculateHowManyCardsToPut = (deckSize, totalDeckCardsThatSatisfyPriority, priority) => {
+const calculateHowManyCardsToPut = (
+  deckSize: number,
+  totalDeckCardsThatSatisfyPriority: number,
+  priority: Priority,
+): number => {
   const freeSlots = 30 - deckSize;
 
   let minNumberOfCardsToPut = priority.minCards - totalDeckCardsThatSatisfyPriority;
@@ -328,9 +336,18 @@ const calculateHowManyCardsToPut = (deckSize, totalDeckCardsThatSatisfyPriority,
 };
 
 // Each priority inside a step.
-const addCardsForPriority = (availableCards, deck, priority, totalDeckCardsThatSatisfyPriority) => {
+const addCardsForPriority = (
+  availableCards: Array<Card>,
+  deck: Deck,
+  priority: Priority,
+  totalDeckCardsThatSatisfyPriority: number,
+): Deck => {
   const currentStep = getLastStep(deck);
-  const currentPriorityInfo = currentStep.prioritiesInfo.find(info => info.priority === priority);
+  // Flow complains that we don't handle the undefined case for find.
+  // As a workaround I added the "|| {}" at the end. Is that case important?
+  const currentPriorityInfo = currentStep.prioritiesInfo.find((info) => {
+    return info.priority === priority;
+  }) || {};
 
   let availableCardsThatSatisfyPriority = getCardsForFilters(
     availableCards,
@@ -381,13 +398,21 @@ const addCardsForPriority = (availableCards, deck, priority, totalDeckCardsThatS
 };
 
 // Each step.
-const completeDeckByPriorities = (deck, availableCards, priorities) => {
+const completeDeckByPriorities = (
+  deck: Deck,
+  availableCards: Array<Card>,
+  priorities: Array<Priority>,
+): Deck => {
   const currentStep = getLastStep(deck);
 
   // For each priority...
   // eslint-disable-next-line no-restricted-syntax
   for (const priority of priorities) {
-    const currentPriorityInfo = currentStep.prioritiesInfo.find(info => info.priority === priority);
+    // Flow complains that we don't handle the undefined case for find.
+    // As a workaround I added the "|| {}" at the end. Is that case important?
+    const currentPriorityInfo = currentStep.prioritiesInfo.find((info) => {
+      return info.priority === priority;
+    }) || {};
 
     // Just make an entry for checking if we reviewed that priority
     // (extract priorities method does that), do not add more info.
@@ -410,14 +435,6 @@ const completeDeckByPriorities = (deck, availableCards, priorities) => {
   return deck;
 };
 
-/**
- * The main method of the file.
- * @param {Array} availableCards
- * @param {Object} archetype
- * @param {Array} archetypes
- * @param {Array} interestingCards
- * @param {Array} otherCards
- */
 const getDeck = ({
   initialDeck,
   availableCards,
@@ -425,7 +442,14 @@ const getDeck = ({
   interestingCards,
   otherCards,
   extraDeckWideFilters = [],
-}) => {
+}: {
+  initialDeck: Deck,
+  availableCards: Array<Card>,
+  archetypes: Array<Archetype>,
+  interestingCards: Array<Card>,
+  otherCards: Array<Card>,
+  extraDeckWideFilters: Object,
+}): Deck => {
   let firstTime = true;
   let addedArchetypePriorities = false;
   let cardPool = cloneDeep(availableCards);
@@ -545,16 +569,20 @@ const getDeck = ({
   return deck;
 };
 
-const idEquals = (priority, priorityId) => priority.id === priorityId;
-const versionsToPriorities = (priorities, version) => priorities.concat(version.priorities);
+const idEquals = (priority: Priority, priorityId: string): boolean => priority.id === priorityId;
+const versionsToPriorities = (priorities: Array<Priority>, version: Object): Array<Priority> => {
+  return priorities.concat(version.priorities);
+};
 /**
- * This method is used by the getDendrogramData method and by the History component.
+ * This method is used by the getDendrogramData method and the History component.
  * It assumes that each card priority has a unique id.
  */
-const getCardThatRequestedPriority = (deck, priorityId) => deck.cards.find(
-  card => hasPriorities(card)
+const getCardThatRequestedPriority = (deck: Deck, priorityId: string): Card | void => {
+  return deck.cards.find(
+    card => hasPriorities(card)
       && card.versions.reduce(versionsToPriorities, []).find(p => idEquals(p, priorityId)),
-);
+  );
+};
 
 // we export them because we want to test them.
 export {

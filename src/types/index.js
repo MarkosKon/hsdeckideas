@@ -44,6 +44,7 @@ type Card = {
 };
 
 type Filter = {
+  id: string,
   property: string,
   operation: string,
   minValue: number | string | Array<string>,
@@ -51,7 +52,17 @@ type Filter = {
   initiatorName?: string,
 };
 
-type Priority = {};
+type Priority = {
+  id: string,
+  minCards: number,
+  maxCards: number,
+  filters: Array<Filter>,
+};
+type PriorityInfo = {
+  priority: Priority,
+  extra: string,
+  priorityAddedCards: Array<Card>,
+};
 
 type Step = {
   deckWideFilters: Array<Object>, // too generic?
@@ -59,12 +70,16 @@ type Step = {
   originCards: Array<Card>,
   otherCards: Array<Card>,
   priorities: Array<Priority>,
-  prioritiesInfo: Array<Object>, // too generic?,
+  prioritiesInfo: Array<PriorityInfo>,
   sizeBefore: number,
   totalAddedCards: Array<Card>,
+  cardsRemoved?: Array<Card>,
 };
 
-type Archetype = {};
+type Archetype = {
+  name: string,
+  priorities: Array<Priority>,
+};
 type Deck = {
   archetype: Archetype,
   cards: Array<Card>,
@@ -72,8 +87,8 @@ type Deck = {
   heroPower: Object,
   history: {
     steps: Array<Step>,
-    totalDeckFiltersExamined: Array<Filter>,
-    totalPrioritiesExamined: Array<Priority>,
+    totalDeckFiltersExamined: Object,
+    totalPrioritiesExamined: Object,
   },
   isCompetitive: boolean,
   isHighlander: boolean,
@@ -83,5 +98,5 @@ type Deck = {
 };
 
 export type {
-  Card, Filter, Step, Deck,
+  Card, Filter, Step, Deck, Archetype, Priority,
 };
