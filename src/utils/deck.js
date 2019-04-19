@@ -30,7 +30,7 @@ const sizeLessThan30 = sizeLessThan(30);
 const sizeLessThan11 = sizeLessThan(11);
 
 const sizeGreaterThan = fieldGreaterThan('size');
-const sizeGreaterThan16 = sizeGreaterThan(16);
+const sizeGreaterThan23 = sizeGreaterThan(23);
 const sizeGreaterThan29 = sizeGreaterThan(29);
 const costsMoreThan7 = fieldGreaterThan('cost')(7);
 
@@ -435,6 +435,13 @@ const completeDeckByPriorities = (
   return deck;
 };
 
+/**
+ *  Some notes on the algorithm.
+ * - The history (report) and the deck should be different objects.
+ *   The available card pool also. 3 Reducers maybe?
+ * - We could avoid many methods with well-tested utility methods from lodash.
+ *   For example, removeSubset method.
+ */
 const getDeck = ({
   initialDeck,
   availableCards,
@@ -459,7 +466,6 @@ const getDeck = ({
     cardPool = getCardsForFilters(cardPool, extraDeckWideFilters, true);
   }
 
-  // interesting cards.
   deck = addInterestingCards(
     deck,
     interestingCards || [chooseInterestingCard(cardPool, deck.cards)],
@@ -467,12 +473,10 @@ const getDeck = ({
 
   let currentStep = getLastStep(deck);
 
-  // other cards.
   if (otherCards) currentStep.otherCards = addOtherCards(deck, currentStep, otherCards);
 
   currentStep.priorities = obtainPriorities(deck);
 
-  // archetype
   if (deck.archetype !== 'Random') {
     currentStep.priorities = currentStep.priorities.concat(deck.archetype.priorities);
     addedArchetypePriorities = true;
@@ -480,12 +484,10 @@ const getDeck = ({
   }
   currentStep.prioritiesInfo = getInfoFromPriorities(currentStep.priorities);
 
-  // 2. The loop.
   let continueLooping = true;
-  let numberOfSteps = 0;
-  // each iteration is a step (completeDeckByPriorities).
+  let numberOfSteps = 0; // avoid infinite loop.
+  // Each iteration is a step (completeDeckByPriorities).
   while (sizeLessThan30(deck) && continueLooping && numberOfSteps < 20) {
-    // first iteration stuff.
     if (firstTime) firstTime = false;
     else {
       currentStep = getLastStep(deck);
@@ -494,7 +496,7 @@ const getDeck = ({
     }
 
     // Deck wide FILTERS.
-    // Show somewhere in the deck that we added extra filters.
+    // TODO: Show somewhere in the report (history) that we added extra filters.
     currentStep.deckWideFilters = obtainDeckWideFilters(deck);
     if (currentStep.deckWideFilters.length > 0) {
       cardPool = getCardsForFilters(cardPool, currentStep.deckWideFilters, false);
@@ -515,52 +517,55 @@ const getDeck = ({
       }
     }
 
-    // Choose an interesting card.
-    if (sizeLessThan11(deck) && currentStep.priorities.length === 0) {
-      const anInterestingCard = chooseInterestingCard(cardPool, deck.cards);
-      anInterestingCard.quantity = calculateCardQuantity(deck, anInterestingCard);
-      currentStep.totalAddedCards = [anInterestingCard];
-      currentStep.extra = message.noOriginCards;
-      deck.cards.push(anInterestingCard);
-      deck.size = getSize(deck.cards);
-      deck.history.steps.push(initializeStep([anInterestingCard], deck));
-      numberOfSteps += 1;
-      // eslint-disable-next-line no-continue
-      continue;
+    if (currentStep.priorities.length === 0) {
+      // Choose an additional "interesting" card.
+      if (sizeLessThan11(deck)) {
+        const anInterestingCard = chooseInterestingCard(cardPool, deck.cards);
+        anInterestingCard.quantity = calculateCardQuantity(deck, anInterestingCard);
+        currentStep.totalAddedCards = [anInterestingCard];
+        currentStep.extra = message.noOriginCards;
+        deck.cards.push(anInterestingCard);
+        deck.size = getSize(deck.cards);
+        deck.history.steps.push(initializeStep([anInterestingCard], deck));
+        numberOfSteps += 1;
+        // eslint-disable-next-line no-continue
+        continue;
+      }
+
+      // STOP if we already chose an archetype.
+      if (addedArchetypePriorities) {
+        currentStep.extra = message.archetypeChosenNoPriorities;
+        continueLooping = false;
+        // eslint-disable-next-line no-continue
+        continue;
+      }
+
+      // Pick an archetype if we haven't yet or if the deck is near completion (> 23 cards).
+      if (!addedArchetypePriorities || sizeGreaterThan23(deck)) {
+        // Analyze the deck and add the closest archetype's priorities.
+        addedArchetypePriorities = true;
+        deck.archetype = getClosestArchetype(deck, archetypes);
+        currentStep.priorities = deck.archetype.priorities;
+        currentStep.prioritiesInfo = getInfoFromPriorities(currentStep.priorities);
+        currentStep.extra = message.archetypeIn(deck.archetype.name);
+      }
     }
 
-    // Stop if we have already chosen an archetype and we don't have priorities.
-    if (addedArchetypePriorities && currentStep.priorities.length === 0) {
-      currentStep.extra = message.archetypeChosenNoPriorities;
-      continueLooping = false;
-      // eslint-disable-next-line no-continue
-      continue;
-    }
-
-    // Choose an archetype.
-    if (
-      !addedArchetypePriorities
-      && (currentStep.priorities.length === 0 || sizeGreaterThan16(deck))
-    ) {
-      // Analyze the deck and add the closest archetype's priorities.
-      addedArchetypePriorities = true;
-      deck.archetype = getClosestArchetype(deck, archetypes);
-      currentStep.priorities = deck.archetype.priorities;
-      currentStep.prioritiesInfo = getInfoFromPriorities(currentStep.priorities);
-      currentStep.extra = message.archetypeIn(deck.archetype.name);
-    }
-
+    // Do the work.
     deck = completeDeckByPriorities(deck, cardPool, currentStep.priorities);
     if (sizeLessThan30(deck)) {
       deck.history.steps.push(initializeStep(currentStep.totalAddedCards, deck));
     }
-    // TODO when errors stop do here the priority - priorityinfo extraction.
-    // Note if we do that here we will have to drop the "continue"'s also.
-
     numberOfSteps += 1;
+    // After a year this comment doesn't make much sense to me but I leave it:
+    // TODO: when errors stop do here the priority - priorityinfo extraction.
+    // Note if we do that here we will have to drop the "continue"'s also.
   }
 
   deck = completeDeckRandomly(deck, cardPool);
+
+  // In other words, if it's 'Random'. I'm sorry Flowjs.
+  if (typeof deck.archetype === 'string') deck.archetype = getClosestArchetype(deck, archetypes);
 
   deck.totalDust = getTotalDust(deck);
   deck.score = getDeckScore(deck);
