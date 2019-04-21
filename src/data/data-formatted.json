@@ -15879,8 +15879,8 @@
             "name": "Default",
             "priorities": [
               {
-                "minCards": 4,
-                "maxCards": 6,
+                "minCards": 6,
+                "maxCards": 8,
                 "id": "492c7da0-542d-4fd1-97db-8674841d2078",
                 "filters": [
                   {
@@ -60082,23 +60082,6 @@
         "tile": "BOT_559.png",
         "versions": [
           {
-            "name": "Just some fast cards",
-            "priorities": [
-              {
-                "minCards": 6,
-                "maxCards": 6,
-                "id": "6a21b912-fa10-4539-9132-e7e80b30f5bc",
-                "filters": [
-                  {
-                    "property": "extra",
-                    "operation": "INCLUDES",
-                    "minValue": "FAST"
-                  }
-                ]
-              }
-            ]
-          },
-          {
             "name": "Shuffle stuff",
             "priorities": [
               {
@@ -66365,7 +66348,7 @@
         "set": 15,
         "imageUrl": "toxfin.png",
         "tile": "DAL_077.png",
-        "extra": ["HARD_REMOVAL"],
+        "extra": ["GENERAL"],
         "rating": 3,
         "targetingArrowText": "Give a friendly Murloc Poisonous.",
         "text": "Battlecry: Give a friendly Murloc Poisonous.",
