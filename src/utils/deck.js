@@ -14,6 +14,7 @@ import {
   initializeQuantity,
   removeSubset,
   getCard,
+  isCardInteresting,
 } from './card';
 import {
   computeMax, fieldEquals, fieldGreaterThan, fieldLessThan,
@@ -30,6 +31,7 @@ const sizeLessThan30 = sizeLessThan(30);
 const sizeLessThan11 = sizeLessThan(11);
 
 const sizeGreaterThan = fieldGreaterThan('size');
+const sizeGreaterThan15 = sizeGreaterThan(15);
 const sizeGreaterThan23 = sizeGreaterThan(23);
 const sizeGreaterThan29 = sizeGreaterThan(29);
 const costsMoreThan7 = fieldGreaterThan('cost')(7);
@@ -335,6 +337,63 @@ const calculateHowManyCardsToPut = (
   return numberOfCardsToPut;
 };
 
+const cardFitsInDeck = (deck: Deck, card: Card): boolean => {
+  const { priorities } = getActiveVersion(card);
+  const prioritiesSatisfied = priorities.reduce((verdict, priority) => {
+    if (verdict === false) return false;
+    const satisfiesPriority = typeof deckSatisfiesPriority(deck, priority) !== 'number';
+    return satisfiesPriority;
+  }, true);
+  return prioritiesSatisfied;
+};
+
+const sortDescByScore = (a: Card, b: Card): number => {
+  const calculateMaxCards = (sum, { maxCards }) => sum + maxCards;
+  const totalCardsA = getActiveVersion(a).priorities.reduce(calculateMaxCards, 0);
+  const scoreA = (a.rating / 2) * totalCardsA;
+  const totalCardsB = getActiveVersion(b).priorities.reduce(calculateMaxCards, 0);
+  const scoreB = (b.rating / 2) * totalCardsB;
+  if (scoreA - scoreB < 0) return 1;
+  if (scoreA - scoreB > 0) return -1;
+  return 0;
+};
+
+const addRelevantCards = ({
+  deck,
+  cardPool,
+  number,
+}: {
+  deck: Deck,
+  cardPool: Array<Card>,
+  number: number,
+}): Deck => {
+  const deckCopy = cloneDeep(deck);
+  // const lastStep = getLastStep(deck);
+
+  const interestingCards = cardPool.filter(isCardInteresting);
+  const fittingCardPool = interestingCards.filter(partial(cardFitsInDeck, deckCopy), true);
+  const sorted = removeSubset(fittingCardPool, deck.cards).sort(sortDescByScore);
+  const availableSpots = 30 - deck.size;
+  const howManyToPut = availableSpots < number ? availableSpots : number;
+  // maybe use getCard method here?
+  const different = sorted.slice(0, howManyToPut);
+  let added = 0;
+  different.forEach((card) => {
+    if (added < howManyToPut) {
+      const quantity = calculateCardQuantity(deckCopy, card);
+      const correctQuantity = quantity + added > howManyToPut ? 1 : quantity;
+      deckCopy.cards = deckCopy.cards.concat({ ...card, quantity: correctQuantity });
+      deckCopy.size += correctQuantity;
+      removeArrayElement(cardPool, card);
+      // TODO: add the history (report) stuff here.
+      added += correctQuantity;
+      // console.log(added, correctQuantity, card.name);
+    }
+  });
+  // console.log(different, availableSpots, howManyToPut);
+  return deckCopy;
+};
+
 // Each priority inside a step.
 const addCardsForPriority = (
   availableCards: Array<Card>,
@@ -549,6 +608,13 @@ const getDeck = ({
         currentStep.prioritiesInfo = getInfoFromPriorities(currentStep.priorities);
         currentStep.extra = message.archetypeIn(deck.archetype.name);
       }
+
+      // Note: If we add the archetype we'll then add the relevant cards without
+      // adding the cards need by the archetype. No big deal. We can solve it
+      // if we add the cards at the begging maybe.
+
+      // If the size is greater than 15 add some, let's say 6, fitting cards.
+      if (sizeGreaterThan15(deck)) deck = addRelevantCards({ deck, cardPool, number: 6 });
     }
 
     // Do the work.
@@ -557,7 +623,8 @@ const getDeck = ({
       deck.history.steps.push(initializeStep(currentStep.totalAddedCards, deck));
     }
     numberOfSteps += 1;
-    // After a year this comment doesn't make much sense to me but I leave it:
+    // After a year the following comment doesn't make much sense to me but I leave it:
+
     // TODO: when errors stop do here the priority - priorityinfo extraction.
     // Note if we do that here we will have to drop the "continue"'s also.
   }
