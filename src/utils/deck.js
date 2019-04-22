@@ -394,10 +394,10 @@ const addRelevantCards = ({
       removeArrayElement(cardPool, card);
       // TODO: add the history (report) stuff here.
       added += correctQuantity;
-      console.log(added, correctQuantity, card.name);
+      // console.log(added, correctQuantity, card.name);
     }
   });
-  console.log(different, availableSpots, howManyToPut);
+  // console.log(different, availableSpots, howManyToPut);
   return deckCopy;
 };
 
