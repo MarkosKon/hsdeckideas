@@ -200,8 +200,15 @@ const addOtherCards = (deck: Deck, currentStep: Step, otherCards: Array<Card>): 
 
 const getActiveVersion = (card: Card): Object => card.versions[card.activeVersion];
 
-// why not?
-// const getRandomVersion = versions => versions[getRandom(0, versions.length - 1)];
+// Note: Right now we're using this only to add some relevant cards in
+// the deck. If we want to use it everywhere we need a way to know
+// if the user selected a specific version or not. I don't really care
+// so I leave it as is.
+const getRandomVersion = (card: Card): Object => {
+  const { versions } = card;
+  const randomVersion = versions[getRandom(0, versions.length - 1)];
+  return randomVersion;
+};
 
 const toPriorities = (priorities: Array<Priority>, card: Card): Array<Priority> => {
   return priorities.concat(getActiveVersion(card).priorities);
@@ -338,7 +345,7 @@ const calculateHowManyCardsToPut = (
 };
 
 const cardFitsInDeck = (deck: Deck, card: Card): boolean => {
-  const { priorities } = getActiveVersion(card);
+  const { priorities } = getRandomVersion(card);
   const prioritiesSatisfied = priorities.reduce((verdict, priority) => {
     if (verdict === false) return false;
     const satisfiesPriority = typeof deckSatisfiesPriority(deck, priority) !== 'number';
@@ -349,9 +356,9 @@ const cardFitsInDeck = (deck: Deck, card: Card): boolean => {
 
 const sortDescByScore = (a: Card, b: Card): number => {
   const calculateMaxCards = (sum, { maxCards }) => sum + maxCards;
-  const totalCardsA = getActiveVersion(a).priorities.reduce(calculateMaxCards, 0);
+  const totalCardsA = getRandomVersion(a).priorities.reduce(calculateMaxCards, 0);
   const scoreA = (a.rating / 2) * totalCardsA;
-  const totalCardsB = getActiveVersion(b).priorities.reduce(calculateMaxCards, 0);
+  const totalCardsB = getRandomVersion(b).priorities.reduce(calculateMaxCards, 0);
   const scoreB = (b.rating / 2) * totalCardsB;
   if (scoreA - scoreB < 0) return 1;
   if (scoreA - scoreB > 0) return -1;
@@ -387,10 +394,10 @@ const addRelevantCards = ({
       removeArrayElement(cardPool, card);
       // TODO: add the history (report) stuff here.
       added += correctQuantity;
-      // console.log(added, correctQuantity, card.name);
+      console.log(added, correctQuantity, card.name);
     }
   });
-  // console.log(different, availableSpots, howManyToPut);
+  console.log(different, availableSpots, howManyToPut);
   return deckCopy;
 };
 

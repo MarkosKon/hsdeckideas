@@ -17180,27 +17180,7 @@
         "type": "MINION",
         "extra": ["AOE"],
         "imageUrl": "539.png",
-        "tile": "EX1_249.png",
-        "activeVersion": 0,
-        "versions": [
-          {
-            "name": "Default",
-            "priorities": [
-              {
-                "minCards": 3,
-                "maxCards": 4,
-                "id": "4390b12e-3c45-41d6-af56-b00deb29891b",
-                "filters": [
-                  {
-                    "property": "extra",
-                    "operation": "INCLUDES",
-                    "minValue": "VALUE"
-                  }
-                ]
-              }
-            ]
-          }
-        ]
+        "tile": "EX1_249.png"
       },
       {
         "name": "Earth Elemental",
@@ -20380,7 +20360,7 @@
         "race": "DRAGON",
         "rarity": "LEGENDARY",
         "set": 98,
-        "rating": 4,
+        "rating": 3,
         "text": "At the end of your turn, add a Dream Card to your hand.",
         "type": "MINION",
         "extra": ["VALUE"],
@@ -20646,11 +20626,11 @@
         "activeVersion": 0,
         "versions": [
           {
-            "name": "Default",
+            "name": "Zoo",
             "priorities": [
               {
-                "minCards": 6,
-                "maxCards": 8,
+                "minCards": 8,
+                "maxCards": 10,
                 "id": "2440e94d-4aca-41ff-b4c4-3c94c0d257a9",
                 "filters": [
                   {
@@ -51171,7 +51151,7 @@
         "rarity": "RARE",
         "set": 12,
         "extra": ["BUFF", "FAST"],
-        "rating": 3,
+        "rating": 2,
         "imageUrl": "636589032527011079.png",
         "tile": "GIL_125.png",
         "text": "Battlecry: Randomly toss 3 hats to other minions. Each hat gives +1/+1.",
@@ -55052,7 +55032,7 @@
         "rarity": "EPIC",
         "set": 12,
         "extra": ["CARD_DRAW"],
-        "rating": 3,
+        "rating": 2,
         "imageUrl": "636583689102484974.png",
         "tile": "GIL_807.png",
         "text": "Whenever you cast a spell, draw a minion from your deck.",
@@ -63625,7 +63605,7 @@
         "set": 14,
         "text": "Battlecry: Return all spells you played last turn to your hand.",
         "type": "MINION",
-        "rating": 4,
+        "rating": 3,
         "extra": ["VALUE"],
         "imageUrl": "636791254151658014.png",
         "tile": "TRL_345.png",

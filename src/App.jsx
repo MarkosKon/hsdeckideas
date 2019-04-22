@@ -28,7 +28,7 @@ const LoadableNewFeatures = Loadable({
 
 const App = () => {
   const heroCodes = [274, 31, 637, 671, 813, 930, 1066, 893, 7];
-  const dataVersion = 30;
+  const dataVersion = 31;
 
   const [errorMessage, setErrorMessage] = useState(null);
   const [state, setState] = useState({
