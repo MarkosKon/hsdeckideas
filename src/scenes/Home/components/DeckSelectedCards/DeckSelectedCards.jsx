@@ -14,6 +14,7 @@ const SelectedCardsList = styled.ul`
 
 const SelectedCard = styled.li`
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   border: 1px solid #333;
   padding: 5px 10px;
@@ -24,14 +25,7 @@ const SelectedCard = styled.li`
 
   select {
     flex: 3;
-    text-align-last: right;
-    margin-left: auto;
     display: inline-block;
-    max-width: 300px;
-  }
-
-  option {
-    direction: rtl;
   }
 `;
 

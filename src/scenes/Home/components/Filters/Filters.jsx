@@ -38,11 +38,9 @@ const Filter = styled.div`
     border-radius: 4px;
     border: 1px solid #ccc;
     color: #333;
-    cursor: default;
     border-spacing: 0;
     border-collapse: separate;
     height: 36px;
-    outline: none;
     overflow: hidden;
     position: relative;
   }
