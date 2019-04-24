@@ -33,6 +33,7 @@ const Filter = styled.div`
 
   select {
     flex: 3;
+    background-color: white;
     border-color: #d9d9d9 #ccc #b3b3b3;
     border-radius: 4px;
     border: 1px solid #ccc;

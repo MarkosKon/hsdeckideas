@@ -16059,7 +16059,7 @@
             "name": "Default",
             "priorities": [
               {
-                "minCards": 2,
+                "minCards": 4,
                 "maxCards": 4,
                 "id": "2d4e76d9-7b27-4e60-9901-622dcba8e24a",
                 "filters": [
@@ -16090,7 +16090,7 @@
         "mechanics": ["DEATHRATTLE"],
         "rarity": "LEGENDARY",
         "set": 98,
-        "rating": 4,
+        "rating": 3,
         "text": "Deathrattle: Summon a 4/5 Baine Bloodhoof.",
         "type": "MINION",
         "race": " ",
@@ -63893,7 +63893,7 @@
         "set": 14,
         "text": "Secret: When one of your minions is attacked, summon a copy of it.",
         "type": "SPELL",
-        "rating": 3,
+        "rating": 2,
         "extra": ["GENERAL"],
         "imageUrl": "636791254629600866.png",
         "tile": "TRL_400.png",
@@ -66920,8 +66920,25 @@
         "rating": 4,
         "text": "Twinspell Destroy a minion. Summon 2 minions of the same Cost to replace it.",
         "type": "SPELL",
-        "activeVersion": 0,
+        "activeVersion": 2,
         "versions": [
+          {
+            "name": "Mountain giants",
+            "priorities": [
+              {
+                "minCards": 3,
+                "maxCards": 3,
+                "id": "471fb4a0-844d-48dd-bb99-67d5e8285495",
+                "filters": [
+                  {
+                    "property": "name",
+                    "operation": "IS_INCLUDED_IN",
+                    "minValue": ["Mountain Giant", "Khadgar"]
+                  }
+                ]
+              }
+            ]
+          },
           {
             "name": "Some deathrattles",
             "priorities": [
@@ -68631,13 +68648,18 @@
             "priorities": [
               {
                 "minCards": 6,
-                "maxCards": 6,
+                "maxCards": 8,
                 "id": "03f9867f-e6ed-4c80-ad0d-078e119fc837",
                 "filters": [
                   {
                     "property": "text",
                     "operation": "MATCH",
                     "minValue": "summon"
+                  },
+                  {
+                    "property": "text",
+                    "operation": "NOT_MATCH",
+                    "minValue": "opponent"
                   }
                 ]
               }
@@ -68729,7 +68751,7 @@
         "imageUrl": "power-of-creation.png",
         "tile": "DAL_578.png",
         "extra": ["VALUE"],
-        "rating": 2,
+        "rating": 3,
         "text": "Discover a 6-Cost minion. Summon two copies of it.",
         "type": "SPELL"
       },
