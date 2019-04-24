@@ -50,7 +50,6 @@ const DeckStats = ({ deck: { size, totalDust, score }, manaCurveChartData, chart
         </li>
         <li>
           <Tooltip
-            id="tooltip-card-quality"
             text="The cards are rated from 1 to 4. This number generally
                       doesn't mean much. But If you get below 90, then the deck
                       has a lot of memes."

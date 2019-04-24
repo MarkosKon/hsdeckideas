@@ -8,7 +8,6 @@ import createFilterOptions from 'react-select-fast-filter-options';
 import 'react-select/dist/react-select.css';
 import 'react-virtualized/styles.css';
 import 'react-virtualized-select/styles.css';
-import 'balloon-css/balloon.css';
 
 import Tooltip from '../../../../components/Tooltip/Tooltip';
 import UICard from '../../../../components/UICard/UICard';
@@ -178,7 +177,6 @@ class Filters extends Component {
               <label htmlFor="formatSelect">
                 Format
                 <Tooltip
-                  id="tooltip-format"
                   text="If you select the Wild format you will get much more starting cards to choose from.
                         Be careful when you change this the starting cards reset to random."
                   direction="right"
@@ -200,7 +198,6 @@ class Filters extends Component {
               <label htmlFor="heroSelect">
                 Hero
                 <Tooltip
-                  id="tooltip-hero"
                   text="If you select a hero you will get more starting cards to choose from.
                         Be careful when you change this the starting cards reset to random."
                   direction="right"
@@ -226,10 +223,9 @@ class Filters extends Component {
               <label htmlFor="archetype-select">
                 Archetype
                 <Tooltip
-                  id="tooltip-archetype"
                   text="Better leave it at random and let the algorithm decide the
-                        type of the deck. In the other hand if you get irrelevant archetypes for
-                        the starting cards you chose, feel free to change it."
+                        type of the deck. Change it if you get irrelevant archetypes for
+                        the starting cards you chose."
                 />
               </label>
               <select
@@ -253,10 +249,10 @@ class Filters extends Component {
                 {interestingCards.length}
                 )
                 <Tooltip
-                  id="tooltip-starting-cards"
                   text="This list contains cards that depend on other cards to be good.
                         You can select up to 15 starting cards but i don't suggest
                         more than 3 because most of the card priorities will be ignored."
+                  direction="top"
                 />
               </label>
               <Select
@@ -276,13 +272,11 @@ class Filters extends Component {
                 {nonInterestingCards.length}
                 )
                 <Tooltip
-                  id="tooltip-other-cards"
                   text={`This list contains the cards that are not included
                         in the "starting cards".
                         Use it if you want to force some specific cards into
-                        the deck. You can select up to 10 cards. If there are
-                        no spots left in the deck these cards (or a part of them)
-                        will be ignored.`}
+                        the deck. You can select up to 10 cards.`}
+                  direction="top"
                 />
               </label>
               <Select
@@ -302,14 +296,12 @@ class Filters extends Component {
                 {extraDeckWideFilters.length}
                 )
                 <Tooltip
-                  id="tooltip-extra-filters"
                   text={`These filters limit the available card pool. You can
-                          select card rarities and expansions. For example you can
-                          make a GvG retro deck by selecting (basic, classic, hof, naxx and gvg).
-                          Or you can make decks from different expansions and see
-                          which is the most powerful. *Don't forget to change the format
-                          to Wild otherwise you won't see the wild expansions.
+                          select card rarities and expansions. Don't forget to
+                          change the format to Wild otherwise you won't see
+                          the wild expansions.
                         `}
+                  direction="top"
                 />
               </label>
               <Select
@@ -332,12 +324,11 @@ class Filters extends Component {
                 />
                 Competitive Deck
                 <Tooltip
-                  id="tooltip-competitive-deck"
                   text="By default we select the best available card in order
                         to make the deck as competitive as possible. This has
                         it's drawbacks though, as some cards will almost always
-                        appear because they are too good. If you want a more
-                        random deck, deselect this option."
+                        appear because they are too good."
+                  direction="top"
                 />
               </label>
             </Filter>

@@ -102,7 +102,6 @@ I use it to make sure the algorithm
     </StyledCard>
     <div>
       <Tooltip
-        id="tooltip-history-priorities"
         text={`Most of the cards have some requirements in order to be good.
                 Those requirements are the "priorities". The archetypes have
                 priorities too.`}
@@ -124,7 +123,6 @@ step(s)
     {deckWideFilters && (
       <div>
         <Tooltip
-          id="tooltip-history-filters"
           text={`Some cards in addition to "priorities" may have some extra
               requirements. For example the Baku decks filter out the even
               cards or the Highlander decks want only one copy of each card.

@@ -8,6 +8,7 @@ import sortBy from 'lodash.sortby';
 import GlobalStyle from './AppGlobalStyle';
 import Loading from './components/Loading/Loading';
 import Alert from './components/Alert/Alert';
+import 'microtip/microtip.css';
 
 const LoadableHome = Loadable({
   loader: () => import(/* webpackChunkName: "home", webpackPreload: true */ './scenes/Home/Home'),

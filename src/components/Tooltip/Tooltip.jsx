@@ -16,7 +16,8 @@ const CustomTooltip = styled.button`
   height: 20px;
   margin-left: 6px;
 
-  &.bigger-font::after {
+  ::after {
+    font-family: 'Open Sans', sans-serif;
     font-size: 16px !important;
     text-align: left;
   }
@@ -25,30 +26,24 @@ const CustomTooltip = styled.button`
   }
 `;
 
-const Tooltip = ({
-  className, id, text, direction,
-}) => (
+const Tooltip = ({ text, direction }) => (
   <CustomTooltip
-    className={`${className} bigger-font`}
-    type="button"
-    data-balloon={text}
-    data-balloon-pos={direction}
-    data-balloon-length="medium"
-    aria-label={id}
+    role="tooltip"
+    aria-label={text}
+    data-microtip-position={direction}
+    data-microtip-size="medium"
+    data-microtip-font-size="16px"
   >
     <FontAwesomeIcon icon={faQuestion} />
   </CustomTooltip>
 );
 
 Tooltip.propTypes = {
-  className: PropTypes.string,
-  id: PropTypes.string.isRequired,
   text: PropTypes.string.isRequired,
   direction: PropTypes.string,
 };
 Tooltip.defaultProps = {
-  className: null,
-  direction: 'up',
+  direction: 'top-right',
 };
 
 export default Tooltip;

@@ -38,11 +38,9 @@ const DeckSelectedCards = ({
     <h3 style={{ textAlign: 'center' }}>
       <span>Selected Cards</span>
       <Tooltip
-        id="tooltip-selected-cards"
-        text={`This area lists the "starting cards" you selected (aka interesting cards). The main catch here
-         is that you can see the different versions of the cards and select any version
-         you like. Most of the cards though have only one version at the moment. `}
-        direction="up"
+        text={`This area lists the "starting cards" you selected (aka interesting cards).
+        You can see the different versions of the cards and select any version you like. `}
+        direction="top"
       />
     </h3>
     {!selectInterestingCards.includes('Random') && (
