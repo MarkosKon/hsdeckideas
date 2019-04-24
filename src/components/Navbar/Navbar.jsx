@@ -12,7 +12,7 @@ const FadedFab = styled(Fab)`
   }
 
   &:focus {
-    outline-color: #0084b4;
+    box-shadow: 0 0 0 0.3rem #63abc5;
   }
 `;
 const SideMenu = styled.div`

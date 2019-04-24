@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import {
-  Container, Row, Column, Fab,
-} from 'already-styled-components';
+import { Container, Row, Column } from 'already-styled-components';
 import update from 'immutability-helper';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLightbulb } from '@fortawesome/free-regular-svg-icons';
@@ -25,6 +23,7 @@ import {
 import UICard from '../../components/UICard/UICard';
 import Alert from '../../components/Alert/Alert';
 import SEO from '../../components/SEO/SEO';
+import Fab from '../../components/Fab';
 
 const LoadableDeckList = Loadable({
   loader: () => import(/* webpackChunkName: "decklist" */ './components/DeckList/Decklist'),
@@ -489,6 +488,7 @@ class Home extends Component {
           <Navbar />
         </Header>
         <Fab
+          tab-index="1"
           aria-label="Generate Idea"
           onClick={this.handleQuery}
           bc="darkorange"
