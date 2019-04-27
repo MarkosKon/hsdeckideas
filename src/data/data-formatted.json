@@ -15286,7 +15286,7 @@
         "rarity": "COMMON",
         "referencedTags": ["SILENCE"],
         "set": 98,
-        "rating": 4,
+        "rating": 3,
         "targetingArrowText": "Silence a minion.",
         "text": "Battlecry: Silence a minion.",
         "type": "MINION",
@@ -20299,7 +20299,7 @@
         "playRequirements": { "REQ_NUM_MINION_SLOTS": 1 },
         "rarity": "EPIC",
         "set": 98,
-        "rating": 1,
+        "rating": 2,
         "text": "Summon three 2/2 Treants.",
         "type": "SPELL",
         "extra": ["MIN_GEN"],
@@ -58976,7 +58976,7 @@
         "text": "Whenever a minion dies this turn, gain 1 Mana Crystal this turn only.",
         "type": "SPELL",
         "set": 13,
-        "rating": 3,
+        "rating": 2,
         "activeVersion": 0,
         "extra": ["MIN_GEN"],
         "imageUrl": "636688328786837970.png",
@@ -59821,6 +59821,23 @@
         "imageUrl": "636688330575813565.png",
         "tile": "BOT_548.png",
         "versions": [
+          {
+            "name": "No priorities (selects itself)",
+            "priorities": [
+              {
+                "minCards": 1,
+                "maxCards": 1,
+                "id": "00f6c158-4f90-43f2-a10e-2477284defb2",
+                "filters": [
+                  {
+                    "property": "name",
+                    "operation": "EQUALS",
+                    "minValue": "Zilliax"
+                  }
+                ]
+              }
+            ]
+          },
           {
             "name": "Mechs and magnets",
             "priorities": [
@@ -62019,7 +62036,7 @@
         "set": 14,
         "text": "Give your hero +2 Attack this turn.",
         "type": "SPELL",
-        "rating": 3,
+        "rating": 2,
         "extra": ["SMALL_REMOVAL"],
         "imageUrl": "636791251673510576.png",
         "tile": "TRL_243.png"
@@ -65806,7 +65823,7 @@
         "imageUrl": "walking-fountain.png",
         "tile": "DAL_047.png",
         "extra": ["VALUE", "SMALL_REMOVAL", "HEAL"],
-        "rating": 2,
+        "rating": 3,
         "text": "Lifesteal, Rush, Windfury",
         "type": "MINION"
       },
@@ -67073,8 +67090,8 @@
             "name": "Token",
             "priorities": [
               {
-                "minCards": 4,
-                "maxCards": 6,
+                "minCards": 6,
+                "maxCards": 8,
                 "id": "42732868-bbc3-4e57-97e7-f0a2e9227d7c",
                 "filters": [
                   {
@@ -67091,7 +67108,7 @@
               },
               {
                 "minCards": 4,
-                "maxCards": 4,
+                "maxCards": 6,
                 "id": "8a259bae-4552-4ed2-ad82-f0601f0cf31a",
                 "filters": [
                   {
@@ -67694,7 +67711,7 @@
         "imageUrl": "evil-miscreant.png",
         "tile": "DAL_415.png",
         "extra": ["GENERAL"],
-        "rating": 2,
+        "rating": 3,
         "text": "Combo: Add two random Lackeys to your hand.",
         "type": "MINION"
       },
@@ -69572,7 +69589,7 @@
         "imageUrl": "waggle-pick.png",
         "tile": "DAL_720.png",
         "extra": ["SMALL_REMOVAL", "DAMAGE"],
-        "rating": 1,
+        "rating": 3,
         "text": "Deathrattle: Return a random friendly minion to your hand. It costs (2) less.",
         "type": "WEAPON",
         "activeVersion": 0,
@@ -70475,7 +70492,7 @@
         "imageUrl": "magic-carpet.png",
         "tile": "DAL_773.png",
         "extra": ["FAST", "BUFF"],
-        "rating": 2,
+        "rating": 3,
         "text": "After you play a 1-Cost minion, give it +1 Attack and Rush.",
         "type": "MINION",
         "activeVersion": 0,
@@ -70484,8 +70501,8 @@
             "name": "One cost minions",
             "priorities": [
               {
-                "minCards": 6,
-                "maxCards": 8,
+                "minCards": 8,
+                "maxCards": 10,
                 "id": "55f2333e-d99f-412f-af18-0ee6cf7d0b6f",
                 "filters": [
                   {
