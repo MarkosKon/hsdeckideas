@@ -1,17 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Modal from 'react-modal';
-import Loadable from 'react-loadable';
-
-import Loading from '../../../../components/Loading/Loading';
+import TreeDiagram from '../TreeDiagram/TreeDiagram';
 
 const root = document.getElementById('root');
 Modal.setAppElement(root);
-
-const LoadableTreeDiagram = Loadable({
-  loader: () => import(/* webpackChunkName: "treediagram" */ '../TreeDiagram/TreeDiagram'),
-  loading: Loading,
-});
 
 const HistoryModal = ({ isOpen, closeModal, deck }) => (
   <Modal
@@ -37,7 +30,7 @@ const HistoryModal = ({ isOpen, closeModal, deck }) => (
     appElement={root}
     contentLabel="Diagram modal"
   >
-    <LoadableTreeDiagram deck={deck} closeModal={closeModal} />
+    <TreeDiagram deck={deck} closeModal={closeModal} />
   </Modal>
 );
 

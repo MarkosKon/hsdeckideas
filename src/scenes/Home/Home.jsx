@@ -25,30 +25,44 @@ import Alert from '../../components/Alert/Alert';
 import SEO from '../../components/SEO/SEO';
 import Fab from '../../components/Fab';
 
+/* eslint-disable comma-dangle */
 const LoadableDeckList = Loadable({
-  loader: () => import(/* webpackChunkName: "decklist" */ './components/DeckList/Decklist'),
+  loader: () => import(
+    /* webpackChunkName: "decklist", webpackPrefetch: true */ './components/DeckList/Decklist'
+  ),
   loading: Loading,
 });
 const LoadableDeckInfo = Loadable({
-  loader: () => import(/* webpackChunkName: "deckinfo" */ './components/DeckInfo/DeckInfo'),
+  loader: () => import(
+    /* webpackChunkName: "deckinfo", webpackPrefetch: true */ './components/DeckInfo/DeckInfo'
+  ),
   loading: Loading,
 });
 const LoadableDeckStats = Loadable({
-  loader: () => import(/* webpackChunkName: "deckstats" */ './components/DeckStats/DeckStats'),
+  loader: () => import(
+    /* webpackChunkName: "deckstats", webpackPrefetch: true */ './components/DeckStats/DeckStats'
+  ),
   loading: Loading,
 });
 const LoadableDiagramModal = Loadable({
-  loader: () => import(/* webpackChunkName: "diagrammodal", webpackPreload: true */ './components/Modals/DiagramModal'),
+  loader: () => import(
+    /* webpackChunkName: "diagrammodal", webpackPrefetch: true */ './components/Modals/DiagramModal'
+  ),
   loading: Loading,
 });
 const LoadableCardDetailsModal = Loadable({
-  loader: () => import(/* webpackChunkName: "carddetailsmodal", webpackPreload: true */ './components/Modals/CardDetailsModal'),
+  loader: () => import(
+    /* webpackChunkName: "carddetailsmodal", webpackPrefetch: true */ './components/Modals/CardDetailsModal'
+  ),
   loading: Loading,
 });
 const LoadableHistoryModal = Loadable({
-  loader: () => import(/* webpackChunkName: "historymodal", webpackPreload: true */ './components/Modals/HistoryModal'),
+  loader: () => import(
+    /* webpackChunkName: "historymodal", webpackPrefetch: true */ './components/Modals/HistoryModal'
+  ),
   loading: Loading,
 });
+/* eslint-enable comma-dangle */
 
 const sortBy = require('lodash.sortby');
 

@@ -1,14 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Modal from 'react-modal';
-import Loadable from 'react-loadable';
-
-import Loading from '../../../../components/Loading/Loading';
-
-const LoadableHistory = Loadable({
-  loader: () => import(/* webpackChunkName: "history" */ '../History/History'),
-  loading: Loading,
-});
+import History from '../History/History';
 
 const root = document.getElementById('root');
 Modal.setAppElement(root);
@@ -37,7 +30,7 @@ const HistoryModal = ({ isOpen, closeModal, deck }) => (
     appElement={root}
     contentLabel="History modal"
   >
-    <LoadableHistory deck={deck} closeModal={closeModal} />
+    <History deck={deck} closeModal={closeModal} />
   </Modal>
 );
 

@@ -16,6 +16,10 @@ const envKeys = Object.keys(env).reduce((prev, next) => {
 
 module.exports = {
   entry: './src/index.jsx',
+  // entry: {
+  //   data: './src/data.js',
+  //   main: './src/index.jsx',
+  // },
   output: {
     path: path.resolve(__dirname, '../dist'),
     publicPath: '/',
