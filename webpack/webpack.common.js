@@ -1,5 +1,6 @@
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const webpack = require('webpack'); // to access built-in plugins
 const dotenv = require('dotenv');
@@ -15,11 +16,10 @@ const envKeys = Object.keys(env).reduce((prev, next) => {
 }, {});
 
 module.exports = {
-  entry: './src/index.jsx',
-  // entry: {
-  //   data: './src/data.js',
-  //   main: './src/index.jsx',
-  // },
+  entry: {
+    data: './src/data.js',
+    main: './src/index.jsx',
+  },
   output: {
     path: path.resolve(__dirname, '../dist'),
     publicPath: '/',
@@ -52,6 +52,7 @@ module.exports = {
     new CleanWebpackPlugin(['../dist'], { allowExternal: true }),
     new webpack.DefinePlugin(envKeys),
     new HtmlWebpackPlugin({ template: './src/index.html' }),
+    new ScriptExtHtmlWebpackPlugin({ inline: 'data' }),
     new CopyWebpackPlugin([{ from: 'public' }]),
   ],
 };

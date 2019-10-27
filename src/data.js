@@ -1,8 +1,11 @@
+// import 'promise-polyfill/src/polyfill';
+// import 'whatwg-fetch';
+
 const cachedData = localStorage.getItem('data');
 const cachedVersion = parseInt(localStorage.getItem('version'), 10);
-const dataVersion = 33;
+const dataVersion = 34;
 
-if (!cachedData && cachedVersion !== dataVersion) {
+if (!cachedData || cachedVersion !== dataVersion) {
   window.cachedData = fetch('/resources/data/data.json')
     .then(res => res.json())
     .then((data) => {
