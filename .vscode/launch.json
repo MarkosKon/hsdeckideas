@@ -32,10 +32,10 @@
       }
     },
     {
-      "name": "Chrome",
+      "name": "Debug Webpack dev",
       "type": "chrome",
       "request": "launch",
-      "url": "http://localhost:3000",
+      "url": "http://localhost:4444",
       "webRoot": "${workspaceRoot}/src",
       "sourceMapPathOverrides": {
         "webpack:///src/*": "${webRoot}/*"
