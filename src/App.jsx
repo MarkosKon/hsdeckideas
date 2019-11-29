@@ -3,8 +3,8 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { Transition } from 'react-spring';
 import ReactGA from 'react-ga';
 import Loadable from 'react-loadable';
-import sortBy from 'lodash.sortby';
 
+import { useLocalStorage } from './hooks/useLocalStorage';
 import GlobalStyle from './AppGlobalStyle';
 import Loading from './components/Loading/Loading';
 import Alert from './components/Alert/Alert';
@@ -31,29 +31,27 @@ const App = () => {
   const heroCodes = [274, 31, 637, 671, 813, 930, 1066, 893, 7];
 
   const [errorMessage, setErrorMessage] = useState(null);
-  const [state, setState] = useState({
-    cards: [],
-    heroes: [],
-    heroPowers: [],
-    archetypes: [],
-    extraDeckWideFilters: [],
-  });
-  const {
-    cards, heroes, heroPowers, archetypes, extraDeckWideFilters,
-  } = state;
+  const [cards, setCards] = useLocalStorage('cards', []);
+  const [archetypes, setΑrchetypes] = useLocalStorage('archetypes', []);
+  const [heroes, setΗeroes] = useLocalStorage('heroes', []);
+  const [heroPowers, setΗeroPowers] = useLocalStorage('hero-powers', []);
+  const [extraDeckWideFilters, setΕxtraDeckWideFilters] = useLocalStorage(
+    'extra-deck-wide-filters',
+    [],
+  );
 
   useEffect(() => {
     if (process.env.NODE_ENV === 'production') {
       ReactGA.initialize(process.env.REACT_APP_GA_PROPERTY);
     }
     window.cachedData.then((data) => {
-      setState({
-        cards: data[0].content,
-        heroes: data[2].content,
-        heroPowers: data[3].content,
-        archetypes: sortBy(data[1].content, 'name'),
-        extraDeckWideFilters: sortBy(data[4].content, ['group']),
-      });
+      if (data) {
+        setCards(data.cards);
+        setΑrchetypes(data.archetypes);
+        setΗeroes(data.heroes);
+        setΗeroPowers(data.heroPowers);
+        setΕxtraDeckWideFilters(data.extraDeckWideFilters);
+      }
     });
   }, []);
 
