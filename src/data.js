@@ -4,6 +4,7 @@ import sortBy from 'lodash.sortby';
 
 const cachedData = {
   cards: JSON.parse(localStorage.getItem('cards')),
+  userCards: JSON.parse(localStorage.getItem('user-cards')),
   archetypes: JSON.parse(localStorage.getItem('archetypes')),
   heroes: JSON.parse(localStorage.getItem('heroes')),
   heroPowers: JSON.parse(localStorage.getItem('hero-powers')),
@@ -25,8 +26,10 @@ if (downloadData || cachedVersion !== dataVersion) {
       const [cards, archetypes, heroes, heroPowers, extraDeckWideFilters] = data.map(
         e => e.content,
       );
+      const sortedCards = sortBy(cards, 'name');
       localStorage.setItem('version', dataVersion);
-      localStorage.setItem('cards', JSON.stringify(cards));
+      localStorage.setItem('cards', JSON.stringify(sortedCards));
+      localStorage.setItem('user-cards', JSON.stringify(sortedCards));
       localStorage.setItem('archetypes', JSON.stringify(sortBy(archetypes, 'name')));
       localStorage.setItem('heroes', JSON.stringify(heroes));
       localStorage.setItem('hero-powers', JSON.stringify(heroPowers));
@@ -35,13 +38,15 @@ if (downloadData || cachedVersion !== dataVersion) {
         JSON.stringify(sortBy(extraDeckWideFilters, ['group'])),
       );
       return {
-        cards,
+        cards: sortedCards,
+        userCards: sortedCards,
         archetypes,
         heroes,
         heroPowers,
         extraDeckWideFilters,
       };
     })
+    // eslint-disable-next-line no-console
     .catch(err => console.log({ err }));
 } else {
   // eslint-disable-next-line compat/compat

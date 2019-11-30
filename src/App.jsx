@@ -26,12 +26,17 @@ const LoadableNewFeatures = Loadable({
   loader: () => import(/* webpackChunkName: "newfeatures" */ './scenes/NewFeatures/NewFeatures'),
   loading: Loading,
 });
+const LoadableEditData = Loadable({
+  loader: () => import(/* webpackChunkName: "editdatA" */ './scenes/EditData/EditData'),
+  loading: Loading,
+});
 
 const App = () => {
   const heroCodes = [274, 31, 637, 671, 813, 930, 1066, 893, 7];
 
   const [errorMessage, setErrorMessage] = useState(null);
   const [cards, setCards] = useLocalStorage('cards', []);
+  const [userCards, setUserCards] = useLocalStorage('user-cards', []);
   const [archetypes, setΑrchetypes] = useLocalStorage('archetypes', []);
   const [heroes, setΗeroes] = useLocalStorage('heroes', []);
   const [heroPowers, setΗeroPowers] = useLocalStorage('hero-powers', []);
@@ -47,6 +52,7 @@ const App = () => {
     window.cachedData.then((data) => {
       if (data) {
         setCards(data.cards);
+        setUserCards(data.userCards);
         setΑrchetypes(data.archetypes);
         setΗeroes(data.heroes);
         setΗeroPowers(data.heroPowers);
@@ -82,7 +88,7 @@ const App = () => {
             path="/"
             render={() => (
               <LoadableHome
-                cards={cards}
+                cards={userCards}
                 heroes={heroes}
                 heroPowers={heroPowers}
                 heroCodes={heroCodes}
@@ -93,6 +99,12 @@ const App = () => {
           />
           <Route path="/faq/" render={() => <LoadableFAQ />} />
           <Route path="/new-features/" render={() => <LoadableNewFeatures />} />
+          <Route
+            path="/edit-data/"
+            render={() => (
+              <LoadableEditData cards={cards} userCards={userCards} setUserCards={setUserCards} />
+            )}
+          />
           <Route render={() => <LoadableNotFound />} />
         </Switch>
       </Router>

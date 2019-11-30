@@ -120,6 +120,11 @@ const GlobalStyle = createGlobalStyle`
   .domain {
     opacity: .5;
   }
+
+  /* jsondiffpatch */
+  .jsondiffpatch-unchanged {
+    display: none;
+  }
 `;
 
 export default GlobalStyle;

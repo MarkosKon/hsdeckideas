@@ -9,6 +9,7 @@ import { getRandom } from 'some-utils';
 import Loadable from 'react-loadable';
 import ReactGA from 'react-ga';
 import { Transition } from 'react-spring';
+import Link from 'react-router-dom/Link';
 
 import Loading from '../../components/Loading/Loading';
 import Header from '../../components/Header/Header';
@@ -537,6 +538,7 @@ class Home extends Component {
                 handleSelectVersion={this.handleSelectVersion}
                 handleOpenCardDetailsModal={this.openCardDetailsModal}
               />
+              <Link to="/edit-data/">Edit data</Link>
             </Column>
           </Row>
           {firstSuggestionLoaded && (
