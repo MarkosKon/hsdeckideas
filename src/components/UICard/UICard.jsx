@@ -25,10 +25,13 @@ const CustomAnchorLink = styled(AnchorLink)`
 `;
 
 const CardTitle = styled.h2`
-  font-size: 42px;
   text-align: center;
-  @media screen and (max-width: 767px) {
+  margin: 27px 0;
+  @media screen and (max-width: 500px) {
     font-size: 36px;
+  }
+  & button {
+    font-size: 29px;
   }
 `;
 const ButtonContainer = styled.div`
@@ -50,7 +53,7 @@ const UICard = ({
     {withHeader && (
       <CardHeader>
         <CardTitle>
-          <CustomAnchorLink scrollTo={id} c="#2d2d2d" fs="36px" o=".8" hc="darkorange">
+          <CustomAnchorLink scrollTo={id} c="#2d2d2d" fs="47px" o=".8" hc="darkorange">
             {title}
           </CustomAnchorLink>
         </CardTitle>

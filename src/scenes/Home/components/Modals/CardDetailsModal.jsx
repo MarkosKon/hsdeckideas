@@ -31,7 +31,9 @@ const LeftColumn = styled(Column)`
   }
 `;
 const CardName = styled.h1`
-  font-size: 60px;
+  font-size: 4.236em;
+  margin: 27px 0;
+  line-height: 1.1;
   color: burlywood;
   @media screen and (max-width: 767px) {
     font-size: 46px;
@@ -41,12 +43,19 @@ const CardInfo = styled.div`
   margin-top: 20px;
 `;
 const Property = styled.div`
-  margin-bottom: 7px;
+  margin-bottom: 6.75px;
+  ul {
+    margin: 6.75px 0 0;
+  }
+
+  ul ul {
+    margin: 0;
+  }
 `;
 const PropertyLabel = styled.span`
-  font-size: 24px;
+  font-size: 1.618em;
   font-weight: bold;
-  font-family: 'Open Sans', sans-serif;
+  font-family: 'Open Sans', Arial, Helvetica, sans-serif;
   color: burlywood;
 `;
 const Image = styled.img`
@@ -118,12 +127,8 @@ const CardDetailsModal = ({ isOpen, closeModal, card }) => (
               <Property>
                 <PropertyLabel>Has Priorities? </PropertyLabel>
                 {card.versions
-                  ? `Yes, ${card.name} has ${
-                    card.versions.length
-                  } version(s) of priorities, and thus is considered an "interesting" card. `
-                  : `No, ${
-                    card.name
-                  } doesn't have any priorities, and thus is considered a "non-interesting" card.`}
+                  ? `Yes, ${card.name} has ${card.versions.length} version(s) of priorities, and thus is considered an "interesting" card. `
+                  : `No, ${card.name} doesn't have any priorities, and thus is considered a "non-interesting" card.`}
               </Property>
               {card.versions && (
                 <>

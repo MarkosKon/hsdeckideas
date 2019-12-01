@@ -12,12 +12,8 @@ const Statistics = styled.div`
   text-align: center;
 `;
 const Heading = styled.h3`
-  margin: 30px 0 40px;
+  margin: 27px 0;
   text-align: center;
-  font-size: 28px;
-`;
-const StatisticsTitle = styled(Heading)`
-  margin: 40px 0 30px;
 `;
 const StatisticsList = styled.div`
   list-style: none;
@@ -38,7 +34,7 @@ const DeckStats = ({ deck: { size, totalDust, score }, manaCurveChartData, chart
       <BarChart data={manaCurveChartData} chartColor={chartColor} />
     </div>
     <Statistics>
-      <StatisticsTitle>Statistics</StatisticsTitle>
+      <Heading>Statistics</Heading>
       <StatisticsList>
         <li>
           <StatisticsTag>Size: </StatisticsTag>

@@ -48,9 +48,9 @@ const GlobalStyle = createGlobalStyle`
   }
 
   body {
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Open Sans', Arial, Helvetica, sans-serif;
     font-size: 18px;
-    line-height: 1.3;
+    line-height: 1.5;
     background-color: #7a7a7a;
     color: #2d2d2d;
   }
@@ -62,8 +62,21 @@ const GlobalStyle = createGlobalStyle`
   h5,
   h6 {
     color: #2d2d2d;
-    font-family: 'Oswald', serif;
+    font-family: 'Oswald', 'Open Sans', Arial, Helvetica, sans-serif;
     font-weight: 700;
+  }
+
+  h1 {
+    font-size: 4.236em;
+  }
+  h2 {
+    font-size: 2.618em;
+  }
+  h3 {
+    font-size: 1.618em;
+  }
+  h4 {
+    font-size: 1em;
   }
 
   ::-moz-selection {

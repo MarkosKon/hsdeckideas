@@ -24,9 +24,8 @@ const List = styled.ul`
   }
 `;
 const Heading = styled.h3`
-  margin: 30px 0 40px;
+  margin: 27px 0;
   text-align: center;
-  font-size: 30px;
 `;
 const ButtonGroup = styled.div`
   display: flex;

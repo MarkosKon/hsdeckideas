@@ -21,7 +21,7 @@ const StyledHeader = styled.header`
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
 
   h1 {
-    font-size: 5rem;
+    font-size: 4.236em;
     font-family: 'Opens Sans', sans-serif;
     color: white;
     font-weight: 400;
@@ -79,7 +79,7 @@ const StyledHeader = styled.header`
 
 const HeaderContent = styled.div`
   padding: 0 5px;
-  font-family: 'Open Sans', sans-serif;
+  font-family: 'Open Sans', Arial, Helvetica, sans-serif;
   @media (max-width: 767px) {
     & h1 {
       font-size: 3rem;

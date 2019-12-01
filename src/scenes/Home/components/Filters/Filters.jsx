@@ -25,6 +25,7 @@ const Filter = styled.div`
     margin: 0;
     margin-right: 5px;
     font-size: 1.1rem;
+    font-weight: 700;
   }
 
   .Select-value {

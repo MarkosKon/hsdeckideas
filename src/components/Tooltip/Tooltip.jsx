@@ -17,7 +17,7 @@ const CustomTooltip = styled.button`
   margin-left: 6px;
 
   ::after {
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Open Sans', Arial, Helvetica, sans-serif;
     font-size: 16px !important;
     text-align: left;
   }

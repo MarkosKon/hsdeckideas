@@ -9,9 +9,8 @@ const Content = styled.div`
   padding: 10px;
 `;
 const Heading = styled.h3`
-  margin: 30px 0 40px;
+  margin: 27px 0;
   text-align: center;
-  font-size: 30px;
 `;
 const Image = styled.img`
   width: 100%;
