@@ -7,5 +7,6 @@ module.exports = merge(common, {
   devtool: 'eval-source-map',
   devServer: {
     port: 4444,
+    writeToDisk: true,
   },
 });
