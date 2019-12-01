@@ -6,7 +6,11 @@ export const useLocalStorage = (name, initialValue) => {
   const [value, setValue] = useState(() => {
     if (windowGlobal) {
       const currentValue = windowGlobal.localStorage.getItem(name);
-      return currentValue ? JSON.parse(currentValue) : initialValue;
+      try {
+        return currentValue ? JSON.parse(currentValue) : initialValue;
+      } catch (err) {
+        return initialValue;
+      }
     }
     return initialValue;
   });
