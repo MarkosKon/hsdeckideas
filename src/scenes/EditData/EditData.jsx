@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 // import styled from 'styled-components';
 import ReactGA from 'react-ga';
@@ -7,12 +7,13 @@ import partition from 'lodash.partition';
 import { Button } from 'already-styled-components';
 import { diff, formatters } from 'jsondiffpatch';
 import { Formik } from 'formik';
+import { toast } from 'react-toastify';
 
 import 'jsondiffpatch/dist/formatters-styles/html.css';
 
 import Header from '../../components/Header/Header';
 import Footer from '../../components/Footer/Footer';
-import Navbar from '../../components/Navbar/Navbar';
+import Navbar from '../../components/Navbar';
 import UICard from '../../components/UICard/UICard';
 import SEO from '../../components/SEO/SEO';
 import Select from './components/Select';
@@ -22,6 +23,7 @@ formatters.html.hideUnchanged();
 
 const NewFeatures = ({ cards, userCards, setUserCards }) => {
   const [selectedCard, setSelectedCard] = useState(userCards[0]);
+  const submitButtonRef = useRef();
 
   useEffect(() => {
     if (process.env.NODE_ENV === 'production') {
@@ -57,8 +59,11 @@ const NewFeatures = ({ cards, userCards, setUserCards }) => {
               // Update the UI, this could be an effect.
               const newSelectCard = cards.find(c => c.id === selectedCard.id);
               setSelectedCard(newSelectCard);
-
               setUserCards(cards);
+              toast.success('Changes gone, your data are in-sync with the official data.', {
+                autoClose: 3000,
+                toastId: 'sub-success',
+              });
             }}
           >
             Discard all changes
@@ -80,10 +85,34 @@ const NewFeatures = ({ cards, userCards, setUserCards }) => {
             Show diff
           </Button>
           <Button
+            ref={submitButtonRef}
             onClick={() => {
+              submitButtonRef.current.setAttribute('disabled', 'disabled');
               const delta = diff(cards, userCards);
-              // eslint-disable-next-line no-console
-              console.log({ delta });
+              // eslint-disable-next-line compat/compat
+              const fakePost = new Promise((resolve) => {
+                setTimeout(() => resolve('ok'), 1000);
+              });
+              if (delta) {
+                fakePost
+                  .then((res) => {
+                    toast.success(`Thanks for your submission! ${res}`, {
+                      autoClose: 3000,
+                      toastId: 'sub-success',
+                    });
+                    submitButtonRef.current.removeAttribute('disabled');
+                  })
+                  .catch((err) => {
+                    toast.error(`Something went wrong. Here's the error ${err}`, {
+                      toastId: 'sub-error',
+                    });
+                  });
+              } else {
+                toast.success('There is not difference between your data and the default data.', {
+                  autoClose: 3000,
+                  toastId: 'sub-same',
+                });
+              }
             }}
             sx={{
               color: 'background',
@@ -131,6 +160,10 @@ const NewFeatures = ({ cards, userCards, setUserCards }) => {
                 setUserCards(sortBy([...otherCards, newCard], 'name'));
                 setSelectedCard(newCard);
                 setSubmitting(false);
+                toast.success(`Saved changes for ${newCard.name}!`, {
+                  autoClose: 1500,
+                  toastId: 'card-save-success',
+                });
               }}
             >
               {FormFields}

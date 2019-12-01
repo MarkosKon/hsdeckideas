@@ -1,3 +1,3 @@
 https://hsdeckideas.netlify.com
+https://hsdeckideas.netlify.com/edit-data/
 https://hsdeckideas.netlify.com/faq/
-https://hsdeckideas.netlify.com/new-features/

@@ -5,7 +5,7 @@ import { Centered } from 'already-styled-components';
 
 import Header from '../../components/Header/Header';
 import Footer from '../../components/Footer/Footer';
-import Navbar from '../../components/Navbar/Navbar';
+import Navbar from '../../components/Navbar';
 import UICard from '../../components/UICard/UICard';
 
 const StyledUICard = styled(UICard)`
@@ -39,7 +39,6 @@ const NotFound = () => (
           {' '}
 and the
           {' '}
-          <Link to="/new-features/"> New Features.</Link>
         </Paragraphs>
       </Centered>
     </StyledUICard>

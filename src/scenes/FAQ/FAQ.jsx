@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import ReactGA from 'react-ga';
 
 import Header from '../../components/Header/Header';
-import Navbar from '../../components/Navbar/Navbar';
+import Navbar from '../../components/Navbar';
 import UICard from '../../components/UICard/UICard';
 import Footer from '../../components/Footer/Footer';
 import SEO from '../../components/SEO/SEO';

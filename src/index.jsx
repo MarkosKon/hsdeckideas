@@ -1,9 +1,14 @@
 import '@babel/polyfill';
 import React from 'react';
 import { render, hydrate } from 'react-dom';
-import 'normalize.css';
+import { toast } from 'react-toastify';
 
 import App from './App';
+
+import 'normalize.css';
+import 'react-toastify/dist/ReactToastify.css';
+
+toast.configure();
 
 const root = document.getElementById('root');
 if (root.hasChildNodes()) hydrate(<App />, root);

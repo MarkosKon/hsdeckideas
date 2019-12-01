@@ -8,21 +8,18 @@ import { faLightbulb } from '@fortawesome/free-regular-svg-icons';
 import { getRandom } from 'some-utils';
 import Loadable from 'react-loadable';
 import ReactGA from 'react-ga';
-import { Transition } from 'react-spring';
-import Link from 'react-router-dom/Link';
 
 import Loading from '../../components/Loading/Loading';
 import Header from '../../components/Header/Header';
 import Footer from '../../components/Footer/Footer';
 import Filters from './components/Filters/Filters';
-import Navbar from '../../components/Navbar/Navbar';
+import Navbar from '../../components/Navbar';
 import { getAvailableCards } from '../../utils/card';
 import {
   initializeDeck, getDeck, getDeckCode, getManaCurveChartData,
 } from '../../utils/deck';
 // import deckUtils from '../../utils/deck';
 import UICard from '../../components/UICard/UICard';
-import Alert from '../../components/Alert/Alert';
 import SEO from '../../components/SEO/SEO';
 import Fab from '../../components/Fab';
 
@@ -110,7 +107,6 @@ class Home extends Component {
     this.handleSelectVersion = this.handleSelectVersion.bind(this);
     this.handleSelectExtraDeckWideFilters = this.handleSelectExtraDeckWideFilters.bind(this);
     this.handleCompetitiveCheckbox = this.handleCompetitiveCheckbox.bind(this);
-    this.handleCodeCopy = this.handleCodeCopy.bind(this);
     this.openHistoryModal = this.openHistoryModal.bind(this);
     this.closeHistoryModal = this.closeHistoryModal.bind(this);
     this.openDiagramModal = this.openDiagramModal.bind(this);
@@ -122,7 +118,6 @@ class Home extends Component {
 
     this.state = {
       firstSuggestionLoaded: false,
-      showSuccessAlert: false,
       haveData: false,
       // External data.
       interestingCards: [],
@@ -202,18 +197,6 @@ class Home extends Component {
 
   closeCardDetailsModal() {
     this.setState({ cardDetailsModalOpen: false });
-  }
-
-  handleCodeCopy() {
-    if (process.env.NODE_ENV === 'production') {
-      ReactGA.event({
-        category: 'User',
-        action: 'Copied deck code',
-      });
-    }
-    this.setState({
-      showSuccessAlert: true,
-    });
   }
 
   suggest() {
@@ -458,7 +441,6 @@ class Home extends Component {
       deckCode,
       deckForUI,
       manaCurveChartData,
-      showSuccessAlert,
     } = this.state;
     const { heroes, archetypes } = this.props;
     return (
@@ -474,24 +456,6 @@ class Home extends Component {
           url="https://hsdeckideas.netlify.com/"
           keywords="hearthstone random deck generator"
         />
-        <Transition
-          items={showSuccessAlert}
-          from={{ transform: 'translateY(-100px)' }}
-          enter={{ transform: 'translateY(0)' }}
-          leave={{ transform: 'translateY(-100px)' }}
-        >
-          {toggle => toggle
-            && (style => (
-              <Alert
-                success
-                message="Copied to clipboard!"
-                callback={() => this.setState({ showSuccessAlert: false })}
-                timeout={1500}
-                style={style}
-              />
-            ))
-          }
-        </Transition>
         <Header
           title="Hearthstone Deck Ideas"
           paragraphs={[
@@ -538,7 +502,6 @@ class Home extends Component {
                 handleSelectVersion={this.handleSelectVersion}
                 handleOpenCardDetailsModal={this.openCardDetailsModal}
               />
-              <Link to="/edit-data/">Edit data</Link>
             </Column>
           </Row>
           {firstSuggestionLoaded && (
@@ -548,7 +511,6 @@ class Home extends Component {
                   deck={deckForUI}
                   deckCode={deckCode}
                   heroNumber={heroNumber}
-                  handleCodeCopy={this.handleCodeCopy}
                   handleOpenHistoryModal={this.openHistoryModal}
                   handleOpenDiagramModal={this.openDiagramModal}
                   handleOpenCardDetailsModal={this.openCardDetailsModal}

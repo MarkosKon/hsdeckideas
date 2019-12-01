@@ -3,7 +3,9 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { Column, Button } from 'already-styled-components';
+import ReactGA from 'react-ga';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
+import { toast } from 'react-toastify';
 
 import DeckListCard from '../DeckListCard/DeckListCard';
 
@@ -56,7 +58,6 @@ const Decklist = ({
   deck,
   deckCode,
   heroNumber,
-  handleCodeCopy,
   handleOpenCardDetailsModal,
   handleOpenHistoryModal,
   handleOpenDiagramModal,
@@ -83,7 +84,18 @@ const Decklist = ({
       <Button bc="orangered" onClick={handleOpenHistoryModal}>
         Deck History
       </Button>
-      <CopyToClipboard text={deckCode} onCopy={handleCodeCopy}>
+      <CopyToClipboard
+        text={deckCode}
+        onCopy={() => {
+          if (process.env.NODE_ENV === 'production') {
+            ReactGA.event({
+              category: 'User',
+              action: 'Copied deck code',
+            });
+          }
+          toast.success('Copied to clipboard!', { autoClose: 1500, toastId: 'copy-code' });
+        }}
+      >
         <Button bc="#524b4e" c="white">
           Copy Code
         </Button>
@@ -151,7 +163,6 @@ Decklist.propTypes = {
   deckCode: PropTypes.string.isRequired,
   heroNumber: PropTypes.number.isRequired,
   handleOpenCardDetailsModal: PropTypes.func.isRequired,
-  handleCodeCopy: PropTypes.func.isRequired,
   handleOpenHistoryModal: PropTypes.func.isRequired,
   handleOpenDiagramModal: PropTypes.func.isRequired,
 };
