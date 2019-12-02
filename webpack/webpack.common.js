@@ -53,6 +53,16 @@ module.exports = {
     new webpack.DefinePlugin(envKeys),
     new HtmlWebpackPlugin({ template: './src/index.html' }),
     new ScriptExtHtmlWebpackPlugin({ inline: 'data' }),
-    new CopyWebpackPlugin([{ from: 'public' }]),
+    new CopyWebpackPlugin([
+      {
+        from: 'public',
+        transform(fileContent, path) {
+          if (path.includes('data.json')) {
+            return JSON.stringify(JSON.parse(fileContent.toString()));
+          }
+          return fileContent;
+        },
+      },
+    ]),
   ],
 };
