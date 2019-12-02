@@ -53,7 +53,6 @@ const Property = styled.div`
   }
 `;
 const PropertyLabel = styled.span`
-  font-size: 1.618em;
   font-weight: bold;
   font-family: 'Open Sans', Arial, Helvetica, sans-serif;
   color: burlywood;

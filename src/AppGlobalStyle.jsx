@@ -138,6 +138,38 @@ const GlobalStyle = createGlobalStyle`
   .jsondiffpatch-unchanged {
     display: none;
   }
+
+  /* react-toastify */
+
+  .Toastify__toast {
+    font-family: 'Open Sans', Arial, Helvetica, sans-serif!important;
+    border-radius: 4px!important;
+    padding: 13.5px!important;
+  }
+
+  .Toastify__close-button {
+    color: inherit!important;
+  }
+
+  .Toastify__toast--success {
+    border: 1px solid #c3e6cb!important;
+    background-color: #d4edda!important;
+    color: #155724!important;
+  }
+
+  .Toastify__progress-bar--success{
+    background-color: #155724c2!important;
+  }
+
+  .Toastify__toast--error {
+    border: 1px solid #f5c6cb!important;
+    background-color: #f8d7da!important;
+    color: #721c24!important;
+  }
+
+  .Toastify__progress-bar--error{
+    background-color: #721c24b8!important;
+  }
 `;
 
 export default GlobalStyle;

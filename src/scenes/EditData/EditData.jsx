@@ -103,15 +103,17 @@ const NewFeatures = ({ cards, userCards, setUserCards }) => {
                     submitButtonRef.current.removeAttribute('disabled');
                   })
                   .catch((err) => {
-                    toast.error(`Something went wrong. Here's the error ${err}`, {
+                    toast.error(`Something went wrong. Here's the error: ${err}`, {
                       toastId: 'sub-error',
                     });
+                    submitButtonRef.current.removeAttribute('disabled');
                   });
               } else {
                 toast.success('There is not difference between your data and the default data.', {
                   autoClose: 3000,
                   toastId: 'sub-same',
                 });
+                submitButtonRef.current.removeAttribute('disabled');
               }
             }}
             sx={{
