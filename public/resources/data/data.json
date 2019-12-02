@@ -61036,7 +61036,7 @@
       {
         "artist": "Nicola Saviori",
         "attack": 2,
-        "cardClass": "NEUTRAL",
+        "cardClass": ["NEUTRAL"],
         "collectible": true,
         "cost": 3,
         "dbfId": 56223,
@@ -73548,7 +73548,7 @@
         "name": "Sathrovarr",
         "artist": "Alex Horley Orlandelli",
         "attack": 5,
-        "cardClass": "NEUTRAL",
+        "cardClass": ["NEUTRAL"],
         "collectible": true,
         "cost": 9,
         "dbfId": 56189,

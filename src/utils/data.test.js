@@ -67,7 +67,7 @@ const createArtistStats = (artistStats, nextArtistName) => {
 
 // 1. Data tests.
 it('Data test #1: Checks how many cards we have.', () => {
-  expect(cards.length).toEqual(2003);
+  expect(cards.length).toEqual(2140);
 });
 
 it('Data test #2:  Checks if the priorities of cards have unique uuids.', () => {
@@ -92,7 +92,7 @@ it('Data test #2:  Checks if the priorities of cards have unique uuids.', () => 
 
 it('Data test #3: Checks if all cards have ratings.', () => {
   const result = cards.reduce((sum, card) => (card.rating ? sum + 1 : sum), 0);
-  expect(result).toEqual(2003);
+  expect(result).toEqual(2140);
 });
 
 /**
@@ -602,7 +602,7 @@ it('Data test #27: Checks if the are 3 options available for the overload proper
   expect(result.length).toEqual(3);
 });
 
-it('Data test #28: Checks if the are 22 options available for the referencedTags property.', () => {
+it('Data test #28: Checks if the are 27 options available for the referencedTags property.', () => {
   const expectedResult = [
     'SPELLPOWER',
     'CHARGE',
@@ -629,16 +629,18 @@ it('Data test #28: Checks if the are 22 options available for the referencedTags
     'RUSH',
     'GEARS',
     'MODULAR',
+    'QUEST',
+    'REBORN',
   ];
   const result = cards
     .filter(card => card.referencedTags)
     .reduce((allReferencedTags, nextCard) => allReferencedTags.concat(nextCard.referencedTags), [])
     .reduce(extractUniqueArrayItems, []);
   expect(result).toEqual(expectedResult);
-  expect(result.length).toEqual(25);
+  expect(result.length).toEqual(27);
 });
 
-it('Data test #29: Checks if the are 41 options available for the mechanics property.', () => {
+it('Data test #29: Checks if the are 42 options available for the mechanics property.', () => {
   const expectedResult = [
     'SECRET',
     'RECEIVES_DOUBLE_SPELLDAMAGE_BONUS',
@@ -681,13 +683,14 @@ it('Data test #29: Checks if the are 41 options available for the mechanics prop
     'FINISH_ATTACK_SPELL_ON_DAMAGE',
     'TWINSPELL',
     'MULTIPLY_BUFF_VALUE',
+    'REBORN',
   ];
   const result = cards
     .filter(card => card.mechanics)
     .reduce((allMechanics, nextCard) => allMechanics.concat(nextCard.mechanics), [])
     .reduce(extractUniqueArrayItems, []);
   expect(result).toEqual(expectedResult);
-  expect(result.length).toEqual(41);
+  expect(result.length).toEqual(42);
 });
 
 it('Data test #30: Checks if the are 10 options available for the race property.', () => {
@@ -710,7 +713,7 @@ it('Data test #30: Checks if the are 10 options available for the race property.
 
 it('Data test #31: Creates stats for the artists LOL', () => {
   const result = sortBy(cards.map(card => card.artist).reduce(createArtistStats, []), 'workCount');
-  expect(result.length).toEqual(340);
+  expect(result.length).toEqual(343);
 });
 
 it('Data test #32: Checks if the are 15 options available for the cost property.', () => {
@@ -729,11 +732,11 @@ it('Data test #34: Checks if the are 5 options available for the rarity property
   expect(result.length).toEqual(5);
 });
 
-it('Data test #35: Checks if the are 18 options available for the set property.', () => {
-  const expectedResult = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 98, 99];
+it('Data test #35: Checks if the are 20 options available for the set property.', () => {
+  const expectedResult = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 98, 99];
   const result = cards.reduce(extractUniqueSets, []).sort((a, b) => a - b);
   expect(result).toEqual(expectedResult);
-  expect(result.length).toEqual(18);
+  expect(result.length).toEqual(20);
 });
 
 it('Data test #36: Checks if the are 4 options available for the rating property.', () => {
