@@ -40,7 +40,7 @@ const ButtonContainer = styled.div`
   right: 0;
 `;
 const CardBody = styled.div`
-  padding: 40px 20px 15px;
+  padding: 40px 27px 15px;
   @media screen and (max-width: 767px) {
     padding: 40px 10px 15px;
   }

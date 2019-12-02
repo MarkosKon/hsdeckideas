@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 // import styled from 'styled-components';
 import ReactGA from 'react-ga';
+import styled from 'styled-components';
 import sortBy from 'lodash.sortby';
 import partition from 'lodash.partition';
 import { Button } from 'already-styled-components';
@@ -20,6 +21,53 @@ import Select from './components/Select';
 import { FormFields, validationSchema, parseValue } from './components/FormFields';
 
 formatters.html.hideUnchanged();
+
+const ContainerCard = styled(UICard)`
+  padding-bottom: 12px;
+  p {
+    margin-bottom: 27px;
+  }
+
+  label {
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    max-width: 520px;
+    margin-bottom: 6.75px;
+    input,
+    select {
+      line-height: normal;
+      margin-left: 6.75px;
+      margin-right: 6.75px;
+      padding: 3.375px;
+    }
+  }
+  ol,
+  ul {
+    margin-bottom: 27px;
+    padding-left: 27px;
+  }
+  ul ul,
+  ul ol {
+    margin: 0;
+  }
+  h4,
+  h5 {
+    margin: 13.5px 0;
+  }
+`;
+
+const ButtonContainer = styled.div`
+  margin-bottom: 6.75px;
+  & > button {
+    margin-bottom: 6.75px;
+    margin-right: 6.75px;
+  }
+  & > button:last-child() {
+    margin-right: 0px;
+  }
+`;
 
 const NewFeatures = ({ cards, userCards, setUserCards }) => {
   const [selectedCard, setSelectedCard] = useState(userCards[0]);
@@ -44,17 +92,15 @@ const NewFeatures = ({ cards, userCards, setUserCards }) => {
       <Header title="Edit card data" paragraphs={['Edit card data (experimental).']}>
         <Navbar />
       </Header>
-      <UICard id="edit-data" title="Edit data">
+      <ContainerCard id="edit-data" title="Edit data">
+        <p>lorem20</p>
         <Select cards={userCards} callback={setSelectedCard} />
         {/* Controls */}
-        <div sx={{ mb: 2 }}>
+        <ButtonContainer>
           <Button
-            sx={{
-              color: 'background',
-              bg: 'secondary',
-              fontFamily: 'body',
-              mr: 2,
-            }}
+            br="0"
+            fs="18px"
+            bc="#FF4500"
             onClick={() => {
               // Update the UI, this could be an effect.
               const newSelectCard = cards.find(c => c.id === selectedCard.id);
@@ -69,22 +115,22 @@ const NewFeatures = ({ cards, userCards, setUserCards }) => {
             Discard all changes
           </Button>
           <Button
+            br="0"
+            fs="18px"
+            bc="#663399"
             onClick={() => {
               const delta = diff(cards, userCards);
               const diffEl = document.querySelector('.diff');
               if (delta) diffEl.innerHTML = formatters.html.format(delta, cards);
               else diffEl.innerText = 'No changes to data.';
             }}
-            sx={{
-              color: 'background',
-              bg: 'primary',
-              fontFamily: 'body',
-              mr: 2,
-            }}
           >
             Show diff
           </Button>
           <Button
+            br="0"
+            fs="18px"
+            bc="#524B4E"
             ref={submitButtonRef}
             onClick={() => {
               submitButtonRef.current.setAttribute('disabled', 'disabled');
@@ -116,26 +162,21 @@ const NewFeatures = ({ cards, userCards, setUserCards }) => {
                 submitButtonRef.current.removeAttribute('disabled');
               }
             }}
-            sx={{
-              color: 'background',
-              bg: 'accent',
-              fontFamily: 'body',
-            }}
           >
             Suggest changes
           </Button>
-        </div>
-        <div className="diff" sx={{ bg: 'mute', p: 2 }} />
+        </ButtonContainer>
+        <div className="diff" style={{ padding: '6.75px' }} />
         {selectedCard && (
-          <div sx={{}}>
-            <h2>Selected card</h2>
+          <div>
+            <h2 style={{ lineHeight: 1.1, margin: '54px 0 27px' }}>{selectedCard.name}</h2>
             <img
-              sx={{ minHeight: '395px', width: '286px' }}
+              style={{ minHeight: '395px', width: '286px' }}
               src={`/resources/images/${selectedCard.imageUrl}`}
               alt={selectedCard.name}
             />
             <div>
-              <strong sx={{ mb: 1, mr: 1 }}>Name: </strong>
+              <strong>Name: </strong>
               <span>{selectedCard.name}</span>
             </div>
             <Formik
@@ -172,7 +213,7 @@ const NewFeatures = ({ cards, userCards, setUserCards }) => {
             </Formik>
           </div>
         )}
-      </UICard>
+      </ContainerCard>
       <Footer />
     </React.Fragment>
   );

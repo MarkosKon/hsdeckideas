@@ -5,14 +5,21 @@ import {
   Field, FieldArray, Form, ErrorMessage,
 } from 'formik';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
 import { Button } from 'already-styled-components';
 
 import { cardProperties, cardExtra, operations } from './select-options';
 import parseValue from './parse-value';
 
+const AddRemoveBtn = styled(Button)`
+  font-size: 18px;
+  padding: 6.75px 13.5px;
+  border-radius: 0;
+`;
+
 const FormFields = ({ values }) => (
   <Form>
-    <label sx={{ variant: 'label' }}>
+    <label>
       Rating:
       <Field name="rating" as="select">
         <option value="1">1</option>
@@ -22,12 +29,12 @@ const FormFields = ({ values }) => (
       </Field>
     </label>
     <ErrorMessage name="rating" />
-    <label sx={{ variant: 'label', flexFlow: 'column' }}>
+    <label style={{ flexFlow: 'column', alignItems: 'flex-start' }}>
       Extra attributes:
       <FieldArray
         name="extra"
         render={arrayHelpers => (
-          <ol sx={{ mt: 2 }}>
+          <ol style={{ marginTop: '6.75px' }}>
             {values.extra && values.extra.length > 0 ? (
               values.extra.map((extra, index) => (
                 // eslint-disable-next-line react/no-array-index-key
@@ -39,36 +46,29 @@ const FormFields = ({ values }) => (
                       </option>
                     ))}
                   </Field>
-                  <Button
-                    sx={{
-                      py: 2,
-                      px: 3,
-                      ml: 2,
-                      color: 'white',
-                      bg: 'red',
-                    }}
+                  <AddRemoveBtn
+                    bc="#dc3545"
                     type="button"
                     onClick={() => arrayHelpers.remove(index)}
                   >
                     -
-                  </Button>
-                  <Button
-                    sx={{
-                      py: 2,
-                      px: 3,
-                      color: 'white',
-                      bg: 'green',
-                    }}
+                  </AddRemoveBtn>
+                  <AddRemoveBtn
+                    br="0"
+                    fs="18px"
+                    bc="#28a745"
                     type="button"
                     onClick={() => arrayHelpers.insert(index + 1, 'GENERAL')}
                   >
                     +
-                  </Button>
+                  </AddRemoveBtn>
                 </li>
               ))
             ) : (
               <Button
-                sx={{ py: 2, px: 3, color: 'white' }}
+                br="0"
+                fs="18px"
+                bc="#524B4E"
                 type="button"
                 onClick={() => arrayHelpers.push('GENERAL')}
               >
@@ -86,43 +86,32 @@ const FormFields = ({ values }) => (
         <Fragment>
           {values.versions && values.versions.length > 0 ? (
             <Fragment>
-              <h3 sx={{ fontSize: 3, m: 0, mb: 2 }}>
+              <h3>
                 Versions &#40;
                 {values.versions.length}
                 &#41;
               </h3>
-              <ol>
+              <ol style={{ listStyle: 'upper-latin' }}>
                 {values.versions.map((version, index) => (
                   // eslint-disable-next-line react/no-array-index-key
-                  <li key={index}>
-                    <label sx={{ variant: 'label' }}>
+                  <li key={index} style={{ marginBottom: '81px' }}>
+                    <label>
                       Version name:
                       <Field name={`versions.${index}.name`} type="text" />
-                      <Button
-                        sx={{
-                          py: 2,
-                          px: 3,
-                          ml: 2,
-                          color: 'white',
-                          bg: 'red',
-                        }}
+                      <AddRemoveBtn
+                        bc="#dc3545"
                         type="button"
                         onClick={() => arrayHelpers.remove(index)}
                       >
                         -
-                      </Button>
-                      <Button
-                        sx={{
-                          py: 2,
-                          px: 3,
-                          color: 'white',
-                          bg: 'green',
-                        }}
+                      </AddRemoveBtn>
+                      <AddRemoveBtn
+                        bc="#28a745"
                         type="button"
                         onClick={() => arrayHelpers.insert(index + 1, {})}
                       >
                         +
-                      </Button>
+                      </AddRemoveBtn>
                     </label>
                     <FieldArray
                       name={`versions.${index}.priorities`}
@@ -130,65 +119,46 @@ const FormFields = ({ values }) => (
                         <Fragment>
                           {version.priorities && version.priorities.length > 0 ? (
                             <Fragment>
-                              <h4 sx={{ m: 0, mb: 2 }}>This card needs:</h4>
+                              <h4>This card needs:</h4>
                               <ol>
                                 {version.priorities.map((priority, pIndex) => (
-                                  <li key={priority.id}>
+                                  <li key={priority.id} style={{ marginBottom: '54px' }}>
                                     {/* <div>
                                       <strong>ID: </strong>
                                       <span>{priority.id}</span>
                                     </div> */}
-                                    <label
-                                      sx={{
-                                        variant: 'label',
-                                        display: 'inline-block',
-                                      }}
-                                    >
+                                    <label style={{ display: 'inline-block' }}>
                                       {/* <strong>Minimum cards: </strong> */}
                                       <Field
                                         name={`versions.${index}.priorities.${pIndex}.minCards`}
                                         type="number"
-                                        sx={{ maxWidth: '48px' }}
+                                        min="1"
+                                        style={{ maxWidth: '48px' }}
                                       />
                                     </label>
                                     <span> - </span>
-                                    <label
-                                      sx={{
-                                        variant: 'label',
-                                        display: 'inline-block',
-                                      }}
-                                    >
+                                    <label style={{ display: 'inline-block' }}>
                                       {/* <strong>Maximum cards: </strong> */}
                                       <Field
                                         name={`versions.${index}.priorities.${pIndex}.maxCards`}
                                         type="number"
-                                        sx={{
+                                        min="2"
+                                        style={{
                                           maxWidth: '48px',
-                                          ml: '0!important',
+                                          marginLeft: '0!important',
                                         }}
                                       />
                                     </label>
-                                    <span> cards</span>
-                                    <Button
-                                      sx={{
-                                        py: 2,
-                                        px: 3,
-                                        color: 'white',
-                                        bg: 'red',
-                                        ml: 2,
-                                      }}
+                                    <span> cards </span>
+                                    <AddRemoveBtn
+                                      bc="#dc3545"
                                       type="button"
                                       onClick={() => priorityHelpers.remove(index)}
                                     >
                                       -
-                                    </Button>
-                                    <Button
-                                      sx={{
-                                        py: 2,
-                                        px: 3,
-                                        color: 'white',
-                                        bg: 'green',
-                                      }}
+                                    </AddRemoveBtn>
+                                    <AddRemoveBtn
+                                      bc="#28a745"
                                       type="button"
                                       onClick={() => priorityHelpers.insert(index + 1, {
                                         id: Math.random(),
@@ -199,27 +169,21 @@ const FormFields = ({ values }) => (
                                       }
                                     >
                                       +
-                                    </Button>
+                                    </AddRemoveBtn>
                                     <FieldArray
                                       name={`versions.${index}.priorities.${pIndex}.filters`}
                                       render={filterHelpers => (
                                         <Fragment>
                                           {priority.filters && priority.filters.length > 0 ? (
                                             <Fragment>
-                                              <h5 sx={{ mt: 0, mb: 2 }}>Where:</h5>
+                                              <h5>Where:</h5>
                                               <ol>
                                                 {priority.filters.map((filter, fIndex) => (
                                                   // lol @ airbnb.
                                                   // eslint-disable-next-line max-len
                                                   // eslint-disable-next-line react/no-array-index-key
                                                   <li key={fIndex}>
-                                                    <label
-                                                      sx={{
-                                                        mr: 2,
-                                                        variant: 'label',
-                                                        display: 'inline-block',
-                                                      }}
-                                                    >
+                                                    <label style={{ display: 'inline-block' }}>
                                                       {/* <strong>Property: </strong> */}
                                                       <Field
                                                         name={`versions.${index}.priorities.${pIndex}.filters.${fIndex}.property`}
@@ -232,13 +196,7 @@ const FormFields = ({ values }) => (
                                                         ))}
                                                       </Field>
                                                     </label>
-                                                    <label
-                                                      sx={{
-                                                        mr: 2,
-                                                        variant: 'label',
-                                                        display: 'inline-block',
-                                                      }}
-                                                    >
+                                                    <label style={{ display: 'inline-block' }}>
                                                       {/* <strong>Operation: </strong> */}
                                                       <Field
                                                         name={`versions.${index}.priorities.${pIndex}.filters.${fIndex}.operation`}
@@ -251,12 +209,7 @@ const FormFields = ({ values }) => (
                                                         ))}
                                                       </Field>
                                                     </label>
-                                                    <label
-                                                      sx={{
-                                                        variant: 'label',
-                                                        display: 'inline-block',
-                                                      }}
-                                                    >
+                                                    <label style={{ display: 'inline-block' }}>
                                                       {/* <strong>Value: </strong> */}
                                                       <Field
                                                         type="text"
@@ -276,26 +229,15 @@ const FormFields = ({ values }) => (
                                                         )}
                                                       </Field>
                                                     </label>
-                                                    <Button
-                                                      sx={{
-                                                        py: 2,
-                                                        px: 3,
-                                                        ml: 2,
-                                                        color: 'white',
-                                                        bg: 'red',
-                                                      }}
+                                                    <AddRemoveBtn
+                                                      bc="#dc3545"
                                                       type="button"
                                                       onClick={() => filterHelpers.remove(index)}
                                                     >
                                                       -
-                                                    </Button>
-                                                    <Button
-                                                      sx={{
-                                                        py: 2,
-                                                        px: 3,
-                                                        color: 'white',
-                                                        bg: 'green',
-                                                      }}
+                                                    </AddRemoveBtn>
+                                                    <AddRemoveBtn
+                                                      bc="#28a745"
                                                       type="button"
                                                       // eslint-disable-next-line max-len
                                                       onClick={() => filterHelpers.insert(index + 1, {
@@ -306,29 +248,28 @@ const FormFields = ({ values }) => (
                                                       }
                                                     >
                                                       +
-                                                    </Button>
+                                                    </AddRemoveBtn>
                                                   </li>
                                                 ))}
                                               </ol>
                                             </Fragment>
                                           ) : (
-                                            <Button
-                                              sx={{
-                                                py: 2,
-                                                px: 3,
-                                                color: 'white',
-                                                display: 'block',
-                                              }}
-                                              type="button"
-                                              onClick={() => filterHelpers.push({
-                                                property: 'cost',
-                                                operation: 'LESS_THAN',
-                                                minValue: '',
-                                              })
-                                              }
-                                            >
-                                              Add a filter
-                                            </Button>
+                                            <div style={{ margin: '13.5px' }}>
+                                              <Button
+                                                br="0"
+                                                fs="18px"
+                                                bc="#524B4E"
+                                                type="button"
+                                                onClick={() => filterHelpers.push({
+                                                  property: 'cost',
+                                                  operation: 'LESS_THAN',
+                                                  minValue: '',
+                                                })
+                                                }
+                                              >
+                                                Add a filter
+                                              </Button>
+                                            </div>
                                           )}
                                         </Fragment>
                                       )}
@@ -338,20 +279,24 @@ const FormFields = ({ values }) => (
                               </ol>
                             </Fragment>
                           ) : (
-                            <Button
-                              sx={{ py: 2, px: 3, color: 'white' }}
-                              type="button"
-                              onClick={() => {
-                                priorityHelpers.push({
-                                  id: Math.random(),
-                                  minCards: 2,
-                                  maxCards: 4,
-                                  filters: [],
-                                });
-                              }}
-                            >
-                              Add a priority
-                            </Button>
+                            <div style={{ margin: '13.5px' }}>
+                              <Button
+                                br="0"
+                                fs="18px"
+                                bc="#524B4E"
+                                type="button"
+                                onClick={() => {
+                                  priorityHelpers.push({
+                                    id: Math.random(),
+                                    minCards: 2,
+                                    maxCards: 4,
+                                    filters: [],
+                                  });
+                                }}
+                              >
+                                Add a priority
+                              </Button>
+                            </div>
                           )}
                         </Fragment>
                       )}
@@ -361,20 +306,24 @@ const FormFields = ({ values }) => (
               </ol>
             </Fragment>
           ) : (
-            <Button
-              sx={{ py: 2, px: 3, color: 'white' }}
-              type="button"
-              onClick={() => arrayHelpers.push({})}
-            >
-              Add a version
-            </Button>
+            <div style={{ margin: '13.5px' }}>
+              <Button
+                br="0"
+                fs="18px"
+                bc="#524B4E"
+                type="button"
+                onClick={() => arrayHelpers.push({})}
+              >
+                Add a version
+              </Button>
+            </div>
           )}
         </Fragment>
       )}
     />
     {/* <code>{JSON.stringify(values.versions, null, 2)}</code> */}
-    <div sx={{ mt: 2 }}>
-      <Button sx={{ color: 'background' }} type="submit">
+    <div style={{ marginTop: '13.5px' }}>
+      <Button br="0" fs="18px" bc="#29a745" type="submit">
         Save card changes
       </Button>
     </div>
