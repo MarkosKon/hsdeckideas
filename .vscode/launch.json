@@ -28,22 +28,18 @@
       }
     },
     {
-      "name": "Debug Webpack dev",
+      "name": "Debug Dev",
       "type": "chrome",
       "request": "launch",
       "url": "http://localhost:4444",
       "webRoot": "${workspaceRoot}"
     },
     {
-      "name": "Debug CRA Tests",
+      "name": "Debug Webpack development",
       "type": "node",
       "request": "launch",
-      "runtimeExecutable": "${workspaceRoot}/node_modules/.bin/react-scripts",
-      "args": ["test", "--runInBand", "--no-cache", "--env=jsdom"],
-      "cwd": "${workspaceRoot}",
-      "protocol": "inspector",
-      "console": "integratedTerminal",
-      "internalConsoleOptions": "neverOpen"
+      "program": "${workspaceFolder}/node_modules/webpack/bin/webpack.js",
+      "args": ["--config", "./webpack/webpack.dev.js"]
     }
   ]
 }
