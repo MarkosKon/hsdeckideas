@@ -67,7 +67,7 @@ const createArtistStats = (artistStats, nextArtistName) => {
 
 // 1. Data tests.
 it('Data test #1: Checks how many cards we have.', () => {
-  expect(cards.length).toEqual(2140);
+  expect(cards.length).toEqual(2151);
 });
 
 it('Data test #2:  Checks if the priorities of cards have unique uuids.', () => {
@@ -92,7 +92,7 @@ it('Data test #2:  Checks if the priorities of cards have unique uuids.', () => 
 
 it('Data test #3: Checks if all cards have ratings.', () => {
   const result = cards.reduce((sum, card) => (card.rating ? sum + 1 : sum), 0);
-  expect(result).toEqual(2140);
+  expect(result).toEqual(2151);
 });
 
 /**
@@ -792,9 +792,14 @@ it('Data test #39: Checks if each expansion has the expected number of cards.', 
   const KFT = cards.filter(card => card.set === 10);
   const KNC = cards.filter(card => card.set === 11);
   const TWW = cards.filter(card => card.set === 12);
+  const TBP = cards.filter(card => card.set === 13);
+  const RRU = cards.filter(card => card.set === 14);
+  const ROS = cards.filter(card => card.set === 15);
+  const SOU = cards.filter(card => card.set === 16);
+  const DOD = cards.filter(card => card.set === 17);
   const CLA = cards.filter(card => card.set === 98);
   const BAS = cards.filter(card => card.set === 99);
-  expect(HOF.length).toEqual(22);
+  expect(HOF.length).toEqual(24);
   expect(NAX.length).toEqual(30);
   expect(GVG.length).toEqual(123);
   expect(BRM.length).toEqual(31);
@@ -807,6 +812,11 @@ it('Data test #39: Checks if each expansion has the expected number of cards.', 
   expect(KFT.length).toEqual(135);
   expect(KNC.length).toEqual(135);
   expect(TWW.length).toEqual(129);
-  expect(CLA.length).toEqual(237);
+  expect(TBP.length).toEqual(136);
+  expect(RRU.length).toEqual(135);
+  expect(ROS.length).toEqual(136);
+  expect(SOU.length).toEqual(135);
+  expect(DOD.length).toEqual(1);
+  expect(CLA.length).toEqual(245);
   expect(BAS.length).toEqual(133);
 });
