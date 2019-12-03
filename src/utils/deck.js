@@ -532,10 +532,22 @@ const getDeck = ({
     cardPool = getCardsForFilters(cardPool, extraDeckWideFilters, true);
   }
 
-  deck = addInterestingCards(
-    deck,
-    interestingCards || [chooseInterestingCard(cardPool, deck.cards)],
-  );
+  try {
+    deck = addInterestingCards(
+      deck,
+      interestingCards || [chooseInterestingCard(cardPool, deck.cards)],
+    );
+  } catch (err) {
+    // Recover when we don't have any interesting cards.
+    console.log({ err });
+    deck.history.steps.push(initializeStep([], deck));
+    deck = completeDeckRandomly(deck, cardPool);
+    if (typeof deck.archetype === 'string') deck.archetype = getClosestArchetype(deck, archetypes);
+    deck.totalDust = getTotalDust(deck);
+    deck.score = getDeckScore(deck);
+    deck.cards.sort(byCostAndName);
+    return deck;
+  }
 
   let currentStep = getLastStep(deck);
 
@@ -578,7 +590,7 @@ const getDeck = ({
       // Check if filter is highlander.
       if (currentStep.deckWideFilters.find(f => f.operation === 'HIGHLANDER')) {
         deck.isHighlander = true;
-        deck.cards = initializeQuantity(deck.cards, { isHightlander: true });
+        deck.cards = initializeQuantity(deck.cards, { isHighlander: true });
         deck.size = getSize(deck.cards);
       }
     }

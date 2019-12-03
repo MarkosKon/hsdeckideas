@@ -111,6 +111,8 @@ class Filters extends Component {
       'BP',
       'RR',
       'RoS',
+      'SoU',
+      'DoD',
       'Classic',
       'Basic',
     ];
@@ -119,10 +121,10 @@ class Filters extends Component {
   toReactSelectPrefix(cards, {
     dbfId, set, name, text,
   }) {
-    const setEquals98 = set === 98 ? this.expansions[16] : this.expansions[set];
+    const setEquals98 = set === 98 ? this.expansions[18] : this.expansions[set];
     return cards.concat({
       value: dbfId,
-      label: `${set === 99 ? this.expansions[17] : setEquals98} - ${name}`,
+      label: `${set === 99 ? this.expansions[19] : setEquals98} - ${name}`,
       text,
     });
   }

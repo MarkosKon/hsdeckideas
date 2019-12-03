@@ -8,6 +8,7 @@ import { faLightbulb } from '@fortawesome/free-regular-svg-icons';
 import { getRandom } from 'some-utils';
 import Loadable from 'react-loadable';
 import ReactGA from 'react-ga';
+import sortBy from 'lodash.sortby';
 
 import Loading from '../../components/Loading/Loading';
 import Header from '../../components/Header/Header';
@@ -61,8 +62,6 @@ const LoadableHistoryModal = Loadable({
   loading: Loading,
 });
 /* eslint-enable comma-dangle */
-
-const sortBy = require('lodash.sortby');
 
 const getAvailableExtraDeckWideFilters = (filters, format) => (format === 'Wild' ? filters : filters.filter(filter => filter.set > 8));
 

@@ -73570,7 +73570,7 @@
         "type": "MINION",
         "imageUrl": "sathrovarr.png",
         "tile": "DRG_402.png",
-        "extra": ["MIN_GEN"],
+        "extra": ["GENERAL"],
         "rating": 2
       },
       {
@@ -74875,6 +74875,26 @@
         "operation": "EQUALS",
         "minValue": 15,
         "set": 15
+      },
+      {
+        "id": "341a4cd8-9d1a-49f4-94c4-2ef7f6850c71",
+        "dbfId": 24,
+        "name": "Saviors of Uldum",
+        "group": "Set",
+        "property": "set",
+        "operation": "EQUALS",
+        "minValue": 16,
+        "set": 16
+      },
+      {
+        "id": "18f106ef-5632-4bc5-b3be-03f6f48fb088",
+        "dbfId": 25,
+        "name": "Descent of Dragons",
+        "group": "Set",
+        "property": "set",
+        "operation": "EQUALS",
+        "minValue": 17,
+        "set": 17
       }
     ]
   }
