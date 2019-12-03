@@ -49,6 +49,9 @@ const StyledHeader = styled.header`
     display: inline-block;
   }
 
+  p:nth-child(1) > span {
+    background-color: beige;
+  }
   p:nth-child(2) > span {
     background-color: burlywood;
   }
@@ -97,11 +100,14 @@ const stringToParagraph = (string, index) => (
   </p>
 );
 
-const Header = ({ title, paragraphs, children }) => (
+const Header = ({
+  title, paragraphs, render, children,
+}) => (
   <StyledHeader>
     <HeaderContent>
       <h1>{title}</h1>
       {paragraphs && paragraphs.map(stringToParagraph)}
+      {render && render()}
     </HeaderContent>
     {children}
   </StyledHeader>
@@ -110,11 +116,13 @@ const Header = ({ title, paragraphs, children }) => (
 Header.propTypes = {
   title: PropTypes.string,
   paragraphs: PropTypes.arrayOf(PropTypes.string),
+  render: PropTypes.func,
   children: PropTypes.element.isRequired,
 };
 Header.defaultProps = {
   title: 'Header title',
   paragraphs: null,
+  render: null,
 };
 
 export default Header;

@@ -69,6 +69,15 @@ const ButtonContainer = styled.div`
   }
 `;
 
+const HeaderContent = styled.div`
+  max-width: 540px;
+  margin: auto;
+  text-align: left;
+  span {
+    font-size: 16px !important;
+  }
+`;
+
 const NewFeatures = ({ cards, userCards, setUserCards }) => {
   const [selectedCard, setSelectedCard] = useState(userCards[0]);
   const submitButtonRef = useRef();
@@ -84,16 +93,52 @@ const NewFeatures = ({ cards, userCards, setUserCards }) => {
       <SEO
         lang="en"
         title="Edit Data | Hearthstone Deck Ideas"
-        description="Edit card data"
+        description="Edit card data."
         image="https://hsdeckideas.netlify.com/app-preview.jpg"
         url="https://hsdeckideas.netlify.com/edit-data/"
         keywords="hearthstone random deck generator"
       />
-      <Header title="Edit card data" paragraphs={['Edit card data (experimental).']}>
+      <Header
+        title="Edit card data"
+        render={() => (
+          <HeaderContent>
+            <p>
+              <span>
+                Edit the card data to create interesting card combinations and correct errors!
+              </span>
+            </p>
+            <p>
+              <span>
+                Right now, the changes are saved in your browser, but in the short future you will
+                be able to submit your changes to me. If they make little sense—not much—I will
+                gladly add them to the default data, and even create a contributors page with your
+                name.
+              </span>
+            </p>
+            <p>
+              <span>
+                <strong>Don&apos;t invest too much</strong>
+                {' '}
+with the changes—until you can submit
+                them at least—because there is a chance to lose them.
+              </span>
+            </p>
+          </HeaderContent>
+        )}
+      >
         <Navbar />
       </Header>
       <ContainerCard id="edit-data" title="Edit data">
-        <p>lorem20</p>
+        <p>
+          <span role="img" aria-label="bullet point emoji">
+            &#x2728;
+          </span>
+          This is an
+          <strong> experimental </strong>
+          and
+          <strong> incomplete </strong>
+          feature!
+        </p>
         <Select cards={userCards} callback={setSelectedCard} />
         {/* Controls */}
         <ButtonContainer>
