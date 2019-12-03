@@ -115,11 +115,6 @@ const GlobalStyle = createGlobalStyle`
     opacity: 0;
   }
 
-  .ReactModal__Content {
-    width: 100%!important;
-    margin: 0!important;
-  }
-
   /* d3 barchart styles */
   svg#barChart text {
     font-family: 'Open Sans', sans-serif;
