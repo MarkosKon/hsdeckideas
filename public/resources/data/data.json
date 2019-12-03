@@ -16475,10 +16475,10 @@
         "rarity": "EPIC",
         "set": 98,
         "rating": 3,
-        "text": "The next spell you cast this turn costs (3) less.",
+        "text": "The next spell you cast this turn costs (2) less.",
         "type": "SPELL",
         "extra": ["GENERAL"],
-        "imageUrl": "364.png",
+        "imageUrl": "preparation.png",
         "tile": "EX1_145.png",
         "activeVersion": 0,
         "versions": [
@@ -17806,8 +17806,8 @@
         "tile": "EX1_304.png"
       },
       {
-        "name": "Succubus",
-        "artist": "Matt Dixon",
+        "name": "Felstalker",
+        "artist": "Alex Horley",
         "attack": 4,
         "cardClass": ["WARLOCK"],
         "collectible": true,
@@ -17826,7 +17826,7 @@
         "text": "Battlecry: Discard a random card.",
         "type": "MINION",
         "extra": ["FAST"],
-        "imageUrl": "208.png",
+        "imageUrl": "felstalker.png",
         "tile": "EX1_306.png"
       },
       {
@@ -23557,7 +23557,7 @@
       },
       {
         "name": "Mistress of Pain",
-        "artist": "Carl Critchlow",
+        "artist": "Mike Sass",
         "attack": 1,
         "cardClass": ["WARLOCK"],
         "collectible": true,
@@ -23574,7 +23574,7 @@
         "text": "Lifesteal",
         "type": "MINION",
         "extra": ["GENERAL"],
-        "imageUrl": "12283.png",
+        "imageUrl": "queen-of-pain.png",
         "tile": "GVG_018.png",
         "activeVersion": 0,
         "versions": [
@@ -33323,7 +33323,7 @@
         "attack": 3,
         "cardClass": ["NEUTRAL"],
         "collectible": true,
-        "cost": 4,
+        "cost": 5,
         "dbfId": 39941,
         "elite": true,
         "flavor": "He used to play every part, until Moroes confiscated his Orb of Deception.",
@@ -33339,7 +33339,7 @@
         "type": "MINION",
         "race": " ",
         "extra": ["MIN_GEN"],
-        "imageUrl": "42021.png",
+        "imageUrl": "barnes.png",
         "tile": "KAR_114.png",
         "activeVersion": 0,
         "versions": [
@@ -56074,7 +56074,7 @@
         "attack": 3,
         "cardClass": ["HUNTER"],
         "collectible": true,
-        "cost": 5,
+        "cost": 4,
         "dbfId": 47856,
         "flavor": "If at first you don't succeed, die, die again.",
         "health": 6,
@@ -56089,7 +56089,7 @@
         "rating": 2,
         "activeVersion": 0,
         "extra": ["GENERAL"],
-        "imageUrl": "636688324422838440.png",
+        "imageUrl": "necromechanic.png",
         "tile": "BOT_039.png",
         "versions": [
           {
@@ -56506,7 +56506,7 @@
         "artist": "Alex Horley Orlandelli",
         "cardClass": ["ROGUE"],
         "collectible": true,
-        "cost": 3,
+        "cost": 2,
         "dbfId": 48035,
         "flavor": "Elite Tauren Chieftain's next hit single.",
         "id": "BOT_084",
@@ -56516,9 +56516,9 @@
         "text": "Add 2 random Deathrattle cards to your hand.",
         "type": "SPELL",
         "set": 13,
-        "rating": 1,
+        "rating": 2,
         "extra": ["VALUE"],
-        "imageUrl": "636688325076545184.png",
+        "imageUrl": "violet-haze.png",
         "tile": "BOT_084.png"
       },
       {
@@ -56854,7 +56854,7 @@
         "cost": 6,
         "dbfId": 48100,
         "flavor": "Insecurity detected. Alerting hugbots.",
-        "health": 5,
+        "health": 6,
         "id": "BOT_218",
         "mechanics": ["TRIGGER_VISUAL"],
         "name": "Security Rover",
@@ -56867,7 +56867,7 @@
         "rating": 2,
         "activeVersion": 0,
         "extra": ["GENERAL"],
-        "imageUrl": "636688325603361158.png",
+        "imageUrl": "security-rover.png",
         "tile": "BOT_218.png",
         "versions": [
           {
@@ -56912,7 +56912,7 @@
         "artist": "Zoltan Boros",
         "cardClass": ["WARLOCK"],
         "collectible": true,
-        "cost": 2,
+        "cost": 1,
         "dbfId": 48113,
         "flavor": "Might take a few episodes to power up.",
         "id": "BOT_222",
@@ -56922,9 +56922,9 @@
         "text": "Deal $4 damage to a minion and your hero.",
         "type": "SPELL",
         "set": 13,
-        "rating": 1,
+        "rating": 2,
         "extra": ["SMALL_REMOVAL"],
-        "imageUrl": "636688325792377565.png",
+        "imageUrl": "spirit-bomb.png",
         "tile": "BOT_222.png"
       },
       {
@@ -57095,7 +57095,7 @@
       },
       {
         "artist": "Anton Zemskov",
-        "attack": 3,
+        "attack": 4,
         "cardClass": ["WARRIOR"],
         "collectible": true,
         "cost": 7,
@@ -57117,7 +57117,7 @@
         "rating": 2,
         "activeVersion": 0,
         "extra": ["BUFF"],
-        "imageUrl": "636688326054670205.png",
+        "imageUrl": "beryllim-nullifier.png",
         "tile": "BOT_237.png",
         "versions": [
           {
@@ -57156,7 +57156,7 @@
         "artist": "Matt Dixon",
         "cardClass": ["WARRIOR"],
         "collectible": true,
-        "cost": 7,
+        "cost": 9,
         "dbfId": 48146,
         "elite": true,
         "flavor": "'Of course I've gone mad with power. Ever try going mad without it?'",
@@ -57169,10 +57169,10 @@
         "text": "Battlecry: For the rest of the game, your Mechs have Rush.",
         "type": "HERO",
         "set": 13,
-        "rating": 4,
+        "rating": 2,
         "activeVersion": 0,
         "extra": ["HEAL", "VALUE", "SMALL_REMOVAL"],
-        "imageUrl": "636688443628537623.png",
+        "imageUrl": "dr-boom-mad-genius.png",
         "tile": "BOT_238.png",
         "versions": [
           {
@@ -57282,7 +57282,7 @@
         "artist": "J. Paick & K. Turovec",
         "cardClass": ["SHAMAN"],
         "collectible": true,
-        "cost": 7,
+        "cost": 6,
         "dbfId": 48161,
         "elite": true,
         "flavor": "Finally, Electra can work from home.",
@@ -57295,7 +57295,7 @@
         "rating": 2,
         "activeVersion": 0,
         "extra": ["BUFF"],
-        "imageUrl": "636688326378958520.png",
+        "imageUrl": "the-storm-bringer.png",
         "tile": "BOT_245.png",
         "versions": [
           {
@@ -57422,7 +57422,7 @@
         "artist": "Jakub Kasper",
         "cardClass": ["MAGE"],
         "collectible": true,
-        "cost": 4,
+        "cost": 3,
         "dbfId": 48803,
         "flavor": "Sometimes science is more art than science. A lot of people don’t get that.",
         "id": "BOT_254",
@@ -57435,7 +57435,7 @@
         "rating": 2,
         "activeVersion": 0,
         "extra": ["TEMPO"],
-        "imageUrl": "636688326533332051.png",
+        "imageUrl": "unexpected-results.png",
         "tile": "BOT_254.png",
         "versions": [
           {
@@ -57763,7 +57763,7 @@
         "attack": 1,
         "cardClass": ["ROGUE"],
         "collectible": true,
-        "cost": 2,
+        "cost": 1,
         "dbfId": 48471,
         "flavor": "Once you hop, you just can't stop!",
         "health": 1,
@@ -57775,10 +57775,10 @@
         "text": "Battlecry: Gain +2/+2 for each other Pogo-Hopper you played this game.",
         "type": "MINION",
         "set": 13,
-        "rating": 2,
+        "rating": 3,
         "activeVersion": 0,
         "extra": ["GENERAL"],
-        "imageUrl": "636688326971000096.png",
+        "imageUrl": "pogo-hopper.png",
         "tile": "BOT_283.png",
         "versions": [
           {
@@ -58216,7 +58216,7 @@
         "cost": 4,
         "dbfId": 48527,
         "flavor": "Most of his friends are still Metalheads.",
-        "health": 5,
+        "health": 6,
         "id": "BOT_407",
         "mechanics": ["TRIGGER_VISUAL"],
         "name": "Thunderhead",
@@ -58229,7 +58229,7 @@
         "rating": 2,
         "activeVersion": 0,
         "extra": ["GENERAL"],
-        "imageUrl": "636688327847166238.png",
+        "imageUrl": "thunderhead.png",
         "tile": "BOT_407.png",
         "versions": [
           {
@@ -58592,7 +58592,7 @@
         "artist": "Jim Nelson",
         "cardClass": ["HUNTER"],
         "collectible": true,
-        "cost": 8,
+        "cost": 7,
         "dbfId": 48670,
         "elite": true,
         "flavor": "It used to be a Ba-zooka but we ran out of sheep.",
@@ -58606,7 +58606,7 @@
         "rating": 2,
         "activeVersion": 0,
         "extra": ["GENERAL"],
-        "imageUrl": "636688328278993833.png",
+        "imageUrl": "flarks-boom-zooka.png",
         "tile": "BOT_429.png",
         "versions": [
           {
@@ -58676,7 +58676,7 @@
         "attack": 5,
         "cardClass": ["WARLOCK"],
         "collectible": true,
-        "cost": 8,
+        "cost": 6,
         "dbfId": 48717,
         "elite": true,
         "flavor": "She will NOT STOP until she gets tenure.",
@@ -58688,10 +58688,10 @@
         "text": "Deathrattle: Swap this with a minion from your deck.",
         "type": "MINION",
         "set": 13,
-        "rating": 1,
+        "rating": 2,
         "activeVersion": 0,
         "extra": ["VALUE"],
-        "imageUrl": "636688328406504907.png",
+        "imageUrl": "dr-morrigan.png",
         "tile": "BOT_433.png",
         "versions": [
           {
@@ -58797,7 +58797,7 @@
         "artist": "Anton Zemskov",
         "cardClass": ["PRIEST"],
         "collectible": true,
-        "cost": 2,
+        "cost": 1,
         "dbfId": 48759,
         "flavor": "Zerek got sick of fighting over the remote.",
         "id": "BOT_435",
@@ -58809,7 +58809,7 @@
         "set": 13,
         "rating": 2,
         "extra": ["GENERAL"],
-        "imageUrl": "636688328551667609.png",
+        "imageUrl": "cloning-device.png",
         "tile": "BOT_435.png"
       },
       {
@@ -59117,7 +59117,7 @@
         "attack": 4,
         "cardClass": ["DRUID"],
         "collectible": true,
-        "cost": 8,
+        "cost": 7,
         "dbfId": 48744,
         "flavor": "'Are you sure that's enough gloop?' 'Hold on.'",
         "health": 4,
@@ -59132,9 +59132,9 @@
         "text": "Battlecry: Summon a copy of each adjacent minion.",
         "type": "MINION",
         "set": 13,
-        "rating": 1,
+        "rating": 2,
         "extra": ["GENERAL"],
-        "imageUrl": "636688329202944300.png",
+        "imageUrl": "gloop-sprayer.png",
         "tile": "BOT_507.png"
       },
       {
@@ -59377,7 +59377,7 @@
         "attack": 8,
         "cardClass": ["DRUID"],
         "collectible": true,
-        "cost": 10,
+        "cost": 9,
         "dbfId": 48831,
         "flavor": "The latest advancement in hippo-botany.",
         "health": 8,
@@ -59392,7 +59392,7 @@
         "rating": 2,
         "activeVersion": 0,
         "extra": ["GENERAL"],
-        "imageUrl": "636688329652283387.png",
+        "imageUrl": "mulchmuncher.png",
         "tile": "BOT_523.png",
         "versions": [
           {
@@ -60251,13 +60251,13 @@
         "name": "Reckless Experimenter",
         "rarity": "EPIC",
         "referencedTags": ["DEATHRATTLE"],
-        "text": "Deathrattle minions you play cost (3) less, but die at the end of the turn.",
+        "text": "Deathrattle minions you play cost (3) less, but die at end of turn. (Cost can't be reduced below 1.)",
         "type": "MINION",
         "set": 13,
         "rating": 2,
         "activeVersion": 0,
         "extra": ["GENERAL"],
-        "imageUrl": "636688331114650435.png",
+        "imageUrl": "reckless-experimenter.png",
         "tile": "BOT_566.png",
         "versions": [
           {
@@ -60847,7 +60847,7 @@
         "artist": "Tyler West Studio",
         "cardClass": ["PALADIN"],
         "collectible": true,
-        "cost": 2,
+        "cost": 1,
         "dbfId": 48985,
         "flavor": "'The Light is neither a particle nor a wave. It's more of a juice, really.'",
         "id": "BOT_909",
@@ -60859,7 +60859,7 @@
         "rating": 2,
         "activeVersion": 0,
         "extra": ["CARD_DRAW"],
-        "imageUrl": "636688331957363829.png",
+        "imageUrl": "crystology.png",
         "tile": "BOT_909.png",
         "versions": [
           {
@@ -60887,7 +60887,7 @@
         "attack": 3,
         "cardClass": ["PALADIN"],
         "collectible": true,
-        "cost": 6,
+        "cost": 5,
         "dbfId": 48989,
         "flavor": "'Windell! More light!' 'I'm givin' it all she's got, Kangor!'",
         "health": 4,
@@ -60898,9 +60898,9 @@
         "text": "Battlecry: Give all minions in your hand +2/+2.",
         "type": "MINION",
         "set": 13,
-        "rating": 1,
+        "rating": 2,
         "extra": ["GENERAL"],
-        "imageUrl": "636688332057842572.png",
+        "imageUrl": "glowstone-technician.png",
         "tile": "BOT_910.png"
       },
       {
@@ -61626,7 +61626,7 @@
         "artist": "Jim Nelson",
         "cardClass": ["ROGUE"],
         "collectible": true,
-        "cost": 3,
+        "cost": 4,
         "dbfId": 50773,
         "flavor": "And a bowl of chips. And some of those little cocktail weenies!",
         "id": "TRL_124",
@@ -61636,9 +61636,9 @@
         "set": 14,
         "text": "Draw 2 Pirates from your deck. Combo: And a weapon.",
         "type": "SPELL",
-        "rating": 3,
+        "rating": 2,
         "extra": ["CARD_DRAW"],
-        "imageUrl": "636791251192911489.png",
+        "imageUrl": "raiding-party.png",
         "tile": "TRL_124.png",
         "activeVersion": 0,
         "versions": [
@@ -66949,7 +66949,7 @@
         "artist": "Jakub Kasper",
         "cardClass": ["MAGE"],
         "collectible": true,
-        "cost": 3,
+        "cost": 4,
         "dbfId": 51971,
         "flavor": "If only you’d let it go to voicemail…",
         "id": "DAL_177",
@@ -66961,7 +66961,7 @@
         "imageUrl": "conjurers-calling.png",
         "tile": "DAL_177.png",
         "extra": ["HARD_REMOVAL", "MIN_GEN", "VALUE", "FAST", "TEMPO"],
-        "rating": 4,
+        "rating": 2,
         "text": "Twinspell Destroy a minion. Summon 2 minions of the same Cost to replace it.",
         "type": "SPELL",
         "activeVersion": 2,
@@ -67729,7 +67729,7 @@
         "cost": 3,
         "dbfId": 52111,
         "flavor": "Because there are no G.O.O.D. Miscreants.",
-        "health": 5,
+        "health": 4,
         "id": "DAL_415",
         "mechanics": ["COMBO"],
         "name": "EVIL Miscreant",
@@ -70031,7 +70031,7 @@
         "attack": 7,
         "cardClass": ["NEUTRAL"],
         "collectible": true,
-        "cost": 8,
+        "cost": 9,
         "dbfId": 52870,
         "elite": true,
         "flavor": "Your deck is just another organizational challenge to her.",
@@ -73640,11 +73640,11 @@
         "name": "Pilfer",
         "rarity": "COMMON",
         "set": 98,
-        "text": "Add a random card to your hand <i>(from your opponent's class)</i>.",
+        "text": "Add a random card from another class to your hand.",
         "type": "SPELL",
         "rating": 2,
         "extra": ["GENERAL"],
-        "imageUrl": "636728850097131466.png",
+        "imageUrl": "pilfer.png",
         "tile": "EX1_182.png"
       }
     ]
