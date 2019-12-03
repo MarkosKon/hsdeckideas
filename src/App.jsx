@@ -45,7 +45,7 @@ const App = () => {
     window.cachedData.then((data) => {
       if (data) {
         setCards(data.cards);
-        setUserCards(data.userCards);
+        if (userCards.length === 0) setUserCards(data.userCards);
         setΑrchetypes(data.archetypes);
         setΗeroes(data.heroes);
         setΗeroPowers(data.heroPowers);

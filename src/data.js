@@ -2,9 +2,10 @@
 // import 'whatwg-fetch';
 import sortBy from 'lodash.sortby';
 
+const userCards = JSON.parse(localStorage.getItem('user-cards'));
 const cachedData = {
   cards: JSON.parse(localStorage.getItem('cards')),
-  userCards: JSON.parse(localStorage.getItem('user-cards')),
+  userCards,
   archetypes: JSON.parse(localStorage.getItem('archetypes')),
   heroes: JSON.parse(localStorage.getItem('heroes')),
   heroPowers: JSON.parse(localStorage.getItem('hero-powers')),
@@ -29,7 +30,8 @@ if (downloadData || cachedVersion !== dataVersion) {
       const sortedCards = sortBy(cards, 'name');
       localStorage.setItem('version', dataVersion);
       localStorage.setItem('cards', JSON.stringify(sortedCards));
-      localStorage.setItem('user-cards', JSON.stringify(sortedCards));
+      // don't override user's data on re-downloads (data updates).
+      if (!userCards) localStorage.setItem('user-cards', JSON.stringify(sortedCards));
       localStorage.setItem('archetypes', JSON.stringify(sortBy(archetypes, 'name')));
       localStorage.setItem('heroes', JSON.stringify(heroes));
       localStorage.setItem('hero-powers', JSON.stringify(heroPowers));
