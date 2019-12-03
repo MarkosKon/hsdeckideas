@@ -584,6 +584,49 @@ it('getDeck test #10: Checks if returns a deck with 30 cards if we have multiple
   expect(getSize(result.cards)).toEqual(30);
 });
 
+it("getDeck test #11: Doesn't throw when there are no interesting cards in the pool", () => {
+  const heroName = 'Paladin';
+  const heroPower = heroPowers.find(hp => hp.name === 'Reinforce');
+  const format = 'Wild';
+  const availableCards = getAvailableCards(cards, heroName, format).filter(c => !c.versions);
+  const deck = initializeDeck({
+    heroName,
+    heroPower,
+    archetype: 'Random',
+    isCompetitive: true,
+  });
+
+  expect(() => {
+    const result = getDeck({
+      initialDeck: deck,
+      availableCards,
+      archetypes,
+    });
+    expect(getSize(result.cards)).toEqual(30);
+  }).not.toThrow();
+});
+
+it('getDeck test #12: Throws when the card pool is only 5 different cards', () => {
+  const heroName = 'Paladin';
+  const heroPower = heroPowers.find(hp => hp.name === 'Reinforce');
+  const format = 'Wild';
+  const availableCards = getAvailableCards(cards, heroName, format).slice(0, 5);
+  const deck = initializeDeck({
+    heroName,
+    heroPower,
+    archetype: 'Random',
+    isCompetitive: true,
+  });
+
+  expect(() => {
+    getDeck({
+      initialDeck: deck,
+      availableCards,
+      archetypes,
+    });
+  }).toThrow();
+});
+
 it('hasDuplicates test #1: Checks if works.', () => {
   const deck = {
     cards: [{ name: 'One' }, { name: 'Two' }, { name: 'Three' }, { name: 'Four' }],
