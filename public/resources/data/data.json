@@ -23556,7 +23556,7 @@
         ]
       },
       {
-        "name": "Mistress of Pain",
+        "name": "Queen of Pain",
         "artist": "Mike Sass",
         "attack": 1,
         "cardClass": ["WARLOCK"],
@@ -66465,7 +66465,7 @@
         "health": 2,
         "id": "DAL_078",
         "mechanics": ["BATTLECRY", "DIVINE_SHIELD"],
-        "name": "Traveling Healer",
+        "name": "Travelling Healer",
         "playRequirements": { "REQ_TARGET_IF_AVAILABLE": 0 },
         "rarity": "COMMON",
         "set": 15,
