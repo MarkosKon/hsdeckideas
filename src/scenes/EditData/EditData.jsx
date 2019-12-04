@@ -145,7 +145,7 @@ with the changes—until you can submit
           <Button
             br="0"
             fs="18px"
-            bc="#FF4500"
+            bc="#DC3545"
             onClick={() => {
               // Update the UI, this could be an effect.
               const newSelectCard = cards.find(c => c.id === selectedCard.id);
@@ -186,8 +186,9 @@ with the changes—until you can submit
               });
               if (delta) {
                 fakePost
-                  .then((res) => {
-                    toast.success(`Thanks for your submission! ${res}`, {
+                  .then(() => {
+                    // toast.success(`Thanks for your submission! ${res}`, {
+                    toast.success('Not implemented yet!', {
                       autoClose: 3000,
                       toastId: 'sub-success',
                     });
