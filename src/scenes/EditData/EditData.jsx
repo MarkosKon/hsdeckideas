@@ -148,6 +148,12 @@ with the changes—until you can submit
             bc="#DC3545"
             onClick={() => {
               // Update the UI, this could be an effect.
+              if (process.env.NODE_ENV === 'production') {
+                ReactGA.event({
+                  category: 'User',
+                  action: 'Discard changes',
+                });
+              }
               const newSelectCard = cards.find(c => c.id === selectedCard.id);
               setSelectedCard(newSelectCard);
               setUserCards(cards);
@@ -164,6 +170,12 @@ with the changes—until you can submit
             fs="18px"
             bc="#663399"
             onClick={() => {
+              if (process.env.NODE_ENV === 'production') {
+                ReactGA.event({
+                  category: 'User',
+                  action: 'Show diff',
+                });
+              }
               const delta = diff(cards, userCards);
               const diffEl = document.querySelector('.diff');
               if (delta) diffEl.innerHTML = formatters.html.format(delta, cards);
@@ -178,6 +190,12 @@ with the changes—until you can submit
             bc="#524B4E"
             ref={submitButtonRef}
             onClick={() => {
+              if (process.env.NODE_ENV === 'production') {
+                ReactGA.event({
+                  category: 'User',
+                  action: 'Suggest changes',
+                });
+              }
               submitButtonRef.current.setAttribute('disabled', 'disabled');
               const delta = diff(cards, userCards);
               // eslint-disable-next-line compat/compat
@@ -237,6 +255,12 @@ with the changes—until you can submit
               onSubmit={({
                 id, rating, extra, versions,
               }, { setSubmitting }) => {
+                if (process.env.NODE_ENV === 'production') {
+                  ReactGA.event({
+                    category: 'User',
+                    action: 'Saved changes',
+                  });
+                }
                 const [cardToEdit, otherCards] = partition(userCards, ['id', id]);
                 const newCard = {
                   ...cardToEdit[0],
