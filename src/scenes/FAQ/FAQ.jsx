@@ -111,11 +111,11 @@ const FAQ = () => {
             </span>
             {' '}
             You can
-            <Link to="https://markoskon.com/about/" target="_blank" rel="noopener noreferrer">
+            <a href="https://markoskon.com/about/" target="_blank" rel="noopener noreferrer">
               {' '}
               contact me
               {' '}
-            </Link>
+            </a>
             for anything related to the app. If you prefer
             <b> social media </b>
 , you can send me a message at
@@ -224,10 +224,10 @@ const FAQ = () => {
               <b> best solution </b>
               is to choose a more aggressive archetype because they are cheap or choose a bunch of
               cards you own in the filters. Anyway, if you would like that feature leave me a
-              <Link to="//mkdevdiary.netlify.com/contact" target="_blank" rel="noopener noreferrer">
+              <a href="https://markoskon.com/about/" target="_blank" rel="noopener noreferrer">
                 {' '}
                 message.
-              </Link>
+              </a>
             </DD>
 
             <DT>What&apos;s your battletag?</DT>

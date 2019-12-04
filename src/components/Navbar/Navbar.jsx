@@ -48,7 +48,7 @@ export default () => {
           </NavLink>
         </li>
         <li>
-          <NavLink exact to="/FAQ/" activeStyle={{ color: 'rgb(202,131,0)' }}>
+          <NavLink exact to="/faq/" activeStyle={{ color: 'rgb(202,131,0)' }}>
             FAQ
           </NavLink>
         </li>
