@@ -142,7 +142,7 @@ const FormFields = ({ values }) => (
                                       <Field
                                         name={`versions.${index}.priorities.${pIndex}.maxCards`}
                                         type="number"
-                                        min="2"
+                                        min="1"
                                         style={{
                                           maxWidth: '48px',
                                           marginLeft: '0!important',
