@@ -3,12 +3,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-  faTwitter,
-  faFacebookF,
-  faGithubAlt,
-  faRedditAlien,
-} from '@fortawesome/free-brands-svg-icons';
+import { faTwitter, faGithubAlt, faRedditAlien } from '@fortawesome/free-brands-svg-icons';
 
 import pkg from '../../../package.json';
 
@@ -88,19 +83,6 @@ const SocialListAnchor = styled.a`
       background-color: #0084b4;
     }
   `};
-
-  ${({ facebook }) => facebook
-    && `
-    color: white;
-    background-color: #3b5998;
-
-    &:hover,
-    &:active,
-    &:focus {
-      color: whitesmoke;
-      background-color: rgb(42, 66, 117);
-    }
-  `};
   ${({ reddit }) => reddit
     && `
     color: white;
@@ -129,14 +111,12 @@ const SocialListAnchor = styled.a`
 
 SocialListAnchor.propTypes = {
   twitter: PropTypes.bool,
-  facebook: PropTypes.bool,
   reddit: PropTypes.bool,
   github: PropTypes.bool,
 };
 
 SocialListAnchor.defaultProps = {
   twitter: false,
-  facebook: false,
   reddit: false,
   github: false,
 };
@@ -165,24 +145,13 @@ const Footer = () => (
       <SocialList>
         <li>
           <SocialListAnchor
-            href="https://twitter.com/HsDeckIdeas"
+            href="https://twitter.com/markos_kon"
             target="_blank"
             rel="noopener noreferrer"
             aria-label="twitter link"
             twitter
           >
             <FontAwesomeIcon icon={faTwitter} />
-          </SocialListAnchor>
-        </li>
-        <li>
-          <SocialListAnchor
-            href="https://www.facebook.com/hsdeckideas"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="facebook link"
-            facebook
-          >
-            <FontAwesomeIcon icon={faFacebookF} />
           </SocialListAnchor>
         </li>
         <li>

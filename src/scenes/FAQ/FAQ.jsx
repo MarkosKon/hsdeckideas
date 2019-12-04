@@ -111,29 +111,17 @@ const FAQ = () => {
             </span>
             {' '}
             You can
-            <Link to="//mkdevdiary.netlify.com/contact" target="_blank" rel="noopener noreferrer">
+            <Link to="https://markoskon.com/about/" target="_blank" rel="noopener noreferrer">
               {' '}
               contact me
               {' '}
             </Link>
-            for anything related to the app. Seriously,
-            <b> don&apos;t hesitate. </b>
-I would be
-            <b> thrilled </b>
-            to hear from you! If you prefer
+            for anything related to the app. If you prefer
             <b> social media </b>
 , you can send me a message at
             {' '}
-            <a href="https://twitter.com/HsDeckIdeas" target="_blank" rel="noopener noreferrer">
-              Twitter,
-            </a>
-            {' '}
-            <a
-              href="https://www.facebook.com/hsdeckideas"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Facebook
+            <a href="https://twitter.com/markos_kon" target="_blank" rel="noopener noreferrer">
+              Twitter
             </a>
             {' '}
             or
@@ -146,8 +134,6 @@ I would be
               Reddit.
             </a>
             {' '}
-            You can also add me in-game at
-            <b> foobar#21251. </b>
             If you
             <b> want a new feature, </b>
             want to
