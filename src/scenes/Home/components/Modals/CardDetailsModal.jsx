@@ -74,7 +74,7 @@ const CardDetailsModal = ({ isOpen, closeModal, card }) => (
     contentLabel="Card details modal"
   >
     {card && (
-      <div>
+      <>
         <ButtonTopRight
           aria-label="close modal"
           transparent
@@ -105,7 +105,7 @@ const CardDetailsModal = ({ isOpen, closeModal, card }) => (
                 : `No, ${card.name} doesn't have any priorities, and thus is considered a "non-interesting" card.`}
             </Property>
           </Column>
-          <Column md="100%">
+          <Column md="100%" ta="center">
             <ProgressiveImage
               src={`/resources/images/${card.imageUrl}`}
               placeholder="/resources/images/cardback.webp"
@@ -154,7 +154,7 @@ Version #
             </Column>
           )}
         </Row>
-      </div>
+      </>
     )}
   </Modal>
 );
