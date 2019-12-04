@@ -1,6 +1,6 @@
 {
   "name": "hs-deck-ideas",
-  "version": "2.2.1",
+  "version": "2.3.0",
   "description": "A random deck generator for Hearthstone.",
   "author": "Markos Konstantopoulos",
   "main": "src/index.jsx",
