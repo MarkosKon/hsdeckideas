@@ -38,7 +38,7 @@ const DeckStats = ({ deck: { size, totalDust, score }, manaCurveChartData, chart
       <StatisticsList>
         <li>
           <StatisticsTag>Size: </StatisticsTag>
-          <StatisticsNumber>{size}</StatisticsNumber>
+          <StatisticsNumber data-test-id="deck-size">{size}</StatisticsNumber>
         </li>
         <li>
           <StatisticsTag>Total dust:</StatisticsTag>

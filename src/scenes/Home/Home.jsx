@@ -63,7 +63,10 @@ const LoadableHistoryModal = Loadable({
 });
 /* eslint-enable comma-dangle */
 
-const getAvailableExtraDeckWideFilters = (filters, format) => (format === 'Wild' ? filters : filters.filter(filter => filter.set > 8));
+const getAvailableExtraDeckWideFilters = (filters, format) => {
+  if (format === 'Wild') return filters;
+  return filters.filter(filter => filter.set > 11);
+};
 
 const heroColors = [
   'rgb(116, 80, 8)',
