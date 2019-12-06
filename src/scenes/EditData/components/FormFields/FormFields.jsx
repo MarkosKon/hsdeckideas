@@ -91,7 +91,7 @@ const FormFields = ({ values }) => (
                 {values.versions.length}
                 &#41;
               </h3>
-              <ol style={{ listStyle: 'upper-latin' }}>
+              <ol style={{ listStyle: 'upper-latin' }} data-test-id="versions-list">
                 {values.versions.map((version, index) => (
                   // eslint-disable-next-line react/no-array-index-key
                   <li key={index} style={{ marginBottom: '81px' }}>
@@ -108,7 +108,7 @@ const FormFields = ({ values }) => (
                       <AddRemoveBtn
                         bc="#28a745"
                         type="button"
-                        onClick={() => arrayHelpers.insert(index + 1, {})}
+                        onClick={() => arrayHelpers.insert(index + 1, { name: '', priorities: [] })}
                       >
                         +
                       </AddRemoveBtn>
@@ -120,9 +120,10 @@ const FormFields = ({ values }) => (
                           {version.priorities && version.priorities.length > 0 ? (
                             <Fragment>
                               <h4>This card needs:</h4>
-                              <ol>
+                              <ol data-test-id="priorities-list">
                                 {version.priorities.map((priority, pIndex) => (
-                                  <li key={priority.id} style={{ marginBottom: '54px' }}>
+                                  // eslint-disable-next-line react/no-array-index-key
+                                  <li key={pIndex} style={{ marginBottom: '54px' }}>
                                     {/* <div>
                                       <strong>ID: </strong>
                                       <span>{priority.id}</span>
@@ -153,14 +154,14 @@ const FormFields = ({ values }) => (
                                     <AddRemoveBtn
                                       bc="#dc3545"
                                       type="button"
-                                      onClick={() => priorityHelpers.remove(index)}
+                                      onClick={() => priorityHelpers.remove(pIndex)}
                                     >
                                       -
                                     </AddRemoveBtn>
                                     <AddRemoveBtn
                                       bc="#28a745"
                                       type="button"
-                                      onClick={() => priorityHelpers.insert(index + 1, {
+                                      onClick={() => priorityHelpers.insert(pIndex + 1, {
                                         id: Math.random(),
                                         minCards: 2,
                                         maxCards: 4,
@@ -177,7 +178,7 @@ const FormFields = ({ values }) => (
                                           {priority.filters && priority.filters.length > 0 ? (
                                             <Fragment>
                                               <h5>Where:</h5>
-                                              <ol>
+                                              <ol data-test-id="filters-list">
                                                 {priority.filters.map((filter, fIndex) => (
                                                   // lol @ airbnb.
                                                   // eslint-disable-next-line max-len
@@ -232,7 +233,7 @@ const FormFields = ({ values }) => (
                                                     <AddRemoveBtn
                                                       bc="#dc3545"
                                                       type="button"
-                                                      onClick={() => filterHelpers.remove(index)}
+                                                      onClick={() => filterHelpers.remove(fIndex)}
                                                     >
                                                       -
                                                     </AddRemoveBtn>
@@ -240,7 +241,7 @@ const FormFields = ({ values }) => (
                                                       bc="#28a745"
                                                       type="button"
                                                       // eslint-disable-next-line max-len
-                                                      onClick={() => filterHelpers.insert(index + 1, {
+                                                      onClick={() => filterHelpers.insert(fIndex + 1, {
                                                         property: 'cost',
                                                         operation: 'LESS_THAN',
                                                         minValue: '',
@@ -312,7 +313,7 @@ const FormFields = ({ values }) => (
                 fs="18px"
                 bc="#524B4E"
                 type="button"
-                onClick={() => arrayHelpers.push({})}
+                onClick={() => arrayHelpers.push({ name: '', priorities: [] })}
               >
                 Add a version
               </Button>
