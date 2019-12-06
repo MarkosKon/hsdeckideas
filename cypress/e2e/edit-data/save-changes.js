@@ -5,10 +5,10 @@ const filtersSelector = '[data-test-id="filters-list"]';
 describe('Save changes tests', () => {
   beforeEach(() => {
     cy.visit('/')
-      .findByText(/edit data/i)
+      .getByText(/edit data/i)
       .click();
 
-    cy.findByLabelText(/choose.*card/i)
+    cy.getByLabelText(/choose.*card/i)
       .select('Wisp')
       .wait(200);
   });
