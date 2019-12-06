@@ -34,7 +34,7 @@ const FormFields = ({ values }) => (
       <FieldArray
         name="extra"
         render={arrayHelpers => (
-          <ol style={{ marginTop: '6.75px' }}>
+          <ol style={{ marginTop: '6.75px' }} data-test-id="extras-list">
             {values.extra && values.extra.length > 0 ? (
               values.extra.map((extra, index) => (
                 // eslint-disable-next-line react/no-array-index-key
