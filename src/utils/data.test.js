@@ -67,7 +67,7 @@ const createArtistStats = (artistStats, nextArtistName) => {
 
 // 1. Data tests.
 it('Data test #1: Checks how many cards we have.', () => {
-  expect(cards.length).toEqual(2151);
+  expect(cards.length).toEqual(2290);
 });
 
 it('Data test #2:  Checks if the priorities of cards have unique uuids.', () => {
@@ -92,7 +92,7 @@ it('Data test #2:  Checks if the priorities of cards have unique uuids.', () => 
 
 it('Data test #3: Checks if all cards have ratings.', () => {
   const result = cards.reduce((sum, card) => (card.rating ? sum + 1 : sum), 0);
-  expect(result).toEqual(2151);
+  expect(result).toEqual(2290);
 });
 
 /**
@@ -502,7 +502,7 @@ it(`Data test #22: Keeps track of the Wild Druid-Neutral cards
 
   const result = prioritiesUnsatisfiedButNo0(availableCards, interestingCards);
 
-  expect(result.length).toEqual(21);
+  expect(result.length).toEqual(20);
 });
 
 /**
@@ -640,7 +640,7 @@ it('Data test #28: Checks if the are 27 options available for the referencedTags
   expect(result.length).toEqual(27);
 });
 
-it('Data test #29: Checks if the are 42 options available for the mechanics property.', () => {
+it('Data test #29: Checks if the are 43 options available for the mechanics property.', () => {
   const expectedResult = [
     'SECRET',
     'RECEIVES_DOUBLE_SPELLDAMAGE_BONUS',
@@ -684,13 +684,14 @@ it('Data test #29: Checks if the are 42 options available for the mechanics prop
     'TWINSPELL',
     'MULTIPLY_BUFF_VALUE',
     'REBORN',
+    'SIDEQUEST',
   ];
   const result = cards
     .filter(card => card.mechanics)
     .reduce((allMechanics, nextCard) => allMechanics.concat(nextCard.mechanics), [])
     .reduce(extractUniqueArrayItems, []);
   expect(result).toEqual(expectedResult);
-  expect(result.length).toEqual(42);
+  expect(result.length).toEqual(43);
 });
 
 it('Data test #30: Checks if the are 10 options available for the race property.', () => {
@@ -713,7 +714,7 @@ it('Data test #30: Checks if the are 10 options available for the race property.
 
 it('Data test #31: Creates stats for the artists LOL', () => {
   const result = sortBy(cards.map(card => card.artist).reduce(createArtistStats, []), 'workCount');
-  expect(result.length).toEqual(343);
+  expect(result.length).toEqual(349);
 });
 
 it('Data test #32: Checks if the are 15 options available for the cost property.', () => {
@@ -816,7 +817,7 @@ it('Data test #39: Checks if each expansion has the expected number of cards.', 
   expect(RRU.length).toEqual(135);
   expect(ROS.length).toEqual(136);
   expect(SOU.length).toEqual(135);
-  expect(DOD.length).toEqual(1);
+  expect(DOD.length).toEqual(140);
   expect(CLA.length).toEqual(245);
   expect(BAS.length).toEqual(133);
 });

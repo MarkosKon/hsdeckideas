@@ -12,7 +12,7 @@ const cachedData = {
   extraDeckWideFilters: JSON.parse(localStorage.getItem('extra-deck-wide-filters')),
 };
 const cachedVersion = parseInt(localStorage.getItem('version'), 10);
-const dataVersion = 35;
+const dataVersion = 36;
 
 const checkDataField = field => !!(field && field.length > 0);
 // eslint-disable-next-line compat/compat

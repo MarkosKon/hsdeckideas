@@ -326,7 +326,7 @@ it('getAvailableCards test #2: Checks if returns only non interesting cards.', (
 it('getAvailableCards test #3: Checks if returns all the cards (static number for Paladin in Descent of Dragons).', () => {
   const allCards = getAvailableCards(cards, 'Paladin', 'Standard');
 
-  expect(allCards.length).toEqual(454);
+  expect(allCards.length).toEqual(508);
 });
 
 it('getAvailableCards test #4: Checks if returns all the cards for Priest for Wild format.', () => {

@@ -75,7 +75,6 @@ describe('Extra deck wide filter tests.', () => {
           // return 30 card decks.
           'Blackrock Mountain',
           'League of Explorers',
-          'Descent of Dragons', // has only 1 card for now.
           'Hall of Fame', // throws
         ].includes(f.name),
       )
@@ -94,20 +93,6 @@ describe('Extra deck wide filter tests.', () => {
             .should('contain', 30);
         });
       });
-
-    it('Selects only the DoD filter and returns a 30 card deck.', () => {
-      cy.get('input#extra-filters-select')
-        .focus()
-        .type('Descent of Dragons')
-        .type('{enter}');
-
-      cy.get('.Select-value').should('contain', 'Descent of Dragons');
-
-      cy.getByLabelText(/generate idea/i)
-        .click()
-        .get('[data-test-id="deck-size"]')
-        .should('contain', 1);
-    });
 
     // Throws because there are not enough interesting cards.
     // it('Selects only the HOF filter and throws.', () => {
