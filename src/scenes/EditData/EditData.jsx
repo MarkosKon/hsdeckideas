@@ -196,17 +196,21 @@ with the changes—until you can submit
                   action: 'Suggest changes',
                 });
               }
+
               submitButtonRef.current.setAttribute('disabled', 'disabled');
               const delta = diff(cards, userCards);
-              // eslint-disable-next-line compat/compat
-              const fakePost = new Promise((resolve) => {
-                setTimeout(() => resolve('ok'), 1000);
-              });
+
               if (delta) {
-                fakePost
-                  .then(() => {
-                    // toast.success(`Thanks for your submission! ${res}`, {
-                    toast.success('Not implemented yet!', {
+                fetch('/.netlify/functions/submit-diff', {
+                  method: 'POST',
+                  body: JSON.stringify(delta),
+                })
+                  .then((res) => {
+                    if (res.ok) return res;
+                    throw Error(res.statusText);
+                  })
+                  .then((res) => {
+                    toast.success(`Thanks for your submission! ${res}`, {
                       autoClose: 3000,
                       toastId: 'sub-success',
                     });
@@ -219,7 +223,7 @@ with the changes—until you can submit
                     submitButtonRef.current.removeAttribute('disabled');
                   });
               } else {
-                toast.success('There is not difference between your data and the default data.', {
+                toast.success('There is no difference between your data and the default data.', {
                   autoClose: 3000,
                   toastId: 'sub-same',
                 });

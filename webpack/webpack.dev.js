@@ -8,5 +8,13 @@ module.exports = merge(common, {
   devServer: {
     port: 4444,
     writeToDisk: true,
+    proxy: {
+      '/.netlify/functions': {
+        target: 'http://localhost:9000',
+        pathRewrite: {
+          '^/\\.netlify/functions': '',
+        },
+      },
+    },
   },
 });
