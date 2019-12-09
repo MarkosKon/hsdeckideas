@@ -165,6 +165,12 @@ const GlobalStyle = createGlobalStyle`
   .Toastify__progress-bar--error{
     background-color: #721c24b8!important;
   }
+
+  .Toastify__toast--warning {
+    border: 1px solid #ffeeba!important;
+    background-color: #fff3cd!important;
+    color: #856404!important;
+  }
 `;
 
 export default GlobalStyle;

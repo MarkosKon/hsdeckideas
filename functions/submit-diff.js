@@ -10,7 +10,7 @@ exports.handler = (event) => {
   const data = JSON.parse(event.body);
   const hash = objectHash(data);
   const diff = {
-    diff: data,
+    ...data,
     hash,
   };
   console.log("Function 'submit-diff' invoked");

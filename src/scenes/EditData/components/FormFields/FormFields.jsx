@@ -1,9 +1,7 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable jsx-a11y/label-has-for */
 import React, { Fragment } from 'react';
-import {
-  Field, FieldArray, Form, ErrorMessage,
-} from 'formik';
+import { Field, FieldArray, ErrorMessage } from 'formik';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Button } from 'already-styled-components';
@@ -17,8 +15,13 @@ const AddRemoveBtn = styled(Button)`
   border-radius: 0;
 `;
 
+const SaveButton = styled(Button)`
+  margin-bottom: 6.75px;
+  margin-right: 6.75px;
+`;
+
 const FormFields = ({ values }) => (
-  <Form>
+  <Fragment>
     <label>
       Rating:
       <Field name="rating" as="select">
@@ -322,13 +325,11 @@ const FormFields = ({ values }) => (
         </Fragment>
       )}
     />
-    {/* <code>{JSON.stringify(values.versions, null, 2)}</code> */}
-    <div style={{ marginTop: '13.5px' }}>
-      <Button br="0" fs="18px" bc="#29a745" type="submit">
-        Save card changes
-      </Button>
-    </div>
-  </Form>
+    <h3 style={{ margin: '54px 0 27px' }}>Card actions</h3>
+    <SaveButton br="0" fs="18px" bc="#29a745" type="submit">
+      Save card changes
+    </SaveButton>
+  </Fragment>
 );
 
 FormFields.propTypes = {
@@ -336,7 +337,7 @@ FormFields.propTypes = {
     id: PropTypes.string.isRequired,
     rating: PropTypes.number.isRequired,
     extra: PropTypes.arrayOf(PropTypes.string).isRequired,
-    versions: PropTypes.arrayOf(PropTypes.object).isRequired,
+    versions: PropTypes.arrayOf(PropTypes.object),
   }).isRequired,
 };
 
