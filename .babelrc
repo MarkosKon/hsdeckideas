@@ -25,5 +25,8 @@
     "@babel/proposal-class-properties",
     "@babel/syntax-dynamic-import",
     "styled-components"
+    // Using istanbul for cypress coverage.
+    // Don't forget to comment it in production.
+    // "istanbul"
   ]
 }
