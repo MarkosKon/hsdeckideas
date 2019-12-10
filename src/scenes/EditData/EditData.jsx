@@ -271,7 +271,11 @@ const NewFeatures = ({ cards, userCards, setUserCards }) => {
                 </Form>
               )}
             </Formik>
-            <div ref={diffRef} style={{ padding: '6.75px', marginTop: '27px' }} />
+            <div
+              ref={diffRef}
+              style={{ padding: '6.75px', marginTop: '27px' }}
+              data-test-id="single-card-diff"
+            />
             <div style={{ marginBottom: '6.75px' }}>
               <h3 style={{ margin: '27px 0' }}>Collection actions</h3>
               <StyledButton
@@ -332,7 +336,7 @@ const NewFeatures = ({ cards, userCards, setUserCards }) => {
                 Show changed cards
               </StyledButton>
             </div>
-            {newCards && changedCards && newCards.length > 0 && changedCards.length > 0 && (
+            {newCards && changedCards && newCards.length === 0 && changedCards.length === 0 && (
               <p>You haven&apos;t made any changes.</p>
             )}
             {changedCards && changedCards.length > 0 && (
