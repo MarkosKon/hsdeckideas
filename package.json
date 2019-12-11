@@ -7,11 +7,11 @@
   "scripts": {
     "start": "npm-run-all --parallel start:app start:server",
     "start:app": "webpack-dev-server --hot --config webpack/webpack.dev.js",
-    "start:server": "netlify-lambda serve functions",
+    "start:server": "netlify-lambda serve functions --babelrc=false",
     "build": "npm-run-all --parallel build:client build:functions && yarn build:static",
     "build:client": "webpack --config webpack/webpack.prod.js",
     "build:static": "react-snap",
-    "build:functions": "netlify-lambda build functions",
+    "build:functions": "netlify-lambda build functions --babelrc=false",
     "test": "jest",
     "test:staged": "jest --findRelatedTests",
     "test:watch": "jest --watch",
