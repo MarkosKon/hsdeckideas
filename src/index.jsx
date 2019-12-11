@@ -5,6 +5,7 @@ import { toast } from 'react-toastify';
 
 import App from './App';
 
+import './global.css';
 import 'normalize.css';
 import 'react-toastify/dist/ReactToastify.css';
 

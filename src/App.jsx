@@ -4,7 +4,6 @@ import ReactGA from 'react-ga';
 import Loadable from 'react-loadable';
 
 import { useLocalStorage } from './hooks/useLocalStorage';
-import GlobalStyle from './AppGlobalStyle';
 import Loading from './components/Loading/Loading';
 import 'microtip/microtip.css';
 
@@ -55,35 +54,32 @@ const App = () => {
   }, []);
 
   return (
-    <>
-      <GlobalStyle />
-      <Router>
-        <Switch>
-          <Route
-            exact
-            path="/"
-            render={() => (
-              <LoadableHome
-                cards={userCards}
-                heroes={heroes}
-                heroPowers={heroPowers}
-                heroCodes={heroCodes}
-                archetypes={archetypes}
-                extraDeckWideFilters={extraDeckWideFilters}
-              />
-            )}
-          />
-          <Route
-            path="/edit-data/"
-            render={() => (
-              <LoadableEditData cards={cards} userCards={userCards} setUserCards={setUserCards} />
-            )}
-          />
-          <Route path="/faq/" render={() => <LoadableFAQ />} />
-          <Route render={() => <LoadableNotFound />} />
-        </Switch>
-      </Router>
-    </>
+    <Router>
+      <Switch>
+        <Route
+          exact
+          path="/"
+          render={() => (
+            <LoadableHome
+              cards={userCards}
+              heroes={heroes}
+              heroPowers={heroPowers}
+              heroCodes={heroCodes}
+              archetypes={archetypes}
+              extraDeckWideFilters={extraDeckWideFilters}
+            />
+          )}
+        />
+        <Route
+          path="/edit-data/"
+          render={() => (
+            <LoadableEditData cards={cards} userCards={userCards} setUserCards={setUserCards} />
+          )}
+        />
+        <Route path="/faq/" render={() => <LoadableFAQ />} />
+        <Route render={() => <LoadableNotFound />} />
+      </Switch>
+    </Router>
   );
 };
 
