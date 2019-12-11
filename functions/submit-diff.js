@@ -27,7 +27,7 @@ exports.handler = (event) => {
       console.log('error', { error });
       return {
         statusCode: 400,
-        body: JSON.stringify(error),
+        body: JSON.stringify({ message: error.message }),
       };
     });
 };

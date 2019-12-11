@@ -237,9 +237,20 @@ const NewFeatures = ({ cards, userCards, setUserCards }) => {
                           method: 'POST',
                           body: JSON.stringify({ [selectedCard.name]: delta }),
                         })
-                          .then((res) => {
-                            if (res.ok) return res;
-                            throw Error(res.statusText);
+                          .then((response) => {
+                            if (response.ok) return response;
+                            return response.json().then(
+                              // This is an error from our function because
+                              // it has a message property in the body.
+                              (res) => {
+                                throw Error(res.message || response.statusText);
+                              },
+                              // json() fail handler. The response body is not
+                              // an object, so this is not from our function.
+                              () => {
+                                throw Error(response.statusText);
+                              },
+                            );
                           })
                           .then(() => {
                             toast.success('Thanks for your submission!', {
@@ -249,7 +260,7 @@ const NewFeatures = ({ cards, userCards, setUserCards }) => {
                             submitButtonRef.current.removeAttribute('disabled');
                           })
                           .catch((err) => {
-                            toast.error(`Something went wrong. Here's the error: ${err}`, {
+                            toast.error(`Something went wrong. Here's the error: ${err.message}`, {
                               toastId: 'sub-error',
                             });
                             submitButtonRef.current.removeAttribute('disabled');
