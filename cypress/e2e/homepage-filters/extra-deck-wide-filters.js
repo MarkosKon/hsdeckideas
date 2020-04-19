@@ -5,7 +5,6 @@ const extraDeckWideFilters = data[4].content;
 describe('Extra deck wide filter tests.', () => {
   it('Asserts that we have 13 filters for standard and 25 for wild.', () => {
     cy.visit('/')
-      .wait(500)
       .getByText(/extra filters/i)
       .should('contain', 13);
 
